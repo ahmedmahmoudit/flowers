@@ -20,6 +20,7 @@ class CreateNewslettersTable extends Migration
             $table->enum('active', [1, 0])->default(1);
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

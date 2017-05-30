@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('delivery_date_time');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

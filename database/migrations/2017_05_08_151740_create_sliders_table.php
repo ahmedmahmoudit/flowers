@@ -18,6 +18,7 @@ class CreateSlidersTable extends Migration
             $table->enum('active', [1, 0])->default(1);
             $table->tinyInteger('order');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

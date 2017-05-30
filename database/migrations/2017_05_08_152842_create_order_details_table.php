@@ -22,6 +22,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('price');
             $table->integer('sale_price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

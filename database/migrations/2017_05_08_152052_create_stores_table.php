@@ -22,6 +22,7 @@ class CreateStoresTable extends Migration
             $table->string('email');
             $table->enum('is_approved', [1, 0])->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

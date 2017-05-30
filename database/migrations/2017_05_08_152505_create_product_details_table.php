@@ -27,6 +27,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('description_ar');
             $table->string('main_image');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

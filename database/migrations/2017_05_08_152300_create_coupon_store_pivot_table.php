@@ -18,6 +18,8 @@ class CreateCouponStorePivotTable extends Migration
             $table->integer('store_id')->unsigned()->index();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->primary(['coupon_id', 'store_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

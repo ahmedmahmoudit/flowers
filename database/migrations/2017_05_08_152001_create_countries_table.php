@@ -20,6 +20,7 @@ class CreateCountriesTable extends Migration
             $table->string('currency_en');
             $table->string('currency_ar');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

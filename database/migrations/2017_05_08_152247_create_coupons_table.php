@@ -22,6 +22,7 @@ class CreateCouponsTable extends Migration
             $table->integer('is_limited')->default(0);
             $table->enum('consumed', [1, 0])->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

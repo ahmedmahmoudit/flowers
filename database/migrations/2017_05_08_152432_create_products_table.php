@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('name_ar');
             $table->enum('active', [1, 0])->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

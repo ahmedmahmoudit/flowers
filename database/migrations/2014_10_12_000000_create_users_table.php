@@ -19,8 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('active', [1, 0])->default(1);
+            $table->enum('role', [1, 2, 3])->default(3);
             $table->rememberToken();
+            $table->string('api_token', 60)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

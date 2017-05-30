@@ -18,8 +18,11 @@ class CreateAreasTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->string('name_en');
             $table->string('name_ar');
+            $table->string('group_name_en');
+            $table->string('group_name_ar');
             $table->enum('active', [1, 0])->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
