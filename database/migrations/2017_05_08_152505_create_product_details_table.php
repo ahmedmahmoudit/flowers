@@ -19,9 +19,9 @@ class CreateProductDetailsTable extends Migration
             $table->integer('price');
             $table->integer('weight');
             $table->tinyInteger('is_sale');
-            $table->integer('sale_price');
-            $table->date('start_sale_date');
-            $table->date('end_sale_date');
+            $table->integer('sale_price')->nullable();
+            $table->date('start_sale_date')->nullable();
+            $table->date('end_sale_date')->nullable();
             $table->integer('quantity');
             $table->string('description_en');
             $table->string('description_ar');

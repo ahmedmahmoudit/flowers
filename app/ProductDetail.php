@@ -16,6 +16,7 @@ class ProductDetail extends Model
      */
     protected $dates = ['deleted_at'];
 
+
     /**
      * Get the product that belongs to productDetail.
      */

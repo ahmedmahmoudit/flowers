@@ -11,7 +11,8 @@ class AreasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('areas')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('areas')->truncate();
 
         // kuwait Areas
         DB::table('areas')->insert([
@@ -110,60 +111,62 @@ class AreasTableSeeder extends Seeder
             'group_name_ar' => 'العاصمة‎‎',
         ]);
 
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => '1',
+//            'name_en' => 'Kuwait City',
+//            'name_ar' => 'الكويت',
+//            'group_name_en' => 'Capital Governorate',
+//            'group_name_ar' => 'العاصمة‎‎',
+//        ]);
 
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => '1',
-            'name_en' => 'Kuwait City',
-            'name_ar' => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
+        $this->command->info('Areas Seeded!');
     }
 }

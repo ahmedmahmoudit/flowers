@@ -15,5 +15,6 @@ class Slider extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $guarded = [];
 
 }

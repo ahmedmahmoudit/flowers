@@ -19,7 +19,7 @@ class CreateCouponsTable extends Migration
             $table->enum('active', [1, 0])->default(1);
             $table->integer('minimum_charge');
             $table->date('due_date');
-            $table->integer('is_limited')->default(0);
+            $table->integer('is_limited')->default(-1); //only for numbers time to use
             $table->enum('consumed', [1, 0])->default(0);
             $table->timestamps();
             $table->softDeletes();

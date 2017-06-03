@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('coupon_id')->unsigned();
+            $table->integer('coupon_id')->unsigned()->nullable();
             $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->integer('coupon_value');
+            $table->integer('coupon_value')->default(0);
             $table->integer('sale_amount');
             $table->integer('net_amount');
             $table->string('payment_method');
@@ -27,7 +27,8 @@ class CreateOrdersTable extends Migration
             $table->string('invoice_id');
             $table->string('order_email');
             $table->text('order_address');
-            $table->dateTime('delivery_date_time');
+            $table->date('delivery_date');
+            $table->string('delivery_time');
 
             $table->timestamps();
             $table->softDeletes();

@@ -11,7 +11,8 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('countries')->truncate();
 
         DB::table('countries')->insert([
             'country_code' => 'KWD',
@@ -68,5 +69,7 @@ class CountriesTableSeeder extends Seeder
             'currency_en' => 'AED',
             'currency_ar' => 'د.إ',
         ]);
+
+        $this->command->info('Countries Seeded!');
     }
 }
