@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Country;
 use App\Repositories\CouponRepository;
 use App\Repositories\CouponRepositoryInterface;
 use App\Repositories\OrderRepository;
@@ -15,6 +16,7 @@ use App\Repositories\StoreRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +27,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+
+        if(!session()->has('selectedCountry')) {
+            $defaultCountry = Country::where('name_en','kuwait')->first();
+            session()->put('selectedCountry',$defaultCountry);
+        }
+
+
     }
 
     /**

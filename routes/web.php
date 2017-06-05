@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('test',function(){
+   return view('home');
+});
+Route::post('country/set','LocaleController@setCountry')->name('country.set');
+Route::post('area/set','LocaleController@setArea')->name('area.set');
 Route::get('login', function () {
     return 'login page';
 });

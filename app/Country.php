@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Core\LocaleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
     use SoftDeletes;
+    use LocaleTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -17,6 +19,10 @@ class Country extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = [];
+
+    protected $localeStrings = ['name'];
+
+    protected $with = ['areas'];
 
     /**
      * Get stores associated with the country.
