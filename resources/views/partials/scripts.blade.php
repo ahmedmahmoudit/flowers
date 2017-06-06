@@ -4,7 +4,7 @@
 <script src="/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript" ></script>
 <script src="/plugins/jquery.easing.min.js" type="text/javascript" ></script>
 <script src="/plugins/reveal-animate/wow.js" type="text/javascript" ></script>
-<script src="/js/scripts/reveal-animate/reveal-animate.js" type="text/javascript" ></script>
+<script src="/js/reveal-animate.js" type="text/javascript" ></script>
 
 <!-- END: CORE PLUGINS -->
 

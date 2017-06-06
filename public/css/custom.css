@@ -1,3 +1,16 @@
 body {
-    font-family: "avenirnext-regular", sans-serif;
+    /*font-family: "avenirnext-regular", sans-serif;*/
+}
+
+.red {
+    color:red;
+}
+
+.label {
+    color: #575757;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    font-family: "Arial", sans-serif;
 }

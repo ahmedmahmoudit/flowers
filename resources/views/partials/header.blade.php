@@ -5,6 +5,9 @@
                 <ul class="c-icons c-theme-ul">
                     <li>
                         <a href="javascript:;" data-toggle="modal" data-target="#select-country-form" ><i class="icon-globe"></i>
+                            @if($selectedArea)
+                                {{ $selectedArea->name }},
+                            @endif
                             {{ $selectedCountry->name }}
                         </a>
                     </li>
@@ -13,11 +16,19 @@
             <nav class="c-top-menu c-pull-right">
 
                 <ul class="c-ext c-theme-ul">
-                    <li>
-                        <a href="javascript:;" data-toggle="modal" data-target="#login-form" >
-                            {{ __('Login') }}
-                        </a>
-                    </li>
+                    @if(Auth::check())
+                        <li>
+                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" >
+                                {{ __('My Account') }}
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" >
+                                {{ __('Login') }}
+                            </a>
+                        </li>
+                    @endif
 
                     <li class="c-lang dropdown c-last">
                         <a href="#">en</a>
@@ -40,6 +51,10 @@
         <div class="container">
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
+
+                    <a href="{{ route('home') }}" class="c-logo">
+                        <img src="/img/logo-3.png" alt="JANGO" class="c-desktop-logo">
+                    </a>
                     <button class="c-topbar-toggler" type="button">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>

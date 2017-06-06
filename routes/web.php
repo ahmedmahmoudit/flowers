@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('test',function(){
-   return view('home');
-});
-Route::post('country/set','LocaleController@setCountry')->name('country.set');
-Route::post('area/set','LocaleController@setArea')->name('area.set');
-Route::get('login', function () {
-    return 'login page';
-});
-
 /***************************************************************************************************
                                          Manager ROUTES
  ***************************************************************************************************/
@@ -50,3 +41,19 @@ Route::group(['prefix' => 'manager','as' => 'manager','middleware' => ['auth', '
 Route::group(['prefix' => 'admin','as' => 'admin','middleware' => ['auth', 'StoreAdminOnly']], function () {
 
 });
+
+/***************************************************************************************************
+Front End ROUTES
+ ***************************************************************************************************/
+
+Route::get('/',function(){
+    return view('home');
+})->name('home');
+
+Route::post('country/set','LocaleController@setCountry')->name('country.set');
+Route::post('area/set','LocaleController@setArea')->name('area.set');
+
+//Auth::routes();
+Auth::routes();
+//Route::get('login','Auth\LoginController@showLoginForm')->name('login.get');
+//Route::post('login','Auth\LoginController@login')->name('login.post');

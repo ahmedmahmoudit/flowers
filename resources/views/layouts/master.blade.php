@@ -13,8 +13,9 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    @include('partials.styles')
-
+    @section('style')
+        @include('partials.styles')
+    @show
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
@@ -27,7 +28,9 @@
 @include('partials.select_country_modal')
 
 <div class="c-layout-page">
+
     @section('content')
+
     @show
 </div>
 
@@ -36,11 +39,15 @@
 <div class="c-layout-go2top">
     <i class="icon-arrow-up"></i>
 </div>
-@include('partials.scripts')
-<script>
-  $(document).ready(function() {
-    App.init(); // init core
-  });
-</script>
+
+@section('script')
+    @include('partials.scripts')
+    <script>
+      $(document).ready(function() {
+        App.init(); // init core
+      });
+    </script>
+@show
+
 </body>
 </html>
