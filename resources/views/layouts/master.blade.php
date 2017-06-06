@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en"  >
+<html lang="en" dir="{{ app()->getLocale() === 'en' ? 'ltr'  : 'rtl' }}" >
 <!--<![endif]-->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -15,6 +15,13 @@
 
     @section('style')
         @include('partials.styles')
+
+        @if(app()->getLocale() == 'ar')
+            @include('partials.styles_rtl')
+        @else
+            @include('partials.styles_ltr')
+        @endif
+
     @show
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
