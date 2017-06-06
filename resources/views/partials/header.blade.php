@@ -52,6 +52,40 @@
         <div class="container">
             <div class="c-navbar-wrapper clearfix">
 
+
+                <nav class="c-mega-menu c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                    <ul class="nav navbar-nav c-theme-nav">
+
+                        <li class="c-active">
+                            <a href="javascript:;" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
+
+                            <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
+                                @foreach($parentCategories as $parentCategory)
+                                    <li>
+                                        <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
+                                            <li class="">
+                                                <h3>{{ $parentCategory->name }}</h3>
+                                            </li>
+                                            @foreach($parentCategory->children as $childCategory)
+                                                <li class="c-mega-menu-offers-mobile">
+                                                    <a href="javascript:;">{{ $childCategory->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="javascript:;" class="c-link dropdown-toggle">Store
+                                <span class="c-arrow c-toggler"></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+
                 <div class="c-brand c-pull-left">
 
                     <a href="{{ route('home') }}" class="c-logo">

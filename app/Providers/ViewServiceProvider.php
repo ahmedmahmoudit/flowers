@@ -17,6 +17,10 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer(
             'layouts.master', 'App\Http\Composers\AppGlobals'
         );
+
+        view()->composer(
+            'partials.header', 'App\Http\Composers\NavigationMenu'
+        );
     }
 
     /**
