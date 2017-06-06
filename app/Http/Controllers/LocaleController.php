@@ -31,7 +31,7 @@ class LocaleController extends Controller
     public function setCountry(Request $request)
     {
         $country = $this->countryModel->find($request->country)->toArray();
-        Cache::put('selectedCountry',$country, 24 * 60);
+        Cache::put('selectedCountry',$country, 60 * 24);
         Cache::forget('selectedArea');
         return redirect()->back();
     }
@@ -39,7 +39,7 @@ class LocaleController extends Controller
     public function setArea(Request $request)
     {
         $area = $this->areaModel->find($request->area)->toArray();
-        Cache::put('selectedArea',$area, 24 * 60);
+        Cache::put('selectedArea',$area, 60 * 24);
         return redirect()->back();
     }
 

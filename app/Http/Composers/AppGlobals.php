@@ -5,7 +5,6 @@ use App\Country;
 use Cache;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class AppGlobals
 {

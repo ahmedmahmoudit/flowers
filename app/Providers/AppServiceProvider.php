@@ -31,11 +31,11 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         if(!Cache::has('countries')) {
-            Cache::put('countries',Country::all()->toArray(),24*60);
+            Cache::put('countries',Country::all()->toArray(),60 * 24);
         }
 
         if(!Cache::has('selectedCountry')) {
-            Cache::put('selectedCountry',Country::where('name_en','kuwait')->first()->toArray(),24*60);
+            Cache::put('selectedCountry',Country::where('name_en','kuwait')->first()->toArray(),60 * 24);
         }
 
     }
