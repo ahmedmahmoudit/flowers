@@ -38,12 +38,6 @@
                         </ul>
                     </li>
 
-                    <li class="c-search hide">
-                        <form action="#">
-                            <input type="text" name="query" placeholder="{{__('search')}}" value="" class="form-control" autocomplete="off">
-                            <i class="fa fa-search"></i>
-                        </form>
-                    </li>
                 </ul>
             </nav>
         </div>
