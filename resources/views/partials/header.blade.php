@@ -32,7 +32,7 @@
 
                     <li class="c-lang dropdown c-last">
                         <a href="#">en</a>
-                        <ul class="dropdown-menu pull-right" role="menu">
+                        <ul class="dropdown-menu pull-right" role="menu" style="text-align: center">
                             <li class="{{ $locale === 'en' ? 'active' : '' }}"><a href="{{ route('locale.set','en') }}">English</a></li>
                             <li class="{{ $locale === 'ar' ? 'active' : '' }}"><a href="{{ route('locale.set','ar') }}">العربي</a></li>
                         </ul>

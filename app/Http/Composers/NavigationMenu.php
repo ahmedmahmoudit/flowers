@@ -43,7 +43,7 @@ class NavigationMenu
             'areas' => $areas,
             'selectedArea' => $selectedArea,
             'selectedCountry' => $selectedCountry,
-            'locale' => $locale
+            'locale' => app()->getLocale()
         ]);
 
     }

@@ -46,15 +46,11 @@ Route::group(['prefix' => 'admin','as' => 'admin','middleware' => ['auth', 'Stor
 Front End ROUTES
  ***************************************************************************************************/
 
-Route::get('/',function(){
-    return view('home');
-})->name('home');
 
 Route::post('country/set','LocaleController@setCountry')->name('country.set');
 Route::post('area/set','LocaleController@setArea')->name('area.set');
 Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
 
-//Auth::routes();
 Auth::routes();
-//Route::get('login','Auth\LoginController@showLoginForm')->name('login.get');
-//Route::post('login','Auth\LoginController@login')->name('login.post');
+
+Route::get('/', 'HomeController@index')->name('home');
