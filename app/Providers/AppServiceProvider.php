@@ -15,6 +15,7 @@ use App\Repositories\StoreRepository;
 use App\Repositories\StoreRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use Cache;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 
@@ -29,9 +30,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if(!session()->has('selectedCountry')) {
-            $defaultCountry = Country::where('name_en','kuwait')->first();
-            session()->put('selectedCountry',$defaultCountry);
+        if(!Cache::has('countries')) {
+            Cache::put('countries',Country::all()->toArray(),24*60);
+        }
+
+        if(!Cache::has('selectedCountry')) {
+            Cache::put('selectedCountry',Country::where('name_en','kuwait')->first()->toArray(),24*60);
         }
 
     }

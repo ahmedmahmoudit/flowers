@@ -15,7 +15,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'layouts.master', 'App\Http\Composers\NavigationMenu'
+            'layouts.master', 'App\Http\Composers\AppGlobals'
         );
     }
 

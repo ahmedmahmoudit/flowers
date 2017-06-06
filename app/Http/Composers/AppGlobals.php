@@ -2,11 +2,12 @@
 namespace App\Http\Composers;
 
 use App\Country;
+use Cache;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class NavigationMenu
+class AppGlobals
 {
     /**
      * @var Request
@@ -25,18 +26,10 @@ class NavigationMenu
 
     public function compose(View $view)
     {
-        $countries = $this->countryModel->with('areas')->get();
-        $selectedArea = false;
-
-        $selectedCountry = session()->get('selectedCountry');
-
-        if(session()->has('selectedArea')) {
-            $selectedArea = session()->get('selectedArea');
-        }
-
-        $areas = $selectedCountry->areas;
-
-        $locale = session()->get('locale');
+        $countries = Cache::get('countries');
+        $selectedCountry = Cache::get('selectedCountry');
+        $selectedArea = Cache::has('selectedArea') ? Cache::get('selectedArea') : false;
+        $areas = $selectedCountry['areas'];
 
         $view->with([
             'countries' => $countries,

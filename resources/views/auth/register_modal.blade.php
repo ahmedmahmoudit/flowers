@@ -35,11 +35,11 @@
                         <select class="form-control input-lg c-square" id="signup-country">
                             <option value="">{{__('Select Country')}}</option>
                             @foreach($countries as $country)
-                                <option value="{{ $country->id }}"
-                                        @if($selectedCountry->id === $country->id)
+                                <option value="{{ $country['id'] }}"
+                                        @if($selectedCountry['id'] === $country['id'])
                                         selected
                                         @endif
-                                >{{ $country->name }}</option>
+                                >{{ $country['name_'.$locale] }}</option>
                             @endforeach
                         </select>
                     </div>

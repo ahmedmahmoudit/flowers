@@ -12,7 +12,7 @@
 */
 
 /***************************************************************************************************
-                                         Manager ROUTES
+Manager ROUTES
  ***************************************************************************************************/
 
 Route::group(['prefix' => 'manager','as' => 'manager','middleware' => ['auth', 'ManagerOnly']], function () {
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'manager','as' => 'manager','middleware' => ['auth', '
 
 
 /***************************************************************************************************
-                                            Store Admin ROUTES
+Store Admin ROUTES
  ***************************************************************************************************/
 
 Route::group(['prefix' => 'admin','as' => 'admin','middleware' => ['auth', 'StoreAdminOnly']], function () {
@@ -45,12 +45,12 @@ Route::group(['prefix' => 'admin','as' => 'admin','middleware' => ['auth', 'Stor
 /***************************************************************************************************
 Front End ROUTES
  ***************************************************************************************************/
+Route::group(['middleware' => ['web']], function () {
 
+    Route::post('country/set','LocaleController@setCountry')->name('country.set');
+    Route::post('area/set','LocaleController@setArea')->name('area.set');
+    Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
 
-Route::post('country/set','LocaleController@setCountry')->name('country.set');
-Route::post('area/set','LocaleController@setArea')->name('area.set');
-Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
-
-Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
+    Auth::routes();
+    Route::get('/', 'HomeController@index')->name('home');
+});

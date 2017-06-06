@@ -28,7 +28,6 @@
 @include('partials.select_country_modal')
 
 <div class="c-layout-page">
-
     @section('content')
 
     @show

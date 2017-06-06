@@ -6,9 +6,9 @@
                     <li>
                         <a href="javascript:;" data-toggle="modal" data-target="#select-country-form" ><i class="icon-globe"></i>
                             @if($selectedArea)
-                                {{ $selectedArea->name }},
+                                {{ $selectedArea['name_'.$locale] }},
                             @endif
-                            {{ $selectedCountry->name }}
+                            {{ $selectedCountry['name_'.$locale] }}
                         </a>
                     </li>
                 </ul>
