@@ -36,11 +36,14 @@ class NavigationMenu
 
         $areas = $selectedCountry->areas;
 
+        $locale = session()->get('locale');
+
         $view->with([
             'countries' => $countries,
             'areas' => $areas,
             'selectedArea' => $selectedArea,
             'selectedCountry' => $selectedCountry,
+            'locale' => $locale
         ]);
 
     }

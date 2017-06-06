@@ -33,10 +33,11 @@
                     <li class="c-lang dropdown c-last">
                         <a href="#">en</a>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li class="active"><a href="#">English</a></li>
-                            <li><a href="#">العربي</a></li>
+                            <li class="{{ $locale === 'en' ? 'active' : '' }}"><a href="{{ route('locale.set','en') }}">English</a></li>
+                            <li class="{{ $locale === 'ar' ? 'active' : '' }}"><a href="{{ route('locale.set','ar') }}">العربي</a></li>
                         </ul>
                     </li>
+
                     <li class="c-search hide">
                         <form action="#">
                             <input type="text" name="query" placeholder="{{__('search')}}" value="" class="form-control" autocomplete="off">

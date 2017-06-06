@@ -52,6 +52,7 @@ Route::get('/',function(){
 
 Route::post('country/set','LocaleController@setCountry')->name('country.set');
 Route::post('area/set','LocaleController@setArea')->name('area.set');
+Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
 
 //Auth::routes();
 Auth::routes();

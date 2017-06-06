@@ -42,4 +42,13 @@ class LocaleController extends Controller
         return redirect()->back();
     }
 
+    public function setLocale($locale)
+    {
+        if(in_array($locale,['en','ar'])) {
+            session()->put('locale', $locale);
+        }
+        return redirect()->back();
+    }
+
+
 }
