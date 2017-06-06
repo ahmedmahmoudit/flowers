@@ -48,12 +48,12 @@
             </nav>
         </div>
     </div>
+
     <div class="c-navbar">
         <div class="container">
             <div class="c-navbar-wrapper clearfix">
 
-
-                <nav class="c-mega-menu c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                <nav class="c-mega-menu c-pull-left c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                     <ul class="nav navbar-nav c-theme-nav">
 
                         <li class="c-active">
@@ -91,6 +91,13 @@
                     <a href="{{ route('home') }}" class="c-logo">
                         <img src="/img/logo.png" alt="JANGO" class="c-desktop-logo">
                     </a>
+
+                    <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
+                        <span class="c-line"></span>
+                        <span class="c-line"></span>
+                        <span class="c-line"></span>
+                    </button>
+
                     <button class="c-topbar-toggler" type="button">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
