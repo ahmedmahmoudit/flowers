@@ -1,6 +1,6 @@
 <div class="c-cart-menu">
     <div class="c-cart-menu-title">
-        <p class="c-cart-menu-float-l c-font-sbold">2 item(s)</p>
+        <p class="c-cart-menu-float-l c-font-sbold">2 items</p>
         <p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
     </div>
     <ul class="c-cart-menu-items">
@@ -8,7 +8,7 @@
             <div class="c-cart-menu-close">
                 <a href="#" class="c-theme-link">×</a>
             </div>
-            <img src="../../assets/base/img/content/shop2/24.jpg"/>
+            <img src="/img/12.jpg"/>
             <div class="c-cart-menu-content">
                 <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
                 <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
@@ -18,7 +18,7 @@
             <div class="c-cart-menu-close">
                 <a href="#" class="c-theme-link">×</a>
             </div>
-            <img src="../../assets/base/img/content/shop2/12.jpg"/>
+            <img src="/img/13.jpg"/>
             <div class="c-cart-menu-content">
                 <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
                 <a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>

@@ -109,11 +109,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 c-col">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><img class="img-responsive" src="/base/img/content/payments/light/1.png" width="60" /></li>
-                        <li><img class="img-responsive" src="/base/img/content/payments/light/2.png" width="60" /></li>
-                        <li><img class="img-responsive" src="/base/img/content/payments/light/22.png" width="60" /></li>
-                        <li><img class="img-responsive" src="/base/img/content/payments/light/5.png" width="60" /></li>
-                        <li><img class="img-responsive" src="/base/img/content/payments/light/6.png" width="60" /></li>
+
                     </ul>
                 </div>
             </div>
