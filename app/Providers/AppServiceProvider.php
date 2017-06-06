@@ -35,7 +35,13 @@ class AppServiceProvider extends ServiceProvider
         }
 
         if(!Cache::has('selectedCountry')) {
-            Cache::put('selectedCountry',Country::where('name_en','kuwait')->first()->toArray(),60 * 24);
+            $country = Country::where('name_en','kuwait')->first()->toArray();
+            Cache::put('selectedCountry',$country,60 * 24);
+            Cache::put('selectedCountryID',$country['id'],60 * 24);
+        }
+
+        if(!Cache::has('selectedArea')) {
+            Cache::put('selectedArea',false, 60 * 24);
         }
 
     }

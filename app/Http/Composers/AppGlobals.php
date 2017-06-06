@@ -27,7 +27,7 @@ class AppGlobals
     {
         $countries = Cache::get('countries');
         $selectedCountry = Cache::get('selectedCountry');
-        $selectedArea = Cache::has('selectedArea') ? Cache::get('selectedArea') : false;
+        $selectedArea = Cache::get('selectedArea');
         $areas = $selectedCountry['areas'];
 
         $view->with([

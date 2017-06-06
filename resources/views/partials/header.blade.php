@@ -51,10 +51,11 @@
     <div class="c-navbar">
         <div class="container">
             <div class="c-navbar-wrapper clearfix">
+
                 <div class="c-brand c-pull-left">
 
                     <a href="{{ route('home') }}" class="c-logo">
-                        <img src="/img/logo-3.png" alt="JANGO" class="c-desktop-logo">
+                        <img src="/img/logo.png" alt="JANGO" class="c-desktop-logo">
                     </a>
                     <button class="c-topbar-toggler" type="button">
                         <i class="fa fa-ellipsis-v"></i>
@@ -118,7 +119,13 @@
                     <a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
                     <a href="shop-checkout.html" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
                 </div>
+
+
             </div>
+
+
         </div>
+
+
     </div>
 </header>
