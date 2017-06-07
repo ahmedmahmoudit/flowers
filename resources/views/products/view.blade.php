@@ -45,13 +45,9 @@
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <div class="c-line-left"></div>
                             </div>
-                            <div class="c-product-badge">
-                                <div class="c-product-sale">Sale</div>
-                                <div class="c-product-new">New</div>
-                            </div>
-                            <div class="c-product-price" style="clear: both;">{{ $product->price . $selectedCountry['currency_'.app()->getLocale()] }}</div>
+                            <div class="c-product-price" style="clear: both;">{{ $product->getPriceWithCurrency() }}</div>
                             <div class="c-product-short-desc">
-                                Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat Nostrud duis molestie at dolore.
+                                {{ $product->detail->description }}
                             </div>
                             <div class="row c-product-variant">
                                 <div class="col-sm-12 col-xs-12">
@@ -77,23 +73,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="c-product-add-cart c-margin-t-20">
-                                <div class="row">
-                                    <div class="col-sm-4 col-xs-12">
-                                        <div class="c-input-group c-spinner">
-                                            <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
-                                            <input type="text" class="form-control c-item-1" value="1">
-                                            <div class="c-input-group-btn-vertical">
-                                                <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
-                                                <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
+                            <form method="POST" action="{{route('cart.item.add')}}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+
+                                <div class="c-product-add-cart c-margin-t-20">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-12">
+                                            <div class="c-input-group c-spinner">
+                                                <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                                                <input name="quantity" type="text" class="form-control c-item-1" value="1">
+                                                <div class="c-input-group-btn-vertical">
+                                                    <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
+                                                    <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                                        <button class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase">Add to Cart</button>
+                                        <div class="col-sm-12 col-xs-12 c-margin-t-20">
+
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase">{{ __('Add to Cart') }}</button>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

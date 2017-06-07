@@ -89,7 +89,6 @@ class CartController extends Controller
 
     public function addItem(Request $request)
     {
-
         $this->validate($request,[
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',

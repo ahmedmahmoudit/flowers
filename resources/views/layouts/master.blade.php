@@ -29,10 +29,7 @@
 
 @include('partials.header')
 
-@include('auth.login_modal')
-@include('auth.register_modal')
-@include('auth.forgot_password_modal')
-@include('partials.select_country_modal')
+
 
 <div class="c-layout-page">
     @section('content')

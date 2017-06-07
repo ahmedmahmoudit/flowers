@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Composers\AppGlobals;
+use App\Http\Composers\Header;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -15,12 +17,13 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'layouts.master', 'App\Http\Composers\AppGlobals'
+            'layouts.master', AppGlobals::class
         );
 
         view()->composer(
-            'partials.header', 'App\Http\Composers\NavigationMenu'
+            'partials.header', Header::class
         );
+
     }
 
     /**

@@ -1,3 +1,8 @@
+@include('auth.login_modal')
+@include('auth.register_modal')
+@include('auth.forgot_password_modal')
+@include('partials.select_country_modal')
+
 <header class="c-layout-header c-layout-header-dark c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light">
         <div class="container">
@@ -73,19 +78,11 @@
                         <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">2</span>
                     </button>
                 </div>
-                <!-- END: BRAND -->
-                <!-- BEGIN: QUICK SEARCH -->
+
                 <form class="c-quick-search" action="#">
                     <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
                     <span class="c-theme-link">&times;</span>
                 </form>
-                <!-- END: QUICK SEARCH -->
-                <!-- BEGIN: HOR NAV -->
-                <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
-                <!-- BEGIN: MEGA MENU -->
-                <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
-
-
 
                 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                     <ul class="nav navbar-nav c-theme-nav">
@@ -127,13 +124,10 @@
                     </ul>
                 </nav>
 
-                <!-- END: MEGA MENU --><!-- END: LAYOUT/HEADERS/MEGA-MENU -->
-                <!-- END: HOR NAV -->
             </div>
-            <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
-            <!-- BEGIN: CART MENU -->
+
             @include('products.cart_modal')
-            <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
+
         </div>
     </div>
 </header>

@@ -10,7 +10,7 @@ use Cache;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class NavigationMenu
+class Header
 {
     /**
      * @var Request
@@ -47,6 +47,10 @@ class NavigationMenu
 
     public function compose(View $view)
     {
+        $countries = Cache::get('countries');
+        $selectedCountry = Cache::get('selectedCountry');
+        $selectedArea = Cache::get('selectedArea');
+        $areas = $selectedCountry['areas'];
 
         if(!Cache::has('parentCategories')) {
             $parentCategories = $this->categoryModel->with('children')->where('parent_id',0)->get();
@@ -60,6 +64,11 @@ class NavigationMenu
         $cartItems = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id'))->get();
 
         $view->with([
+            'countries' => $countries,
+            'areas' => $areas,
+            'selectedArea' => $selectedArea,
+            'selectedCountry' => $selectedCountry,
+            'locale' => app()->getLocale(),
             'parentCategories' => $parentCategories,
             'cartItemsCount' => $cartItemsCount,
             'cartItems' => $cartItems
