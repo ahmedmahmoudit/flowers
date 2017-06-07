@@ -18,7 +18,7 @@ class ProductDetail extends BaseModel
 
 
     /**
-     * Get the product that belongs to productDetail.
+     * Get the product that belongs to detail.
      */
     public function product()
     {

@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function index()
     {
         //@todo : replace with the best selling products
-        $bestSellers  = $this->productModel->latest()->limit(4)->get();
+        $bestSellers  = $this->productModel->has('detail')->with(['detail','store'])->latest()->limit(4)->get();
         return view('home',compact('bestSellers'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -37,14 +38,6 @@ class Product extends BaseModel
     }
 
     /**
-     * Get the productDetail record associated with the product.
-     */
-    public function productDetail()
-    {
-        return $this->hasOne('App\ProductDetail');
-    }
-
-    /**
      * Get productImages associated with the product.
      */
     public function productImages()
@@ -60,5 +53,18 @@ class Product extends BaseModel
         return $this->belongsToMany('App\User', 'user_likes');
     }
 
+    public function detail()
+    {
+        return $this->hasOne(ProductDetail::class);
+    }
+
+    public function getPrice()
+    {
+        $countries  = collect(Cache::get('countries'));
+        $country = $countries->first(function($country) {
+            return $country['id'] === $this->store->country_id;
+        });
+        return $this->detail->price .' '. $country['currency_'.app()->getLocale()];
+    }
 
 }

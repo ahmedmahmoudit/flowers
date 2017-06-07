@@ -22,7 +22,7 @@ class ProductsTableSeeder extends Seeder
             factory(App\Product::class, 5)
                 ->create(['store_id' => $store->id])
                 ->each(function ($u) {
-                    $u->productDetail()->save(factory(App\ProductDetail::class)->make());
+                    $u->detail()->save(factory(App\ProductDetail::class)->make());
                 })
                 ->each(function ($u) {
                     $u->productImages()->saveMany(factory(App\ProductImage::class,5)->make());

@@ -67,7 +67,7 @@ class ProductsController extends Controller
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
         $product = $this->product->create($attributes);
 
-        $productDetails = new ProductDetail([
+        $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
             'is_sale' => $attributesDetails['is_sale'],
@@ -80,7 +80,7 @@ class ProductsController extends Controller
             'main_image' => $attributesDetails['main_image'],
         ]);
 
-        $product->productDetail()->save($productDetails);
+        $product->detail()->save($details);
 
         return redirect('manager/products');
     }
@@ -113,7 +113,7 @@ class ProductsController extends Controller
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
         $product = $this->product->update($id, $attributes);
 
-        $productDetails = new ProductDetail([
+        $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
             'is_sale' => $attributesDetails['is_sale'],
@@ -126,7 +126,7 @@ class ProductsController extends Controller
             'main_image' => $attributesDetails['main_image'],
         ]);
 
-        $product->productDetail()->save($productDetails);
+        $product->detail()->save($details);
 
         return redirect()->route('products.index');
     }

@@ -42,26 +42,14 @@
                     <div class="col-md-6">
                         <div class="c-product-meta">
                             <div class="c-content-title-1">
-                                <h3 class="c-font-uppercase c-font-bold">Warm Winter Jacket</h3>
+                                <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <div class="c-line-left"></div>
                             </div>
                             <div class="c-product-badge">
                                 <div class="c-product-sale">Sale</div>
                                 <div class="c-product-new">New</div>
                             </div>
-                            <div class="c-product-review">
-                                <div class="c-product-rating">
-                                    <i class="fa fa-star c-font-red"></i>
-                                    <i class="fa fa-star c-font-red"></i>
-                                    <i class="fa fa-star c-font-red"></i>
-                                    <i class="fa fa-star c-font-red"></i>
-                                    <i class="fa fa-star-half-o c-font-red"></i>
-                                </div>
-                                <div class="c-product-write-review">
-                                    <a class="c-font-red" href="#">Write a review</a>
-                                </div>
-                            </div>
-                            <div class="c-product-price">$99.00</div>
+                            <div class="c-product-price" style="clear: both;">{{ $product->price . $selectedCountry['currency_'.app()->getLocale()] }}</div>
                             <div class="c-product-short-desc">
                                 Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat Nostrud duis molestie at dolore.
                             </div>

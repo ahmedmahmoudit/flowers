@@ -18,7 +18,7 @@ class Country extends BaseModel
 
     protected $guarded = [];
 
-    protected $localeStrings = ['name'];
+    protected $localeStrings = ['name','currency'];
 
     protected $with = ['areas'];
 

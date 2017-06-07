@@ -6,7 +6,7 @@
                 <li data-transition="fade" data-slotamount="1" data-masterspeed="1000">
                     <img
                             alt=""
-                            src="/img/backgrounds/bg-43.jpg"
+                            src="/img/1.jpg"
                             data-bgposition="center center"
                             data-bgfit="cover"
                             data-bgrepeat="no-repeat"
@@ -48,7 +48,7 @@
                 <li data-transition="fade" data-slotamount="1" data-masterspeed="1000">
                     <img
                             alt=""
-                            src="/img/backgrounds/bg-20.jpg"
+                            src="/img/2.jpg"
                             data-bgposition="center center"
                             data-bgfit="cover"
                             data-bgrepeat="no-repeat"
@@ -91,7 +91,7 @@
                     <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
                     <img
                             alt=""
-                            src="/img/backgrounds/bg-19.jpg"
+                            src="/img/3.jpg"
                             data-bgposition="center center"
                             data-bgfit="cover"
                             data-bgrepeat="no-repeat"
