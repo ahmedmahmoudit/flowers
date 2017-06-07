@@ -1,4 +1,4 @@
-<header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
+<header class="c-layout-header c-layout-header-dark c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light">
         <div class="container">
             <!-- BEGIN: INLINE NAV -->

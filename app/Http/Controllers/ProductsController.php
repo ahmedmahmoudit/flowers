@@ -37,6 +37,7 @@ class ProductsController extends Controller
 
     public function show(\Request $request, $id, $name)
     {
+
         $product = $this->productModel->find($id);
 
         return view('products.view',compact('product'));

@@ -6,10 +6,6 @@ use Illuminate\Support\Facades\App;
 class BaseModel extends Model
 {
 
-    public function setSlugAttribute($value)
-    {
-        return $this->attributes['slug'] = slug($value);
-    }
 
     public function __get($name)
     {
@@ -37,6 +33,16 @@ class BaseModel extends Model
 
         return parent::__get($name);
 
+    }
+
+
+    public function setSlugEnAttribute($value)
+    {
+        return $this->attributes['slug_en'] = slug($value);
+    }
+    public function setSlugArAttribute($value)
+    {
+        return $this->attributes['slug_ar'] = slug($value);
     }
 
 

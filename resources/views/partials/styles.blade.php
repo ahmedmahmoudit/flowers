@@ -15,7 +15,6 @@
 {{--<link href="/plugins/slider-for-bootstrap/css/slider.css" rel="stylesheet" type="text/css"/>--}}
 <!-- END: BASE PLUGINS -->
 
-
 <!-- BEGIN THEME STYLES -->
 <link href="/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->

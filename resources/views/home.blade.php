@@ -8,7 +8,8 @@
 
     {{--    @include('partials.banner')--}}
 
-    <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space c-bg-grey-1">
+    <div class="c-content-box c-size-md">
+
         <div class="container">
             <div class="c-content-title-4">
                 <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-grey-1">{{ __('Best Sellers') }}</span></h3>
@@ -25,7 +26,7 @@
                                         <a href="{{ route('product.show',[$bestSeller->id,$bestSeller->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                     </div>
                                 </div>
-                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(../../assets/base/img/content/shop2/93.jpg);"></div>
+                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(/img/{{rand(1,6)}}.jpg);"></div>
                             </div>
                             <div class="c-info">
                                 <p class="c-title c-font-18 c-font-slim">Smartphone & Handset</p>

@@ -2,14 +2,12 @@
 
 namespace App;
 
-use App\Core\LocaleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends BaseModel
 {
     use SoftDeletes;
-    use LocaleTrait;
 
     /**
      * The attributes that should be mutated to dates.

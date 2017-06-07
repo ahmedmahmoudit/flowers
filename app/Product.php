@@ -2,14 +2,12 @@
 
 namespace App;
 
-use App\Core\LocaleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends BaseModel
 {
     use SoftDeletes;
-//    use LocaleTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -19,6 +17,8 @@ class Product extends BaseModel
     protected $dates = ['deleted_at'];
 
     protected $localeStrings = ['name','slug'];
+
+    protected $guarded = ['id'];
 
     /**
      * Get the store that belongs to product.
@@ -59,4 +59,6 @@ class Product extends BaseModel
     {
         return $this->belongsToMany('App\User', 'user_likes');
     }
+
+
 }
