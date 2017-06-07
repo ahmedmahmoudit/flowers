@@ -5,24 +5,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Product;
 use App\ProductDetail;
 use App\Repositories\ProductRepositoryInterface;
+use Auth;
+use Request;
 
 class ProductsController extends Controller
 {
     /**
-     * @var $product
+     * @var Product
      */
-    private $product;
+    private $productModel;
 
     /**
-     * ProductController constructor.
-     *
-     * @param ProductRepositoryInterface $product
+     * @param Product $productModel
      */
-    public function __construct(ProductRepositoryInterface $product)
+    public function __construct(Product $productModel)
     {
-        $this->product = $product;
+        $this->productModel = $productModel;
+        $this->middleware('auth')->only('favorite');
     }
 
     /**
@@ -32,8 +34,17 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->product->getAll();
+        $products = $this->productModel->get();
         return view('manager.product.index', compact('products'));
+    }
+
+    public function show(\Request $request, $id, $name)
+    {
+
+        $product = $this->productModel->find($id);
+
+        return view('products.view',compact('product'));
+
     }
 
     /**
@@ -59,7 +70,7 @@ class ProductsController extends Controller
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
         $product = $this->product->create($attributes);
 
-        $productDetails = new ProductDetail([
+        $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
             'is_sale' => $attributesDetails['is_sale'],
@@ -72,7 +83,7 @@ class ProductsController extends Controller
             'main_image' => $attributesDetails['main_image'],
         ]);
 
-        $product->productDetail()->save($productDetails);
+        $product->detail()->save($details);
 
         return redirect('manager/products');
     }
@@ -105,7 +116,7 @@ class ProductsController extends Controller
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
         $product = $this->product->update($id, $attributes);
 
-        $productDetails = new ProductDetail([
+        $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
             'is_sale' => $attributesDetails['is_sale'],
@@ -118,7 +129,7 @@ class ProductsController extends Controller
             'main_image' => $attributesDetails['main_image'],
         ]);
 
-        $product->productDetail()->save($productDetails);
+        $product->detail()->save($details);
 
         return redirect()->route('products.index');
     }
@@ -160,8 +171,22 @@ class ProductsController extends Controller
      */
     public function activate($id)
     {
-        $this->product->activate($id);
+        $this->productModel->activate($id);
 
         return redirect()->route('products.index');
     }
+
+    public function favorite(Request $request,$id)
+    {
+        $user = Auth::user();
+        $product = $this->productModel->find($id);
+        if($product->userLikes->contains('id',$user->id)){
+            $product->userLikes()->detach($user->id);
+        } else {
+            $product->userLikes()->attach($user->id);
+        }
+        return redirect()->back();
+    }
+
+
 }

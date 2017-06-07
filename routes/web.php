@@ -25,15 +25,8 @@ Route::get('admin/login', function () {
     return redirect('admin/dashboard');
 });
 
-Route::get('image', function()
-{
-    $img = Image::make('https://www.oushop.com/warp_sites/oushop.g6/files/Shop2.jpg')->resize(300, 200);
-
-    return $img->response('jpg');
-});
-
 /***************************************************************************************************
-                                         Manager ROUTES
+Manager ROUTES
  ***************************************************************************************************/
 
 Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 'ManagerOnly']], function () {
@@ -65,7 +58,7 @@ Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 
 
 
 /***************************************************************************************************
-                                            Store Admin ROUTES
+Store Admin ROUTES
  ***************************************************************************************************/
 
 Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
@@ -73,4 +66,23 @@ Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'Sto
     Route::get('dashboard', 'DashboardController@adminDashboard');
     Route::resource('products', 'ProductsController');
 
+});
+
+/***************************************************************************************************
+Front End ROUTES
+ ***************************************************************************************************/
+Route::group(['middleware' => ['web']], function () {
+
+    Route::post('country/set','LocaleController@setCountry')->name('country.set');
+    Route::post('area/set','LocaleController@setArea')->name('area.set');
+    Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
+    Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
+    Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
+    Route::post('cart/add','CartController@addItem')->name('cart.item.add');
+    Route::get('cart/{id}/remove','CartController@removeItem')->name('cart.item.remove');
+    Route::post('cart/update','CartController@update')->name('cart.update');
+    Route::get('cart','CartController@index')->name('cart.index');
+
+    Auth::routes();
+    Route::get('/', 'HomeController@index')->name('home');
 });

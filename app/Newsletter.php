@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Newsletter extends Model
+class Newsletter extends BaseModel
 {
     use SoftDeletes;
 

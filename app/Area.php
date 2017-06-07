@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Area extends Model
+class Area extends BaseModel
 {
     use SoftDeletes;
 
@@ -15,6 +15,8 @@ class Area extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    protected $localeStrings = ['name'];
 
     /**
      * Get the country that belongs to store.

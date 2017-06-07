@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductDetail extends Model
+class ProductDetail extends BaseModel
 {
     use SoftDeletes;
 
@@ -15,10 +15,11 @@ class ProductDetail extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $localeStrings = ['description'];
 
 
     /**
-     * Get the product that belongs to productDetail.
+     * Get the product that belongs to detail.
      */
     public function product()
     {

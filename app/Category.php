@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Category extends BaseModel
 {
     use SoftDeletes;
 
@@ -15,6 +15,7 @@ class Category extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $localeStrings = ['name'];
 
     /**
      * The products that belong to the category.
@@ -23,4 +24,15 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Product');
     }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class,'parent_id','id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class,'parent_id');
+    }
+
 }

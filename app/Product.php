@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Product extends BaseModel
 {
     use SoftDeletes;
 
@@ -15,6 +16,10 @@ class Product extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    protected $localeStrings = ['name','slug'];
+
+    protected $guarded = ['id'];
 
     /**
      * Get the store that belongs to product.
@@ -33,14 +38,6 @@ class Product extends Model
     }
 
     /**
-     * Get the productDetail record associated with the product.
-     */
-    public function productDetail()
-    {
-        return $this->hasOne('App\ProductDetail');
-    }
-
-    /**
      * Get productImages associated with the product.
      */
     public function productImages()
@@ -55,4 +52,25 @@ class Product extends Model
     {
         return $this->belongsToMany('App\User', 'user_likes');
     }
+
+    public function detail()
+    {
+        return $this->hasOne(ProductDetail::class);
+    }
+
+    public function getPrice()
+    {
+        return $this->detail->price;
+    }
+
+    public function getPriceWithCurrency()
+    {
+        $countries  = collect(Cache::get('countries'));
+        $country = $countries->first(function($country) {
+            return $country['id'] === $this->store->country_id;
+        });
+        $price = $this->getPrice();
+        return  $price.' '. $country['currency_'.app()->getLocale()];
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Country;
 use App\Repositories\CouponRepository;
 use App\Repositories\CouponRepositoryInterface;
 use App\Repositories\OrderRepository;
@@ -14,7 +15,9 @@ use App\Repositories\StoreRepository;
 use App\Repositories\StoreRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use Cache;
 use Illuminate\Support\ServiceProvider;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +28,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+
+        if(!Cache::has('countries')) {
+            Cache::put('countries',Country::all()->toArray(),60 * 24);
+        }
+
+        if(!Cache::has('selectedCountry')) {
+            $country = Country::where('name_en','kuwait')->first()->toArray();
+            Cache::put('selectedCountry',$country,60 * 24);
+            Cache::put('selectedCountryID',$country['id'],60 * 24);
+        }
+
+        if(!Cache::has('selectedArea')) {
+            Cache::put('selectedArea',false, 60 * 24);
+        }
+
     }
 
     /**
