@@ -5,6 +5,7 @@ use App\Category;
 use App\Core\Cart\Cart;
 use App\Core\Cart\SessionCart;
 use App\Country;
+use App\Product;
 use Cache;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -23,19 +24,25 @@ class NavigationMenu
      * @var SessionCart
      */
     private $cart;
+    /**
+     * @var Product
+     */
+    private $productModel;
 
     /**
      * @param Country $countryModel
      * @param Request $request
      * @param Category $categoryModel
      * @param Cart $cart
+     * @param Product $productModel
      */
-    public function __construct(Country $countryModel, Request $request,Category $categoryModel,Cart $cart)
+    public function __construct(Country $countryModel, Request $request,Category $categoryModel,Cart $cart, Product $productModel)
     {
         $this->countryModel = $countryModel;
         $this->request = $request;
         $this->categoryModel = $categoryModel;
         $this->cart = $cart;
+        $this->productModel = $productModel;
     }
 
     public function compose(View $view)
@@ -50,9 +57,12 @@ class NavigationMenu
 
         $cartItemsCount = $this->cart->getItemsCount();
 
+        $cartItems = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id'))->get();
+
         $view->with([
             'parentCategories' => $parentCategories,
-            'cartItemsCount' => $cartItemsCount
+            'cartItemsCount' => $cartItemsCount,
+            'cartItems' => $cartItems
         ]);
 
     }

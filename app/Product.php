@@ -60,11 +60,17 @@ class Product extends BaseModel
 
     public function getPrice()
     {
+        return $this->detail->price;
+    }
+
+    public function getPriceWithCurrency()
+    {
         $countries  = collect(Cache::get('countries'));
         $country = $countries->first(function($country) {
             return $country['id'] === $this->store->country_id;
         });
-        return $this->detail->price .' '. $country['currency_'.app()->getLocale()];
+        $price = $this->getPrice();
+        return  $price.' '. $country['currency_'.app()->getLocale()];
     }
 
 }

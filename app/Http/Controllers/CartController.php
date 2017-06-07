@@ -76,9 +76,14 @@ class CartController extends Controller
         return redirect()->back()->with('success','Cart Cleared');
     }
 
-    public function removeItem($productID)
+    public function removeItem(Request $request)
     {
-        $this->cart->removeItem($productID);
+        $this->validate($request,[
+            'product_id' => 'required|integer',
+            'quantity' => 'required|integer',
+        ]);
+
+        $this->cart->removeItem($request->product_id);
         return redirect()->back()->with('success','Item Removed');
     }
 

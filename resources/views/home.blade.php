@@ -28,7 +28,7 @@
                             </div>
                             <div class="c-info">
                                 <p class="c-title c-font-18 c-font-slim">{{ $product->name }}</p>
-                                <p class="c-price c-font-16 c-font-slim">{{ $product->getPrice() }} &nbsp;
+                                <p class="c-price c-font-16 c-font-slim">{{ $product->getPriceWithCurrency() }} &nbsp;
                                 </p>
                             </div>
                             <div class="btn-group btn-group-justified" role="group">
@@ -45,14 +45,25 @@
                                     </form>
                                 </div>
                                 <div class="btn-group c-border-left c-border-top" role="group">
-                                    <form method="POST" action="{{route('cart.item.add')}}">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                                        <input type="hidden" name="quantity" value="1" />
-                                        <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
-                                            {{ __('Add to Cart') }}
-                                        </button>
-                                    </form>
+                                    @if(in_array($product->id,$cartItems->pluck('id')->toArray()))
+                                        <form method="POST" action="{{route('cart.item.remove')}}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                                {{ __('Remove from Cart') }}
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form method="POST" action="{{route('cart.item.add')}}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                                {{ __('Add to Cart') }}
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
