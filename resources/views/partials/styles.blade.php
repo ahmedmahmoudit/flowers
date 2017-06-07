@@ -9,10 +9,10 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 
 <!-- BEGIN: BASE PLUGINS  -->
-<link href="/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css"/>
-<link href="/plugins/owl-carousel/assets/owl.carousel.css" rel="stylesheet" type="text/css"/>
-<link href="/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"/>
-<link href="/plugins/slider-for-bootstrap/css/slider.css" rel="stylesheet" type="text/css"/>
+{{--<link href="/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="/plugins/owl-carousel/assets/owl.carousel.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="/plugins/slider-for-bootstrap/css/slider.css" rel="stylesheet" type="text/css"/>--}}
 <!-- END: BASE PLUGINS -->
 
 

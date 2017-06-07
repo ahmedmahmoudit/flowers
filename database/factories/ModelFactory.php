@@ -99,6 +99,8 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) use ($fac
         'sku' => $faker->randomLetter . $faker->randomLetter . $faker->randomLetter . $faker->randomLetter.$faker->randomNumber(),
         'name_en' => $faker->name,
         'name_ar' => $faker->name,
+        'slug_en' => $faker->word,
+        'slug_ar' => $faker->word,
     ];
 
 });

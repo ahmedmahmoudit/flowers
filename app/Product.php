@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Core\LocaleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Product extends BaseModel
 {
     use SoftDeletes;
+//    use LocaleTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -15,6 +17,8 @@ class Product extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    protected $localeStrings = ['name','slug'];
 
     /**
      * Get the store that belongs to product.

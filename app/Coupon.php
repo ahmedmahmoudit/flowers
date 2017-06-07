@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Coupon extends Model
+class Coupon extends BaseModel
 {
     use SoftDeletes;
 

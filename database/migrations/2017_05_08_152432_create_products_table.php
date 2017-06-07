@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('sku');
             $table->string('name_en');
             $table->string('name_ar');
+            $table->string('slug_en')->nullable();
+            $table->string('slug_ar')->nullable();
             $table->enum('active', [1, 0])->default(1);
             $table->timestamps();
             $table->softDeletes();

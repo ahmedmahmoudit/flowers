@@ -5,24 +5,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Product;
 use App\ProductDetail;
 use App\Repositories\ProductRepositoryInterface;
 
 class ProductsController extends Controller
 {
     /**
-     * @var $product
+     * @var Product
      */
-    private $product;
+    private $productModel;
 
     /**
-     * ProductController constructor.
-     *
-     * @param ProductRepositoryInterface $product
+     * @param Product $productModel
      */
-    public function __construct(ProductRepositoryInterface $product)
+    public function __construct(Product $productModel)
     {
-        $this->product = $product;
+        $this->productModel = $productModel;
     }
 
     /**
@@ -32,8 +31,16 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->product->getAll();
+        $products = $this->productModel->get();
         return view('manager.product.index', compact('products'));
+    }
+
+    public function show(\Request $request, $id, $name)
+    {
+        $product = $this->productModel->find($id);
+
+        return view('products.view',compact('product'));
+
     }
 
     /**

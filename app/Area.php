@@ -6,7 +6,7 @@ use App\Core\LocaleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Area extends Model
+class Area extends BaseModel
 {
     use SoftDeletes;
     use LocaleTrait;
