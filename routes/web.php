@@ -51,6 +51,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
+    Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
+    Route::post('cart/add','CartController@addItem')->name('cart.item.add');
 
     Auth::routes();
     Route::get('/', 'HomeController@index')->name('home');

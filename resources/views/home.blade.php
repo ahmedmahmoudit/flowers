@@ -6,7 +6,7 @@
 
 @section('content')
 
-        {{--@include('partials.banner')--}}
+    {{--@include('partials.banner')--}}
 
     <div class="c-content-box c-size-lg c-bg-grey-1">
 
@@ -33,10 +33,26 @@
                             </div>
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group c-border-top" role="group">
-                                    <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
+                                    <form method="POST" action="{{route('product.favorite',$product->id)}}">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
+                                            @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
+                                                <i class="fa fa-heart" style="color: red;font-size: 1.6em" ></i>
+                                            @else
+                                                <i class="fa fa-heart-o" style="color: red;font-size: 1.6em" ></i>
+                                            @endif
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="btn-group c-border-left c-border-top" role="group">
-                                    <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
+                                    <form method="POST" action="{{route('cart.item.add')}}">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                            {{ __('Add to Cart') }}
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductDetail;
 use App\Repositories\ProductRepositoryInterface;
+use Auth;
+use Request;
 
 class ProductsController extends Controller
 {
@@ -22,6 +24,7 @@ class ProductsController extends Controller
     public function __construct(Product $productModel)
     {
         $this->productModel = $productModel;
+        $this->middleware('auth')->only('favorite');
     }
 
     /**
@@ -168,8 +171,22 @@ class ProductsController extends Controller
      */
     public function activate($id)
     {
-        $this->product->activate($id);
+        $this->productModel->activate($id);
 
         return redirect()->route('products.index');
     }
+
+    public function favorite(Request $request,$id)
+    {
+        $user = Auth::user();
+        $product = $this->productModel->find($id);
+        if($product->userLikes->contains('id',$user->id)){
+            $product->userLikes()->detach($user->id);
+        } else {
+            $product->userLikes()->attach($user->id);
+        }
+        return redirect()->back();
+    }
+
+
 }
