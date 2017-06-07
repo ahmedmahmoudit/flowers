@@ -43,7 +43,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('manager.product.create');
+        return view('backend.shared.products.create');
     }
 
     /**

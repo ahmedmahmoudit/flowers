@@ -13,7 +13,7 @@ class CreateSliderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class CreateSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'image'=> 'mimes:jpeg,jpg,png,gif|required|max:3000',
+            'order'   => 'required'
         ];
     }
 }

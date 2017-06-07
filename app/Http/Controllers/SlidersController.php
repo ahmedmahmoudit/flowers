@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSliderRequest;
-use App\Http\Requests\UpdateSliderRequest;
 use App\Repositories\SliderRepositoryInterface;
 
 class SlidersController extends Controller
@@ -31,7 +30,7 @@ class SlidersController extends Controller
     public function index()
     {
         $sliders = $this->slider->getAll();
-        return view('manager.slider.index', compact('sliders'));
+        return view('backend.manager.slider.index', compact('sliders'));
     }
 
     /**
@@ -41,7 +40,7 @@ class SlidersController extends Controller
      */
     public function create()
     {
-        return view('manager.slider.create');
+        return view('backend.manager.slider.create');
     }
 
     /**
@@ -53,41 +52,13 @@ class SlidersController extends Controller
      */
     public function store(CreateSliderRequest $request)
     {
+
         $attributes = $request->only(['image','order']);
         $this->slider->create($attributes);
 
         return redirect('manager/sliders');
     }
 
-    /**
-     * Edit slider
-    #
-     * @var integer $id
-     *
-     * @return mixed
-     */
-    public function edit($id)
-    {
-        $slider = $this->slider->getById($id);
-
-        return view('manager.slider.edit', compact('slider'));
-    }
-
-    /**
-     * Update a slider
-     *
-     * @var integer $id
-     * @var UpdateSliderRequest $request
-     *
-     * @return mixed
-     */
-    public function update($id, UpdateSliderRequest $request)
-    {
-        $attributes = $request->only(['image','order']);
-        $this->slider->update($id, $attributes);
-
-        return redirect()->route('sliders.index');
-    }
 
     /**
      * Delete a slider
@@ -100,7 +71,9 @@ class SlidersController extends Controller
     {
         $this->slider->delete($id);
 
-        return redirect()->route('slider.index');
+
+
+        return route('manager.sliders.index');
     }
 
     /**
@@ -114,7 +87,8 @@ class SlidersController extends Controller
     {
         $this->slider->disable($id);
 
-        return redirect()->route('sliders.index');
+        Session()->flash('success', 'Slide Disabled Successfully!');
+        return route('manager.sliders.index');
     }
 
     /**
@@ -128,6 +102,6 @@ class SlidersController extends Controller
     {
         $this->slider->activate($id);
 
-        return redirect()->route('sliders.index');
+        return route('manager.sliders.index');
     }
 }

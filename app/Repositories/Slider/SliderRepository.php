@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Slider;
+use Intervention\Image\Facades\Image;
 
 class SliderRepository implements SliderRepositoryInterface
 {
@@ -53,7 +54,47 @@ class SliderRepository implements SliderRepositoryInterface
      */
     public function create(array $attributes)
     {
-        return $this->model->create($attributes);
+        $this->checkOrderExist($attributes['order']);
+        $imageName = str_random(15);
+        Image::make($attributes['image'])->resize(320, 240)->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
+
+        $data = [
+            'order' => $attributes['order'],
+            'image' => $imageName.'.jpg'
+        ];
+
+        return $this->model->create($data);
+    }
+
+    /**
+     * check if slide already exist with same order.
+     *
+     * @param int $order
+     */
+    public function checkOrderExist($order)
+    {
+        $slide = $this->model->where('order', $order)->first();
+        if($slide)
+        {
+            $nextOrder = $this->nextSlideOrder();
+            $slide->update([
+                'active' => '0',
+                'order'  => $nextOrder
+            ]);
+        }
+    }
+
+    /**
+     * Get next order number in slides.
+     *
+     * @return  int $order
+     */
+    public function nextSlideOrder()
+    {
+        $slide = $this->model->all()->max('order');
+        $nextOrder = $slide + 1;
+
+        return$nextOrder;
     }
 
     /**
@@ -90,7 +131,7 @@ class SliderRepository implements SliderRepositoryInterface
      */
     public function disable($id)
     {
-        return $this->model->find($id)->update(['active' => 0]);
+        return $this->model->find($id)->update(['active' => '0']);
     }
 
     /**
@@ -102,6 +143,6 @@ class SliderRepository implements SliderRepositoryInterface
      */
     public function activate($id)
     {
-        return $this->model->find($id)->update(['active' => 1]);
+        return $this->model->find($id)->update(['active' => '1']);
     }
 }
