@@ -32,16 +32,17 @@ class CartController extends Controller
     public function index(Request $request)
     {
 //        $this->cart->flushCart();
-//        $this->cart->addItem(['id'=>7,'quantity'=>1,'product_attribute_id'=>1]);
+//        $this->cart->addItem(['id'=>93,'quantity'=>1]);
+//        $this->cart->addItem(['id'=>92,'quantity'=>1]);
+//        dd($this->cart->getItems());
 
-        $cartItems = $this->cart->getItems();
-        $products = $this->productModel->has('product_meta')->whereIn('id', $cartItems->keys())->get();
+//        dd($this->cart->getItems()->pluck('id')->toArray());
+
+        $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+
         $cart = $this->cart->make($products);
 
-//        //@todo:// translate text
-        $countries = $this->country->has('currency')->lists('name_'.app()->getLocale(),'id');
-
-        return view('meem.frontend.modules.cart.index',compact('cart','countries','shippingCountry'));
+        return view('cart.index',compact('cart'));
     }
 
     /**
@@ -50,9 +51,10 @@ class CartController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function updateCart(Request $request)
+    public function update(Request $request)
     {
         $formDatas = $request->except('_token');
+
         foreach ($formDatas as $key => $value) {
             if(str_contains($key,'quantity')) {
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
@@ -67,6 +69,7 @@ class CartController extends Controller
                 }
             }
         }
+
         return redirect()->back()->with('success','Cart Updated');
     }
 
@@ -76,14 +79,9 @@ class CartController extends Controller
         return redirect()->back()->with('success','Cart Cleared');
     }
 
-    public function removeItem(Request $request)
+    public function removeItem(Request $request,$id)
     {
-        $this->validate($request,[
-            'product_id' => 'required|integer',
-            'quantity' => 'required|integer',
-        ]);
-
-        $this->cart->removeItem($request->product_id);
+        $this->cart->removeItem($id);
         return redirect()->back()->with('success','Item Removed');
     }
 

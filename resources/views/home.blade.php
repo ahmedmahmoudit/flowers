@@ -15,6 +15,7 @@
                 <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-grey-1">{{ __('Best Sellers') }}</span></h3>
             </div>
             <div class="row">
+
                 @foreach($bestSellers as $product)
                     <div class="col-md-3 col-sm-6 c-margin-b-20">
                         <div class="c-content-product-2 c-bg-white">
@@ -45,15 +46,10 @@
                                     </form>
                                 </div>
                                 <div class="btn-group c-border-left c-border-top" role="group">
-                                    @if(in_array($product->id,$cartItems->pluck('id')->toArray()))
-                                        <form method="POST" action="{{route('cart.item.remove')}}">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                                            <input type="hidden" name="quantity" value="1" />
-                                            <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
-                                                {{ __('Remove from Cart') }}
-                                            </button>
-                                        </form>
+                                    @if(in_array($product->id,$cartItems->keys()->toArray()))
+                                        <a href="{{ route('cart.item.remove',$product->id) }}" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                            {{ __('Remove from Cart') }}
+                                        </a>
                                     @else
                                         <form method="POST" action="{{route('cart.item.add')}}">
                                             {{ csrf_field() }}

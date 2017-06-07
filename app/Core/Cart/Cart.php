@@ -12,8 +12,7 @@ class Cart {
     private $cart;
 
     public $subTotal; // before calculating sale price
-    public $grandTotal; // after calculating sale price 
-    public $netWeight; // after calculating sale price 
+    public $grandTotal; // after calculating sale price
     public $items = []; // Item Collection
 
     /**
@@ -77,30 +76,23 @@ class Cart {
 
     public function make(Collection $products)
     {
-        // prepare the cart items (calculate net weight,net price (sale,actual)
         $this->items = collect([]);
         $cartItems = $this->getItems();
+
         $products->map(function($product) use ($cartItems) {
+//            $cartItem = $cartItems['id'] = $product->id;
+//            dd($cartItem);
             $cartItem = $cartItems[$product->id];
+//            dd($cartItem['quantity']);
             $productQuantity = $cartItem['quantity'];
-            // cast the array to object
-            $item = (object) array_merge([
-                'name' => $product->name,
-                'image'=>'',
-                'sale_price' => $product->product_meta->final_price, // final price ... includes discount
-                'price' => $product->product_meta->price,
-                'sub_total'=> $product->product_meta->price * $productQuantity,
-                'grand_total'=> $product->product_meta->final_price * $productQuantity,
-                'total_weight'=> $product->product_meta->weight * $productQuantity,
-            ],
-                $this->getItemByKey($product->id)
-            );
-            $this->items->push($item);
+//            dd($productQuantity);
+            $product->subTotal = $product->detail->price * $productQuantity;
+            $product->quantity = $productQuantity;
+            return $this->items->push($product);
         });
 
-        $this->subTotal = $this->items->sum('sub_total');
-        $this->grandTotal = $this->items->sum('grand_total');
-        $this->netWeight = $this->items->sum('total_weight');
+        $this->subTotal = $this->items->sum('subTotal');
+        $this->grandTotal = $this->subTotal;
 
         return $this;
     }

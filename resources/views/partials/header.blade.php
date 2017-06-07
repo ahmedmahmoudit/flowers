@@ -126,7 +126,7 @@
 
             </div>
 
-            @include('products.cart_modal')
+            @include('cart.cart_modal')
 
         </div>
     </div>

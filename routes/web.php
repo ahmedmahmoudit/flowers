@@ -53,7 +53,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');
-    Route::post('cart/remove','CartController@removeItem')->name('cart.item.remove');
+    Route::get('cart/{id}/remove','CartController@removeItem')->name('cart.item.remove');
+    Route::post('cart/update','CartController@update')->name('cart.update');
+    Route::get('cart','CartController@index')->name('cart.index');
 
     Auth::routes();
     Route::get('/', 'HomeController@index')->name('home');
