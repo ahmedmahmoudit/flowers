@@ -17,3 +17,6 @@ body {
 
 .c-product-badge {
 }
+
+.c-shop-cart-page-1 > .c-cart-buttons > button {
+    display: inline-block; }
