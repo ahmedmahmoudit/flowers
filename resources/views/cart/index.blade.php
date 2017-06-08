@@ -99,7 +99,6 @@
                             <a href="#" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
                         </div>
 
-
                     </div>
                 </form>
             @endif

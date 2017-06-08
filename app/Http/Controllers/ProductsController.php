@@ -116,8 +116,6 @@ class ProductsController extends Controller
 
         if($category->parent_id === 0) {
 
-            // parent category
-            // get child articles
             $childCategories = $category->children->pluck('id')->toArray();
             $category->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
             return view('products.category.index', compact('category','cartItems'));
@@ -127,26 +125,14 @@ class ProductsController extends Controller
             return view('products.category.view', compact('category','cartItems'));
         }
 
-
-//        $parentCategories->map(function($parentCategory) use ($areaStores,$products) {
-//            $childCategories = $parentCategory->children->pluck('id')->toArray();
-//            $parentCategory->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
-//        });
-
-//        foreach ($parentCategories as $category) {
-//            foreach ($category->products as $product) {
-//                dd($product->userLikes->pluck('id')->toArray());
-//                print_r($product->userLikes->contains('id',auth()->id()));
-//            }
-//        }
-
-        return view('products.index', compact('parentCategories','cartItems'));
     }
 
     public function show(\Request $request, $id, $name)
     {
         $product = $this->productModel->find($id);
-        return view('products.view',compact('product'));
+        $cartItems = $this->cart->getItems();
+
+        return view('products.view',compact('product','cartItems'));
     }
 
     /**
