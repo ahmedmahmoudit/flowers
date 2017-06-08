@@ -7,7 +7,10 @@
         @foreach($cartItems as $product)
             <li>
                 <div class="c-cart-menu-close">
-                    <a href="#" class="c-theme-link">×</a>
+
+                    <a href="{{ route('cart.item.remove',$product->id) }}" class="c-theme-link ">
+                        ×
+                    </a>
                 </div>
                 <img src="/img/2.jpg"/>
                 <div class="c-cart-menu-content">
