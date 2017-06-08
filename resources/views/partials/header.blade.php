@@ -96,7 +96,9 @@
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
                                             <li class="">
                                                 <h3>
-                                                    <a href="{{ route('products.category.index',$parentCategory->slug) }}">
+                                                    <a href="{{ route('products.category.index',$parentCategory->slug) }}"
+                                                        style="color: whitesmoke"
+                                                    >
                                                         {{ $parentCategory->name }}
                                                     </a>
                                                 </h3>
