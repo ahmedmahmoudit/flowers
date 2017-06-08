@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
-class Cart extends TestCase
+class CartTest extends TestCase
 {
 
 //    use DatabaseMigrations;
@@ -29,13 +29,17 @@ class Cart extends TestCase
         $cart->addItem(['id'=>$product1->id,'quantity'=> 2]);
         $cart->addItem(['id'=>$product2->id,'quantity'=>3]);
 
-        $this->visit('cart')
-//            ->http
-//            ->see('quantity_'.$product1->id)
-//            ->see('quantity_'.$product2->id)
-//            ->see($product1->name)
-//            ->see($product2->name)
-        ;
+
+        $cart->removeItem($product1->id);
+        $this->assertEquals(1,$cart->getItemsCount());
+        dd($cart->getItems());
+//        $this->assertEquals(1,$cart->getItemsCount());
+//        $this->visit('CartTest')
+////            ->see('quantity_'.$product1->id)
+////            ->see('quantity_'.$product2->id)
+////            ->see($product1->name)
+////            ->see($product2->name)
+//        ;
     }
 
     /**
