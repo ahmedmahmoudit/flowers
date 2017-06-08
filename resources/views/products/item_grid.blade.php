@@ -1,4 +1,4 @@
-<div class="col-md-3 col-sm-6 c-margin-b-20">
+<div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20">
     <div class="c-content-product-2 c-bg-white">
         <div class="c-content-overlay">
             <div class="c-overlay-wrapper">
