@@ -256,8 +256,8 @@ var App = function() {
   };
 
   var changeArea = function() {
-    $( "#select_area" ).change(function() {
-      $('form#set-area-form').submit();
+    $( ".select_area" ).change(function() {
+      $('form.set-area-form').submit();
     });
   };
   //* END:CORE HANDLERS *//

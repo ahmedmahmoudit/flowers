@@ -21,6 +21,8 @@ class CategoriesTableSeeder extends Seeder
             'name_ar' => 'flowers',
             'description_en' => 'flowers category',
             'description_ar' => 'flowers category',
+            'slug_en' => str_random(5),
+            'slug_ar' => str_random(5),
         ]);
 
         $category = \App\Category::first();
@@ -30,6 +32,8 @@ class CategoriesTableSeeder extends Seeder
             'name_ar' => 'flowers A',
             'description_en' => 'flowers category A',
             'description_ar' => 'flowers category A',
+            'slug_en' => str_random(5),
+            'slug_ar' => str_random(5),
         ]);
 
         DB::table('categories')->insert([
@@ -38,6 +42,8 @@ class CategoriesTableSeeder extends Seeder
             'name_ar' => 'flowers b',
             'description_en' => 'flowers category b',
             'description_ar' => 'flowers category b',
+            'slug_en' => str_random(5),
+            'slug_ar' => str_random(5),
         ]);
 
         DB::table('categories')->insert([
@@ -46,6 +52,8 @@ class CategoriesTableSeeder extends Seeder
             'name_ar' => 'flowers c',
             'description_en' => 'flowers category c',
             'description_ar' => 'flowers category c',
+            'slug_en' => str_random(5),
+            'slug_ar' => str_random(5),
         ]);
 
         DB::table('categories')->insert([
@@ -54,6 +62,8 @@ class CategoriesTableSeeder extends Seeder
             'name_ar' => 'flowers d',
             'description_en' => 'flowers category d',
             'description_ar' => 'flowers category d',
+            'slug_en' => str_random(5),
+            'slug_ar' => str_random(5),
         ]);
 
         $this->command->info('Categories Seeded!');

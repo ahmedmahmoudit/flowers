@@ -43,6 +43,8 @@
     <i class="icon-arrow-up"></i>
 </div>
 
+
+
 @section('script')
     @include('partials.scripts')
     <script>

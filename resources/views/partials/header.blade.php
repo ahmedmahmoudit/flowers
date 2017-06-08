@@ -88,18 +88,24 @@
                     <ul class="nav navbar-nav c-theme-nav">
 
                         <li class="c-active ">
-                            <a href="javascript:;" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
+                            <a href="{{ route('products.index') }}" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
 
                             <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
                                 @foreach($parentCategories as $parentCategory)
                                     <li>
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
                                             <li class="">
-                                                <h3>{{ $parentCategory->name }}</h3>
+                                                <h3>
+                                                    <a href="{{ route('products.category.index',$parentCategory->slug) }}">
+                                                        {{ $parentCategory->name }}
+                                                    </a>
+                                                </h3>
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="javascript:;">{{ $childCategory->name }}</a>
+                                                    <a href="{{ route('products.category.index',$childCategory->slug) }}">
+                                                        {{ $childCategory->name }}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>

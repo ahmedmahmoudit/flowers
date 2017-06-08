@@ -15,7 +15,7 @@ class Category extends BaseModel
      * @var array
      */
     protected $dates = ['deleted_at'];
-    protected $localeStrings = ['name'];
+    protected $localeStrings = ['name','slug'];
 
     /**
      * The products that belong to the category.

@@ -29,12 +29,12 @@
 
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => 'area.set', 'method' => 'post', 'class'=>'form-horizontal', 'id'=>'set-area-form','name'=>'set-area-form']) !!}
+                    {!! Form::open(['route' => 'area.set', 'method' => 'post', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
 
                     <div class="form-group">
                         <label for="inputPassword3" class="col-md-4 control-label">{{ __('Area') }}</label>
                         <div class="col-md-6">
-                            <select class="form-control  c-square c-theme" id="select_area" name="area">
+                            <select class="form-control  c-square c-theme select_area" id="" name="area">
                                 <option value="">{{__('Select Area')}}</option>
                                 @foreach($areas as $area)
                                     <option value="{{ $area['id'] }}"
