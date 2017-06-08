@@ -1,10 +1,10 @@
 <div class="c-cart-menu">
     <div class="c-cart-menu-title">
-        <p class="c-cart-menu-float-l c-font-sbold">{{ $cartItemsCount }} {{ __('Items') }}</p>
-        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
+        <p class="c-cart-menu-float-l c-font-sbold">{{ $cart->items->count() }} {{ __('Items') }}</p>
+        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->subTotal }}</p>
     </div>
     <ul class="c-cart-menu-items">
-        @foreach($cartItems as $product)
+        @foreach($cart->items as $product)
             <li>
                 <div class="c-cart-menu-close">
 
@@ -15,7 +15,7 @@
                 <img src="/img/2.jpg"/>
                 <div class="c-cart-menu-content">
                     <p>1 x <span class="c-item-price c-theme-font">{{ $product->getPriceWithCurrency() }}</span></p>
-                    <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">{{ $product->name }}</a>
+                    <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-item-name c-font-sbold">{{ $product->name }}</a>
                 </div>
             </li>
         @endforeach
