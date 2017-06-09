@@ -14,17 +14,8 @@
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Terms &	Conditions</a></li>
                             <li><a href="#">Delivery</a></li>
-                            <li><a href="#">Promotions</a></li>
-                            <li><a href="#">News</a></li>
                         </ul>
-                        <ul class="c-links c-theme-ul">
-                            <li><a href="#">Blogs</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Clients</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Stats</a></li>
-                        </ul>
+
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
                         <div class="c-content-title-1 c-title-md">
@@ -32,9 +23,8 @@
                             <div class="c-line-left hide"></div>
                         </div>
                         <p class="c-address c-font-16">
-                            25, Lorem Lis Street, Orange <br/> California, US <br/> Phone: 800 123 3456
-                            <br/> Fax: 800 123 3456 <br/> Email: <a href="mailto:info@jango.com"><span class="c-theme-color">info@jango.com</span></a>
-                            <br/> Skype: <a href="#"><span class="c-theme-color">jango</span></a>
+                            25, Lorem Lis Street, Orange <br/> Sharq, Kuwait <br/> Phone: +965 99999999
+                            <br/> Mail: <a href="#"><span class="c-theme-color">email@test.com</span></a>
                         </p>
                     </div>
                 </div>
@@ -46,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="c-content-title-1 c-title-md">
-                            <h3 class="c-font-uppercase c-font-bold">About <span class="c-theme-font">JANGO</span></h3>
+                            <h3 class="c-font-uppercase c-font-bold">About <span class="c-theme-font">Flowers</span></h3>
                             <div class="c-line-left hide"></div>
                         </div>
                         <p class="c-text c-font-16 c-font-regular">Tolerare unus ducunt ad brevis buxum. Est alter buxum, cesaris. Eheu, lura! Racanas crescere in emeritis oenipons! Ubi est rusticus repressor? Lixa grandis clabulare est. Eposs tolerare.</p>

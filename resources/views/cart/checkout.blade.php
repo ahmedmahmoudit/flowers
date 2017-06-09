@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+    @component('partials.breadcrumb',['title' => 'Checkout', 'nav'=>true])
+        <li ><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
+        <li >/</li>
+        <li class="c-active"><a href="{{ route('checkout') }}">{{ __('Checkout') }}</a></li>
+    @endcomponent
+
     <div class="c-content-box c-size-lg">
         <div class="container">
             <form class="c-shop-form-1">

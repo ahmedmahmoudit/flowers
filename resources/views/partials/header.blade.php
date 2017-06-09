@@ -59,9 +59,12 @@
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ route('home') }}" class="c-logo">
-                        <img src="/img/logo.png" class="c-desktop-logo">
-                        <img src="/img/logo.png" class="c-desktop-logo-inverse">
-                        <img src="/img/logo.png" class="c-mobile-logo">
+                        {{--<img src="/img/logo.png" class="c-desktop-logo">--}}
+                        {{--<img src="/img/logo.png" class="c-desktop-logo-inverse">--}}
+                        {{--<img src="/img/logo.png" class="c-mobile-logo">--}}
+                        <span class="site-title c-desktop-logo">Flowers</span>
+                        <span class="site-title c-desktop-logo-inverse">Flowers</span>
+                        <span class="site-title c-mobile-logo">Flowers</span>
                     </a>
                     <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
                         <span class="c-line"></span>

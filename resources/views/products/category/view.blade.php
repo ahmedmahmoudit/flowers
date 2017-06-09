@@ -13,14 +13,6 @@
     <div class="container">
         <div class="c-layout-sidebar-menu c-theme ">
             <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
-            <div class="c-sidebar-menu-toggler">
-                <h3 class="c-title c-font-uppercase c-font-bold">Navigation</h3>
-                <a href="javascript:;" class="c-content-toggler" data-toggle="collapse" data-target="#sidebar-menu-1">
-                    <span class="c-line"></span>
-                    <span class="c-line"></span>
-                    <span class="c-line"></span>
-                </a>
-            </div>
 
             <!-- BEGIN: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
             <ul class="c-shop-filter-search-1 list-unstyled">
