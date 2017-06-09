@@ -17,6 +17,9 @@
 <script src="/plugins/slider-for-bootstrap/js/bootstrap-slider.js" type="text/javascript"></script>
 <script src="/plugins/js-cookie/js.cookie.js" type="text/javascript"></script>
 <script src="/plugins/zoom-master/jquery.zoom.min.js" type="text/javascript"></script>
+<!-- jQuery REVOLUTION Slider  -->
+<script type="text/javascript" src="/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
 <!-- END: LAYOUT PLUGINS -->
 

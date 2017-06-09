@@ -87,7 +87,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
     Route::get('checkout','CheckoutController@index')->name('checkout');
     Auth::routes();
-
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
 });

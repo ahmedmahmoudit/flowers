@@ -20,3 +20,38 @@ body {
 
 .c-shop-cart-page-1 > .c-cart-buttons > button {
     display: inline-block; }
+
+.banner {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.white-bg {
+    background-color: #ffffff !important;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border: none !important;
+}
+
+/* Slider Revolution
+---------------------------------- */
+.slider-banner-container {
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.slider-banner,
+.slider-banner-2,
+.slider-banner-3,
+.slider-banner-fullscreen {
+    width: 100%;
+    position: relative;
+}
+
+.slider-banner > ul,
+.slider-banner-2 > ul,
+.slider-banner-3 > ul,
+.slider-banner-fullscreen > ul {
+    display: none;
+}
