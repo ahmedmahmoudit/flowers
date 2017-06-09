@@ -74,20 +74,20 @@ Front End ROUTES
  ***************************************************************************************************/
 Route::group(['middleware' => ['web']], function () {
 
+    Route::get('products','ProductsController@index')->name('products.index');
+    Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
+    Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
+    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('products.category.index');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
-    Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
-    Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');
     Route::get('cart/{id}/remove','CartController@removeItem')->name('cart.item.remove');
     Route::post('cart/update','CartController@update')->name('cart.update');
     Route::get('cart','CartController@index')->name('cart.index');
-    Route::get('products','ProductsController@index')->name('products.index');
-    Route::get('products/{category}','ProductsController@getProductsForCategory')->name('products.category.index');
-    Route::get('area/select','LocaleController@selectArea')->name('area.select');
     Route::get('checkout','CheckoutController@index')->name('checkout');
-    Auth::routes();
+    Route::get('area/select','LocaleController@selectArea')->name('area.select');
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
+    Auth::routes();
 });
