@@ -1,19 +1,20 @@
 <form class="" role="form" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
-    <div class="form-group">
-        <label for="login-email" class="hide">{{ __('Email') }}</label>
+
+    <div class="form-group has-feedback">
         <input name="email" value="{{old('email')}}" type="email" class="form-control input-lg c-square" id="login-email" placeholder="{{ __('Email') }}">
+        <span class="glyphicon glyphicon-user form-control-feedback c-font-grey"></span>
     </div>
 
-    <div class="form-group">
-        <label for="login-password" class="hide">{{ __('Password') }}</label>
+    <div class="form-group has-feedback">
         <input name="password" type="password" class="form-control input-lg c-square" id="login-password" placeholder="{{ __('Password') }}">
+        <span class="glyphicon glyphicon-lock form-control-feedback c-font-grey"></span>
     </div>
 
     <div class="form-group">
         <div class="c-checkbox">
-            <input name="remeber" type="checkbox" id="login-rememberme" class="c-check">
+            <input name="remember" type="checkbox" id="login-rememberme" class="c-check">
             <label for="login-rememberme" class="c-font-thin c-font-17">
                 <span></span>
                 <span class="check"></span>

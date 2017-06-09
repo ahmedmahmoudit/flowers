@@ -13,9 +13,9 @@
                     <div class="panel panel-default c-panel">
                         <div class="panel-body c-panel-body">
                             <div class="c-content-title-1">
-                                <h3 class="c-left"><i class="icon-user"></i> Don't have an account yet?</h3>
+                                <h3 class="c-left"><i class="icon-user"></i> {{ __('Don\'t have an account yet?') }}</h3>
                                 <div class="c-line-left c-theme-bg"></div>
-                                <p>Join us and enjoy shopping online today.</p>
+                                <p>{{ __('Join us and enjoy shopping online today.') }}</p>
                             </div>
 
                             <form class="c-form-register c-margin-t-20">
