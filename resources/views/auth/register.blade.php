@@ -2,9 +2,10 @@
 
 
 @section('content')
-    @component('partials.breadcrumb',['title'=>__('Register')])
-
+    @component('partials.breadcrumb',['title' => __('Register'), 'nav'=>true])
+        <li class="c-active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
     @endcomponent
+
     <div class="c-content-box c-size-lg">
         <div class="container">
             @include('partials.notifications')
