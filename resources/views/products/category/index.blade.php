@@ -1,6 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
+
+    @component('partials.breadcrumb',['title' => $category->name, 'nav'=>true])
+        <li><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
+        <li>/</li>
+        <li class="c-active"><a href="{{ route('products.category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
+    @endcomponent
+
     <div class="c-content-box c-size-lg c-bg-grey-1">
 
         <div class="container">

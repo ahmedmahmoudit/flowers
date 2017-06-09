@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
+    @component('partials.breadcrumb',['title' => __('Products'), 'nav'=>true])
+        <li class="c-active"><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
+    @endcomponent
+
     <div class="c-content-box c-size-lg c-bg-grey-1">
 
         <div class="container">

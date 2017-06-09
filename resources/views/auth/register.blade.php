@@ -1,76 +1,89 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+    @component('partials.breadcrumb',['title'=>__('Register')])
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+    @endcomponent
+    <div class="c-content-box c-size-lg">
+        <div class="container">
+            @include('partials.notifications')
+            <div class="row">
+                <div class="col-md-6 c-padding-20 col-md-offset-3">
+                    <div class="panel panel-default c-panel">
+                        <div class="panel-body c-panel-body">
+                            <div class="c-content-title-1">
+                                <h3 class="c-left"><i class="icon-user"></i> Don't have an account yet?</h3>
+                                <div class="c-line-left c-theme-bg"></div>
+                                <p>Join us and enjoy shopping online today.</p>
                             </div>
+
+                            <form class="c-form-register c-margin-t-20">
+                                <div class="form-group">
+                                    <label class="control-label">Country</label>
+                                    <select name="country_id" class="form-control c-square c-theme">
+                                        <option value="1">Malaysia</option>
+                                        <option value="2">Singapore</option>
+                                        <option value="3">Indonesia</option>
+                                        <option value="4">Thailand</option>
+                                        <option value="5">China</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">{{ __('Full Name') }}</label>
+                                    <input type="text" name="name" class="form-control c-square c-theme" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">{{ __('Address') }}</label>
+                                    <input type="text" class="form-control c-square c-theme" placeholder="Street Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control c-square c-theme" placeholder="Apartment, suite, unit etc. (optional)">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Town / City</label>
+                                    <input type="text" class="form-control c-square c-theme" placeholder="Town / City">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">State / County</label>
+                                        <select class="form-control c-square c-theme">
+                                            <option value="0">Select an option...</option>
+                                            <option value="1">Malaysia</option>
+                                            <option value="2">Singapore</option>
+                                            <option value="3">Indonesia</option>
+                                            <option value="4">Thailand</option>
+                                            <option value="5">China</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label">Postcode / Zip</label>
+                                        <input type="text" class="form-control c-square c-theme" placeholder="Postcode / Zip">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Email Address</label>
+                                        <input type="email" class="form-control c-square c-theme" placeholder="Email Address">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label">Phone</label>
+                                        <input type="tel" class="form-control c-square c-theme" placeholder="Phone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Account Password</label>
+                                    <input type="password" class="form-control c-square c-theme" placeholder="Password">
+                                </div>
+                                <div class="form-group c-margin-t-40">
+                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Register</button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection

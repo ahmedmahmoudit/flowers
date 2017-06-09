@@ -29,11 +29,8 @@
 
 @include('partials.header')
 
-
-
 <div class="c-layout-page">
     @section('content')
-
     @show
 </div>
 

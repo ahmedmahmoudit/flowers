@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+<form class="" role="form" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
     <div class="form-group">

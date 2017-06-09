@@ -2,6 +2,14 @@
 
 @section('content')
 
+    @component('partials.breadcrumb',['title' => $category->name, 'nav'=>true])
+        <li><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
+        <li>/</li>
+        <li><a href="{{ route('products.category.index',$category->parent->slug) }}">{{ ucfirst($category->parent->name) }}</a></li>
+        <li>/</li>
+        <li class="c-active"><a href="{{ route('products.category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
+    @endcomponent
+
     <div class="container">
         <div class="c-layout-sidebar-menu c-theme ">
             <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
