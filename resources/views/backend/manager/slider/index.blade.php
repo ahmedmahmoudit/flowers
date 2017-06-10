@@ -38,7 +38,7 @@
                                         @if($slide->active == '1')
                                             <span class="label label-success">Active</span>
                                         @else
-                                            <span class="label label-danger">Disable</span>
+                                            <span class="label label-danger">Disabled</span>
                                         @endif
                                     </td>
                                     <td>

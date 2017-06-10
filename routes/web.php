@@ -53,6 +53,9 @@ Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
     Route::resource('products', 'ProductsController');
+    Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);
+    Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
+    Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
 });
 

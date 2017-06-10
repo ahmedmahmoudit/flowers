@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class CreateProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class CreateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,39 @@ class CreateProductRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+        if($request->has('is_sale'))
+        {
+            return [
+                'sku'               => 'required',
+                'store'             => 'required',
+                'name_ar'           => 'required',
+                'name_en'           => 'required',
+                'active'            => 'required',
+                'price'             => 'required',
+                'weight'            => 'required',
+                'description_en'    => 'required',
+                'description_ar'    => 'required',
+                'main_image'        => 'mimes:jpeg,jpg,png,gif|required|max:3000',
+                'qty'               => 'required',
+                'sale_price'        => 'required',
+                'start_date'        => 'required',
+                'end_date'          => 'required',
+            ];
+        }
         return [
-            //
+            'sku'               => 'required',
+            'store'             => 'required',
+            'name_ar'           => 'required',
+            'name_en'           => 'required',
+            'active'            => 'required',
+            'price'             => 'required',
+            'weight'            => 'required',
+            'description_en'    => 'required',
+            'description_ar'    => 'required',
+            'main_image'        => 'mimes:jpeg,jpg,png,gif|required|max:3000',
+            'qty'               => 'required',
         ];
     }
 }

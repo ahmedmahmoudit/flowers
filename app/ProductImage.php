@@ -15,6 +15,7 @@ class ProductImage extends BaseModel
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $guarded = [];
 
     /**
      * Get the product that belongs to productImage.
