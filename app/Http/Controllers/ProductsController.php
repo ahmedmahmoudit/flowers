@@ -12,7 +12,7 @@ use App\Product;
 use App\ProductDetail;
 use Auth;
 use Cache;
-use Request;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -136,11 +136,12 @@ class ProductsController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param $categorySlug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Show All Items
      * Show All Items
      */
-    public function getAllProductsForCategory($categorySlug)
+    public function getAllProductsForCategory(Request $request,$categorySlug)
     {
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
