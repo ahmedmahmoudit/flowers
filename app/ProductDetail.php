@@ -14,9 +14,10 @@ class ProductDetail extends BaseModel
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'start_sale_date', 'end_sale_date'];
+//    protected $dateFormat = 'd-m-Y';
     protected $localeStrings = ['description'];
-
+    protected $guarded = [];
 
     /**
      * Get the product that belongs to detail.
@@ -24,5 +25,13 @@ class ProductDetail extends BaseModel
     public function product()
     {
         return $this->belongsTo('App\Product');
+    }
+
+    public function setStartSaleDateAttribute( $value ) {
+        $this->attributes['start_sale_date'] = (new Carbon($value))->format('d-m-y');
+    }
+
+    public function setEndSaleDateAttribute( $value ) {
+        $this->attributes['end_sale_date'] = (new Carbon($value))->format('d-m-y');
     }
 }

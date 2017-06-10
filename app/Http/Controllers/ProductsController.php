@@ -10,7 +10,6 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductDetail;
-use App\Repositories\ProductRepositoryInterface;
 use Auth;
 use Cache;
 use Request;

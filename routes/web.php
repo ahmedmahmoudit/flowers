@@ -29,7 +29,7 @@ Route::get('admin/login', function () {
 Manager ROUTES
  ***************************************************************************************************/
 
-Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 'ManagerOnly']], function () {
+Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 'ManagerOnly']], function () {
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@managerDashboard']);
     Route::resource('stores', 'StoresController');
@@ -53,6 +53,9 @@ Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
     Route::resource('products', 'ProductsController');
+    Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);
+    Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
+    Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
 });
 
@@ -61,14 +64,14 @@ Route::group(['prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 
 Store Admin ROUTES
  ***************************************************************************************************/
 
-Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
 
     Route::get('dashboard', 'DashboardController@adminDashboard');
     Route::resource('products', 'ProductsController');
 
 });
 
-Auth::logout();
+//Auth::logout();
 /***************************************************************************************************
 Front End ROUTES
  ***************************************************************************************************/
