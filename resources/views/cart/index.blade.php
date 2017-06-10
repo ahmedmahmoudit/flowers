@@ -9,7 +9,6 @@
     <div class="c-content-box c-size-lg">
         <div class="container">
 
-            <!-- BEGIN: SHOPPING CART ITEM ROW -->
             @if(!$cart->items->count() > 0)
                 @include('cart.empty')
             @else
@@ -87,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- BEGIN: SUBTOTAL ITEM ROW -->
+
                         <div class="row">
                             <div class="c-cart-subtotal-row">
                                 <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
@@ -98,7 +97,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- END: SUBTOTAL ITEM ROW -->
+
                         <div class="c-cart-buttons">
                             <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Update Cart</button>
                             <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>

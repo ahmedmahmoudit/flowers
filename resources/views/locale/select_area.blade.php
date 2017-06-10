@@ -6,8 +6,6 @@
 
 @section('content')
 
-    {{--@include('partials.banner')--}}
-
     <div class="c-content-box c-size-lg c-bg-grey-1">
 
         <div class="container">
@@ -15,7 +13,6 @@
                 <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-grey-1">{{ __('Select Delivery Area') }}</span></h3>
             </div>
             <div class="row">
-
 
                 {!! Form::open(['route' => 'area.set', 'method' => 'post', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
 

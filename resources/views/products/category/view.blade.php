@@ -12,9 +12,6 @@
 
     <div class="container">
         <div class="c-layout-sidebar-menu c-theme ">
-            <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
-
-            <!-- BEGIN: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
             <ul class="c-shop-filter-search-1 list-unstyled">
                 <li>
                     <label class="control-label c-font-uppercase c-font-bold">Category</label>
@@ -56,14 +53,10 @@
                         <input type="text" class="c-price-slider" value="" data-slider-min="1" data-slider-max="500" data-slider-step="1" data-slider-value="[100,250]">
                     </div>
                 </li>
-
-
-            </ul><!-- END: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
+            </ul>
 
         </div>
         <div class="c-layout-sidebar-content ">
-            <!-- BEGIN: PAGE CONTENT -->
-            <!-- BEGIN: CONTENT/SHOPS/SHOP-PRODUCT-DETAILS-1 -->
             <div class="c-shop-product-details-2 c-opt-1">
                 <div class="row">
                     <div class="c-content-box c-size-lg c-bg-grey-1">
@@ -78,11 +71,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- END: CONTENT/SHOPS/SHOP-PRODUCT-DETAILS-1 -->
-
-            <!-- BEGIN: CONTENT/SHOPS/SHOP-PRODUCT-TAB-2 -->
-
         </div>
     </div>
 

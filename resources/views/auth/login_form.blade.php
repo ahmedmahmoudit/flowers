@@ -1,7 +1,6 @@
 <form class="" role="form" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
-
     <div class="form-group has-feedback">
         <input name="email" value="{{old('email')}}" type="email" class="form-control input-lg c-square" id="login-email" placeholder="{{ __('Email') }}">
         <span class="glyphicon glyphicon-user form-control-feedback c-font-grey"></span>

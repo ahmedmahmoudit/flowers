@@ -3,32 +3,16 @@
 @section('script')
     @parent
     <script>
-      if ($(".slider-banner-container").length>0) {
-
-        $(".tp-bannertimer").show();
-
-        $('.slider-banner-container .slider-banner-3').show().revolution({
-          sliderType:"standard",
-          sliderLayout:"fullwidth",
-          delay: 10000,
-          autoHeight: 'off',
-          gridheight:500,
-          shadow: 0,
-          spinner: "spinner3",
-          disableProgressBar:"on",
-          hideThumbsOnMobile: "on",
-          hideNavDelayOnMobile: 1500,
-          hideBulletsOnMobile: "on",
-          hideBullets: "on",
-          hideArrowsOnMobile: "on",
-          hideThumbsUnderResolution: 0,
-          navigationArrows:"solo",
-          onHoverStop: "off",
-          touchenabled:"on",
-        });
-
-      }
-
+      $('.slider-banner-container .slider-banner-3').show().revolution({
+        delay: 10000,
+        autoHeight: 'off',
+        gridheight:500,
+        spinner: "spinner3",
+        hideNavDelayOnMobile: 1500,
+        hideThumbsUnderResolution: 0,
+        onHoverStop: "off",
+        touchenabled:"on"
+      });
     </script>
 @endsection
 

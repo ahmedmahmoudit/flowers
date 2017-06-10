@@ -6,7 +6,6 @@
 <header class="c-layout-header c-layout-header-dark c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light">
         <div class="container">
-            <!-- BEGIN: INLINE NAV -->
             <nav class="c-top-menu c-pull-left">
                 <ul class="c-icons c-theme-ul">
                     <li>
@@ -19,8 +18,6 @@
                     </li>
                 </ul>
             </nav>
-            <!-- END: INLINE NAV -->
-            <!-- BEGIN: INLINE NAV -->
             <nav class="c-top-menu c-pull-right">
                 <ul class="c-links c-theme-ul">
 
@@ -50,12 +47,10 @@
                     </li>
                 </ul>
             </nav>
-            <!-- END: INLINE NAV -->
         </div>
     </div>
     <div class="c-navbar">
         <div class="container">
-            <!-- BEGIN: BRAND -->
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ route('home') }}" class="c-logo">
