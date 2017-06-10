@@ -77,8 +77,8 @@
                     </button>
                 </div>
 
-                <form class="c-quick-search" action="#">
-                    <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
+                <form class="c-quick-search" role="form" method="GET" action="{{ route('search') }}">
+                    <input type="text" name="term" placeholder="Type to search..." value="{{ $searchTerm }}" class="form-control" autocomplete="off">
                     <span class="c-theme-link">&times;</span>
                 </form>
 
@@ -95,7 +95,7 @@
                                             <li class="">
                                                 <h3>
                                                     <a href="{{ route('category.index',$parentCategory->slug) }}"
-                                                        style="color: whitesmoke"
+                                                       style="color: whitesmoke"
                                                     >
                                                         {{ $parentCategory->name }}
                                                     </a>

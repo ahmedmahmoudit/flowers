@@ -80,6 +80,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
     Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
+    Route::get('products/search','ProductsController@searchProducts')->name('search');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');

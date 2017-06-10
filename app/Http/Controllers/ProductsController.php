@@ -136,13 +136,14 @@ class ProductsController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param $categorySlug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Show All Items
      * Show All Items
      */
     public function getAllProductsForCategory(Request $request,$categorySlug)
     {
+        $searchTerm = $request->has('term') ? $request->get('term') : '';
+        $selectedCategory = $categorySlug;
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
 
@@ -160,6 +161,8 @@ class ProductsController extends Controller
             $childCategories = $category->children->pluck('id')->toArray();
         }
 
+        $parentCategories = Cache::get('parentCategories');
+
         $category->products =
             $this->productModel
                 ->has('detail')
@@ -169,8 +172,16 @@ class ProductsController extends Controller
                 ->select('products.*')
                 ->paginate(30);
 
-        return view('products.category.view', compact('category','cartItems'));
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory'));
 
+    }
+
+    public function searchProducts(Request $request)
+    {
+        $searchTerm = $request->has('term') ? $request->get('term') : '';
+        $parentCategories = Cache::get('parentCategories');
+        $selectedCategory = $request->get('category');
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory'));
     }
 
     public function show(\Request $request, $id, $name)
