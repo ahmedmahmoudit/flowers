@@ -65,10 +65,8 @@ Store Admin ROUTES
  ***************************************************************************************************/
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
-
     Route::get('dashboard', 'DashboardController@adminDashboard');
     Route::resource('products', 'ProductsController');
-
 });
 
 //Auth::logout();
@@ -80,7 +78,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('products','ProductsController@index')->name('products.index');
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
-    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('products.category.index');
+    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
+    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
+    Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
