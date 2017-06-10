@@ -33,14 +33,14 @@ class LocaleController extends Controller
         $country = $this->countryModel->find($request->country)->toArray();
         Cache::put('selectedCountry',$country, 60 * 24);
         Cache::forget('selectedArea');
-        return redirect()->back();
+        return redirect()->intended('/');
     }
 
     public function setArea(Request $request)
     {
         $area = $this->areaModel->find($request->area)->toArray();
         Cache::put('selectedArea',$area, 60 * 24);
-        return redirect()->back();
+        return redirect()->intended('/');
     }
 
     public function setLocale($locale)
@@ -50,6 +50,14 @@ class LocaleController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function selectArea()
+    {
+        $selectedCountry = Cache::get('selectedCountry');
+        $selectedArea = Cache::get('selectedArea');
+        $areas = $selectedCountry['areas'];
+        return view('locale.select_area',compact('areas','selectedArea'));
     }
 
 

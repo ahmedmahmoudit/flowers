@@ -3,40 +3,51 @@
 namespace App\Http\Controllers;
 
 
+use App\Area;
+use App\Category;
+use App\Core\Cart\Cart;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductDetail;
-use App\ProductImage;
-use App\Repositories\ProductRepositoryInterface;
-use App\Repositories\StoreRepositoryInterface;
 use Auth;
-use Carbon\Carbon;
-use Intervention\Image\Facades\Image;
+use Cache;
 use Request;
-use App\Category;
 
 class ProductsController extends Controller
 {
     /**
-     * @var $product
+     * @var Product
      */
-    private $product;
+    private $productModel;
+    /**
+     * @var Area
+     */
+    private $areaModel;
+    /**
+     * @var Category
+     */
+    private $categoryModel;
+    /**
+     * @var Cart
+     */
+    private $cart;
 
     /**
-     * @var $store
+     * @param Product $productModel
+     * @param Area $areaModel
+     * @param Category $categoryModel
+     * @param Cart $cart
+     * @internal param Category $category
      */
-    private $store;
-
-    /**
-     * @param ProductRepositoryInterface $product
-     * @param StoreRepositoryInterface $store
-     */
-    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store)
+    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart)
     {
-        $this->product = $product;
-        $this->store = $store;
+        $this->productModel = $productModel;
         $this->middleware('auth')->only('favorite');
+        $this->middleware('area')->only(['index','getProductsForCategory']);
+        $this->areaModel = $areaModel;
+        $this->categoryModel = $categoryModel;
+        $this->cart = $cart;
     }
 
     /**
@@ -46,18 +57,81 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->product->getAll();
+        //#@todo get only for current country and area
 
-        return view('backend.shared.products.index', compact('products'));
+        // get user country
+        $selectedArea = Cache::get('selectedArea');
+
+        $area = $this->areaModel->with(['stores'=>function($q){
+            $q->select(['id']);
+        }])->find($selectedArea['id']);
+
+        $areaStores = $area->stores->pluck('id');
+
+        $parentCategories = $this->categoryModel->where('parent_id',0)->get();
+
+        $products = $this->productModel->has('detail')->with(['detail','store','userLikes'])->whereIn('store_id',$areaStores);
+
+        $parentCategories->map(function($parentCategory) use ($areaStores,$products) {
+            $childCategories = $parentCategory->children->pluck('id')->toArray();
+            $parentCategory->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
+        });
+
+//        foreach ($parentCategories as $category) {
+//            foreach ($category->products as $product) {
+//                dd($product->userLikes->pluck('id')->toArray());
+//                print_r($product->userLikes->contains('id',auth()->id()));
+//            }
+//        }
+
+        $cartItems = $this->cart->getItems();
+
+        return view('products.index', compact('parentCategories','cartItems'));
+    }
+
+    /**
+     * @param Request $request
+     * @param $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getProductsForCategory(Request $request, $categorySlug)
+    {
+
+        //#@todo get only for current country and area
+        $cartItems = $this->cart->getItems();
+
+        // get user country
+        $selectedArea = Cache::get('selectedArea');
+
+        $area = $this->areaModel->with(['stores'=>function($q){
+            $q->select(['id']);
+        }])->find($selectedArea['id']);
+
+        $areaStores = $area->stores->pluck('id');
+
+        $category = $this->categoryModel->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
+
+        $products = $this->productModel->has('detail')->with(['detail','store','userLikes'])->whereIn('store_id',$areaStores);
+
+        if($category->parent_id === 0) {
+
+            $childCategories = $category->children->pluck('id')->toArray();
+            $category->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
+            return view('products.category.index', compact('category','cartItems'));
+
+        } else {
+            $category->products = $products->childrenCategoryProducts([$category->id])->select('products.*')->limit(40)->get();
+            return view('products.category.view', compact('category','cartItems'));
+        }
+
     }
 
     public function show(\Request $request, $id, $name)
     {
-
         $product = $this->productModel->find($id);
+        $cartItems = $this->cart->getItems();
 
-        return view('products.view' ,compact('product'));
-
+        return view('products.view',compact('product','cartItems'));
     }
 
     /**
@@ -67,11 +141,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $stores = $this->store->getAll();
-        $categories = Category::where('parent_id','!=', '0')->get();
-        $categoriesList = [];
-
-        return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList'));
+        return view('backend.shared.products.create');
     }
 
     /**
@@ -83,64 +153,24 @@ class ProductsController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        if(Auth::user()->isManager())
-        {
-            $store = $request->only(['store']);
-            $store_id = $store['store'];
-        }
-        else
-        {
-            $store_id = Auth::user()->id;
-        }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
-        $categories = $request->only(['categories']);
-        $mainImage = $request->only(['main_image']);
-        $images = $request->only(['images']);
-
-        $attributes['store_id'] = $store_id;
+        $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
+        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
         $product = $this->product->create($attributes);
-        //save main image
-        $imageName = str_random(15);
-        Image::make($mainImage['main_image'])->resize(320, 240)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
-        $attributesDetails['main_image'] = $imageName.'.jpg';
 
         $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
-            'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
+            'is_sale' => $attributesDetails['is_sale'],
             'sale_price' => $attributesDetails['sale_price'],
             'start_sale_date' => $attributesDetails['start_sale_date'],
             'end_sale_date' => $attributesDetails['end_sale_date'],
-            'quantity' => $attributesDetails['qty'],
+            'quantity' => $attributesDetails['quantity'],
             'description_en' => $attributesDetails['description_en'],
             'description_ar' => $attributesDetails['description_ar'],
             'main_image' => $attributesDetails['main_image'],
         ]);
 
         $product->detail()->save($details);
-
-        if(count($categories['categories']) > 0)
-        {
-            $product->categories()->syncWithoutDetaching($categories['categories']);
-        }
-
-        if(isset($images['images']) AND count($images['images'] > 0))
-        {
-            $savedImages = array();
-            foreach ($images['images'] as $image)
-            {
-                $randomImageName = str_random(15);
-                Image::make($image)->resize(320, 240)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
-                $savedImage = new ProductImage([
-                    'image' => $randomImageName.'.jpg'
-                ]);
-
-                $savedImages[] = $savedImage;
-            }
-
-            $product->productImages()->saveMany($savedImages);
-        }
 
         return redirect('manager/products');
     }
@@ -155,10 +185,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = $this->product->getById($id);
-        $stores = $this->store->getAll();
-        $categories = Category::where('parent_id','!=', '0')->get();
-        $categoriesList = $product->categories->pluck('id')->toArray();
-        return view('backend.shared.products.edit', compact('product','stores', 'categories', 'categoriesList'));
+
+        return view('manager.product.edit', compact('product'));
     }
 
     /**
@@ -171,81 +199,26 @@ class ProductsController extends Controller
      */
     public function update($id, UpdateProductRequest $request)
     {
-        if(Auth::user()->isManager())
-        {
-            $store = $request->only(['store']);
-            $store_id = $store['store'];
-        }
-        else
-        {
-            $store_id = Auth::user()->id;
-        }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
-        $categories = $request->only(['categories']);
-        $mainImage = $request->only(['main_image']);
-        $images = $request->only(['images']);
+        $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
+        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
+        $product = $this->product->update($id, $attributes);
 
-        $attributes['store_id'] = $store_id;
-
-        $product = $this->product->getById($id);
-        $this->product->update($id, $attributes);
-
-        $details = [
+        $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
-            'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
+            'is_sale' => $attributesDetails['is_sale'],
             'sale_price' => $attributesDetails['sale_price'],
-            'quantity' => $attributesDetails['qty'],
+            'start_sale_date' => $attributesDetails['start_sale_date'],
+            'end_sale_date' => $attributesDetails['end_sale_date'],
+            'quantity' => $attributesDetails['quantity'],
             'description_en' => $attributesDetails['description_en'],
             'description_ar' => $attributesDetails['description_ar'],
-        ];
+            'main_image' => $attributesDetails['main_image'],
+        ]);
 
-        if($attributesDetails['start_sale_date'])
-        {
-            $startDate = Carbon::createFromFormat('d-m-Y', $attributesDetails['start_sale_date']);
-            $details['start_sale_date'] = $startDate->format('Y-m-d');
-        }
+        $product->detail()->save($details);
 
-        if($attributesDetails['end_sale_date'])
-        {
-            $endDate = Carbon::createFromFormat('d-m-Y', $attributesDetails['end_sale_date']);
-            $details['end_sale_date'] = $endDate->format('Y-m-d');
-        }
-
-        if($mainImage['main_image'])
-        {
-            $imageName = str_random(15);
-            Image::make($mainImage['main_image'])->resize(320, 240)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
-            $attributesDetails['main_image'] = $imageName.'.jpg';
-            $details['main_image'] = $attributesDetails['main_image'];
-        }
-
-        $product->detail()->update($details);
-
-        if(count($categories['categories']) > 0)
-        {
-            $product->categories()->sync($categories['categories']);
-        }
-
-        if(isset($images['images']) AND count($images['images'] > 0))
-        {
-            $savedImages = array();
-            foreach ($images['images'] as $image)
-            {
-                $randomImageName = str_random(15);
-                Image::make($image)->resize(320, 240)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
-                $savedImage = new ProductImage([
-                    'image' => $randomImageName.'.jpg'
-                ]);
-
-                $savedImages[] = $savedImage;
-            }
-
-            $product->productImages()->saveMany($savedImages);
-        }
-
-        return redirect()->back();
+        return redirect()->route('products.index');
     }
 
     /**
@@ -259,21 +232,7 @@ class ProductsController extends Controller
     {
         $this->product->delete($id);
 
-        return route('manager.products.index');
-    }
-
-    /**
-     * Delete a product image
-     *
-     * @var integer $id image ID
-     *
-     * @return mixed
-     */
-    public function destroyImage($id)
-    {
-        ProductImage::find($id)->delete();
-
-        return url()->previous();
+        return redirect()->route('product.index');
     }
 
     /**
@@ -287,7 +246,7 @@ class ProductsController extends Controller
     {
         $this->product->disable($id);
 
-        return route('manager.products.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -299,15 +258,15 @@ class ProductsController extends Controller
      */
     public function activate($id)
     {
-        $this->product->activate($id);
+        $this->productModel->activate($id);
 
-        return route('manager.products.index');
+        return redirect()->route('products.index');
     }
 
     public function favorite(Request $request,$id)
     {
         $user = Auth::user();
-        $product = $this->product->getById($id);
+        $product = $this->productModel->find($id);
         if($product->userLikes->contains('id',$user->id)){
             $product->userLikes()->detach($user->id);
         } else {

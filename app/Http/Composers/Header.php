@@ -59,10 +59,8 @@ class Header
             $parentCategories = Cache::get('parentCategories');
         }
 
-        $cartItemsCount = $this->cart->getItemsCount();
-
-        $cartItems = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id'))->get();
-
+        $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+        $cart = $this->cart->make($products);
         $view->with([
             'countries' => $countries,
             'areas' => $areas,
@@ -70,8 +68,7 @@ class Header
             'selectedCountry' => $selectedCountry,
             'locale' => app()->getLocale(),
             'parentCategories' => $parentCategories,
-            'cartItemsCount' => $cartItemsCount,
-            'cartItems' => $cartItems
+            'cart' => $cart
         ]);
 
     }

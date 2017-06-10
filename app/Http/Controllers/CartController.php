@@ -31,17 +31,8 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-//        $this->cart->flushCart();
-//        $this->cart->addItem(['id'=>93,'quantity'=>1]);
-//        $this->cart->addItem(['id'=>92,'quantity'=>1]);
-//        dd($this->cart->getItems());
-
-//        dd($this->cart->getItems()->pluck('id')->toArray());
-
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
-
         $cart = $this->cart->make($products);
-
         return view('cart.index',compact('cart'));
     }
 
@@ -59,12 +50,9 @@ class CartController extends Controller
             if(str_contains($key,'quantity')) {
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
                 $productID = substr($key,9);
-//                dd($productID);
                 try {
                     $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
                 } catch(\Exception $e) {
-                    //@todo : Remove dd
-                    dd($e->getMessage());
                     return redirect()->back()->with('error',$e->getMessage());
                 }
             }
@@ -102,5 +90,5 @@ class CartController extends Controller
     {
         return $this->cart->getItemsCount();
     }
-    
+
 }

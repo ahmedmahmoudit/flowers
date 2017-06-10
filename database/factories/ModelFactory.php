@@ -67,6 +67,8 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
         'name_ar' => $faker->name,
         'description_en' => $faker->text(50),
         'description_ar' => $faker->text(50),
+        'slug_en' => $faker->word,
+        'slug_ar' => $faker->word
     ];
 
 });

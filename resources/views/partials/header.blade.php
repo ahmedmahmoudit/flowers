@@ -59,9 +59,12 @@
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ route('home') }}" class="c-logo">
-                        <img src="/img/logo.png" class="c-desktop-logo">
-                        <img src="/img/logo.png" class="c-desktop-logo-inverse">
-                        <img src="/img/logo.png" class="c-mobile-logo">
+                        {{--<img src="/img/logo.png" class="c-desktop-logo">--}}
+                        {{--<img src="/img/logo.png" class="c-desktop-logo-inverse">--}}
+                        {{--<img src="/img/logo.png" class="c-mobile-logo">--}}
+                        <span class="site-title c-desktop-logo">Flowers</span>
+                        <span class="site-title c-desktop-logo-inverse">Flowers</span>
+                        <span class="site-title c-mobile-logo">Flowers</span>
                     </a>
                     <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
                         <span class="c-line"></span>
@@ -88,18 +91,26 @@
                     <ul class="nav navbar-nav c-theme-nav">
 
                         <li class="c-active ">
-                            <a href="javascript:;" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
+                            <a href="{{ route('products.index') }}" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
 
                             <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
                                 @foreach($parentCategories as $parentCategory)
                                     <li>
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
                                             <li class="">
-                                                <h3>{{ $parentCategory->name }}</h3>
+                                                <h3>
+                                                    <a href="{{ route('products.category.index',$parentCategory->slug) }}"
+                                                        style="color: whitesmoke"
+                                                    >
+                                                        {{ $parentCategory->name }}
+                                                    </a>
+                                                </h3>
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="javascript:;">{{ $childCategory->name }}</a>
+                                                    <a href="{{ route('products.category.index',$childCategory->slug) }}">
+                                                        {{ $childCategory->name }}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -118,7 +129,7 @@
                         </li>
 
                         <li class="c-cart-toggler-wrapper">
-                            <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">{{ $cartItemsCount }}</span></a>
+                            <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">{{ $cart->items->count() }}</span></a>
                         </li>
 
                     </ul>

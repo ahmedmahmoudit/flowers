@@ -29,11 +29,8 @@
 
 @include('partials.header')
 
-
-
 <div class="c-layout-page">
     @section('content')
-
     @show
 </div>
 
@@ -42,6 +39,8 @@
 <div class="c-layout-go2top">
     <i class="icon-arrow-up"></i>
 </div>
+
+
 
 @section('script')
     @include('partials.scripts')

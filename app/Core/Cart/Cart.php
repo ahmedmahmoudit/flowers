@@ -69,9 +69,6 @@ class Cart {
             throw new Exception('Invalid Quantity');
         }
 
-//        if(!array_key_exists('product_attribute_id',$item) || !is_int($item['product_attribute_id']) || $item['product_attribute_id'] <= 0 ) {
-//            throw new Exception('Invalid Product Attribute');
-//        }
     }
 
     public function make(Collection $products)
@@ -80,12 +77,8 @@ class Cart {
         $cartItems = $this->getItems();
 
         $products->map(function($product) use ($cartItems) {
-//            $cartItem = $cartItems['id'] = $product->id;
-//            dd($cartItem);
             $cartItem = $cartItems[$product->id];
-//            dd($cartItem['quantity']);
             $productQuantity = $cartItem['quantity'];
-//            dd($productQuantity);
             $product->subTotal = $product->detail->price * $productQuantity;
             $product->quantity = $productQuantity;
             return $this->items->push($product);

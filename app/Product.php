@@ -73,4 +73,22 @@ class Product extends BaseModel
         return  $price.' '. $country['currency_'.app()->getLocale()];
     }
 
+    public function getProductsForArea()
+    {
+
+        $country = Cache::get('selectedCountry');
+
+    }
+
+    public function scopeChildrenCategoryProducts($query,$ids)
+    {
+        return $query->join('category_product', function($join) use ($ids) {
+            $join->on('category_product.product_id','=','products.id' )
+                ->whereIn('category_product.category_id',$ids)
+//                ->where('articles.published',1)
+            ;
+        });
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Area;
 use App\Http\Middleware\Locale;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -35,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            Locale::class
+            Locale::class,
         ],
 
         'api' => [
@@ -60,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ManagerOnly' => \App\Http\Middleware\ManagerOnly::class,
         'StoreAdminOnly' => \App\Http\Middleware\StoreAdminOnly::class,
+        'area' => Area::class
     ];
 }

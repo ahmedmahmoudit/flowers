@@ -7,6 +7,7 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <!-- Manager SideBar -->
+{{--            {{dd(Auth::user())}}--}}
             @if(Auth::user()->isManager())
                 <li class="{{ (str_contains(Request::route()->getName(),'dashboard') ? 'active' : '' ) }}">
                     <a href="{{ route('manager.dashboard') }}">

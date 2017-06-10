@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
+    @component('partials.breadcrumb',['title' => 'Cart', 'nav'=>true])
+        <li class="c-active"><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
+    @endcomponent
+
     <div class="c-content-box c-size-lg">
         <div class="container">
 
@@ -96,10 +101,8 @@
                         <!-- END: SUBTOTAL ITEM ROW -->
                         <div class="c-cart-buttons">
                             <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Update Cart</button>
-                            <a href="#" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
+                            <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
                         </div>
-
-
                     </div>
                 </form>
             @endif
