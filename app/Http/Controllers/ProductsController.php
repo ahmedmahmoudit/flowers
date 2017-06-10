@@ -85,18 +85,16 @@ class ProductsController extends Controller
         return view('products.index', compact('parentCategories','cartItems'));
     }
 
-    /**
-     * @param Request $request
-     * @param $category
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getProductsForCategory(Request $request, $categorySlug)
-    {
 
-        //#@todo get only for current country and area
+    /**
+     * @param $categorySlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Show 4 items for Each Category
+     */
+    public function getProductsForCategory($categorySlug)
+    {
         $cartItems = $this->cart->getItems();
 
-        // get user country
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel->with(['stores'=>function($q){
@@ -107,8 +105,10 @@ class ProductsController extends Controller
 
         $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
 
-        if($category->parent_id === 0) {
+        $isParent = false;
 
+        if($category->parent_id === 0) {
+            $isParent = true;
             $category->children->map(function($childCategory) use ($areaStores) {
                 $childCategory->products =
                     $this->productModel
@@ -120,22 +120,27 @@ class ProductsController extends Controller
                         ->limit(4)
                         ->get();
             });
-            return view('products.category.index', compact('category','cartItems'));
+        } else {
+            $category->products = $this->productModel
+                ->has('detail')
+                ->with(['detail','store','userLikes'])
+                ->whereIn('store_id',$areaStores)
+                ->childrenCategoryProducts([$category->id])
+                ->select('products.*')
+                ->limit(4)
+                ->get();
         }
 
-        $category->products = $this->productModel
-            ->has('detail')
-            ->with(['detail','store','userLikes'])
-            ->whereIn('store_id',$areaStores)
-            ->childrenCategoryProducts([$category->id])
-            ->select('products.*')
-            ->limit(4)
-            ->get();
-
-        return view('products.category.view', compact('category','cartItems'));
+        return view('products.category.index', compact('category','cartItems', 'isParent'));
 
     }
-    public function getAllProductsForCategory(Request $request, $categorySlug)
+
+    /**
+     * @param $categorySlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Show All Items
+     */
+    public function getAllProductsForCategory($categorySlug)
     {
 
         //#@todo get only for current country and area
@@ -154,7 +159,7 @@ class ProductsController extends Controller
 
         $childCategories = [$category->id];
 
-        if($category->parent_id ===0) {
+        if($category->parent_id === 0 ) {
             $childCategories = $category->children->pluck('id')->toArray();
         }
 

@@ -103,7 +103,7 @@
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="{{ route('category.index',$childCategory->slug) }}">
+                                                    <a href="{{ route('category.show',$childCategory->slug) }}">
                                                         {{ $childCategory->name }}
                                                     </a>
                                                 </li>

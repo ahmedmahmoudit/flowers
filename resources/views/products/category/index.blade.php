@@ -18,19 +18,23 @@
                 <div class="c-line c-dot   c-theme-bg c-theme-bg-after"></div>
             </div>
             <div class="row">
-                @foreach($category->children as $childCategory)
-
-                    <div class="c-content-title-2" style="padding: 15px 15px 0px 15px;margin-top:50px">
-                        <h3 class="pull-left c-font-uppercase" style="font-size: 1.2em">{{ $childCategory->name }}</h3>
-                        <a href="{{ route('category.index',$childCategory->slug) }}" class=" pull-right c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x"  style="font-size: .8em">{{ __('View All '.$childCategory->name) }}</a>
+                @if($isParent)
+                    @foreach($category->children as $childCategory)
+                        <div class="c-content-title-2" style="padding: 15px 15px 0px 15px;margin-top:50px">
+                            <h3 class="pull-left c-font-uppercase" style="font-size: 1.2em">{{ $childCategory->name }}</h3>
+                            <a href="{{ route('category.show',$childCategory->slug) }}" class=" pull-right c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x"  style="font-size: .8em">{{ __('View All '.$childCategory->name) }}</a>
+                            <div class="clearfix"></div>
+                        </div>
+                        @foreach($childCategory->products as $product)
+                            @include('products.item_grid',['cartItems'=>$cartItems])
+                        @endforeach
                         <div class="clearfix"></div>
-                    </div>
-
-                    @foreach($childCategory->products as $product)
+                    @endforeach
+                @else
+                    @foreach($category->products as $product)
                         @include('products.item_grid',['cartItems'=>$cartItems])
                     @endforeach
-                    <div class="clearfix"></div>
-                @endforeach
+                @endif
             </div>
         </div>
     </div>

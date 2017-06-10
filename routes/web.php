@@ -79,7 +79,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
-    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
     Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
