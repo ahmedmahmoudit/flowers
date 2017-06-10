@@ -142,11 +142,7 @@ class ProductsController extends Controller
      */
     public function getAllProductsForCategory($categorySlug)
     {
-
-        //#@todo get only for current country and area
         $cartItems = $this->cart->getItems();
-
-        // get user country
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel->with(['stores'=>function($q){
@@ -175,36 +171,6 @@ class ProductsController extends Controller
         return view('products.category.view', compact('category','cartItems'));
 
     }
-//    public function getProductsForCategory(Request $request, $categorySlug)
-//    {
-//
-//        //#@todo get only for current country and area
-//        $cartItems = $this->cart->getItems();
-//
-//        // get user country
-//        $selectedArea = Cache::get('selectedArea');
-//
-//        $area = $this->areaModel->with(['stores'=>function($q){
-//            $q->select(['id']);
-//        }])->find($selectedArea['id']);
-//
-//        $areaStores = $area->stores->pluck('id');
-//
-//        $category = $this->categoryModel->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
-//
-//        $products = $this->productModel->has('detail')->with(['detail','store','userLikes'])->whereIn('store_id',$areaStores);
-//
-//        if($category->parent_id === 0) {
-//            $childCategories = $category->children->pluck('id')->toArray();
-//            $category->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
-//            return view('products.category.index', compact('category','cartItems'));
-//
-//        } else {
-//            $category->products = $products->childrenCategoryProducts([$category->id])->select('products.*')->limit(40)->get();
-//            return view('products.category.view', compact('category','cartItems'));
-//        }
-//
-//    }
 
     public function show(\Request $request, $id, $name)
     {
