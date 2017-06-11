@@ -48,9 +48,9 @@ class ProductsController extends Controller
      */
     public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart,Store $storeModel)
     {
-        $this->productModel = $productModel;
         $this->middleware('auth')->only('favorite');
         $this->middleware('area')->only(['index','getProductsForCategory','getAllProductsForCategory','searchProducts']);
+        $this->productModel = $productModel;
         $this->areaModel = $areaModel;
         $this->categoryModel = $categoryModel;
         $this->cart = $cart;
@@ -143,6 +143,7 @@ class ProductsController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param $categorySlug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Show All Items
      * Show All Items
