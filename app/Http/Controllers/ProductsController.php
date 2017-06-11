@@ -227,7 +227,6 @@ class ProductsController extends Controller
             Cache::put('stores',$stores,60*24);
         }
 
-
         $products = $this->productModel
             ->has('detail')
             ->with(['detail','store','userLikes'])
