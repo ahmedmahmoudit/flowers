@@ -153,6 +153,10 @@ class ProductsController extends Controller
         $selectedCategory = $categorySlug;
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
+        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
+        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+        $priceRangeMin = 1;
+        $priceRangeMax = 200;
 
         $selectCountryID = \Cache::get('selectedCountryID');
 
@@ -189,7 +193,7 @@ class ProductsController extends Controller
                 ->select('products.*')
                 ->paginate(30);
 
-        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore'));
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin'));
 
     }
 
@@ -199,6 +203,10 @@ class ProductsController extends Controller
         $parentCategories = Cache::get('parentCategories');
         $selectedCategory = $request->get('category');
         $selectCountryID = \Cache::get('selectedCountryID');
+        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
+        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+        $priceRangeMin = 1;
+        $priceRangeMax = 200;
 
         if(Cache::has('stores')) {
             $stores = Cache::get('stores');
@@ -208,7 +216,7 @@ class ProductsController extends Controller
         }
         $selectedStore = $request->has('store') ? $request->get('store') : '';
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore'));
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax'));
     }
 
     public function show(\Request $request, $id, $name)

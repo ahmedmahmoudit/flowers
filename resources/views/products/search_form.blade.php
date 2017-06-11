@@ -40,10 +40,13 @@
 
         <li>
             <label class="control-label c-font-uppercase c-font-bold">Price</label>
-            <p>Price: 1 - 100 KWD</p>
+            <p class="price-display">Price: {{$priceRangeFrom}} - {{$priceRangeTo}}</p>
             <div class="c-price-range-slider c-theme-1 input-group">
-                <input type="text" class="c-price-slider" value="" data-slider-min="1" data-slider-max="500" data-slider-step="1" data-slider-value="[100,250]">
+                <input type="hidden" name="pricefrom" id="pricefrom" value="{{ $priceRangeFrom }}" />
+                <input type="hidden" name="priceto" id="priceto" value="{{ $priceRangeTo }}" />
+                <input type="text" class="c-price-slider" data-slider-min="{{ $priceRangeMin }}" data-slider-max="{{ $priceRangeMax }}" data-slider-step="1" data-slider-value="[{{$priceRangeFrom}},{{$priceRangeTo}}]">
             </div>
+
         </li>
 
     </ul>

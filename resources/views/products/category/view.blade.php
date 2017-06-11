@@ -1,5 +1,19 @@
 @extends('layouts.master')
 
+@section('script')
+    @parent
+    <script>
+      $(document).ready(function() {
+        var mySlider = $('.c-price-slider').slider();
+        mySlider.on('slideStop',function(q){
+          $('.price-display').html('Price: '+q.value[0]+' - '+q.value[1]+' ');
+          $('#pricefrom').attr('value',q.value[0]);
+          $('#priceto').attr('value',q.value[1]);
+        });
+      });
+    </script>
+@endsection
+
 @section('content')
 
     @component('partials.breadcrumb',['title' => $category->name, 'nav'=>true])
