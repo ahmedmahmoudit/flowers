@@ -37,6 +37,14 @@
                                     <span class="c-bg-grey-1">{{ __('Search') }}</span>
                                 </h3>
                             </div>
+                            <div class="row">
+                                <div style="margin:10px">
+                                    @foreach($products as $product)
+                                        @include('products.item_grid',['cartItems'=>$cartItems,'cols'=>4])
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -44,6 +52,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

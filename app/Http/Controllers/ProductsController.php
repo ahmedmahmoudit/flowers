@@ -166,6 +166,7 @@ class ProductsController extends Controller
             $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
             Cache::put('stores',$stores,60*24);
         }
+
         $selectedStore = $request->has('store') ? $request->get('store') : '';
 
         $area = $this->areaModel->with(['stores'=>function($q){
@@ -199,14 +200,25 @@ class ProductsController extends Controller
 
     public function searchProducts(Request $request)
     {
+        $minPriceFrom = 1;
+        $minPriceTo = 200;
         $searchTerm = $request->has('term') ? $request->get('term') : '';
-        $parentCategories = Cache::get('parentCategories');
-        $selectedCategory = $request->get('category');
-        $selectCountryID = \Cache::get('selectedCountryID');
-        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
-        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $minPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $minPriceTo;
+        $selectedCategory = $request->has('category') ? $request->get('category') : false;
+        $selectedStore = $request->has('store') ? $request->get('store') : '';
         $priceRangeMin = 1;
         $priceRangeMax = 200;
+        $parentCategories = Cache::get('parentCategories');
+        $selectCountryID = \Cache::get('selectedCountryID');
+        $selectedArea = Cache::get('selectedArea');
+
+        $area = $this->areaModel->with(['stores'=>function($q){
+            $q->select(['id']);
+        }])->find($selectedArea['id']);
+
+        $areaStores = $area->stores->pluck('id');
+        $cartItems = $this->cart->getItems();
 
         if(Cache::has('stores')) {
             $stores = Cache::get('stores');
@@ -214,9 +226,53 @@ class ProductsController extends Controller
             $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
             Cache::put('stores',$stores,60*24);
         }
-        $selectedStore = $request->has('store') ? $request->get('store') : '';
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax'));
+
+        $products = $this->productModel
+            ->has('detail')
+            ->with(['detail','store','userLikes'])
+            ->whereIn('store_id',$areaStores);
+
+        if($selectedCategory) {
+
+            $category = $this->categoryModel->with('children')->where('slug_en',$selectedCategory)->orWhere('slug_ar',$selectedCategory)->first();
+            $childCategories = [$category->id];
+
+            if($category->parent_id === 0 ) {
+                $childCategories = $category->children->pluck('id')->toArray();
+            }
+
+            $products = $products->childrenCategoryProducts($childCategories)->select('products.*');
+        }
+
+        if($searchTerm) {
+            $products = $products
+                ->where('name_en','like','%'.$searchTerm.'%')
+                ->orWhere('name_ar','like','%'.$searchTerm.'%')
+                ->orWhere('sku','=',$searchTerm);
+        }
+
+        if($selectedStore) {
+            $store = $this->storeModel->where('slug_en',$selectedStore)->orWhere('slug_ar',$selectedStore)->first();
+            if($store) {
+                $products = $products
+                    ->where('store_id',$store ? $store->id : 0);
+            }
+        }
+
+//        if($priceRangeTo >= $minPriceTo) {
+//            $products = $products->load('detail',function($q) use ($priceRangeFrom) {
+//                $q->where('price','>',$priceRangeFrom);
+//            });
+//        } else {
+//            $products = $products->load('detail',function($q) use ($priceRangeFrom,$priceRangeTo) {
+//                $q->whereBetween('price',$priceRangeFrom,$priceRangeTo);
+//            });
+//        }
+
+        $products =  $products->paginate(30);
+
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products'));
     }
 
     public function show(\Request $request, $id, $name)
