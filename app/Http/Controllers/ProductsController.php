@@ -260,15 +260,15 @@ class ProductsController extends Controller
             }
         }
 
-//        if($priceRangeTo >= $minPriceTo) {
-//            $products = $products->load('detail',function($q) use ($priceRangeFrom) {
-//                $q->where('price','>',$priceRangeFrom);
-//            });
-//        } else {
-//            $products = $products->load('detail',function($q) use ($priceRangeFrom,$priceRangeTo) {
-//                $q->whereBetween('price',$priceRangeFrom,$priceRangeTo);
-//            });
-//        }
+        if($priceRangeTo >= $minPriceTo) {
+            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
+                $q->where('price','>=',$priceRangeFrom);
+            });
+        } else {
+            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom,$priceRangeTo)  {
+                $q->whereBetween('price',[$priceRangeFrom,$priceRangeTo]);
+            });
+        }
 
         $products =  $products->paginate(30);
 
