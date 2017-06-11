@@ -6,6 +6,8 @@ use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
 use App\Repositories\StoreRepositoryInterface;
+use App\Store;
+use Cache;
 
 class StoresController extends Controller
 {
@@ -13,15 +15,21 @@ class StoresController extends Controller
      * @var $store
      */
     private $store;
+    /**
+     * @var Store
+     */
+    private $storeModel;
 
     /**
      * StoreController constructor.
      *
-     * @param StoreRepositoryInterface $store
+     * @param Store $storeModel
+     * @internal param StoreRepositoryInterface $store
      */
-    public function __construct(StoreRepositoryInterface $store)
+    public function __construct(Store $storeModel)
     {
-        $this->store = $store;
+        $this->storeModel = $storeModel;
+        $this->middleware('area')->only(['index']);
     }
 
     /**
@@ -31,8 +39,15 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = $this->store->getAll();
-        return view('manager.store.index', ['stores' => $stores]);
+        $selectCountryID = \Cache::get('selectedCountryID');
+        if(Cache::has('stores')) {
+            $stores = Cache::get('stores');
+        } else {
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            Cache::put('stores',$stores,60*24);
+        }
+
+        return view('stores.index', ['stores' => $stores]);
     }
 
     /**

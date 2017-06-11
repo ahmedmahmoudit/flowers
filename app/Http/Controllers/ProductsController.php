@@ -10,6 +10,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductDetail;
+use App\Store;
 use Auth;
 use Cache;
 use Illuminate\Http\Request;
@@ -32,22 +33,28 @@ class ProductsController extends Controller
      * @var Cart
      */
     private $cart;
+    /**
+     * @var Store
+     */
+    private $storeModel;
 
     /**
      * @param Product $productModel
      * @param Area $areaModel
      * @param Category $categoryModel
      * @param Cart $cart
+     * @param Store $storeModel
      * @internal param Category $category
      */
-    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart)
+    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart,Store $storeModel)
     {
         $this->productModel = $productModel;
         $this->middleware('auth')->only('favorite');
-        $this->middleware('area')->only(['index','getProductsForCategory']);
+        $this->middleware('area')->only(['index','getProductsForCategory','getAllProductsForCategory','searchProducts']);
         $this->areaModel = $areaModel;
         $this->categoryModel = $categoryModel;
         $this->cart = $cart;
+        $this->storeModel = $storeModel;
     }
 
     /**
@@ -147,6 +154,16 @@ class ProductsController extends Controller
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
 
+        $selectCountryID = \Cache::get('selectedCountryID');
+
+        if(Cache::has('stores')) {
+            $stores = Cache::get('stores');
+        } else {
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            Cache::put('stores',$stores,60*24);
+        }
+        $selectedStore = $request->has('store') ? $request->get('store') : '';
+
         $area = $this->areaModel->with(['stores'=>function($q){
             $q->select(['id']);
         }])->find($selectedArea['id']);
@@ -172,7 +189,7 @@ class ProductsController extends Controller
                 ->select('products.*')
                 ->paginate(30);
 
-        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory'));
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore'));
 
     }
 
@@ -181,7 +198,17 @@ class ProductsController extends Controller
         $searchTerm = $request->has('term') ? $request->get('term') : '';
         $parentCategories = Cache::get('parentCategories');
         $selectedCategory = $request->get('category');
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory'));
+        $selectCountryID = \Cache::get('selectedCountryID');
+
+        if(Cache::has('stores')) {
+            $stores = Cache::get('stores');
+        } else {
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            Cache::put('stores',$stores,60*24);
+        }
+        $selectedStore = $request->has('store') ? $request->get('store') : '';
+
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore'));
     }
 
     public function show(\Request $request, $id, $name)

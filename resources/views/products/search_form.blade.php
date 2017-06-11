@@ -5,7 +5,7 @@
             <input type="text" name="term" class="form-control c-square c-theme input-lg" value="{{ $searchTerm }}" placeholder="{{ __('Product name, Sku or Item number') }}">
         </li>
         <li>
-            <label class="control-label c-font-uppercase c-font-bold">Category</label>
+            <label class="control-label c-font-uppercase c-font-bold">{{ __('Category') }}</label>
             <select name="category" class="form-control c-square c-theme">
                 <option value="">{{ __('All Category') }}</option>
                 @foreach($parentCategories as $parentCategory)
@@ -25,9 +25,16 @@
             </select>
         </li>
         <li>
-            <label class="control-label c-font-uppercase c-font-bold">Store</label>
+            <label class="control-label c-font-uppercase c-font-bold">{{ __('Store') }}</label>
             <select name="store" class="form-control c-square c-theme">
-                <option value="0">All Stores</option>
+                <option value="">{{ __('All Stores') }}</option>
+                @foreach($stores as $store)
+                    <option value="{{ $store->slug }}"
+                            @if($selectedStore === $store->slug)
+                            selected
+                            @endif
+                    >{{$store->name}}</option>
+                @endforeach
             </select>
         </li>
 

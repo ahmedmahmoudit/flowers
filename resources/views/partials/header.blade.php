@@ -115,7 +115,7 @@
                         </li>
 
                         <li >
-                            <a href="javascript:;" class="c-link dropdown-toggle">Store<span class="c-arrow c-toggler"></span></a>
+                            <a href="{{ route('stores.index') }}" class="c-link dropdown-toggle">Store<span class="c-arrow c-toggler"></span></a>
                         </li>
 
 
