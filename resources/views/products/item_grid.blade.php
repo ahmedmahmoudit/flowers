@@ -28,9 +28,7 @@
             </div>
             <div class="btn-group c-border-left c-border-top" role="group">
                 @if(in_array($product->id,$cartItems->keys()->toArray()))
-                    <a href="{{ route('cart.item.remove',$product->id) }}" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
-                        {{ __('Remove from Cart') }}
-                    </a>
+                    <a href="{{ route('cart.item.remove',$product->id) }}" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">{{ __('Remove from Cart') }}</a>
                 @else
                     <form method="POST" action="{{route('cart.item.add')}}">
                         {{ csrf_field() }}
