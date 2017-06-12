@@ -23,7 +23,7 @@
 
                     @if(Auth::check())
                         <li>
-                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" >
+                            <a href="{{ route('profile') }}" >
                                 {{ __('My Account') }}
                             </a>
                         </li>

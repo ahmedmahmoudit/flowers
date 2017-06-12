@@ -92,6 +92,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
+
+    Route::get('profile','ProfileController@index')->name('profile');
+    Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
+    Route::get('profile/orders','ProfileController@getOrders')->name('profile.orders');
+    Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
+    Route::get('logout','ProfileController@getLogout')->name('profile.logout');
+
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();

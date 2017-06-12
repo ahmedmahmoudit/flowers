@@ -2,7 +2,7 @@
 
 @section('script')
     @parent
-    <script src="/js/masonry-portfolio.js" type="text/javascript"></script>
+    {{--<script src="/js/masonry-portfolio.js" type="text/javascript"></script>--}}
 @endsection
 
 @section('content')
