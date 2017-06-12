@@ -96,6 +96,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('profile','ProfileController@index')->name('profile');
     Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
     Route::get('profile/orders','ProfileController@getOrders')->name('profile.orders');
+    Route::get('profile/orders/{id}','ProfileController@getOrderDetail')->name('profile.orders.show');
     Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
     Route::get('logout','ProfileController@getLogout')->name('profile.logout');
 
