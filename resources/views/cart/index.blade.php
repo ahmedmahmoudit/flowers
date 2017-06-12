@@ -41,7 +41,7 @@
                                     <img src="/img/{{ rand(1,6) }}.jpg"/>
                                 </div>
                                 <div class="col-md-5 col-sm-9 col-xs-7 c-cart-desc">
-                                    <h3><a href="shop-product-details-2.html" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $product->name }}</a></h3>
+                                    <h3><a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $product->name }}</a></h3>
                                     <p>Color: Blue</p>
                                     <p>Size: S</p>
                                 </div>
