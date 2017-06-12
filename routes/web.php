@@ -83,6 +83,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('products/search','ProductsController@searchProducts')->name('search');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::get('stores','StoresController@index')->name('stores.index');
+    Route::get('stores/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
@@ -19,17 +20,23 @@ class StoresController extends Controller
      * @var Store
      */
     private $storeModel;
+    /**
+     * @var Area
+     */
+    private $areaModel;
 
     /**
      * StoreController constructor.
      *
      * @param Store $storeModel
+     * @param Area $areaModel
      * @internal param StoreRepositoryInterface $store
      */
-    public function __construct(Store $storeModel)
+    public function __construct(Store $storeModel, Area $areaModel)
     {
-        $this->storeModel = $storeModel;
         $this->middleware('area')->only(['index']);
+        $this->storeModel = $storeModel;
+        $this->areaModel = $areaModel;
     }
 
     /**
@@ -39,15 +46,18 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $selectCountryID = \Cache::get('selectedCountryID');
-        if(Cache::has('stores')) {
-            $stores = Cache::get('stores');
-        } else {
-            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
-            Cache::put('stores',$stores,60*24);
-        }
+        $selectedArea = Cache::get('selectedArea');
+        $stores = $this->storeModel->with('areas')->whereHas('areas',function($q) use ($selectedArea) {
+            $q->where('areas.id',$selectedArea['id']);
+        })->paginate(12);
 
-        return view('stores.index', ['stores' => $stores]);
+        return view('stores.index', ['stores' => $stores,'area'=>$selectedArea]);
+    }
+
+    public function show($slug)
+    {
+        $store = $this->storeModel->where('slug_en',$slug)->orWhere('slug_ar',$slug)->first();
+        dd($store);
     }
 
     /**
@@ -77,7 +87,7 @@ class StoresController extends Controller
 
     /**
      * Create store
-     #
+    #
      * @var integer $id
      *
      * @return mixed

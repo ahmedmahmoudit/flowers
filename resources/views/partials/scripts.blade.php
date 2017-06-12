@@ -11,7 +11,7 @@
 {{--<script src="/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>--}}
 <script src="/plugins/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 <script src="/plugins/slider-for-bootstrap/js/bootstrap-slider.js" type="text/javascript"></script>
-<script src="/plugins/js-cookie/js.cookie.js" type="text/javascript"></script>
+{{--<script src="/plugins/js-cookie/js.cookie.js" type="text/javascript"></script>--}}
 <script src="/plugins/zoom-master/jquery.zoom.min.js" type="text/javascript"></script>
 
 <script src="/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>

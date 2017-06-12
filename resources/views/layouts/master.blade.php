@@ -18,8 +18,6 @@
 
         @if(app()->getLocale() == 'ar')
             @include('partials.styles_rtl')
-        @else
-            @include('partials.styles_ltr')
         @endif
 
     @show
