@@ -98,6 +98,12 @@
                     </a>
                 </li>
 
+                <li class="{{ (str_contains(Request::route()->getName(),'newsletter') ? 'active' : '' ) }}">
+                    <a href="{{ route('manager.newsletter.index') }}">
+                        <i class="fa fa-newspaper-o"></i> <span>Newsletter</span>
+                    </a>
+                </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'static') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>

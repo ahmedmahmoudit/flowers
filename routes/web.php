@@ -57,6 +57,8 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
     Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
+    Route::resource('newsletter', 'NewsletterController');
+
 });
 
 
