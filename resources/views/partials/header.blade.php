@@ -6,7 +6,6 @@
 <header class="c-layout-header c-layout-header-dark c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light">
         <div class="container">
-            <!-- BEGIN: INLINE NAV -->
             <nav class="c-top-menu c-pull-left">
                 <ul class="c-icons c-theme-ul">
                     <li>
@@ -19,14 +18,12 @@
                     </li>
                 </ul>
             </nav>
-            <!-- END: INLINE NAV -->
-            <!-- BEGIN: INLINE NAV -->
             <nav class="c-top-menu c-pull-right">
                 <ul class="c-links c-theme-ul">
 
                     @if(Auth::check())
                         <li>
-                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" >
+                            <a href="{{ route('profile') }}" >
                                 {{ __('My Account') }}
                             </a>
                         </li>
@@ -42,7 +39,7 @@
                 </ul>
                 <ul class="c-ext c-theme-ul">
                     <li class="c-lang dropdown c-last">
-                        <a href="#">en</a>
+                        <a href="#">{{ $locale === 'en' ? 'en' : 'ع' }}</a>
                         <ul class="dropdown-menu pull-right" role="menu" style="text-align: center">
                             <li class="{{ $locale === 'en' ? 'active' : '' }}"><a href="{{ route('locale.set','en') }}">English</a></li>
                             <li class="{{ $locale === 'ar' ? 'active' : '' }}"><a href="{{ route('locale.set','ar') }}">العربي</a></li>
@@ -50,12 +47,10 @@
                     </li>
                 </ul>
             </nav>
-            <!-- END: INLINE NAV -->
         </div>
     </div>
     <div class="c-navbar">
         <div class="container">
-            <!-- BEGIN: BRAND -->
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ route('home') }}" class="c-logo">
@@ -82,8 +77,8 @@
                     </button>
                 </div>
 
-                <form class="c-quick-search" action="#">
-                    <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
+                <form class="c-quick-search" role="form" method="GET" action="{{ route('search') }}">
+                    <input type="text" name="term" placeholder="Type to search..." value="{{ $searchTerm }}" class="form-control" autocomplete="off">
                     <span class="c-theme-link">&times;</span>
                 </form>
 
@@ -99,8 +94,8 @@
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
                                             <li class="">
                                                 <h3>
-                                                    <a href="{{ route('products.category.index',$parentCategory->slug) }}"
-                                                        style="color: whitesmoke"
+                                                    <a href="{{ route('category.index',$parentCategory->slug) }}"
+                                                       style="color: whitesmoke"
                                                     >
                                                         {{ $parentCategory->name }}
                                                     </a>
@@ -108,7 +103,7 @@
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="{{ route('products.category.index',$childCategory->slug) }}">
+                                                    <a href="{{ route('category.show',$childCategory->slug) }}">
                                                         {{ $childCategory->name }}
                                                     </a>
                                                 </li>
@@ -120,7 +115,7 @@
                         </li>
 
                         <li >
-                            <a href="javascript:;" class="c-link dropdown-toggle">Store<span class="c-arrow c-toggler"></span></a>
+                            <a href="{{ route('stores.index') }}" class="c-link dropdown-toggle">Store</a>
                         </li>
 
 

@@ -15,6 +15,7 @@ use App\Repositories\StoreRepository;
 use App\Repositories\StoreRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use App\Store;
 use Cache;
 use Illuminate\Support\ServiceProvider;
 use Schema;

@@ -71,11 +71,6 @@
                         <span class="c-font-grey-3">IdeasOwners.</span>
                     </p>
                 </div>
-                <div class="col-md-6 col-sm-12 c-col">
-                    <ul class="list-unstyled list-inline pull-right">
-
-                    </ul>
-                </div>
             </div>
         </div>
     </div>

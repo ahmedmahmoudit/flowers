@@ -128,17 +128,17 @@ var LayoutProductGallery = function () {
 }();
 
 // BEGIN: Price Slider
-var PriceSlider = function () {
-
-	return {
-		//main function to initiate the module
-		init: function () {
-			$('.c-price-slider').slider();
-		}
-
-	};
-
-}();
+// var PriceSlider = function () {
+//
+// 	return {
+// 		//main function to initiate the module
+// 		init: function () {
+// 			$('.c-price-slider').slider();
+// 		}
+//
+// 	};
+//
+// }();
 // END
 
 // BEGIN : OFFER NOTIFICATION BAR
@@ -176,6 +176,6 @@ $(document).ready(function () {
 	LayoutCheckboxVisibilityToggle.init();
 	LayoutShippingCalculator.init();
 	LayoutProductGallery.init();
-	PriceSlider.init();
+	// PriceSlider.init();
 	LayoutTopbarOffer.init();
 });

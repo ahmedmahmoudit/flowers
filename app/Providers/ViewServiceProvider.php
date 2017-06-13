@@ -23,7 +23,6 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer(
             'partials.header', Header::class
         );
-
     }
 
     /**

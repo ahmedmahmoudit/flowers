@@ -18,8 +18,6 @@
 
         @if(app()->getLocale() == 'ar')
             @include('partials.styles_rtl')
-        @else
-            @include('partials.styles_ltr')
         @endif
 
     @show
@@ -39,8 +37,6 @@
 <div class="c-layout-go2top">
     <i class="icon-arrow-up"></i>
 </div>
-
-
 
 @section('script')
     @include('partials.scripts')

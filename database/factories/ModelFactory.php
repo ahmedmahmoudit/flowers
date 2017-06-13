@@ -41,6 +41,8 @@ $factory->define(App\Store::class, function (Faker\Generator $faker) use ($facto
         'country_id' => \App\Country::find(1)->id ? \App\Country::find(1)->id : $factory->create(App\Country::class)->id,
         'name_en' => $faker->name,
         'name_ar' => $faker->name,
+        'slug_en' => str_random(5),
+        'slug_ar' => str_random(5),
         'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'is_approved' => '1',

@@ -11,9 +11,7 @@
         <div class="container">
             <form class="c-shop-form-1">
                 <div class="row">
-                    <!-- BEGIN: ADDRESS FORM -->
                     <div class="col-md-7 c-padding-20">
-                        <!-- BEGIN: BILLING ADDRESS -->
                         <h3 class="c-font-bold c-font-uppercase c-font-24">Billing Address</h3>
                         <div class="row">
                             <div class="form-group col-md-12">
@@ -306,7 +304,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- END: ORDER FORM -->
                 </div>
             </form>
         </div>

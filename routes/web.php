@@ -67,10 +67,8 @@ Store Admin ROUTES
  ***************************************************************************************************/
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
-
     Route::get('dashboard', 'DashboardController@adminDashboard');
     Route::resource('products', 'ProductsController');
-
 });
 
 //Auth::logout();
@@ -82,8 +80,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('products','ProductsController@index')->name('products.index');
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
-    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('products.category.index');
+    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
+    Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
+    Route::get('products/search','ProductsController@searchProducts')->name('search');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
+    Route::get('stores','StoresController@index')->name('stores.index');
+    Route::get('stores/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');
@@ -92,6 +94,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
+
+    Route::get('profile','ProfileController@index')->name('profile');
+    Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
+    Route::get('profile/orders','ProfileController@getOrders')->name('profile.orders');
+    Route::get('profile/orders/{id}','ProfileController@getOrderDetail')->name('profile.orders.show');
+    Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
+    Route::get('logout','ProfileController@getLogout')->name('profile.logout');
+
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();

@@ -18,6 +18,8 @@ class Store extends BaseModel
 
     protected $guarded = [];
 
+    protected $localeStrings = ['name','slug'];
+
     /**
      * Get the country that belongs to store.
      */

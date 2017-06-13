@@ -16,33 +16,29 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => $category->name, 'nav'=>true])
+    @component('partials.breadcrumb',['title' => __('Search Results'), 'nav'=>true])
         <li><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
         <li>/</li>
-        @if($category->parent)
-            <li><a href="{{ route('category.index',$category->parent->slug) }}">{{ ucfirst($category->parent->name) }}</a></li>
-            <li>/</li>
-        @endif
-        <li class="c-active"><a href="{{ route('category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
+        <li class="c-active"><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
     @endcomponent
 
     <div class="container">
-        <div class="c-layout-sidebar-menu c-theme ">
 
+        <div class="c-layout-sidebar-menu c-theme ">
             @include('products.search_form')
             <div class="clearfix"></div>
         </div>
-        <div class="c-layout-sidebar-content ">
+
+        <div class="c-layout-sidebar-content">
             <div class="c-shop-product-details-2 c-opt-1">
                 {{--<div class="c-content-title-1">--}}
-                    {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ $category->name }}</h3>--}}
+                    {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
                     {{--<div class="c-line-center c-theme-bg"></div>--}}
                 {{--</div>--}}
-
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
-                        <div style="margin:10px">
-                            @foreach($category->products as $product)
+                        <div style="padding:10px">
+                            @foreach($products as $product)
                                 @include('products.item_grid',['cartItems'=>$cartItems,'cols'=>4])
                             @endforeach
                         </div>
@@ -51,6 +47,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

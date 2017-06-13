@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('content')
     @component('partials.breadcrumb',['title' => __('Register'), 'nav'=>true])
         <li class="c-active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>

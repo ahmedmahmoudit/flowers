@@ -10,9 +10,10 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductDetail;
+use App\Store;
 use Auth;
 use Cache;
-use Request;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -32,22 +33,28 @@ class ProductsController extends Controller
      * @var Cart
      */
     private $cart;
+    /**
+     * @var Store
+     */
+    private $storeModel;
 
     /**
      * @param Product $productModel
      * @param Area $areaModel
      * @param Category $categoryModel
      * @param Cart $cart
+     * @param Store $storeModel
      * @internal param Category $category
      */
-    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart)
+    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart,Store $storeModel)
     {
-        $this->productModel = $productModel;
         $this->middleware('auth')->only('favorite');
-        $this->middleware('area')->only(['index','getProductsForCategory']);
+        $this->middleware('area')->only(['index','getProductsForCategory','getAllProductsForCategory','searchProducts']);
+        $this->productModel = $productModel;
         $this->areaModel = $areaModel;
         $this->categoryModel = $categoryModel;
         $this->cart = $cart;
+        $this->storeModel = $storeModel;
     }
 
     /**
@@ -57,9 +64,6 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //#@todo get only for current country and area
-
-        // get user country
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel->with(['stores'=>function($q){
@@ -68,39 +72,36 @@ class ProductsController extends Controller
 
         $areaStores = $area->stores->pluck('id');
 
-        $parentCategories = $this->categoryModel->where('parent_id',0)->get();
+        $parentCategories = $this->categoryModel->with('children.products')->where('parent_id',0)->get();
 
-        $products = $this->productModel->has('detail')->with(['detail','store','userLikes'])->whereIn('store_id',$areaStores);
-
-        $parentCategories->map(function($parentCategory) use ($areaStores,$products) {
+        $parentCategories->map(function($parentCategory) use ($areaStores) {
             $childCategories = $parentCategory->children->pluck('id')->toArray();
-            $parentCategory->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
+            $parentCategory->products =
+                $this->productModel
+                    ->has('detail')
+                    ->with(['detail','store','userLikes'])
+                    ->whereIn('store_id',$areaStores)
+                    ->childrenCategoryProducts($childCategories)
+                    ->select('products.*')
+                    ->limit(4)
+                    ->get();
         });
-
-//        foreach ($parentCategories as $category) {
-//            foreach ($category->products as $product) {
-//                dd($product->userLikes->pluck('id')->toArray());
-//                print_r($product->userLikes->contains('id',auth()->id()));
-//            }
-//        }
 
         $cartItems = $this->cart->getItems();
 
         return view('products.index', compact('parentCategories','cartItems'));
     }
 
-    /**
-     * @param Request $request
-     * @param $category
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getProductsForCategory(Request $request, $categorySlug)
-    {
 
-        //#@todo get only for current country and area
+    /**
+     * @param $categorySlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Show 4 items for Each Category
+     */
+    public function getProductsForCategory($categorySlug)
+    {
         $cartItems = $this->cart->getItems();
 
-        // get user country
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel->with(['stores'=>function($q){
@@ -109,21 +110,169 @@ class ProductsController extends Controller
 
         $areaStores = $area->stores->pluck('id');
 
-        $category = $this->categoryModel->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
+        $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
 
-        $products = $this->productModel->has('detail')->with(['detail','store','userLikes'])->whereIn('store_id',$areaStores);
+        $isParent = false;
 
         if($category->parent_id === 0) {
-
-            $childCategories = $category->children->pluck('id')->toArray();
-            $category->products = $products->childrenCategoryProducts($childCategories)->select('products.*')->limit(4)->get();
-            return view('products.category.index', compact('category','cartItems'));
-
+            $isParent = true;
+            $category->children->map(function($childCategory) use ($areaStores) {
+                $childCategory->products =
+                    $this->productModel
+                        ->has('detail')
+                        ->with(['detail','store','userLikes'])
+                        ->whereIn('store_id',$areaStores)
+                        ->childrenCategoryProducts([$childCategory->id])
+                        ->select('products.*')
+                        ->limit(4)
+                        ->get();
+            });
         } else {
-            $category->products = $products->childrenCategoryProducts([$category->id])->select('products.*')->limit(40)->get();
-            return view('products.category.view', compact('category','cartItems'));
+            $category->products = $this->productModel
+                ->has('detail')
+                ->with(['detail','store','userLikes'])
+                ->whereIn('store_id',$areaStores)
+                ->childrenCategoryProducts([$category->id])
+                ->select('products.*')
+                ->limit(4)
+                ->get();
         }
 
+        return view('products.category.index', compact('category','cartItems', 'isParent'));
+
+    }
+
+    /**
+     * @param Request $request
+     * @param $categorySlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Show All Items
+     * Show All Items
+     */
+    public function getAllProductsForCategory(Request $request,$categorySlug)
+    {
+        $searchTerm = $request->has('term') ? $request->get('term') : '';
+        $selectedCategory = $categorySlug;
+        $cartItems = $this->cart->getItems();
+        $selectedArea = Cache::get('selectedArea');
+        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
+        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+        $priceRangeMin = 1;
+        $priceRangeMax = 200;
+
+        $selectCountryID = \Cache::get('selectedCountryID');
+
+        if(Cache::has('stores')) {
+            $stores = Cache::get('stores');
+        } else {
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            Cache::put('stores',$stores,60*24);
+        }
+
+        $selectedStore = $request->has('store') ? $request->get('store') : '';
+
+        $area = $this->areaModel->with(['stores'=>function($q){
+            $q->select(['id']);
+        }])->find($selectedArea['id']);
+
+        $areaStores = $area->stores->pluck('id');
+
+        $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
+
+        $childCategories = [$category->id];
+
+        if($category->parent_id === 0 ) {
+            $childCategories = $category->children->pluck('id')->toArray();
+        }
+
+        $parentCategories = Cache::get('parentCategories');
+
+        $category->products =
+            $this->productModel
+                ->has('detail')
+                ->with(['detail','store','userLikes'])
+                ->whereIn('store_id',$areaStores)
+                ->childrenCategoryProducts($childCategories)
+                ->select('products.*')
+                ->paginate(30);
+
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin'));
+
+    }
+
+    public function searchProducts(Request $request)
+    {
+        $minPriceFrom = 1;
+        $minPriceTo = 200;
+        $searchTerm = $request->has('term') ? $request->get('term') : '';
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $minPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $minPriceTo;
+        $selectedCategory = $request->has('category') ? $request->get('category') : false;
+        $selectedStore = $request->has('store') ? $request->get('store') : '';
+        $priceRangeMin = 1;
+        $priceRangeMax = 200;
+        $parentCategories = Cache::get('parentCategories');
+        $selectCountryID = \Cache::get('selectedCountryID');
+        $selectedArea = Cache::get('selectedArea');
+
+        $area = $this->areaModel->with(['stores'=>function($q){
+            $q->select(['id']);
+        }])->find($selectedArea['id']);
+
+        $areaStores = $area->stores->pluck('id');
+        $cartItems = $this->cart->getItems();
+
+        if(Cache::has('stores')) {
+            $stores = Cache::get('stores');
+        } else {
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            Cache::put('stores',$stores,60*24);
+        }
+
+        $products = $this->productModel
+            ->has('detail')
+            ->with(['detail','store','userLikes'])
+            ->whereIn('store_id',$areaStores);
+
+        if($selectedCategory) {
+
+            $category = $this->categoryModel->with('children')->where('slug_en',$selectedCategory)->orWhere('slug_ar',$selectedCategory)->first();
+            $childCategories = [$category->id];
+
+            if($category->parent_id === 0 ) {
+                $childCategories = $category->children->pluck('id')->toArray();
+            }
+
+            $products = $products->childrenCategoryProducts($childCategories)->select('products.*');
+        }
+
+        if($searchTerm) {
+            $products = $products
+                ->where('name_en','like','%'.$searchTerm.'%')
+                ->orWhere('name_ar','like','%'.$searchTerm.'%')
+                ->orWhere('sku','=',$searchTerm);
+        }
+
+        if($selectedStore) {
+            $store = $this->storeModel->where('slug_en',$selectedStore)->orWhere('slug_ar',$selectedStore)->first();
+            if($store) {
+                $products = $products
+                    ->where('store_id',$store ? $store->id : 0);
+            }
+        }
+
+        if($priceRangeTo >= $minPriceTo) {
+            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
+                $q->where('price','>=',$priceRangeFrom);
+            });
+        } else {
+            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom,$priceRangeTo)  {
+                $q->whereBetween('price',[$priceRangeFrom,$priceRangeTo]);
+            });
+        }
+
+        $products =  $products->paginate(30);
+
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products'));
     }
 
     public function show(\Request $request, $id, $name)

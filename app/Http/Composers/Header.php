@@ -47,6 +47,9 @@ class Header
 
     public function compose(View $view)
     {
+
+        $request = request();
+
         $countries = Cache::get('countries');
         $selectedCountry = Cache::get('selectedCountry');
         $selectedArea = Cache::get('selectedArea');
@@ -61,6 +64,9 @@ class Header
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
+
+        $searchTerm = $request->has('term') ? $request->get('term') : '';
+
         $view->with([
             'countries' => $countries,
             'areas' => $areas,
@@ -68,7 +74,8 @@ class Header
             'selectedCountry' => $selectedCountry,
             'locale' => app()->getLocale(),
             'parentCategories' => $parentCategories,
-            'cart' => $cart
+            'cart' => $cart,
+            'searchTerm' => $searchTerm
         ]);
 
     }
