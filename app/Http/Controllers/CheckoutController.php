@@ -35,7 +35,7 @@ class CheckoutController extends Controller
     {
 
         $user = auth()->user();
-        $user->load('addresses');
+        $user->load(['addresses.country','addresses.area']);
         $selectedCountry = Cache::get('selectedCountry');
 
         $hasAddress = false;
@@ -44,9 +44,12 @@ class CheckoutController extends Controller
             $hasAddress = true;
         }
 
-        $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+        $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
-        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry'));
+
+        $shippingAddress = $user->addresses->first();
+
+        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','shippingAddress'));
     }
 
 
