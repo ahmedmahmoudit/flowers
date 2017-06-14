@@ -56,7 +56,7 @@ class SliderRepository implements SliderRepositoryInterface
     {
         $this->checkOrderExist($attributes['order']);
         $imageName = str_random(15);
-        Image::make($attributes['image'])->resize(320, 240)->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
+        Image::make($attributes['image'])->resize(1920, 1080)->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
 
         $data = [
             'order' => $attributes['order'],

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
 use App\Repositories\StoreRepositoryInterface;
+use Intervention\Image\Facades\Image;
 
 class StoresController extends Controller
 {
@@ -33,7 +35,7 @@ class StoresController extends Controller
     public function index()
     {
         $stores = $this->store->getAll();
-        return view('manager.store.index', ['stores' => $stores]);
+        return view('backend.manager.store.index', compact('stores'));
     }
 
     /**
@@ -43,7 +45,8 @@ class StoresController extends Controller
      */
     public function create()
     {
-        return view('manager.store.create');
+        $countries = Country::all();
+        return view('backend.manager.store.create', compact('countries'));
     }
 
     /**
@@ -55,10 +58,42 @@ class StoresController extends Controller
      */
     public function store(CreateStoreRequest $request)
     {
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','is_approved']);
-        $this->store->create($attributes);
+        $imageUpload = $request->only(['image']);
+        $areas = $request->only(['areas']);
+        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','slug_en', 'slug_ar']);
+
+        if($imageUpload['image'])
+        {
+            $imageName = str_random(15);
+            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
+            $attributes['image'] = $imageName.'.jpg';
+        }
+
+        //manger create store
+        $attributes['is_approved'] = '1';
+        $attributes['image'] = $imageName.'.jpg';
+        $storeData = $this->store->create($attributes);
+
+        if(count($areas['areas']) > 0)
+        {
+            $storeData->areas()->syncWithoutDetaching($areas['areas']);
+        }
 
         return redirect('manager/stores');
+    }
+
+    /**
+     * Show store
+    #
+     * @var integer $id
+     *
+     * @return mixed
+     */
+    public function show($id)
+    {
+        $store = $this->store->getById($id);
+
+        return view('backend.manager.store.show', compact('store'));
     }
 
     /**
@@ -116,9 +151,16 @@ class StoresController extends Controller
      */
     public function destroy($id)
     {
-        $this->store->delete($id);
+        $store = $this->store->getById($id);
 
-        return redirect()->route('stores.index');
+        if($store->products->first())
+        {
+            Session()->flash('success', 'Store has products, can\'t be deleted!');
+            return route('manager.stores.index');
+        }
+
+        $this->store->delete($id);
+        return route('manager.stores.index');
     }
 
     /**
@@ -132,7 +174,8 @@ class StoresController extends Controller
     {
         $this->store->disable($id);
 
-        return redirect()->route('stores.index');
+        Session()->flash('success', 'Store Disabled Successfully!');
+        return route('manager.stores.index');
     }
 
     /**
@@ -146,7 +189,8 @@ class StoresController extends Controller
     {
         $this->store->activate($id);
 
-        return redirect()->route('stores.index');
+        Session()->flash('success', 'Store Activated Successfully!');
+        return route('manager.stores.index');
     }
 
 }

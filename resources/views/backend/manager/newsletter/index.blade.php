@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Stores')
+@section('title', 'NewsLetter')
 
 @section('styles')
     @parent
@@ -16,7 +16,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Stores</h3>
+                        <h3 class="box-title">All Subscribers</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -24,20 +24,18 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Phone</th>
                                 <th>Email</th>
-                                <th>Status</th>
+                                <th>status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($stores as $store)
+                            @foreach($subscribers as $subscriber)
                                 <tr>
-                                    <td>{{$store->name_en}}</td>
-                                    <td>{{$store->phone}}</td>
-                                    <td>{{$store->email}}</td>
+                                    <td>{{$subscriber->name}}</td>
+                                    <td>{{$subscriber->email}}</td>
                                     <td>
-                                        @if($store->is_approved == '1')
+                                        @if($subscriber->active == '1')
                                             <span class="label label-success">Active</span>
                                         @else
                                             <span class="label label-danger">Disabled</span>
@@ -45,12 +43,11 @@
                                     </td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route('manager.stores.destroy', $store->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
-                                        <a href="{{ route('manager.stores.show', $store->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
-                                        @if($store->is_approved == '1')
-                                            <a href="{{ route('manager.stores.disable', $store->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
+                                        <a href="{{ route('manager.newsletter.destroy', $subscriber->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
+                                        @if($subscriber->active == '1')
+                                            <a href="{{ route('manager.newsletter.disable', $subscriber->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
                                         @else
-                                            <a href="{{ route('manager.stores.activate', $store->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
+                                            <a href="{{ route('manager.newsletter.activate', $subscriber->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
                                         @endif
                                     </td>
                                 </tr>

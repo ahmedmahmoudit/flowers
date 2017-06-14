@@ -9,4 +9,4 @@
      folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
 
-<link rel="stylesheet" href="{{asset('css/jquery-confirm.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/jquery-confirm.css')}}">

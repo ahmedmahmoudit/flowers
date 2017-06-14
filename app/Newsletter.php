@@ -15,5 +15,6 @@ class Newsletter extends BaseModel
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $guarded = ['id'];
 
 }
