@@ -36,22 +36,18 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Stores</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Add Store</a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.index') }}"><i class="fa fa-circle-o"></i> Stores</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.create') }}"><i class="fa fa-circle-o"></i> Add Store</a></li>
                     </ul>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'user') ? 'active' : '' ) }} treeview">
-                    <a href="#">
+                <li class="{{ (str_contains(Request::route()->getName(),'user') ? 'active' : '' ) }}">
+                    <a href="{{ route('manager.users.index') }}">
                         <i class="fa fa-group"></i>
                         <span>Users</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Add User</a></li>
-                    </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'country') ? 'active' : '' ) }} treeview">
@@ -75,8 +71,8 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Coupons </a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.index') }}"><i class="fa fa-circle-o"></i> Coupons </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.create') }}"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
                     </ul>
                 </li>
 
@@ -92,16 +88,21 @@
                         <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.create') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
                     </ul>
                 </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'order') ? 'active' : '' ) }}">
-                    <a href="#">
+                    <a href="{{ route('manager.orders.index') }}">
                         <i class="fa fa-shopping-cart"></i> <span>Orders</span>
                     </a>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'newsletter') ? 'active' : '' ) }}">
-                    <a href="{{ route('manager.newsletter.index') }}">
+                <li class="{{ (str_contains(Request::route()->getName(),'newsletter') ? 'active' : '' ) }} treeview">
+                    <a href="#">
                         <i class="fa fa-newspaper-o"></i> <span>Newsletter</span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (!str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> Subscribers</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.campaign') }}"><i class="fa fa-circle-o"></i> Campaign </a></li>
+                    </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'static') ? 'active' : '' ) }} treeview">
@@ -132,8 +133,8 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Coupons </a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.index') }}"><i class="fa fa-circle-o"></i> Coupons </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.create') }}"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
                     </ul>
                 </li>
 
@@ -149,8 +150,9 @@
                         <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.products.create') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
                     </ul>
                 </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'order') ? 'active' : '' ) }}">
-                    <a href="#">
+                    <a href="{{ route('admin.orders.index') }}">
                         <i class="fa fa-shopping-cart"></i> <span>Orders</span>
                     </a>
                 </li>

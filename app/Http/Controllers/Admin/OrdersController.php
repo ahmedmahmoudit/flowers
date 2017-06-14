@@ -31,7 +31,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = $this->order->getAll();
-        return view('manager.order.index', ['orders' => $orders]);
+        return view('backend.shared.orders.index', ['orders' => $orders]);
     }
 
     /**

@@ -33,14 +33,16 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@managerDashboard']);
     Route::resource('stores', 'StoresController');
-    Route::post('stores/{store}/disable', ['as' => 'manager.stores.disable', 'uses' => 'StoresController@disable']);
-    Route::post('stores/{store}/activate', ['as' => 'manager.stores.activate', 'uses' => 'StoresController@activate']);
+    Route::post('stores/{store}/disable', ['as' => 'stores.disable', 'uses' => 'StoresController@disable']);
+    Route::post('stores/{store}/activate', ['as' => 'stores.activate', 'uses' => 'StoresController@activate']);
+
+    Route::get('areas/{countryId}', ['as' => 'country.areas', 'uses' => 'CountriesController@getAreas']);
 
     Route::resource('users', 'UsersController', ['except' => [
         'create', 'store', 'show'
     ]]);
-    Route::post('users/{user}/disable', ['as' => 'manager.users.disable', 'uses' => 'UsersController@disable']);
-    Route::post('users/{user}/activate', ['as' => 'manager.users.activate', 'uses' => 'UsersController@activate']);
+    Route::post('users/{user}/disable', ['as' => 'users.disable', 'uses' => 'UsersController@disable']);
+    Route::post('users/{user}/activate', ['as' => 'users.activate', 'uses' => 'UsersController@activate']);
 
     Route::resource('orders', 'OrdersController', ['except' => [
         'create', 'store', 'edit'
@@ -52,12 +54,24 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('sliders/{slide}/disable', ['as' => 'sliders.disable', 'uses' => 'SlidersController@disable']);
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
+    Route::resource('coupons', 'CouponsController',  ['except' => [
+        'update', 'edit'
+    ]]);
+    Route::post('coupons/{coupon}/disable', ['as' => 'coupons.disable', 'uses' => 'CouponsController@disable']);
+    Route::post('coupons/{coupon}/activate', ['as' => 'coupons.activate', 'uses' => 'CouponsController@activate']);
+
     Route::resource('products', 'ProductsController');
     Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);
     Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
     Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
-    Route::resource('newsletter', 'NewsletterController');
+    Route::resource('newsletter', 'NewsletterController',  ['except' => [
+        'show'
+    ]]);
+    Route::get('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsletterController@campaignView']);
+    Route::post('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsletterController@sendCampaign']);
+    Route::post('newsletter/{newsletter}/disable', ['as' => 'newsletter.disable', 'uses' => 'NewsletterController@disable']);
+    Route::post('newsletter/{newsletter}/activate', ['as' => 'newsletter.activate', 'uses' => 'NewsletterController@activate']);
 
 });
 
@@ -69,6 +83,16 @@ Store Admin ROUTES
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
     Route::get('dashboard', 'DashboardController@adminDashboard');
     Route::resource('products', 'ProductsController');
+
+    Route::resource('coupons', 'CouponsController',  ['except' => [
+        'show', 'update', 'edit'
+    ]]);
+    Route::post('coupons/{coupon}/disable', ['as' => 'coupons.disable', 'uses' => 'CouponsController@disable']);
+    Route::post('coupons/{coupon}/activate', ['as' => 'coupons.activate', 'uses' => 'CouponsController@activate']);
+
+    Route::resource('orders', 'OrdersController', ['except' => [
+        'create', 'store', 'edit'
+    ]]);
 });
 
 //Auth::logout();

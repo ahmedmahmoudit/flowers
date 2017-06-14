@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Stores')
+@section('title', 'Orders')
 
 @section('styles')
     @parent
@@ -16,42 +16,38 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Stores</h3>
+                        <h3 class="box-title">All Orders</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>User Address</th>
+                                <th>Delivery Date</th>
+                                <th>Coupon</th>
+                                <th>Payment Method</th>
+                                <th>Order Status</th>
+                                <th>Net Amount</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($stores as $store)
+                            @foreach($orders as $order)
                                 <tr>
-                                    <td>{{$store->name_en}}</td>
-                                    <td>{{$store->phone}}</td>
-                                    <td>{{$store->email}}</td>
-                                    <td>
-                                        @if($store->is_approved == '1')
-                                            <span class="label label-success">Active</span>
-                                        @else
-                                            <span class="label label-danger">Disabled</span>
-                                        @endif
-                                    </td>
+                                    <td>{{$order->user->name or 'No Name'}}</td>
+                                    <td>{{$order->order_email}}</td>
+                                    <td>{{$order->order_address}}</td>
+                                    <td>{{$order->delivery_date . ' ' . $order->delivery_time}}</td>
+                                    <td>{{$order->coupon_id ? $order->coupon->code : 'No Coupon'}}</td>
+                                    <td>{{$order->payment_method}}</td>
+                                    <td>{{$order->order_status}}</td>
+                                    <td>{{$order->net_amount}}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route('manager.stores.destroy', $store->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
-                                        <a href="{{ route('manager.stores.show', $store->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
-                                        @if($store->is_approved == '1')
-                                            <a href="{{ route('manager.stores.disable', $store->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
-                                        @else
-                                            <a href="{{ route('manager.stores.activate', $store->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
-                                        @endif
+                                        <a href="{{ route('manager.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
                                     </td>
                                 </tr>
                             @endforeach

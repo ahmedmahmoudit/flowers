@@ -105,7 +105,7 @@ class StoreRepository implements StoreRepositoryInterface
      */
     public function disable($id)
     {
-        return $this->model->find($id)->update(['is_approved' => 0]);
+        return $this->model->find($id)->update(['is_approved' => '0']);
     }
 
     /**
@@ -117,6 +117,6 @@ class StoreRepository implements StoreRepositoryInterface
      */
     public function activate($id)
     {
-        return $this->model->find($id)->update(['is_approved' => 1]);
+        return $this->model->find($id)->update(['is_approved' => '1']);
     }
 }

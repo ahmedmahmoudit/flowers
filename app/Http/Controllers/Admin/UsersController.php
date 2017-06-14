@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepositoryInterface;
+use App\Store;
 
 class UsersController extends Controller
 {
@@ -31,7 +32,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = $this->user->getAll();
-        return view('manager.user.index', ['users' => $users]);
+        return view('backend.manager.user.index', compact('users'));
     }
 
 
@@ -45,8 +46,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = $this->user->getById($id);
+        $stores = Store::all();
 
-        return view('manager.user.edit', compact('user'));
+        return view('backend.manager.user.edit', compact('user', 'stores'));
     }
 
     /**
@@ -59,10 +61,36 @@ class UsersController extends Controller
      */
     public function update($id, UpdateUserRequest $request)
     {
-        $attributes = $request->only(['name','email','password','password_confirm','role']);
+        if($request->input('role') == '2')
+        {
+            //Remove user from any store before assign him to another one
+            $store = Store::where('user_id', $id)->first();
+            if($store)
+            {
+                $store->update(['user_id' => NULL]);
+            }
+
+            $store_id = $request->input('store');
+            $store = Store::find($store_id);
+            if($store)
+            {
+                $store->update(['user_id' => $id]);
+            }
+        }
+        else
+        {
+            //Remove user from store before change role
+            $store = Store::where('user_id', $id)->first();
+            if($store)
+            {
+                $store->update(['user_id' => NULL]);
+            }
+        }
+
+        $attributes = $request->only(['name','email','role']);
         $this->user->update($id, $attributes);
 
-        return redirect()->route('users.index');
+        return redirect()->route('manager.users.index');
     }
 
     /**
@@ -76,7 +104,8 @@ class UsersController extends Controller
     {
         $this->user->delete($id);
 
-        return redirect()->route('users.index');
+        Session()->flash('success', 'User Delete Successfully!');
+        return route('manager.users.index');
     }
 
     /**
@@ -90,7 +119,8 @@ class UsersController extends Controller
     {
         $this->user->disable($id);
 
-        return redirect()->route('users.index');
+        Session()->flash('success', 'User Disabled Successfully!');
+        return route('manager.users.index');
     }
 
     /**
@@ -104,6 +134,7 @@ class UsersController extends Controller
     {
         $this->user->activate($id);
 
-        return redirect()->route('users.index');
+        Session()->flash('success', 'User Activated Successfully!');
+        return route('manager.users.index');
     }
 }

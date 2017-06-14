@@ -20,7 +20,7 @@ class CreateStoresTable extends Migration
             $table->string('name_ar');
             $table->string('slug_en')->nullable();
             $table->string('slug_ar')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('email');
             $table->enum('is_approved', [1, 0])->default(0);
             $table->timestamps();

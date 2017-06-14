@@ -36,7 +36,7 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->store->name_en}}</td>
+                                    <td>{{$product->store->name_en or 'Store Disabled'}}</td>
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price or 'No Price'}}</td>
