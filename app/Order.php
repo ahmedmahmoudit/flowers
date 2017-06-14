@@ -16,6 +16,8 @@ class Order extends BaseModel
      */
     protected $dates = ['deleted_at'];
 
+    protected $guarded = ['id'];
+
     /**
      * Get the user that belongs to order.
      */
@@ -38,5 +40,11 @@ class Order extends BaseModel
     public function coupon()
     {
         return $this->belongsTo('App\Coupon');
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+
     }
 }

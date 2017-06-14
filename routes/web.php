@@ -127,6 +127,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
     Route::get('logout','ProfileController@getLogout')->name('profile.logout');
 
+    Route::get('payment/process','PaymentsController@processPayment');
+
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();

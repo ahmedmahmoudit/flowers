@@ -9,6 +9,7 @@ use App\Product;
 use Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use IZaL\Tap\Billing;
 
 class CheckoutController extends Controller
 {
@@ -37,6 +38,7 @@ class CheckoutController extends Controller
         $user = auth()->user();
         $user->load(['addresses.country','addresses.area']);
         $selectedCountry = Cache::get('selectedCountry');
+        $selectedArea = Cache::get('selectedArea');
 
         $hasAddress = false;
 
@@ -49,7 +51,7 @@ class CheckoutController extends Controller
 
         $shippingAddress = $user->addresses->first();
 
-        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','shippingAddress'));
+        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','selectedArea','shippingAddress'));
     }
 
 
@@ -75,6 +77,9 @@ class CheckoutController extends Controller
             $address  = $user->addresses()->first();
         }
 
+
+
+
 //        'id');
 //        'user_id'
 //        'address_id'
@@ -99,8 +104,59 @@ class CheckoutController extends Controller
 
         $order = $user->orders()->create([
             'address_id' => $address->id,
-            'net_amount' => '',
+            'net_amount' => '500',
+            'sale_amount' => '500',
+            'payment_method' => 'tap',
+            'order_status' => '1',
+            'captured_status' => '0',
+            'invoice_id' => str_random(2),
+//            'invoice_id' => str_random(2),
         ]);
+
+        //@todo  save order detilas
+
+        $customerInfo = [
+            'Email' => $user->email,
+            'Mobile' => $order->address->mobile,
+            'Name' => $order->address->firstname . ' ' . $order->address->lastname
+        ];
+
+        $productInfo = [[
+            'Quantity' => 1,
+            'CurrencyCode' => 'KWD',
+            'TotalPrice' => $order->net_amount,
+            'UnitDesc' => 'Subscription Title',
+            'UnitName' => 'Subscription Title',
+            'UnitPrice' => $order->net_amount,
+        ]];
+
+        $gatewayInfo = ['Name' => 'ALL'];
+
+        $merchantInfo = [
+            'MerchantID' => env('BILLING_MERCHANT_ID'),
+            'UserName' => env('BILLING_USERNAME'),
+            'Password' => env('BILLING_PASSWORD'),
+            'ReturnURL' => env('PAYMENT_RETURN_URL'),
+            'AutoReturn' => 'Y',
+            'LangCode' => 'AR',
+            'ReferenceID' => uniqid(),
+        ];
+
+        $billing = app()->make(Billing::class);
+        $billing->setCustomer($customerInfo);
+        $billing->setProducts($productInfo);
+        $billing->setGateway($gatewayInfo);
+        $billing->setMerchant($merchantInfo);
+
+        $paymentRequest = $billing->requestPayment();
+        $response = $paymentRequest->response->getRawResponse();
+        $paymentURL = $response->PaymentURL;
+        $order->reference_code = $response->ReferenceID;
+        $order->save();
+
+
+        return redirect()->away($paymentURL);
+
 
     }
 

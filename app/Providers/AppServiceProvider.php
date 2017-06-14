@@ -18,6 +18,8 @@ use App\Repositories\UserRepositoryInterface;
 use App\Store;
 use Cache;
 use Illuminate\Support\ServiceProvider;
+use IZaL\Tap\Billing;
+use IZaL\Tap\TapBilling;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -44,6 +46,21 @@ class AppServiceProvider extends ServiceProvider
         if(!Cache::has('selectedArea')) {
             Cache::put('selectedArea',false, 60 * 24);
         }
+
+
+        $this->app->bind(Billing::class, TapBilling::class);
+//
+        $options = [
+            'ApiKey' => env('BILLING_API_KEY'),
+            'UserName' => env('BILLING_USERNAME'),
+            'Password' => env('BILLING_PASSWORD'),
+            'MerchantID' => env('BILLING_MERCHANT_ID'),
+        ];
+
+        $this->app->bind(TapBilling::class,function() use ($options) {
+            return new TapBilling($options);
+        });
+
 
     }
 

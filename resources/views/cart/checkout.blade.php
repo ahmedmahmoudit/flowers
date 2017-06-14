@@ -50,7 +50,7 @@
                                                 <select name="area_id" class="form-control c-square c-theme">
                                                     @foreach($selectedCountry['areas'] as $area)
                                                         <option value="{{ $area['id']  }}"
-                                                                {{ old('area_id') == $area['id'] ? "selected":"" }}
+                                                                {{ old('area_id') == $area['id'] ? "selected": ($selectedArea['id'] == $area['id']) ? 'selected' : '' }}
                                                         >{{ $area['name_'.app()->getLocale()] }}</option>
                                                     @endforeach
                                                 </select>
