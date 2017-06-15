@@ -3,6 +3,7 @@
 namespace App;
 
 use Cache;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,6 +28,14 @@ class Product extends BaseModel
     public function store()
     {
         return $this->belongsTo('App\Store');
+    }
+
+    /**
+     * Get the Order Items.
+     */
+    public function orderItem()
+    {
+        return $this->hasMany('App\OrderDetail');
     }
 
     /**

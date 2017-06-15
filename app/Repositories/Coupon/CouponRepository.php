@@ -90,7 +90,7 @@ class CouponRepository implements CouponRepositoryInterface
      */
     public function disable($id)
     {
-        return $this->model->find($id)->update(['consumed' => 0]);
+        return $this->model->find($id)->update(['active' => '0']);
     }
 
     /**
@@ -102,6 +102,6 @@ class CouponRepository implements CouponRepositoryInterface
      */
     public function activate($id)
     {
-        return $this->model->find($id)->update(['consumed' => 1]);
+        return $this->model->find($id)->update(['active' => '1']);
     }
 }

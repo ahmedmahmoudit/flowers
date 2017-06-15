@@ -23,4 +23,9 @@ class OrderDetail extends BaseModel
     {
         return $this->belongsTo('App\Order');
     }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }

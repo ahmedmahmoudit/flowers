@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateCouponRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class CreateCouponRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,23 @@ class CreateCouponRequest extends FormRequest
      */
     public function rules()
     {
+        if(Auth::user()->isManager())
+        {
+            return [
+                'stores'            => 'required',
+                'percentage'        => 'required|numeric',
+                'code'              => 'required',
+                'minimum_charge'    => 'required|numeric',
+                'due_date'          => 'required|Date',
+                'is_limited'        => 'required',
+            ];
+        }
         return [
-            //
+            'percentage'        => 'required|numeric',
+            'code'              => 'required',
+            'minimum_charge'    => 'required|numeric',
+            'due_date'          => 'required|Date',
+            'is_limited'        => 'required',
         ];
     }
 }

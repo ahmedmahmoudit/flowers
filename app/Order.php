@@ -14,7 +14,46 @@ class Order extends BaseModel
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'delivery_date'];
+//    protected $guarded = ['id'];
+
+    public function orderStatusCast( $value )
+    {
+
+        switch ($value)
+        {
+            case '-1':
+                return $this->attributes['order_status'] = 'Pending';
+                break;
+            case '2':
+                return $this->attributes['order_status'] = 'Shipped';
+                break;
+            case '3':
+                return $this->attributes['order_status'] = 'Completed';
+                break;
+            case '4':
+                return $this->attributes['order_status'] = 'Cancelled';
+                break;
+            default:
+                return $this->attributes['order_status'] = 'Error!';
+        }
+    }
+
+    //If product on sale will return sale price else will return price
+//    public function getPriceOrSale()
+//    {
+//        if($this->orderDetails->is_sale)
+//        {
+//            if(Carbon::now()->between(Carbon::parse($this->orderDetails->start_sale_date), Carbon::parse($this->orderDetails->end_sale_date)))
+//            {
+//                return $this->orderDetails->sale_price;
+//            }
+//
+//            return $this->orderDetails->price;
+//        }
+//
+//        return $this->orderDetails->price;
+//    }
 
     protected $guarded = ['id'];
 

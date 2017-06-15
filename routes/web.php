@@ -47,6 +47,9 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::resource('orders', 'OrdersController', ['except' => [
         'create', 'store', 'edit'
     ]]);
+    Route::post('orders/{order}/shipped', ['as' => 'orders.shipped', 'uses' => 'OrdersController@orderShipped']);
+    Route::post('orders/{order}/completed', ['as' => 'orders.completed', 'uses' => 'OrdersController@orderCompleted']);
+    Route::post('orders/{order}/cancelled', ['as' => 'orders.cancelled', 'uses' => 'OrdersController@orderCancelled']);
 
     Route::resource('sliders', 'SlidersController',  ['except' => [
         'show', 'update', 'edit'
