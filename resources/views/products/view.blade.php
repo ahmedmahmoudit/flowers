@@ -56,30 +56,6 @@
                             <div class="c-product-short-desc">
                                 {{ $product->detail->description }}
                             </div>
-                            <div class="row c-product-variant">
-                                <div class="col-sm-12 col-xs-12">
-                                    <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">Size:</p>
-                                    <div class="c-product-size">
-                                        <select>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                                    <div class="c-product-color">
-                                        <p class="c-product-meta-label c-font-uppercase c-font-bold">Color:</p>
-                                        <select>
-                                            <option value="Red">Red</option>
-                                            <option value="Black">Black</option>
-                                            <option value="Beige">Beige</option>
-                                            <option value="White">White</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             @if(in_array($product->id,$cartItems->keys()->toArray()))
                                 <a href="{{ route('cart.item.remove',$product->id) }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Remove from Cart') }}</a>
 
