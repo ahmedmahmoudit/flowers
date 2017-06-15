@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +15,16 @@ class Coupon extends BaseModel
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'due_date'];
+    protected $guarded = ['id'];
+
+    public function setDueDateAttribute( $value ) {
+        $this->attributes['due_date'] = (new Carbon($value))->format('d-m-y');
+    }
+
+    public function value( $totalAmount, $percentage ) {
+        return ($totalAmount*$percentage)/100;
+    }
 
     /**
      * The stores that belong to the coupon.

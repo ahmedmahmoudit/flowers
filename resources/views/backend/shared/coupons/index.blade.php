@@ -30,6 +30,9 @@
                                 <th>Is Limited</th>
                                 <th>Consumed</th>
                                 <th>status</th>
+                                @if(Auth::user()->isManager())
+                                    <th>Stores</th>
+                                @endif
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -39,13 +42,13 @@
                                     <td>{{$coupon->code}}</td>
                                     <td>{{$coupon->percentage}}</td>
                                     <td>{{$coupon->minimum_charge}}</td>
-                                    <td>{{$coupon->due_date}}</td>
-                                    <td>{{$coupon->is_limited}}</td>
+                                    <td>{{$coupon->due_date->format('d-m-Y')}}</td>
+                                    <td>{{($coupon->is_limited == '-1' ? 'Open' : 'Limited to '.$coupon->is_limited.' use')}}</td>
                                     <td>
                                         @if($coupon->consumed == '1')
                                             <span class="label label-danger">Consumed</span>
                                         @else
-                                            <span class="label label-success">Available</span>
+                                            <span class="label label-success">Not Consumed</span>
                                         @endif
                                     </td>
                                     <td>
@@ -55,11 +58,16 @@
                                             <span class="label label-danger">Disabled</span>
                                         @endif
                                     </td>
+                                    @if(Auth::user()->isManager())
+                                        <td>
+                                            @foreach($coupon->stores as $store)
+                                                <span class="label label-info">{{$store->name}}</span>
+                                            @endforeach
+                                        </td>
+                                    @endif
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                         @if(Auth::user()->isManager())
-                                            <a href="{{ route('manager.coupons.destroy', $coupon->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
-                                            <a href="{{ route('manager.coupons.show', $coupon->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
                                             @if($coupon->active == '1')
                                                 <a href="{{ route('manager.coupons.disable', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
                                             @else

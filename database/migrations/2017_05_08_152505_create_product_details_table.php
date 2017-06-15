@@ -16,10 +16,10 @@ class CreateProductDetailsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('price');
+            $table->float('price');
             $table->integer('weight');
             $table->tinyInteger('is_sale');
-            $table->integer('sale_price')->nullable();
+            $table->float('sale_price')->nullable();
             $table->date('start_sale_date')->nullable();
             $table->date('end_sale_date')->nullable();
             $table->integer('quantity');

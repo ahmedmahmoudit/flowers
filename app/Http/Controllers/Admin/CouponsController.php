@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCouponRequest;
 use App\Http\Requests\UpdateCouponRequest;
 use App\Repositories\CouponRepositoryInterface;
+use App\Store;
+use Illuminate\Support\Facades\Auth;
 
 class CouponsController extends Controller
 {
@@ -43,7 +45,8 @@ class CouponsController extends Controller
      */
     public function create()
     {
-        return view('manager.coupon.create');
+        $stores = Store::all();
+        return view('backend.shared.coupons.create', compact('stores'));
     }
 
     /**
@@ -56,7 +59,26 @@ class CouponsController extends Controller
     public function store(CreateCouponRequest $request)
     {
         $attributes = $request->only(['percentage','code', 'minimum_charge', 'due_date', 'is_limited']);
-        $this->coupon->create($attributes);
+        $stores = [];
+        if(Auth::user()->isManager())
+        {
+            $stores = $request->only(['stores']);
+        }
+        else
+        {
+            $stores['stores'] = [Auth::user()->store->id];
+        }
+
+        if($attributes['is_limited'] == '0')
+        {
+            $attributes['is_limited'] = '-1';
+        }
+
+        $coupon = $this->coupon->create($attributes);
+        if(count($stores['stores']) > 0)
+        {
+            $coupon->stores()->syncWithoutDetaching($stores['stores']);
+        }
 
         return redirect('manager/coupons');
     }
@@ -116,7 +138,7 @@ class CouponsController extends Controller
     {
         $this->coupon->disable($id);
 
-        return redirect()->route('coupons.index');
+        return route('manager.coupons.index');
     }
 
     /**
@@ -130,6 +152,6 @@ class CouponsController extends Controller
     {
         $this->coupon->activate($id);
 
-        return redirect()->route('coupons.index');
+        return route('manager.coupons.index');
     }
 }

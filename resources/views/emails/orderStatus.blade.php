@@ -6,15 +6,12 @@
                 <table cellspacing="0" cellpadding="0" width="600" class="w320">
                     <tr>
                         <td class="header-lg">
-                            Your order has shipped!
+                            Your order has been {{$status}}!
                         </td>
                     </tr>
                     <tr>
                         <td class="free-text">
-                            We wanted to let you know that we just shipped off your order <a href="{{url('orders')}}">#{{$order->id}}</a>.
-                            @if($order->track_id)
-                                To track your order go to <a href="https://www.aramex.com/express/track.aspx">Aramex</a> and enter your track id {{$order->track_id}}.
-                            @endif
+                            We wanted to let you know that we just {{$status}} your order <a href="{{url('orders')}}">#{{$order->id}}</a>.
                         </td>
                     </tr>
                     <tr>
@@ -40,7 +37,7 @@
                                                         <tr>
                                                             <td class="mini-block">
                                                                 <span class="header-sm">Shipping Address</span><br />
-                                                                {{$order->address}}
+                                                                {{$order->order_address}}
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -95,14 +92,11 @@
                                 </tr>
 
 
-                                @foreach($order->order_metas as $item)
+                                @foreach($order->orderDetails as $item)
                                     <tr>
                                         <td class="item-col item">
                                             <table cellspacing="0" cellpadding="0" width="100%">
                                                 <tr>
-                                                    <td class="mobile-hide-img">
-                                                        <a href=""><img width="110" height="92" src="img/uploads/thumbnail/{{($item->product->product_meta->image != '' ? $item->product->product_meta->image : $item->product->gallery->images->first()->thumb_url)}}" alt="item1"></a>
-                                                    </td>
                                                     <td class="product">
                                                         <span style="color: #4d4d4d; font-weight:bold;">{{$item->product->name}}</span> <br />
                                                         {{$item->product->sku}}
@@ -114,7 +108,7 @@
                                             {{$item->quantity}}
                                         </td>
                                         <td class="item-col">
-                                            {{$item->sale_price. " KD"}}
+                                            {{$item->sale_price or $item->price. " KD"}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -131,14 +125,12 @@
                                         <span class="total-space" style="width: 150px;">Subtotal</span> <br />
                                         {!! (isset($order) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">Coupon Value :</span>' : null !!}
                                         {!! (isset($coupon) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">After Coupon :</span>' : null !!}
-                                        <span class="total-space" style="width: 150px;">Shipping</span> <br />
                                         <span class="total-space" style="font-weight: bold; color: #4d4d4d; width: 150px;">Total</span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space" style="width: 150px;">{{$order->sale_amount . ' KD'}}</span> <br />
+                                        <span class="total-space" style="width: 150px;">{{$order->net_amount . ' KD'}}</span> <br />
                                         {!! (isset($order) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space"> - '.$order->coupon_value.'</span>' : null !!}
-                                        {!! (isset($coupon) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">'.($order->net_amount + $order->shipping_cost).'</span>' : null !!}
-                                        <span class="total-space" style="width: 150px;">{{$order->shipping_cost . ' KD'}}</span>  <br />
+                                        {!! (isset($coupon) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">'.($order->net_amount - $order->coupon_value).'</span>' : null !!}
                                         <span class="total-space" style="font-weight:bold; color: #4d4d4d; width: 150px;">{{$order->net_amount . ' KD'}}</span>
                                     </td>
                             </table>

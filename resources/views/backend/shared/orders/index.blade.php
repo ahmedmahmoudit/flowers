@@ -27,7 +27,6 @@
                                 <th>User Email</th>
                                 <th>User Address</th>
                                 <th>Delivery Date</th>
-                                <th>Coupon</th>
                                 <th>Payment Method</th>
                                 <th>Order Status</th>
                                 <th>Net Amount</th>
@@ -40,10 +39,9 @@
                                     <td>{{$order->user->name or 'No Name'}}</td>
                                     <td>{{$order->order_email}}</td>
                                     <td>{{$order->order_address}}</td>
-                                    <td>{{$order->delivery_date . ' ' . $order->delivery_time}}</td>
-                                    <td>{{$order->coupon_id ? $order->coupon->code : 'No Coupon'}}</td>
+                                    <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
                                     <td>{{$order->payment_method}}</td>
-                                    <td>{{$order->order_status}}</td>
+                                    <td>{{$order->orderStatusCast($order->order_status)}}</td>
                                     <td>{{$order->net_amount}}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">

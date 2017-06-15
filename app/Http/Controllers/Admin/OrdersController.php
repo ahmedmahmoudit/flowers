@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderStatusUpdate;
 use App\Repositories\OrderRepositoryInterface;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -45,7 +47,61 @@ class OrdersController extends Controller
     {
         $order = $this->order->getById($id);
 
-        return view('manager.order.show', compact('order'));
+        return view('backend.shared.orders.show', compact('order'));
+    }
+
+    /**
+     *  Order Shipped
+    #
+     * @var integer $id
+     *
+     * @return mixed
+     */
+    public function orderShipped($id)
+    {
+        $this->order->updateStatus($id, ['order_status' => '2']);
+        $order = $this->order->getById($id);
+        $status = $order->orderStatusCast($order->order_status);
+
+        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        return route('manager.orders.show', $order->id);
+    }
+
+    /**
+     *  Order Completed
+    #
+     * @var integer $id
+     *
+     * @return mixed
+     */
+    public function orderCompleted($id)
+    {
+        $this->order->updateStatus($id, ['order_status' => '3']);
+        $order = $this->order->getById($id);
+        $status = $order->orderStatusCast($order->order_status);
+
+        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        return route('manager.orders.show', $order->id);
+    }
+
+    /**
+     *  Order Cancelled
+    #
+     * @var integer $id
+     *
+     * @return mixed
+     */
+    public function orderCancelled($id)
+    {
+        $this->order->updateStatus($id, ['order_status' => '4']);
+        $order = $this->order->getById($id);
+        $status = $order->orderStatusCast($order->order_status);
+
+        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        return route('manager.orders.show', $order->id);
     }
 
     /**
