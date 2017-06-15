@@ -86,12 +86,12 @@ class CheckoutController extends Controller
             'invoice_id' => str_random(2),
         ]);
 
-        //@todo  save order detilas
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
 
         $productInfo = collect();
 
+        // save order details
         foreach ($cart->items as $product) {
 
             $order->orderDetails()->create([
@@ -101,6 +101,7 @@ class CheckoutController extends Controller
                 'sale_price' => $product->detail->sale_price
             ]);
 
+            // build products for payment
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
@@ -133,11 +134,18 @@ class CheckoutController extends Controller
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 
-        $paymentRequest = $billing->requestPayment();
-        $response = $paymentRequest->response->getRawResponse();
-        $paymentURL = $response->PaymentURL;
-        $order->reference_code = $response->ReferenceID;
-        $order->save();
+        try {
+            $paymentRequest = $billing->requestPayment();
+            $response = $paymentRequest->response->getRawResponse();
+            $paymentURL = $response->PaymentURL;
+            $order->reference_code = $response->ReferenceID;
+            $order->save();
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error',__('Some error occurred during transaction, please try again'));
+        }
+
+        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
 
