@@ -39,6 +39,7 @@ class PaymentsController extends Controller
         $order->captured_status = 1;
         $order->payment_method = $request->crdtype;
         $order->save();
+
 //        try {
 //            $this->dispatch(new SendSubscriptionEmail($subscription));
 //        } catch (\Exception $e) {

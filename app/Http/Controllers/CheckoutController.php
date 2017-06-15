@@ -144,6 +144,7 @@ class CheckoutController extends Controller
             return redirect()->back()->with('error',__('Some error occurred during transaction, Please try again.'));
         }
 
+        //@todo : uncomment flush cart
 //        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
