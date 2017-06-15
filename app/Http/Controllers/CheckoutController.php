@@ -78,6 +78,7 @@ class CheckoutController extends Controller
         }
 
 
+        // create order;
 
 
 //        'id');
@@ -114,6 +115,23 @@ class CheckoutController extends Controller
         ]);
 
         //@todo  save order detilas
+        $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+        $cart = $this->cart->make($products);
+
+        foreach ($cart->items as $product) {
+
+//            $table->integer('order_id')->unsigned();
+//            $table->foreign('order_id')->references('id')->on('orders');
+//            $table->integer('product_id')->unsigned();
+//            $table->foreign('product_id')->references('id')->on('products');
+//            $table->integer('quantity');
+//            $table->integer('price');
+//            $table->integer('sale_price');
+
+//            $order->detail()->
+
+        }
+
 
         $customerInfo = [
             'Email' => $user->email,
