@@ -15,7 +15,7 @@ class Order extends BaseModel
      * @var array
      */
     protected $dates = ['deleted_at', 'delivery_date'];
-//    protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
     public function orderStatusCast( $value )
     {
@@ -54,8 +54,6 @@ class Order extends BaseModel
 //
 //        return $this->orderDetails->price;
 //    }
-
-    protected $guarded = ['id'];
 
     /**
      * Get the user that belongs to order.

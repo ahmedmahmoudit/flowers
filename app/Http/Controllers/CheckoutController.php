@@ -60,6 +60,7 @@ class CheckoutController extends Controller
 
         $user = auth()->user();
         $user->load('addresses');
+        $selectedCountry = Cache::get('selectedCountry');
 
         if(!$user->addresses->count()) {
             $this->validate($request,[
@@ -118,6 +119,8 @@ class CheckoutController extends Controller
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
 
+        $productInfo = collect();
+
         foreach ($cart->items as $product) {
 
 //            $table->integer('order_id')->unsigned();
@@ -128,10 +131,23 @@ class CheckoutController extends Controller
 //            $table->integer('price');
 //            $table->integer('sale_price');
 
-//            $order->detail()->
+            $order->orderDetails()->create([
+                'product_id' => $product->id,
+                'quantity' => $product->quantity,
+                'price' => $product->detail->price,
+                'sale_price' => $product->detail->sale_price
+            ]);
+
+            $productInfo->push([
+                'Quantity' => $product->quantity,
+                'CurrencyCode' => $selectedCountry['country_code'],
+                'TotalPrice' => $product->subTotal,  // @todo : sale price ?
+                'UnitDesc' => $product->sku,
+                'UnitName' => $product->name,
+                'UnitPrice' => $product->detail->price, // @todo : sale price ?
+            ]);
 
         }
-
 
         $customerInfo = [
             'Email' => $user->email,
@@ -139,14 +155,14 @@ class CheckoutController extends Controller
             'Name' => $order->address->firstname . ' ' . $order->address->lastname
         ];
 
-        $productInfo = [[
-            'Quantity' => 1,
-            'CurrencyCode' => 'KWD',
-            'TotalPrice' => $order->net_amount,
-            'UnitDesc' => 'Subscription Title',
-            'UnitName' => 'Subscription Title',
-            'UnitPrice' => $order->net_amount,
-        ]];
+//        $productInfo = [[
+//            'Quantity' => 1,
+//            'CurrencyCode' => 'KWD',
+//            'TotalPrice' => $order->net_amount,
+//            'UnitDesc' => 'Subscription Title',
+//            'UnitName' => 'Subscription Title',
+//            'UnitPrice' => $order->net_amount,
+//        ]];
 
         $gatewayInfo = ['Name' => 'ALL'];
 
@@ -160,9 +176,10 @@ class CheckoutController extends Controller
             'ReferenceID' => uniqid(),
         ];
 
+
         $billing = app()->make(Billing::class);
         $billing->setCustomer($customerInfo);
-        $billing->setProducts($productInfo);
+        $billing->setProducts($productInfo->toArray());
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 

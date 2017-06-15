@@ -79,7 +79,7 @@ class Cart {
         $products->map(function($product) use ($cartItems) {
             $cartItem = $cartItems[$product->id];
             $productQuantity = $cartItem['quantity'];
-            $product->subTotal = $product->detail->price * $productQuantity;
+            $product->subTotal = $product->detail->price * $productQuantity; // @todo :get sale price
             $product->quantity = $productQuantity;
             return $this->items->push($product);
         });

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class OrderDetail extends BaseModel
 {
     use SoftDeletes;
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be mutated to dates.
