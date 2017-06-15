@@ -81,9 +81,9 @@ class CheckoutController extends Controller
             'net_amount' => '500',
             'sale_amount' => '500',
             'payment_method' => 'tap',
-            'order_status' => '1',
-            'captured_status' => '0',
-            'invoice_id' => str_random(2),
+            'order_status' => 1, // pending order
+            'captured_status' => 0, // @todo: confirm
+            'invoice_id' => strtolower(str_random(7)),
         ]);
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
@@ -142,7 +142,7 @@ class CheckoutController extends Controller
             $order->save();
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error',__('Some error occurred during transaction, please try again'));
+            return redirect()->back()->with('error',__('Some error occurred during transaction, Please try again.'));
         }
 
         $this->cart->flushCart();
