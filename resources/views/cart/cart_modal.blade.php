@@ -1,7 +1,7 @@
 <div class="c-cart-menu">
     <div class="c-cart-menu-title">
         <p class="c-cart-menu-float-l c-font-sbold">{{ $cart->items->count() }} {{ __('Items') }}</p>
-        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->subTotal }}</p>
+        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->subTotal . ' ' . $selectedCountry['currency_'.$locale] }}</p>
     </div>
     <ul class="c-cart-menu-items">
         @foreach($cart->items as $product)

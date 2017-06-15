@@ -58,11 +58,11 @@
                                 </div>
                                 <div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
                                     <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->getPriceWithCurrency() }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->getPriceWithCurrency()  }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
                                     <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->subTotal }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-12 c-cart-remove">
                                     <a href="{{ route('cart.item.remove',$product->id) }}" class="c-theme-link c-cart-remove-desktop">
@@ -82,7 +82,7 @@
                                     <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-bold c-font-16">{{ $cart->subTotal }}</h3>
+                                    <h3 class="c-font-bold c-font-16">{{ $cart->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                     <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-bold c-font-16">{{ $cart->grandTotal }}</h3>
+                                    <h3 class="c-font-bold c-font-16">{{ $cart->grandTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
                                 </div>
                             </div>
                         </div>

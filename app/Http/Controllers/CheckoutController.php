@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
-use App\Http\Requests;
 use App\Core\Cart\Cart;
+use App\Country;
 use App\Product;
 use Cache;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use IZaL\Tap\Billing;
 
 class CheckoutController extends Controller
@@ -78,32 +76,6 @@ class CheckoutController extends Controller
             $address  = $user->addresses()->first();
         }
 
-
-        // create order;
-
-
-//        'id');
-//        'user_id'
-//        'address_id'
-//        'user_id'
-//        'coupon_id'
-//        'coupon_id'
-//        'coupon_value'
-//        'sale_amount'
-//        'net_amount'
-//        'payment_method'
-//        'order_status'
-//        'captured_status'
-//        'invoice_id'
-//        'order_email'
-//        'order_address'
-//        'delivery_date'
-//        'delivery_time'
-
-        // create an order
-        // notify user // sms ? email ?
-        //
-
         $order = $user->orders()->create([
             'address_id' => $address->id,
             'net_amount' => '500',
@@ -112,7 +84,6 @@ class CheckoutController extends Controller
             'order_status' => '1',
             'captured_status' => '0',
             'invoice_id' => str_random(2),
-//            'invoice_id' => str_random(2),
         ]);
 
         //@todo  save order detilas
@@ -122,14 +93,6 @@ class CheckoutController extends Controller
         $productInfo = collect();
 
         foreach ($cart->items as $product) {
-
-//            $table->integer('order_id')->unsigned();
-//            $table->foreign('order_id')->references('id')->on('orders');
-//            $table->integer('product_id')->unsigned();
-//            $table->foreign('product_id')->references('id')->on('products');
-//            $table->integer('quantity');
-//            $table->integer('price');
-//            $table->integer('sale_price');
 
             $order->orderDetails()->create([
                 'product_id' => $product->id,
@@ -155,27 +118,14 @@ class CheckoutController extends Controller
             'Name' => $order->address->firstname . ' ' . $order->address->lastname
         ];
 
-//        $productInfo = [[
-//            'Quantity' => 1,
-//            'CurrencyCode' => 'KWD',
-//            'TotalPrice' => $order->net_amount,
-//            'UnitDesc' => 'Subscription Title',
-//            'UnitName' => 'Subscription Title',
-//            'UnitPrice' => $order->net_amount,
-//        ]];
-
         $gatewayInfo = ['Name' => 'ALL'];
 
         $merchantInfo = [
-            'MerchantID' => env('BILLING_MERCHANT_ID'),
-            'UserName' => env('BILLING_USERNAME'),
-            'Password' => env('BILLING_PASSWORD'),
             'ReturnURL' => env('PAYMENT_RETURN_URL'),
             'AutoReturn' => 'Y',
-            'LangCode' => 'AR',
+            'LangCode' => app()->getLocale() == 'en' ? 'EN' : 'AR',
             'ReferenceID' => uniqid(),
         ];
-
 
         $billing = app()->make(Billing::class);
         $billing->setCustomer($customerInfo);
@@ -189,9 +139,7 @@ class CheckoutController extends Controller
         $order->reference_code = $response->ReferenceID;
         $order->save();
 
-
         return redirect()->away($paymentURL);
-
 
     }
 
