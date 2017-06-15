@@ -15,7 +15,7 @@ class Order extends BaseModel
      * @var array
      */
     protected $dates = ['deleted_at', 'delivery_date'];
-    protected $guarded = ['id'];
+//    protected $guarded = ['id'];
 
     public function orderStatusCast( $value )
     {
