@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('address_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('coupon_id')->unsigned()->nullable();
             $table->foreign('coupon_id')->references('id')->on('coupons');
@@ -25,10 +26,11 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('order_status');
             $table->tinyInteger('captured_status');
             $table->string('invoice_id');
-            $table->string('order_email');
-            $table->text('order_address');
-            $table->date('delivery_date');
-            $table->string('delivery_time');
+            $table->string('order_email')->nullable();
+            $table->text('order_address')->nullable();
+            $table->date('delivery_date')->nullable();
+            $table->string('delivery_time')->nullable();
+            $table->string('reference_code')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

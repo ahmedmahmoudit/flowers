@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 class BaseModel extends Model
 {
 
-
     public function __get($name)
     {
         if(isset($this->localeStrings) && in_array($name, $this->localeStrings)) {

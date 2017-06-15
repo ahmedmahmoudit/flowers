@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\Core\Cart\Cart;
 use App\Country;
 use Cache;
 use Illuminate\Http\Request;
@@ -17,22 +18,29 @@ class LocaleController extends Controller
      * @var Area
      */
     private $areaModel;
+    /**
+     * @var Cart
+     */
+    private $cart;
 
     /**
      * LocaleController constructor.
      * @param Country $countryModel
      * @param Area $areaModel
+     * @param Cart $cart
      */
-    public function __construct(Country $countryModel, Area $areaModel)
+    public function __construct(Country $countryModel, Area $areaModel, Cart $cart)
     {
         $this->countryModel = $countryModel;
         $this->areaModel = $areaModel;
+        $this->cart = $cart;
     }
     public function setCountry(Request $request)
     {
         $country = $this->countryModel->find($request->country)->toArray();
         Cache::put('selectedCountry',$country, 60 * 24);
         Cache::forget('selectedArea');
+        $this->cart->flushCart();
         return redirect()->intended('/');
     }
 

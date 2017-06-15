@@ -120,6 +120,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('cart/update','CartController@update')->name('cart.update');
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
+    Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
 
     Route::get('profile','ProfileController@index')->name('profile');
@@ -128,6 +129,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('profile/orders/{id}','ProfileController@getOrderDetail')->name('profile.orders.show');
     Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
     Route::get('logout','ProfileController@getLogout')->name('profile.logout');
+
+    Route::get('payment/process','PaymentsController@processPayment');
 
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
