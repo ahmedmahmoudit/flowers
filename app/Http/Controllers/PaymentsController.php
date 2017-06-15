@@ -2,34 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Billing\Billing;
-use App\Jobs\SendPaymentEmail;
-use App\Jobs\SendSubscriptionEmail;
-use App\Models\Subscription;
-use App\Models\SubscriptionPackage;
+use App\Order;
+use Cache;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
 {
-    //
     /**
-     * @var Subscription
+     * @var Order
      */
-    private $subscriptionModel;
-    /**
-     * @var SubscriptionPackage
-     */
-    private $subscriptionPackageModel;
+    private $orderModel;
 
     /**
-     * @param Subscription $subscriptionModel
-     * @param SubscriptionPackage $subscriptionPackageModel
+     * PaymentsController constructor.
+     * @param Order $orderModel
      */
-
-    public function __construct(Subscription $subscriptionModel, SubscriptionPackage $subscriptionPackageModel)
+    public function __construct(Order $orderModel)
     {
-        $this->subscriptionModel = $subscriptionModel;
-        $this->subscriptionPackageModel = $subscriptionPackageModel;
+        $this->orderModel = $orderModel;
     }
 
     /**
@@ -38,31 +28,28 @@ class PaymentsController extends Controller
      */
     public function processPayment(Request $request)
     {
-
         if($request->result !== 'SUCCESS') {
             $status = 'danger';
             return view('payments.failure',compact('status'));
         }
 
+        $selectedCountry = Cache::get('selectedCountry');
         $status = 'success';
-        $subscription = $this->subscriptionModel->with('package')->where('reference_code',$request->ref)->first();
-        $subscription->status = $status;
-        $subscription->amount = $request->amt;
-        $subscription->active = 1;
-        $subscription->save();
-
-        try {
-            $this->dispatch(new SendSubscriptionEmail($subscription));
-        } catch (\Exception $e) {
-            dd($e);
-        }
-
-        try {
-            $this->dispatch(new SendPaymentEmail($subscription));
-        } catch (\Exception $e) {
-            dd($e);
-        }
-
-        return view('payments.success',compact('status','subscription'));
+        $order = $this->orderModel->with('orderDetails')->where('reference_code',$request->ref)->first();
+        $order->captured_status = 1;
+        $order->payment_method = $request->crdtype;
+        $order->save();
+//        try {
+//            $this->dispatch(new SendSubscriptionEmail($subscription));
+//        } catch (\Exception $e) {
+//            dd($e);
+//        }
+//
+//        try {
+//            $this->dispatch(new SendPaymentEmail($subscription));
+//        } catch (\Exception $e) {
+//            dd($e);
+//        }
+        return view('payment.success',compact('status','order','selectedCountry'));
     }
 }

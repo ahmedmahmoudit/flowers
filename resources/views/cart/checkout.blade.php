@@ -19,7 +19,6 @@
                         <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Shipping Address') }}</h3>
 
                         @if($hasAddress)
-
                             {{ $shippingAddress->firstname . ' ' . $shippingAddress->lastname }}, <br>
                             {{ __('Block') . ' ' . $shippingAddress->block }},
                             {{ __('Street') . ' ' . $shippingAddress->street }},

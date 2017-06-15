@@ -55,7 +55,6 @@ class CheckoutController extends Controller
 
     public function postCheckout(Request $request)
     {
-
         $user = auth()->user();
         $user->load('addresses');
         $selectedCountry = Cache::get('selectedCountry');
@@ -76,18 +75,18 @@ class CheckoutController extends Controller
             $address  = $user->addresses()->first();
         }
 
-        $order = $user->orders()->create([
-            'address_id' => $address->id,
-            'net_amount' => '500',
-            'sale_amount' => '500',
-            'payment_method' => 'tap',
-            'order_status' => 1, // pending order
-            'captured_status' => 0, // @todo: confirm
-            'invoice_id' => strtolower(str_random(7)),
-        ]);
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
+
+        $order = $user->orders()->create([
+            'address_id' => $address->id,
+            'net_amount' => $cart->subTotal,
+            'sale_amount' => $cart->grandTotal,
+            'order_status' => 1, // pending order
+            'captured_status' => 0,
+            'invoice_id' => strtolower(str_random(7)),
+        ]);
 
         $productInfo = collect();
 
@@ -145,7 +144,7 @@ class CheckoutController extends Controller
             return redirect()->back()->with('error',__('Some error occurred during transaction, Please try again.'));
         }
 
-        $this->cart->flushCart();
+//        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
 
