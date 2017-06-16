@@ -20,8 +20,16 @@
 
     @include('partials.banner')
 
+    <div style="margin-top:50px">
+        <div class="container">
+
+            @include('partials.ads')
+        </div>
+    </div>
+
     <div class="c-layout-footer-6 c-bg-white" style="margin-top:50px">
         <div class="container">
+
             <div class="c-content-title-1">
                 <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Best Sellers') }}</h3>
                 <div class="c-line-center c-theme-bg"></div>

@@ -9,11 +9,11 @@
                     <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                 </div>
             </div>
-            <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(/img/{{rand(1,6)}}.jpg);"></div>
+            <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(/img/{{rand(1,7)}}.jpg);"></div>
         </div>
         <div class="c-info">
-            <p class="c-desc c-font-18 c-font-thin">{{ $product->name }}</p>
-            <p class="c-price c-font-18 c-font-slim">
+            <p class="c-desc c-font-18 c-font-thin text-center">{{ $product->name }}</p>
+            <p class="c-price c-font-18 c-font-slim text-center">
                 {{ $product->detail->getFinalPriceWithCurrency() }} &nbsp;
                 @if($product->detail->is_sale)
                     <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>

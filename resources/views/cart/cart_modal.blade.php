@@ -12,7 +12,9 @@
                         ×
                     </a>
                 </div>
-                <img src="/img/1.jpg"/>
+
+                <img src="/img/{{rand(1,7)}}.jpg" class="img img-responsive" />
+
                 <div class="c-cart-menu-content">
                     <p>{{ $product->quantity }} x <span class="c-item-price c-theme-font">{{ $product->detail->getFinalPriceWithCurrency() }}</span></p>
                     <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-item-name c-font-sbold">{{ $product->name }}</a>

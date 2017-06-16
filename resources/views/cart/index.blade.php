@@ -38,12 +38,10 @@
                             <div class="row c-cart-table-row">
                                 <h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
                                 <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
-                                    <img src="/img/{{ rand(1,6) }}.jpg"/>
+                                    <img src="/img/{{ rand(1,7) }}.jpg"/>
                                 </div>
                                 <div class="col-md-5 col-sm-9 col-xs-7 c-cart-desc">
                                     <h3><a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $product->name }}</a></h3>
-                                    <p>Color: Blue</p>
-                                    <p>Size: S</p>
                                 </div>
 
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
