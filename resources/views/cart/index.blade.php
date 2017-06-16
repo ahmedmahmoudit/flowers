@@ -9,7 +9,9 @@
     <div class="c-content-box c-size-lg">
         <div class="container">
 
-            @if(!$cart->items->count() > 0)
+            @include('partials.notifications')
+
+        @if(!$cart->items->count() > 0)
                 @include('cart.empty')
             @else
                 <form method="POST" action="{{ route('cart.update') }}" >

@@ -49,19 +49,29 @@ class CartController extends Controller
 
         $formDatas = $request->except('_token');
 
+        $cartMessages = '';
+
         foreach ($formDatas as $key => $value) {
             if(str_contains($key,'quantity')) {
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
                 $productID = substr($key,9);
-                try {
-                    $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
-                } catch(\Exception $e) {
-                    return redirect()->back()->with('error',$e->getMessage());
+                $product = $this->productModel->with('detail')->find($productID);
+
+                // check for enough quantity
+                if((int) $value > $product->detail->quantity) {
+                    $cartMessages .= empty($cartMessages ? '' : ' .');
+                    $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
+                } else {
+                    try {
+                        $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
+                    } catch(\Exception $e) {
+                        return redirect()->back()->with('error',$e->getMessage());
+                    }
                 }
             }
         }
 
-        return redirect()->back()->with('success','Cart Updated');
+        return redirect()->back()->with('success','Cart Updated. '.$cartMessages);
     }
 
     public function clearCart()
@@ -88,8 +98,6 @@ class CartController extends Controller
         if($product->detail->in_stock) {
 
             $this->cart->addItem(['id'=>$request->product_id,'quantity'=> (int) $request->quantity]);
-
-            return redirect()->back()->with('success',__('Added item to the Cart'));
 
         } else {
             return redirect()->back()->with('error',__('Product is Out of Stock'));
