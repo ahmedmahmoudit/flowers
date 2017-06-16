@@ -45,6 +45,8 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
+        //@todo: check for enough quantity
+
         $formDatas = $request->except('_token');
 
         foreach ($formDatas as $key => $value) {
@@ -81,9 +83,17 @@ class CartController extends Controller
             'quantity' => 'required|integer',
         ]);
 
-        $this->cart->addItem(['id'=>$request->product_id,'quantity'=> (int) $request->quantity]);
+        $product = $this->productModel->with('detail')->find($request->product_id);
 
-        return redirect()->back()->with('success',trans('cart.updated'));
+        if($product->detail->in_stock) {
+
+            $this->cart->addItem(['id'=>$request->product_id,'quantity'=> (int) $request->quantity]);
+
+            return redirect()->back()->with('success',__('Added item to the Cart'));
+
+        } else {
+            return redirect()->back()->with('error',__('Product is Out of Stock'));
+        }
 
     }
 

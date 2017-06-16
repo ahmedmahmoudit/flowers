@@ -20,7 +20,7 @@ class ProductDetail extends BaseModel
 //    protected $dateFormat = 'd-m-Y';
     protected $localeStrings = ['description'];
     protected $guarded = [];
-    protected $appends = ['final_price'];
+    protected $appends = ['final_price','in_stock'];
 
     /**
      * Get the product that belongs to detail.
@@ -83,6 +83,11 @@ class ProductDetail extends BaseModel
             return $country['id'] === $this->product->store->country_id;
         });
         return $productCountry;
+    }
+
+    public function getInStockAttribute()
+    {
+        return $this->quantity > 0 ;
     }
 
 }
