@@ -40,6 +40,7 @@ class PaymentsController extends Controller
         $order->payment_method = $request->crdtype;
         $order->save();
 
+        //@todo : update stock
 //        try {
 //            $this->dispatch(new SendSubscriptionEmail($subscription));
 //        } catch (\Exception $e) {

@@ -98,6 +98,7 @@ class CartController extends Controller
         if($product->detail->in_stock) {
 
             $this->cart->addItem(['id'=>$request->product_id,'quantity'=> (int) $request->quantity]);
+            return redirect()->back();
 
         } else {
             return redirect()->back()->with('error',__('Product is Out of Stock'));

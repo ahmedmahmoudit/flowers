@@ -20,25 +20,24 @@
                     <div class="c-shop-cart-page-1">
                         <div class="row c-cart-table-title">
                             <div class="col-md-2 c-cart-image">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Image</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Image') }}</h3>
                             </div>
                             <div class="col-md-5 c-cart-desc">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Description</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Description') }}</h3>
                             </div>
                             <div class="col-md-1 c-cart-qty">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Qty</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Qty') }}</h3>
                             </div>
                             <div class="col-md-2 c-cart-price">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Unit Price</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Unit Price') }}</h3>
                             </div>
                             <div class="col-md-1 c-cart-total">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Total</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Total') }}</h3>
                             </div>
                             <div class="col-md-1 c-cart-remove"></div>
                         </div>
                         @foreach($cart->items as $product)
                             <div class="row c-cart-table-row">
-                                <h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
                                 <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
                                     <img src="/img/{{ rand(1,7) }}.jpg"/>
                                 </div>
@@ -66,7 +65,7 @@
 
                                 </div>
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
-                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('c-font-16 ') }}</p>
+                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('Total') }}</p>
                                     <p class="c-cart-price c-font-bold">{{ $product->grandTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-12 c-cart-remove">

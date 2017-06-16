@@ -55,16 +55,18 @@
                                 <div class="c-line-left"></div>
                             </div>
 
-                            @if($product->detail->is_sale)
-                                <div class="c-product-badge">
+                            <div class="c-product-badge">
+                                @if($product->detail->is_sale)
+
                                     <div class="c-product-sale">{{ __('Sale') }}</div>
-                                    @if($product->detail->in_stock)
-                                        <div class="c-product-new">{{ __('In Stock') }}</div>
-                                    @else
-                                        <div class="c-product-sale">{{ __('Out of Stock') }}</div>
-                                    @endif
-                                </div>
-                            @endif
+                                @endif
+
+                                @if($product->detail->in_stock)
+                                    <div class="c-product-new">{{ __('In Stock') }}</div>
+                                @else
+                                    <div class="c-product-sale">{{ __('Out of Stock') }}</div>
+                                @endif
+                            </div>
 
                             <div class="c-product-price" style="clear: both;">
                                 {{ $product->detail->getFinalPriceWithCurrency() }}
