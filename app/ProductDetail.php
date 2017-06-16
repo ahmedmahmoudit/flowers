@@ -40,7 +40,7 @@ class ProductDetail extends BaseModel
 
     public function getOnSaleAttribute()
     {
-        return $this->attributes['is_sale'] === 1;
+        return $this->is_sale;
     }
 
 //    public function getPriceAttribute()
@@ -81,7 +81,7 @@ class ProductDetail extends BaseModel
     /**
      * @return mixed
      */
-    public function getProductCountry(): mixed
+    public function getProductCountry(): array
     {
         $countries = collect(Cache::get('countries'));
         $productCountry = $countries->first(function ($country) {

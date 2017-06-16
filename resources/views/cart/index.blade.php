@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
                                     <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->getPriceWithCurrency()  }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->detail->getPriceWithCurrency()  }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
                                     <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>

@@ -52,7 +52,7 @@
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <div class="c-line-left"></div>
                             </div>
-                            <div class="c-product-price" style="clear: both;">{{ $product->getPriceWithCurrency() }}</div>
+                            <div class="c-product-price" style="clear: both;">{{ $product->detail->getPriceWithCurrency() }}</div>
                             <div class="c-product-short-desc">
                                 {{ $product->detail->description }}
                             </div>

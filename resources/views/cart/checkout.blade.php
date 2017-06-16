@@ -121,7 +121,7 @@
                                     <li class="row c-margin-b-15 c-margin-t-15">
                                         <div class="col-md-6 c-font-20"><a href="{{ route('product.show',[$product->id,$product->slug])}}" class="c-theme-link">{{ $product->name }} x {{ $product->quantity }}</a></div>
                                         <div class="col-md-6 c-font-20">
-                                            <p class="">{{ $product->getPriceWithCurrency() }}</p>
+                                            <p class="">{{ $product->detail->getPriceWithCurrency() }}</p>
                                         </div>
                                     </li>
                                 @endforeach

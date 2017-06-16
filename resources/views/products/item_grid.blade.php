@@ -14,8 +14,10 @@
         <div class="c-info">
             <p class="c-desc c-font-18 c-font-thin">{{ $product->name }}</p>
             <p class="c-price c-font-18 c-font-slim">
-                {{ $product->getPriceWithCurrency() }} &nbsp;
-                <span class="c-font-18 c-font-line-through c-font-red">$600</span>
+                {{ $product->detail->getFinalPriceWithCurrency() }} &nbsp;
+                @if($product->detail->onSale)
+                    <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
+                @endif
             </p>
 
         </div>
