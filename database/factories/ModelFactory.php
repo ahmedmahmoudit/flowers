@@ -113,12 +113,12 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
 
     return [
         'product_id' => \App\Product::find(1)->id ? \App\Product::find(1)->id : $factory->create(App\Product::class)->id,
-        'price' => $faker->numberBetween(20, 50),
         'weight' => $faker->numberBetween(50, 200),
-        'is_sale' => 0,
-        'sale_price' => null,
-        'start_sale_date' => null,
-        'end_sale_date' => null,
+        'is_sale' => $faker->boolean(90),
+        'price' => rand(1, 200),
+        'sale_price' => rand(1,100),
+        'start_sale_date' =>\Carbon\Carbon::parse($faker->dateTimeBetween('-1 week','now')->format('d-m-Y')),
+        'end_sale_date' => \Carbon\Carbon::parse($faker->dateTimeBetween('now','+1 week')->format('d-m-Y')),
         'quantity' => $faker->numberBetween(50, 100),
         'description_en' => $faker->text(20),
         'description_ar' => $faker->text(20),

@@ -67,27 +67,17 @@ class Product extends BaseModel
         return $this->hasOne(ProductDetail::class);
     }
 
-    public function getPrice()
-    {
-        return $this->detail->price;
-    }
 
-    public function getPriceWithCurrency()
-    {
-        $countries  = collect(Cache::get('countries'));
-        $country = $countries->first(function($country) {
-            return $country['id'] === $this->store->country_id;
-        });
-        $price = $this->getPrice();
-        return  $price.' '. $country['currency_'.app()->getLocale()];
-    }
 
-    public function getProductsForArea()
-    {
-
-        $country = Cache::get('selectedCountry');
-
-    }
+//    public function isOnSale()
+//    {
+//        if (!$this->relationLoaded('detail')) {
+//            $this->load('detail');
+//        }
+//        $productDetail = $this->getRelation('detail')->first();
+//        if($productDetail->is_sale) {
+//        }
+//    }
 
     public function scopeChildrenCategoryProducts($query,$ids)
     {
