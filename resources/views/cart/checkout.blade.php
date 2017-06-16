@@ -121,7 +121,7 @@
                                     <li class="row c-margin-b-15 c-margin-t-15">
                                         <div class="col-md-6 c-font-20"><a href="{{ route('product.show',[$product->id,$product->slug])}}" class="c-theme-link">{{ $product->name }} x {{ $product->quantity }}</a></div>
                                         <div class="col-md-6 c-font-20">
-                                            <p class="">{{ $product->detail->getPriceWithCurrency() }}</p>
+                                            <p class="">{{ $product->detail->getFinalPriceWithCurrency() }}</p>
                                         </div>
                                     </li>
                                 @endforeach
@@ -132,7 +132,7 @@
                                         <p class="c-font-30">Total</p>
                                     </div>
                                     <div class="col-md-6 c-font-20">
-                                        <p class="c-font-bold c-font-30">KD<span class="c-shipping-total">{{ $cart->subTotal }}</span></p>
+                                        <p class="c-font-bold c-font-30">KD<span class="c-shipping-total">{{ $cart->grandTotal }}</span></p>
                                     </div>
                                 </li>
                                 <li class="row">

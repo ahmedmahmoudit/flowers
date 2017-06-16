@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
-                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
+                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('QTY') }}</p>
                                     <div class="c-input-group c-spinner">
                                         <input type="text" name="quantity_{{$product->id}}" class="form-control c-item-{{$product->id}}" value="{{ $product->quantity }}">
                                         <div class="c-input-group-btn-vertical">
@@ -57,12 +57,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
-                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->detail->getPriceWithCurrency()  }}</p>
+                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('Unit Price') }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->detail->getFinalPriceWithCurrency()  }}
+                                        @if($product->detail->is_sale)
+                                            &nbsp;<span class="c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
+                                        @endif
+                                    </p>
+
                                 </div>
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
-                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
+                                    <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('c-font-16 ') }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->grandTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-12 c-cart-remove">
                                     <a href="{{ route('cart.item.remove',$product->id) }}" class="c-theme-link c-cart-remove-desktop">
@@ -82,7 +87,7 @@
                                     <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-bold c-font-16">{{ $cart->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
+                                    <h3 class="c-font-bold c-font-16 c-font-line-through c-font-red">{{ $cart->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
                                 </div>
                             </div>
                         </div>

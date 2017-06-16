@@ -1,7 +1,7 @@
 <div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20">
     <div class="c-content-product-2 c-bg-white">
         <div class="c-content-overlay">
-            @if($product->detail->onSale)
+            @if($product->detail->is_sale)
                 <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-14 c-font-bold">Sale</div>
             @endif
             <div class="c-overlay-wrapper">
@@ -15,7 +15,7 @@
             <p class="c-desc c-font-18 c-font-thin">{{ $product->name }}</p>
             <p class="c-price c-font-18 c-font-slim">
                 {{ $product->detail->getFinalPriceWithCurrency() }} &nbsp;
-                @if($product->detail->onSale)
+                @if($product->detail->is_sale)
                     <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
                 @endif
             </p>

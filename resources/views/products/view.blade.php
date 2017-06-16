@@ -52,7 +52,19 @@
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <div class="c-line-left"></div>
                             </div>
-                            <div class="c-product-price" style="clear: both;">{{ $product->detail->getPriceWithCurrency() }}</div>
+
+                            @if($product->detail->is_sale)
+                                <div class="c-product-badge">
+                                    <div class="c-product-sale">{{ __('Sale') }}</div>
+                                </div>
+                            @endif
+
+                            <div class="c-product-price" style="clear: both;">
+                                {{ $product->detail->getFinalPriceWithCurrency() }}
+                                @if($product->detail->is_sale)
+                                    <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
+                                @endif
+                            </div>
                             <div class="c-product-short-desc">
                                 {{ $product->detail->description }}
                             </div>

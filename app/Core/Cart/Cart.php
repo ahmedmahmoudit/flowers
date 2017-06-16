@@ -77,15 +77,18 @@ class Cart {
         $cartItems = $this->getItems();
 
         $products->map(function($product) use ($cartItems) {
+
+//            $finalPrice = $product->detail->is_sale ?
             $cartItem = $cartItems[$product->id];
             $productQuantity = $cartItem['quantity'];
-            $product->subTotal = $product->detail->price * $productQuantity; // @todo :get sale price
+            $product->subTotal = $product->detail->price * $productQuantity;
+            $product->grandTotal = $product->detail->final_price * $productQuantity;
             $product->quantity = $productQuantity;
             return $this->items->push($product);
         });
 
         $this->subTotal = $this->items->sum('subTotal');
-        $this->grandTotal = $this->subTotal;
+        $this->grandTotal = $this->items->sum('grandTotal');
 
         return $this;
     }

@@ -97,17 +97,17 @@ class CheckoutController extends Controller
                 'product_id' => $product->id,
                 'quantity' => $product->quantity,
                 'price' => $product->detail->price,
-                'sale_price' => $product->detail->sale_price
+                'sale_price' => $product->detail->final_price
             ]);
 
             // build products for payment
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
-                'TotalPrice' => $product->subTotal,  // @todo : sale price ?
+                'TotalPrice' => $product->grandTotal,
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
-                'UnitPrice' => $product->detail->price, // @todo : sale price ?
+                'UnitPrice' => $product->detail->final_price,
             ]);
 
         }

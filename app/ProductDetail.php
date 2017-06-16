@@ -20,7 +20,7 @@ class ProductDetail extends BaseModel
 //    protected $dateFormat = 'd-m-Y';
     protected $localeStrings = ['description'];
     protected $guarded = [];
-    protected $appends = ['onSale'];
+    protected $appends = ['final_price'];
 
     /**
      * Get the product that belongs to detail.
@@ -36,11 +36,6 @@ class ProductDetail extends BaseModel
 
     public function setEndSaleDateAttribute( $value ) {
         $this->attributes['end_sale_date'] = (new Carbon($value))->format('d-m-y');
-    }
-
-    public function getOnSaleAttribute()
-    {
-        return $this->is_sale;
     }
 
 //    public function getPriceAttribute()
@@ -67,7 +62,7 @@ class ProductDetail extends BaseModel
         return  $price.' '. $productCountry['currency_'.app()->getLocale()];
     }
 
-    public function getFinalPrice()
+    public function getFinalPriceAttribute()
     {
         return $this->is_sale ? $this->sale_price : $this->price;
     }
@@ -75,7 +70,7 @@ class ProductDetail extends BaseModel
     public function getFinalPriceWithCurrency()
     {
         $productCountry = $this->getProductCountry();
-        return  $this->getFinalPrice().' '. $productCountry['currency_'.app()->getLocale()];
+        return  $this->final_price .' '. $productCountry['currency_'.app()->getLocale()];
     }
 
     /**

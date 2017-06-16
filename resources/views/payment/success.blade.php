@@ -46,7 +46,7 @@
                         </li>
                         <li>
                             <h3>{{ __('Amount Paid') }}</h3>
-                            <p>{{ $order->net_amount }} KD</p>
+                            <p>{{ $order->sale_amount }} KD</p>
                         </li>
                         <li>
                             <h3>Payment Method</h3>
@@ -103,7 +103,11 @@
                                 </div>
                                 <div class="col-md-2 col-sm-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Unit Price') }}</p>
-                                    <p class="c-font-sbold c-font-uppercase c-font-18">{{$orderDetail->product->detail->price . ' ' .$selectedCountry['currency_'.app()->getLocale()] }}</p>
+                                    <p class="c-font-sbold c-font-uppercase c-font-18">{{$orderDetail->product->detail->getFinalPriceWithCurrency() }}
+                                        @if($orderDetail->product->detail->is_sale)
+                                            &nbsp;<span class="c-font-line-through c-font-red">{{ $orderDetail->product->detail->getPriceWithCurrency() }}</span>
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="col-md-2 col-sm-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Quantity') }}</p>
@@ -111,7 +115,12 @@
                                 </div>
                                 <div class="col-md-2 col-sm-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                    <p class="c-font-sbold c-font-18">{{$orderDetail->quantity * $orderDetail->product->detail->price . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}  </p>
+                                    <p class="c-font-sbold c-font-18">{{ ($orderDetail->quantity * $orderDetail->product->detail->final_price) . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}
+                                        {{--@if($orderDetail->product->detail->is_sale)--}}
+                                            {{--&nbsp;<span class="c-font-line-through c-font-red">{{ ($orderDetail->quantity * $orderDetail->product->detail->price) . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>--}}
+                                        {{--@endif--}}
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -121,7 +130,7 @@
                         <ul class="c-list list-unstyled">
                             <li>
                                 <h3 class="c-font-regular c-font-22">{{ __('Subtotal') }} : &nbsp;
-                                    <span class="c-font-dark c-font-bold c-font-22">{{$order->net_amount . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>
+                                    &nbsp;<span class="c-font-line-through c-font-red">{{$order->net_amount . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>
                                 </h3>
                             </li>
                             <li>
