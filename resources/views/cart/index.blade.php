@@ -1,5 +1,58 @@
 @extends('layouts.master')
 
+@section('script')
+    @parent
+    <script>
+
+      $(document).ready(function() {
+        $('#apply_coupon').click(submit_search);
+        $('#coupon-form').find('input').keydown(keypressed);
+      });
+
+      function submit_search(event) {
+        event.preventDefault();
+        var couponCode = $('#coupon').val();
+        if (couponCode) {
+          do_submit(couponCode);
+        }
+        return false;
+      }
+
+      function keypressed(event) {
+        var charcode = (event.which) ? event.which : window.event.keyCode;
+        if (charcode === 13) {
+          return submit_search(event);
+        }
+        return true;
+      }
+
+      function do_submit(code) {
+        var form = $(document.createElement('form'));
+        $(form).attr("action", "/cart/coupon/apply");
+        $(form).attr("method", "POST");
+
+        var csrfToken = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "_token")
+          .val('{{ csrf_token() }}');
+
+        var coupon = $("<input>")
+          .attr("type", "text")
+          .attr("name", "coupon")
+          .val(code );
+
+        $(form).append(coupon);
+        $(form).append(csrfToken);
+
+        form.appendTo( document.body );
+
+        $(form).submit();
+
+      }
+
+    </script>
+@endsection
+
 @section('content')
 
     @component('partials.breadcrumb',['title' => 'Cart', 'nav'=>true])
@@ -11,7 +64,7 @@
 
             @include('partials.notifications')
 
-        @if(!$cart->items->count() > 0)
+            @if(!$cart->items->count() > 0)
                 @include('cart.empty')
             @else
                 <form method="POST" action="{{ route('cart.update') }}" >
@@ -79,8 +132,26 @@
                             </div>
                         @endforeach
 
+                        <div class="row">
+
+                        <div class="c-margin-t-20">
+                            <div class="col-sm-6">
+                                <h3 class="c-title c-font-30 c-font-uppercase c-font-bold">{{ __('Have Coupon ?') }}</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="coupon-form" class="input-group input-group-lg">
+                                    <input type="text" name="coupon" id="coupon" class="form-control input-lg" placeholder="{{ __('Coupon Code') }}">
+                                    <span class="input-group-btn">
+								        <button id="apply_coupon" type="submit" class="btn c-theme-btn c-btn-uppercase btn-lg c-btn-sbold c-btn-square">{{ __('Apply') }}</button>
+							        </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
 
                         <div class="row">
+                            <hr>
                             <div class="c-cart-subtotal-row c-margin-t-20">
                                 <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
                                     <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>

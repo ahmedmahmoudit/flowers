@@ -121,6 +121,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
+    Route::post('cart/coupon/apply','CartController@applyCoupon')->name('coupon.apply');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
 
     Route::get('profile','ProfileController@index')->name('profile');
