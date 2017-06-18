@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
                                 <input type="file" name="image" id="exampleInputFile">
-                                <p class="help-block">Image Size 1920x1080</p>
+                                <p class="help-block">Image Size 1920x520</p>
                             </div>
                         </div>
                         <!-- /.box-body -->
