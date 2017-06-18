@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- form start -->
-                {!! Form::open(['route'=>['manager.coupons.store'],'method'=>'POST','role' => 'form']) !!}
+                {!! Form::open(['route'=>[Request::segment(1).'.coupons.store'],'method'=>'POST','role' => 'form']) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add Coupon</h3>
@@ -63,10 +63,16 @@
                             </div>
                         </div>
                     </div>
+                    @if(!Auth::user()->isManager())
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.box -->
-
-                <div class="box box-primary">
+                @if(Auth::user()->isManager())
+                    <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Select Stores</h3>
                     </div>
@@ -96,6 +102,7 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
+                @endif
                 <!-- /.box -->
 
                 {!!  Form::close() !!}

@@ -29,7 +29,9 @@
                                 <th>Delivery Date</th>
                                 <th>Payment Method</th>
                                 <th>Order Status</th>
-                                <th>Net Amount</th>
+                                @if(Auth::user()->isManager())
+                                    <th>Net Amount</th>
+                                @endif
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -42,10 +44,12 @@
                                     <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
                                     <td>{{$order->payment_method}}</td>
                                     <td>{{$order->orderStatusCast($order->order_status)}}</td>
-                                    <td>{{$order->net_amount}}</td>
+                                    @if(Auth::user()->isManager())
+                                        <td>{{$order->net_amount}}</td>
+                                    @endif
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route('manager.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
+                                        <a href="{{ route(Request::segment(1).'.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
                                     </td>
                                 </tr>
                             @endforeach

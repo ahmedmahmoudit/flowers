@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- form start -->
-                {!! Form::open(['route'=>['manager.products.store'],'method'=>'POST','files' => 'true','role' => 'form','enctype' =>"multipart/form-data"]) !!}
+                {!! Form::open(['route'=>[Request::segment(1).'.products.store'],'method'=>'POST','files' => 'true','role' => 'form','enctype' =>"multipart/form-data"]) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add Product</h3>

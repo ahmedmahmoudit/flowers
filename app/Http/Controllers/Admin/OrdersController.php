@@ -6,7 +6,9 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderStatusUpdate;
 use App\Repositories\OrderRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 
 class OrdersController extends Controller
 {
@@ -32,7 +34,15 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = $this->order->getAll();
+        if(Auth::user()->isStoreAdmin())
+        {
+            $orders = $this->order->getByStore();
+        }
+        else
+        {
+            $orders = $this->order->getAll();
+        }
+
         return view('backend.shared.orders.index', ['orders' => $orders]);
     }
 
@@ -65,7 +75,7 @@ class OrdersController extends Controller
 
         Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
 
-        return route('manager.orders.show', $order->id);
+        return route(Request::segment(1).'.orders.show', $order->id);
     }
 
     /**
@@ -83,7 +93,7 @@ class OrdersController extends Controller
 
         Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
 
-        return route('manager.orders.show', $order->id);
+        return route(Request::segment(1).'.orders.show', $order->id);
     }
 
     /**
@@ -101,7 +111,7 @@ class OrdersController extends Controller
 
         Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
 
-        return route('manager.orders.show', $order->id);
+        return route(Request::segment(1).'.orders.show', $order->id);
     }
 
     /**

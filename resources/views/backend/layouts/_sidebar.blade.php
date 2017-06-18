@@ -121,7 +121,7 @@
             <!-- Admin SideBar -->
             @else
                 <li class="{{ (str_contains(Request::route()->getName(),'dashboard') ? 'active' : '' ) }}">
-                    <a href="{{ route('manager.dashboard') }}">
+                    <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>

@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- form start -->
-                {!! Form::open(['route'=>['manager.products.update', $product->id],'method'=>'PUT','files' => 'true','role' => 'form','enctype' =>"multipart/form-data"]) !!}
+                {!! Form::open(['route'=>[Request::segment(1).'.products.update', $product->id],'method'=>'PUT','files' => 'true','role' => 'form','enctype' =>"multipart/form-data"]) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add Product</h3>
@@ -111,7 +111,7 @@
                             <div class="col-xs-6">
                                 <div class="checkbox">
                                     <label>
-                                        @if($product->detail->is_sale)
+                                        @if($product->detail->is_sale || old('is_sale'))
                                             <input type="checkbox" id="is-sale" value="1" name="is_sale" value="{{old('is_sale')}}" checked="true">
                                         @else
                                             <input type="checkbox" id="is-sale" value="1" name="is_sale" value="{{old('is_sale')}}">
@@ -282,6 +282,12 @@
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(window).bind("load", function() {
+                if ($('#is-sale').is(':checked')) {
+                    $('.for-sale').removeAttr('disabled');
                 }
             });
 

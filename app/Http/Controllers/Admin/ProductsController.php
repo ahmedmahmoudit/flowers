@@ -11,6 +11,7 @@ use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\StoreRepositoryInterface;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Intervention\Image\Facades\Image;
 use App\Category;
 
@@ -34,7 +35,6 @@ class ProductsController extends Controller
     {
         $this->product = $product;
         $this->store = $store;
-        $this->middleware('auth')->only('favorite');
     }
 
     /**
@@ -44,7 +44,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->product->getAll();
+        if(Auth::user()->isStoreAdmin())
+        {
+            $products = $this->product->getByStore();
+        }
+        else
+        {
+            $products = $this->product->getAll();
+        }
 
         return view('backend.shared.products.index', compact('products'));
     }
@@ -88,7 +95,7 @@ class ProductsController extends Controller
         }
         else
         {
-            $store_id = Auth::user()->id;
+            $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
@@ -140,7 +147,7 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-        return redirect('manager/products');
+        return redirect(Request::segment(1).'/products');
     }
 
     /**
@@ -176,7 +183,7 @@ class ProductsController extends Controller
         }
         else
         {
-            $store_id = Auth::user()->id;
+            $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
@@ -243,7 +250,7 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-        return redirect()->back();
+        return redirect(Request::segment(1).'/products');
     }
 
     /**
@@ -257,7 +264,7 @@ class ProductsController extends Controller
     {
         $this->product->delete($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
     /**
@@ -285,7 +292,7 @@ class ProductsController extends Controller
     {
         $this->product->disable($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
     /**
@@ -299,7 +306,7 @@ class ProductsController extends Controller
     {
         $this->product->activate($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
 

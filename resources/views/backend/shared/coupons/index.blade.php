@@ -74,11 +74,12 @@
                                                 <a href="{{ route('manager.coupons.activate', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
                                             @endif
                                         @else
-                                            @if($coupon->active == '1')
-                                                <a href="{{ route('admin.coupons.disable', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
-                                            @else
-                                                <a href="{{ route('admin.coupons.activate', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
-                                            @endif
+                                            <a href="{{ route('admin.coupons.destroy', $coupon->id) }}" data-method="POST" data-laravel-method="Delete" class="btn bg-red margin confirm-delete">Delete</a>
+                                            {{--@if($coupon->active == '1')--}}
+                                                {{--<a href="{{ route('admin.coupons.disable', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>--}}
+                                            {{--@else--}}
+                                                {{--<a href="{{ route('admin.coupons.activate', $coupon->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>--}}
+                                            {{--@endif--}}
                                         @endif
                                     </td>
                                 </tr>

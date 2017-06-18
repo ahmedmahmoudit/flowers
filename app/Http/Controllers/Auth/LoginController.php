@@ -41,6 +41,16 @@ class LoginController extends Controller
         $remember = $request->remember;
 
         if (Auth::attempt(['email' => $email, 'password' => $password],$remember)) {
+            //if Admin
+            if(Auth::user()->isStoreAdmin()){
+                //if Has store
+                if(Auth::user()->store){
+                    return redirect('admin/dashboard');
+                }else{
+                    Auth::logout();
+                    return redirect()->route('login')->with('error',__("You Don't have any store!"));
+                }
+            }
             return redirect()->intended('/');
         }
 

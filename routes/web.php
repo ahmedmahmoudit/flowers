@@ -84,8 +84,13 @@ Store Admin ROUTES
  ***************************************************************************************************/
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
-    Route::get('dashboard', 'DashboardController@adminDashboard');
+
+    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@adminDashboard']);
+
     Route::resource('products', 'ProductsController');
+    Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);
+    Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
+    Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
     Route::resource('coupons', 'CouponsController',  ['except' => [
         'show', 'update', 'edit'
@@ -96,6 +101,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','midd
     Route::resource('orders', 'OrdersController', ['except' => [
         'create', 'store', 'edit'
     ]]);
+    Route::post('orders/{order}/shipped', ['as' => 'orders.shipped', 'uses' => 'OrdersController@orderShipped']);
+    Route::post('orders/{order}/completed', ['as' => 'orders.completed', 'uses' => 'OrdersController@orderCompleted']);
+    Route::post('orders/{order}/cancelled', ['as' => 'orders.cancelled', 'uses' => 'OrdersController@orderCancelled']);
 });
 
 //Auth::logout();

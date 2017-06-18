@@ -29,7 +29,7 @@ class CreateCouponRequest extends FormRequest
             return [
                 'stores'            => 'required',
                 'percentage'        => 'required|numeric',
-                'code'              => 'required',
+                'code'              => 'required|unique:coupons,code',
                 'minimum_charge'    => 'required|numeric',
                 'due_date'          => 'required|Date',
                 'is_limited'        => 'required',
@@ -37,7 +37,7 @@ class CreateCouponRequest extends FormRequest
         }
         return [
             'percentage'        => 'required|numeric',
-            'code'              => 'required',
+            'code'              => 'required|unique:coupons,code',
             'minimum_charge'    => 'required|numeric',
             'due_date'          => 'required|Date',
             'is_limited'        => 'required',

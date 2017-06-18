@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -30,6 +31,16 @@ class ProductRepository implements ProductRepositoryInterface
     public function getAll()
     {
         return $this->model->all();
+    }
+
+    /**
+     * Get all Products' store.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getByStore()
+    {
+        return $this->model->where('store_id', Auth::user()->store->id)->get();
     }
 
     /**
