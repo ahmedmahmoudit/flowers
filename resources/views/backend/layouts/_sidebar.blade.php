@@ -28,6 +28,19 @@
                     </ul>
                 </li>
 
+                <li class="{{ (str_contains(Request::route()->getName(),'ad') ? 'active' : '' ) }} treeview">
+                    <a href="#">
+                        <i class="fa fa-clone"></i>
+                        <span>Ads</span>
+                        <span class="pull-right-container">
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.index') }}"><i class="fa fa-circle-o"></i> ads </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.create') }}"><i class="fa fa-circle-o"></i> Add New Ad </a></li>
+                    </ul>
+                </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'store') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-map-pin"></i>

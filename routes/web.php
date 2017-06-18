@@ -57,6 +57,10 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('sliders/{slide}/disable', ['as' => 'sliders.disable', 'uses' => 'SlidersController@disable']);
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
+    Route::resource('ads', 'AdsController',  ['except' => [
+        'show', 'update', 'edit'
+    ]]);
+
     Route::resource('coupons', 'CouponsController',  ['except' => [
         'update', 'edit'
     ]]);

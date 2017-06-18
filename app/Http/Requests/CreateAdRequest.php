@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSliderRequest extends FormRequest
+class CreateAdRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateSliderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:3000',
+            'order' => 'required',
+            'link'  => 'required',
         ];
     }
 }

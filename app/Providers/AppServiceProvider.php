@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Country;
+use App\Repositories\AdRepository;
+use App\Repositories\AdRepositoryInterface;
 use App\Repositories\CouponRepository;
 use App\Repositories\CouponRepositoryInterface;
 use App\Repositories\OrderRepository;
@@ -75,6 +77,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
         $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->singleton(SliderRepositoryInterface::class, SliderRepository::class);
+        $this->app->singleton(AdRepositoryInterface::class, AdRepository::class);
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->singleton(CouponRepositoryInterface::class, CouponRepository::class);
 
