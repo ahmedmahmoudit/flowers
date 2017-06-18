@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
-use App\Http\Requests;
 use App\Core\Cart\Cart;
+use App\Country;
 use App\Product;
 use Cache;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use IZaL\Tap\Billing;
 
 class CheckoutController extends Controller
@@ -57,9 +55,9 @@ class CheckoutController extends Controller
 
     public function postCheckout(Request $request)
     {
-
         $user = auth()->user();
         $user->load('addresses');
+        $selectedCountry = Cache::get('selectedCountry');
 
         if(!$user->addresses->count()) {
             $this->validate($request,[
@@ -78,42 +76,41 @@ class CheckoutController extends Controller
         }
 
 
-
-
-//        'id');
-//        'user_id'
-//        'address_id'
-//        'user_id'
-//        'coupon_id'
-//        'coupon_id'
-//        'coupon_value'
-//        'sale_amount'
-//        'net_amount'
-//        'payment_method'
-//        'order_status'
-//        'captured_status'
-//        'invoice_id'
-//        'order_email'
-//        'order_address'
-//        'delivery_date'
-//        'delivery_time'
-
-        // create an order
-        // notify user // sms ? email ?
-        //
+        $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+        $cart = $this->cart->make($products);
 
         $order = $user->orders()->create([
             'address_id' => $address->id,
-            'net_amount' => '500',
-            'sale_amount' => '500',
-            'payment_method' => 'tap',
-            'order_status' => '1',
-            'captured_status' => '0',
-            'invoice_id' => str_random(2),
-//            'invoice_id' => str_random(2),
+            'net_amount' => $cart->subTotal,
+            'sale_amount' => $cart->grandTotal,
+            'order_status' => 1, // pending order
+            'captured_status' => 0,
+            'invoice_id' => strtolower(str_random(7)),
         ]);
 
-        //@todo  save order detilas
+        $productInfo = collect();
+
+        // save order details
+        foreach ($cart->items as $product) {
+
+            $order->orderDetails()->create([
+                'product_id' => $product->id,
+                'quantity' => $product->quantity,
+                'price' => $product->detail->price,
+                'sale_price' => $product->detail->final_price
+            ]);
+
+            // build products for payment
+            $productInfo->push([
+                'Quantity' => $product->quantity,
+                'CurrencyCode' => $selectedCountry['country_code'],
+                'TotalPrice' => $product->grandTotal,
+                'UnitDesc' => $product->sku,
+                'UnitName' => $product->name,
+                'UnitPrice' => $product->detail->final_price,
+            ]);
+
+        }
 
         $customerInfo = [
             'Email' => $user->email,
@@ -121,42 +118,36 @@ class CheckoutController extends Controller
             'Name' => $order->address->firstname . ' ' . $order->address->lastname
         ];
 
-        $productInfo = [[
-            'Quantity' => 1,
-            'CurrencyCode' => 'KWD',
-            'TotalPrice' => $order->net_amount,
-            'UnitDesc' => 'Subscription Title',
-            'UnitName' => 'Subscription Title',
-            'UnitPrice' => $order->net_amount,
-        ]];
-
         $gatewayInfo = ['Name' => 'ALL'];
 
         $merchantInfo = [
-            'MerchantID' => env('BILLING_MERCHANT_ID'),
-            'UserName' => env('BILLING_USERNAME'),
-            'Password' => env('BILLING_PASSWORD'),
             'ReturnURL' => env('PAYMENT_RETURN_URL'),
             'AutoReturn' => 'Y',
-            'LangCode' => 'AR',
+            'LangCode' => app()->getLocale() == 'en' ? 'EN' : 'AR',
             'ReferenceID' => uniqid(),
         ];
 
         $billing = app()->make(Billing::class);
         $billing->setCustomer($customerInfo);
-        $billing->setProducts($productInfo);
+        $billing->setProducts($productInfo->toArray());
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 
-        $paymentRequest = $billing->requestPayment();
-        $response = $paymentRequest->response->getRawResponse();
-        $paymentURL = $response->PaymentURL;
-        $order->reference_code = $response->ReferenceID;
-        $order->save();
+        try {
+            $paymentRequest = $billing->requestPayment();
+            $response = $paymentRequest->response->getRawResponse();
+            $paymentURL = $response->PaymentURL;
+            $order->reference_code = $response->ReferenceID;
+            $order->save();
 
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error',__('Some error occurred during transaction, Please try again.'));
+        }
+
+        //@todo : uncomment flush cart
+//        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
-
 
     }
 

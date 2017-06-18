@@ -15,11 +15,10 @@
 
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-7 c-padding-20">
+                    <div class="col-md-6 c-padding-20">
                         <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Shipping Address') }}</h3>
 
                         @if($hasAddress)
-
                             {{ $shippingAddress->firstname . ' ' . $shippingAddress->lastname }}, <br>
                             {{ __('Block') . ' ' . $shippingAddress->block }},
                             {{ __('Street') . ' ' . $shippingAddress->street }},
@@ -109,7 +108,7 @@
                     </div>
                     <!-- END: ADDRESS FORM -->
                     <!-- BEGIN: ORDER FORM -->
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
                             <h1 class="c-font-bold c-font-uppercase c-font-24">Your Order</h1>
                             <ul class="c-order list-unstyled">
@@ -122,7 +121,7 @@
                                     <li class="row c-margin-b-15 c-margin-t-15">
                                         <div class="col-md-6 c-font-20"><a href="{{ route('product.show',[$product->id,$product->slug])}}" class="c-theme-link">{{ $product->name }} x {{ $product->quantity }}</a></div>
                                         <div class="col-md-6 c-font-20">
-                                            <p class="">{{ $product->getPriceWithCurrency() }}</p>
+                                            <p class="">{{ $product->quantity * $product->detail->final_price . ' ' .$selectedCountry['currency_'.app()->getLocale()] }}</p>
                                         </div>
                                     </li>
                                 @endforeach
@@ -133,7 +132,7 @@
                                         <p class="c-font-30">Total</p>
                                     </div>
                                     <div class="col-md-6 c-font-20">
-                                        <p class="c-font-bold c-font-30">KD<span class="c-shipping-total">{{ $cart->subTotal }}</span></p>
+                                        <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ $cart->grandTotal . ' ' .$selectedCountry['currency_'.app()->getLocale()]}}</span></p>
                                     </div>
                                 </li>
                                 <li class="row">

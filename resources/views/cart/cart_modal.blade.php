@@ -1,7 +1,7 @@
 <div class="c-cart-menu">
     <div class="c-cart-menu-title">
         <p class="c-cart-menu-float-l c-font-sbold">{{ $cart->items->count() }} {{ __('Items') }}</p>
-        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->subTotal }}</p>
+        <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->grandTotal . ' ' . $selectedCountry['currency_'.$locale] }}</p>
     </div>
     <ul class="c-cart-menu-items">
         @foreach($cart->items as $product)
@@ -12,9 +12,11 @@
                         ×
                     </a>
                 </div>
-                <img src="/img/2.jpg"/>
+
+                <img src="/img/{{rand(1,7)}}.jpg" class="img img-responsive" />
+
                 <div class="c-cart-menu-content">
-                    <p>{{ $product->quantity }} x <span class="c-item-price c-theme-font">{{ $product->getPriceWithCurrency() }}</span></p>
+                    <p>{{ $product->quantity }} x <span class="c-item-price c-theme-font">{{ $product->detail->getFinalPriceWithCurrency() }}</span></p>
                     <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-item-name c-font-sbold">{{ $product->name }}</a>
                 </div>
             </li>

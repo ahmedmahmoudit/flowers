@@ -24,7 +24,7 @@
                         <div class="cbp-item web-design logos " data-wow-delay="0.2s">
                             <div class="cbp-caption">
                                 <div class="cbp-caption-defaultWrap">
-                                    <img src="/img/{{rand(1,9).'.jpg'}}" alt="" class="img img-responsive" style="height: 340px">
+                                    <img src="/img/{{rand(1,7).'.jpg'}}" alt="" class="img img-responsive" style="height: 340px">
                                 </div>
                                 <div class="cbp-caption-activeWrap">
                                     <div class="c-masonry-border"></div>

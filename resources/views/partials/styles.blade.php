@@ -11,7 +11,7 @@
 <link href="/plugins/rs-plugin/css/settings.css" media="screen" rel="stylesheet">
 {{--<link href="/plugins/rs-plugin/css/extralayers.css" media="screen" rel="stylesheet">--}}
 
-<link href="/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="/css/default.css" rel="stylesheet" id="style_theme" type="text/css"/>
+{{--<link href="/css/plugins.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="/css/default.css" rel="stylesheet" id="style_theme" type="text/css"/>--}}
 <link href="/css/custom.css" rel="stylesheet" id="style_theme" type="text/css"/>
