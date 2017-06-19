@@ -57,11 +57,13 @@ class Store extends BaseModel
         return $this->belongsToMany('App\Coupon');
     }
 
-    /**
-     * The coupons that belong to the store.
-     */
     public function user()
     {
         return $this->belongsToMany('App\User');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->withPivot('order_status');
     }
 }

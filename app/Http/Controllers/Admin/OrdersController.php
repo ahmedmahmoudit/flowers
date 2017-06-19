@@ -56,8 +56,10 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = $this->order->getById($id);
+        $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
+        $statusOfThisPart = $store->pivot->order_status;
 
-        return view('backend.shared.orders.show', compact('order'));
+        return view('backend.shared.orders.show', compact('order', 'statusOfThisPart'));
     }
 
     /**
@@ -69,11 +71,43 @@ class OrdersController extends Controller
      */
     public function orderShipped($id)
     {
-        $this->order->updateStatus($id, ['order_status' => '2']);
         $order = $this->order->getById($id);
-        $status = $order->orderStatusCast($order->order_status);
+        if($order->stores->count() > 1)
+        {
+            $pendingOrderStores = $order->stores->filter(function ($order) {
+                if($order->pivot->order_status == '-1')
+                {
+                    return $order;
+                }
+            })->count();
 
-        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : 'Last Part of ';
+
+            $order->stores->filter(function ($order) {
+                if($order->pivot->store_id == Auth::user()->store->id)
+                {
+                    $order->pivot->order_status = '2';
+                    $order->pivot->save();
+                }
+            });
+
+            $order = $this->order->getById($id);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Shipped', $isLastPart));
+        }
+        else
+        {
+            $storeOrderStatus = $order->stores->first();
+            $storeOrderStatus->pivot->order_status = '2';
+            $storeOrderStatus->pivot->save();
+
+            $this->order->updateStatus($id, ['order_status' => '2']);
+            $order = $this->order->getById($id);
+            $status = $order->orderStatusCast($order->order_status);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        }
 
         return route(Request::segment(1).'.orders.show', $order->id);
     }
@@ -87,11 +121,43 @@ class OrdersController extends Controller
      */
     public function orderCompleted($id)
     {
-        $this->order->updateStatus($id, ['order_status' => '3']);
         $order = $this->order->getById($id);
-        $status = $order->orderStatusCast($order->order_status);
+        if($order->stores->count() > 1)
+        {
+            $pendingOrderStores = $order->stores->filter(function ($order) {
+                if($order->pivot->order_status != '3' || $order->pivot->order_status !='4')
+                {
+                    return $order;
+                }
+            })->count();
 
-        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : 'Last Part of ';
+
+            $order->stores->filter(function ($order) {
+                if($order->pivot->store_id == Auth::user()->store->id)
+                {
+                    $order->pivot->order_status = '3';
+                    $order->pivot->save();
+                }
+            });
+
+            $order = $this->order->getById($id);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Completed', $isLastPart));
+        }
+        else
+        {
+            $storeOrderStatus = $order->stores->first();
+            $storeOrderStatus->pivot->order_status = '3';
+            $storeOrderStatus->pivot->save();
+
+            $this->order->updateStatus($id, ['order_status' => '3']);
+            $order = $this->order->getById($id);
+            $status = $order->orderStatusCast($order->order_status);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        }
 
         return route(Request::segment(1).'.orders.show', $order->id);
     }
@@ -105,11 +171,43 @@ class OrdersController extends Controller
      */
     public function orderCancelled($id)
     {
-        $this->order->updateStatus($id, ['order_status' => '4']);
         $order = $this->order->getById($id);
-        $status = $order->orderStatusCast($order->order_status);
+        if($order->stores->count() > 1)
+        {
+            $pendingOrderStores = $order->stores->filter(function ($order) {
+                if($order->pivot->order_status != '3' || $order->pivot->order_status !='4')
+                {
+                    return $order;
+                }
+            })->count();
 
-        Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : '';
+
+            $order->stores->filter(function ($order) {
+                if($order->pivot->store_id == Auth::user()->store->id)
+                {
+                    $order->pivot->order_status = '4';
+                    $order->pivot->save();
+                }
+            });
+
+            $order = $this->order->getById($id);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Cancelled', $isLastPart));
+        }
+        else
+        {
+            $storeOrderStatus = $order->stores->first();
+            $storeOrderStatus->pivot->order_status = '4';
+            $storeOrderStatus->pivot->save();
+
+            $this->order->updateStatus($id, ['order_status' => '4']);
+            $order = $this->order->getById($id);
+            $status = $order->orderStatusCast($order->order_status);
+
+            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+
+        }
 
         return route(Request::segment(1).'.orders.show', $order->id);
     }

@@ -6,7 +6,7 @@
                 <table cellspacing="0" cellpadding="0" width="600" class="w320">
                     <tr>
                         <td class="header-lg">
-                            Your order has been {{$status}}!
+                            {{$partOfOrder}} Your order has been {{$status}}!
                         </td>
                     </tr>
                     <tr>

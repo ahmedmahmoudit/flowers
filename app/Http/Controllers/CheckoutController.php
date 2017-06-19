@@ -88,6 +88,9 @@ class CheckoutController extends Controller
             'invoice_id' => strtolower(str_random(7)),
         ]);
 
+        $storesRelatedToOrder = $products->pluck('store_id')->unique();
+        $order->stores()->attach($storesRelatedToOrder);
+
         $productInfo = collect();
 
         // save order details

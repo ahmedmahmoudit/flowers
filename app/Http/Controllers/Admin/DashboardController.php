@@ -8,6 +8,7 @@ use App\Product;
 use App\Store;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -39,6 +40,19 @@ class DashboardController extends Controller
 
     public function adminDashboard()
     {
-        return view('backend.admin.dashboard');
+        $store = Store::find(Auth::user()->store->id);
+
+        $ordersD = $store->orders()->daily()->count();
+        $ordersM = $store->orders()->monthly()->count();
+        $ordersY = $store->orders()->yearly()->count();
+
+        $productsD = Product::byStore()->daily()->count();
+        $productsM = Product::byStore()->monthly()->count();
+        $productsY = Product::byStore()->yearly()->count();
+
+        return view('backend.admin.dashboard', compact(
+            'ordersD', 'ordersM', 'ordersY',
+            'productsD', 'productsM', 'productsY'
+        ));
     }
 }
