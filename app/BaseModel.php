@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -42,6 +43,23 @@ class BaseModel extends Model
     public function setSlugArAttribute($value)
     {
         return $this->attributes['slug_ar'] = slug($value);
+    }
+
+    public function scopeDaily($query)
+    {
+        return $query->where('created_at', '>=', Carbon::today()->toDateString())
+            ->where('created_at', '<', Carbon::tomorrow()->toDateString());
+    }
+
+    public function scopeMonthly($query)
+    {
+        return $query->where('created_at', '>=', Carbon::now()->startOfMonth()->toDateString())
+            ->where('created_at', '<', Carbon::now()->endOfMonth()->toDateString());
+    }
+
+    public function scopeYearly($query)
+    {
+        return $query->whereYear('created_at', date('Y'));
     }
 
 

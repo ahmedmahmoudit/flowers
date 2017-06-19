@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends BaseModel
@@ -82,6 +81,5 @@ class Order extends BaseModel
     public function address()
     {
         return $this->belongsTo(Address::class);
-
     }
 }
