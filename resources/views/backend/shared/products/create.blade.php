@@ -162,7 +162,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputMainImage">Main Image</label>
-                                <input type="file" name="main_image" id="inputMainImage">
+                                <input type="file" name="main_image" id="inputMainImage" style="font-size: larger;">
                                 <p class="help-block">Image Size 700x900</p>
                             </div>
                         </div>

@@ -79,6 +79,10 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
+                        <div class="form-group" style="text-align: center;font-size: x-large;">
+                            {!! Form::checkbox('checkAll', null, null, ['id' => 'checkAll']) !!}
+                            {!! Form::label('checkAll', 'Check All', array('for' => 'checkAll')) !!}
+                        </div>
                         <div class="form-group">
                             @foreach ($stores->chunk(3) as $array)
                                 @foreach($array as $store)
@@ -86,7 +90,7 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <label>
-                                                    {!! Form::checkbox('stores[]',$store->id,(in_array($store->id,[],true)) ? true : false) !!}
+                                                    {!! Form::checkbox('stores[]',$store->id,(in_array($store->id,[],true)) ? true : false, ['class' => 'coupon']) !!}
                                                     {{ $store->name }}
                                                 </label>
                                             </li>
@@ -120,6 +124,10 @@
 
     <script>
         $(function () {
+
+            $("#checkAll").click(function(){
+                $('.coupon').not(this).prop('checked', this.checked);
+            });
 
             $('#inputDueDate').datepicker({
                 autoclose: true,

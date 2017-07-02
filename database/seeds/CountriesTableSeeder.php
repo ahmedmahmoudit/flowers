@@ -31,14 +31,6 @@ class CountriesTableSeeder extends Seeder
         ]);
 
         DB::table('countries')->insert([
-            'country_code' => 'IQD',
-            'name_en' => 'Iraq',
-            'name_ar' => 'العـراق‎‎',
-            'currency_en' => 'IQD',
-            'currency_ar' => 'د.ع',
-        ]);
-
-        DB::table('countries')->insert([
             'country_code' => 'OMR',
             'name_en' => 'Oman',
             'name_ar' => 'عُمان‎‎',

@@ -110,7 +110,7 @@
                                     <p>New Orders</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i cla ss="ion ion-bag"></i>
                                 </div>
                             </div>
                         </div>

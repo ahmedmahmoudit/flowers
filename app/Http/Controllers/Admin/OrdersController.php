@@ -56,9 +56,12 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = $this->order->getById($id);
-        $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
-        $statusOfThisPart = $store->pivot->order_status;
-
+        if(!Auth::user()->isManager())
+        {
+            $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
+            $statusOfThisPart = $store->pivot->order_status;
+        }
+        
         return view('backend.shared.orders.show', compact('order', 'statusOfThisPart'));
     }
 
