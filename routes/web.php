@@ -124,6 +124,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
     Route::get('products/search','ProductsController@searchProducts')->name('search');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
+    Route::get('country/{id}/areas','LocaleController@getCountryAreas')->name('country.areas');
     Route::get('stores','StoresController@index')->name('stores.index');
     Route::get('stores/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');

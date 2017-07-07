@@ -35,6 +35,7 @@ class LocaleController extends Controller
         $this->areaModel = $areaModel;
         $this->cart = $cart;
     }
+
     public function setCountry(Request $request)
     {
         $country = $this->countryModel->find($request->country)->toArray();
@@ -68,5 +69,13 @@ class LocaleController extends Controller
         return view('locale.select_area',compact('areas','selectedArea'));
     }
 
+    public function getCountryAreas($countryID)
+    {
+        $country = $this->countryModel->find($countryID);
+        Cache::put('selectedCountry',$country->toArray(), 60 * 24);
+        Cache::forget('selectedArea');
+        $this->cart->flushCart();
+        return response()->json(['data'=>$country->areas]);
+    }
 
 }

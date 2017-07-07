@@ -45,6 +45,9 @@
                             @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems,'cols'=>4])
                         </div>
                     </div>
+                    <div class="c-content-box c-size-sm c-bg-white text-center">
+                        {{ $category->products->links('partials.pagination') }}
+                    </div>
                 </div>
             </div>
         </div>
