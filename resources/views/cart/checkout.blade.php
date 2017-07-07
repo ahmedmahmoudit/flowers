@@ -15,7 +15,7 @@
 
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-6 c-padding-20">
+                    <div class="col-md-6">
                         <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Shipping Address') }}</h3>
 
                         {{--@if($hasAddress)--}}
@@ -103,6 +103,13 @@
                                                         <input name="phone" type="tel" value="{{old('phone')}}" class="form-control c-square c-theme" placeholder="{{ __('Phone') }}">
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding-top:10px">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">{{ __('Order Notes') }}</label>
+                                                <textarea class="form-control c-square c-theme" rows="3" placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
                                             </div>
                                         </div>
                                     </div>
