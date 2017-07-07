@@ -21,7 +21,7 @@ class CheckoutController extends Controller
         $this->cart = $cart;
         $this->productModel = $productModel;
         $this->countryModel = $countryModel;
-        $this->middleware('auth')->only(['index']);
+//        $this->middleware('auth')->only(['index']);
     }
 
     /**
@@ -32,24 +32,27 @@ class CheckoutController extends Controller
      */
     public function index(Request $request)
     {
-
         $user = auth()->user();
-        $user->load(['addresses.country','addresses.area']);
+        $hasAddress = false;
+        $authenticated = false;
+        $shippingAddress = null;
+
+        if($user) {
+            $authenticated = true;
+            $user->load(['addresses.country','addresses.area']);
+            if($user->addresses->count()) {
+                $shippingAddress = $user->addresses->first();
+                $hasAddress = true;
+            }
+        }
         $selectedCountry = Cache::get('selectedCountry');
         $selectedArea = Cache::get('selectedArea');
 
-        $hasAddress = false;
-
-        if($user->addresses->count()) {
-            $hasAddress = true;
-        }
 
         $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
 
-        $shippingAddress = $user->addresses->first();
-
-        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','selectedArea','shippingAddress'));
+        return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','selectedArea','shippingAddress','authenticated'));
     }
 
 
@@ -59,7 +62,7 @@ class CheckoutController extends Controller
         $user->load('addresses');
         $selectedCountry = Cache::get('selectedCountry');
 
-        if(!$user->addresses->count()) {
+//        if(!$user->addresses->count()) {
             $this->validate($request,[
                 'firstname' => 'required',
                 'lastname' => 'required',
@@ -71,10 +74,9 @@ class CheckoutController extends Controller
             ]);
             $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
             $address = $user->addresses()->create($addressFields);
-        } else {
-            $address  = $user->addresses()->first();
-        }
-
+//        } else {
+//            $address  = $user->addresses()->first();
+//        }
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);

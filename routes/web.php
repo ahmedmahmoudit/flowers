@@ -105,6 +105,7 @@ Front End ROUTES
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('products','ProductsController@index')->name('products.index');
+    Route::get('products/top','ProductsController@bestSellers')->name('products.top');
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');

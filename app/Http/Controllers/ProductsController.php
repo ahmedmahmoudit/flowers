@@ -92,6 +92,15 @@ class ProductsController extends Controller
         return view('products.index', compact('parentCategories','cartItems'));
     }
 
+    public function bestSellers()
+    {
+        //@todo : replace with the best selling products
+        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes'])->latest()->paginate(20);
+        $cartItems = $this->cart->getItems();
+        return view('products.top',compact('bestSellers','cartItems'));
+    }
+
+
 
     /**
      * @param $categorySlug

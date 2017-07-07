@@ -18,22 +18,22 @@
                     <div class="col-md-6 c-padding-20">
                         <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Shipping Address') }}</h3>
 
-                        @if($hasAddress)
-                            {{ $shippingAddress->firstname . ' ' . $shippingAddress->lastname }}, <br>
-                            {{ __('Block') . ' ' . $shippingAddress->block }},
-                            {{ __('Street') . ' ' . $shippingAddress->street }},
-                            @if($shippingAddress->house)
-                                {{ __('House') . ' ' . $shippingAddress->house }},
-                            @endif
-                            <br>
-                            {{ $shippingAddress->area->name }},
-                            {{ $shippingAddress->country->name }}
-                            <br>
-                            {{ $shippingAddress->mobile }}
-                            @if($shippingAddress->phone)
-                                , {{ $shippingAddress->phone }},
-                            @endif
-                        @else
+                        {{--@if($hasAddress)--}}
+                            {{--{{ $shippingAddress->firstname . ' ' . $shippingAddress->lastname }}, <br>--}}
+                            {{--{{ __('Block') . ' ' . $shippingAddress->block }},--}}
+                            {{--{{ __('Street') . ' ' . $shippingAddress->street }},--}}
+                            {{--@if($shippingAddress->house)--}}
+                                {{--{{ __('House') . ' ' . $shippingAddress->house }},--}}
+                            {{--@endif--}}
+                            {{--<br>--}}
+                            {{--{{ $shippingAddress->area->name }},--}}
+                            {{--{{ $shippingAddress->country->name }}--}}
+                            {{--<br>--}}
+                            {{--{{ $shippingAddress->mobile }}--}}
+                            {{--@if($shippingAddress->phone)--}}
+                                {{--, {{ $shippingAddress->phone }},--}}
+                            {{--@endif--}}
+                        {{--@else--}}
                             <div class="c-shipping-address">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        {{--@endif--}}
                     </div>
                     <!-- END: ADDRESS FORM -->
                     <!-- BEGIN: ORDER FORM -->

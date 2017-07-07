@@ -35,16 +35,14 @@
         <div class="c-layout-sidebar-content ">
             <div class="c-shop-product-details-2 c-opt-1">
                 {{--<div class="c-content-title-1">--}}
-                    {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ $category->name }}</h3>--}}
-                    {{--<div class="c-line-center c-theme-bg"></div>--}}
+                {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ $category->name }}</h3>--}}
+                {{--<div class="c-line-center c-theme-bg"></div>--}}
                 {{--</div>--}}
 
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
                         <div style="margin:10px">
-                            @foreach($category->products as $product)
-                                @include('products.item_grid',['cartItems'=>$cartItems,'cols'=>4])
-                            @endforeach
+                            @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems,'cols'=>4])
                         </div>
                     </div>
                 </div>

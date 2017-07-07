@@ -38,9 +38,7 @@
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
                         <div style="padding:10px">
-                            @foreach($products as $product)
-                                @include('products.item_grid',['cartItems'=>$cartItems,'cols'=>4])
-                            @endforeach
+                                @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>4])
                         </div>
                     </div>
                 </div>
