@@ -2,8 +2,8 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => __('Choose Registration Type'), 'nav'=>true])
-        <li class="c-active"><a href="{{ route('register') }}">{{ __('Choose Registration Type') }}</a></li>
+    @component('partials.breadcrumb',['title' => __('Register an Account'), 'nav'=>true])
+        <li class="c-active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
     @endcomponent
 
     <div class="c-content-box c-size-lg">
