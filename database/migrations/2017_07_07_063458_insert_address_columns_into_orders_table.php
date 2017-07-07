@@ -25,6 +25,7 @@ class InsertAddressColumnsIntoOrdersTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->text('notes')->nullable();
         });
     }
 

@@ -13,7 +13,7 @@
                 @include('products.item_grid',['products'=>$bestSellers,'cartItems'=>$cartItems])
             </div>
             <div class="c-content-box c-size-sm c-bg-white text-center">
-                {{ $bestSellers->links() }}
+                {{ $bestSellers->links('partials.pagination') }}
             </div>
         </div>
     </div>

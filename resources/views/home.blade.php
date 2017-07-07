@@ -43,9 +43,8 @@
             </div>
             <div class="c-content-title-1">
                 <h3 class="c-center c-font-uppercase c-font-bold">
-                    <a href="{{ route('products.top') }}" class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                    <a href="{{ route('products.top') }}" class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All Best Selling Products') }}</a>
                 </h3>
-                <div class="c-line-center c-theme-bg"></div>
             </div>
         </div>
 
