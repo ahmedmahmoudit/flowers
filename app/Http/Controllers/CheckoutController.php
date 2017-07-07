@@ -87,6 +87,9 @@ class CheckoutController extends Controller
                 'area_id' => 'required',
                 'block' => 'required|integer',
                 'street' => 'required|integer',
+                'recipient_firstname' => 'required',
+                'recipient_lastname' => 'required',
+                'recipient_mobile' => 'required',
             ]);
 //            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
 //            $address = $user->addresses()->create($addressFields);
@@ -111,7 +114,10 @@ class CheckoutController extends Controller
             'mobile' => $request->mobile,
             'block' => $request->block,
             'street' =>$request->street,
-            'email' => $request->email
+            'email' => $request->email,
+            'recipient_firstname' => $request->recipient_firstname,
+            'recipient_lastname' => $request->recipient_lastname,
+            'recipient_mobile' => $request->recipient_mobile,
         ]);
 
         $storesRelatedToOrder = $products->pluck('store_id')->unique();
