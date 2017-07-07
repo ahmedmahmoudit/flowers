@@ -1,4 +1,6 @@
+
 @foreach($products as $product)
+
     <div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20">
         <div class="c-content-product-2 c-bg-white">
             <div class="c-content-overlay">
