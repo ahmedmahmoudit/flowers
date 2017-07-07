@@ -63,6 +63,7 @@ body {
 }
 
 .optionGroup {
+
   font-weight: bold;
 }
 
@@ -79,5 +80,12 @@ select *.optionChild {
   background-color:#FFF;
   color:#000;
   padding-left: 15px;
+}
 
+.c-content-tab-2.c-opt-1 > .nav li.active > .c-arrow:before {
+  border-bottom-color: #f7f7f7;
+}
+
+.c-content-tab-2.c-opt-1 > .c-tab-content {
+  background-color: #f7f7f7;
 }

@@ -10063,7 +10063,7 @@ h1 {
 .c-layout-footer.c-layout-footer-2 {
   padding: 100px 0;
   margin: 0;
-  background-image: url(../../../base/img/content/backgrounds/bg_footer_1.jpg);
+  background-image: url(/img/backgrounds/bg_footer_1.jpg);
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: cover;
@@ -10181,7 +10181,7 @@ h1 {
 @media (max-width: 991px) {
   /* 991px */
   .c-layout-footer.c-layout-footer-2 {
-    background-image: url(../img/content/backgrounds/bg_footer_1-1.html);
+    background-image: url(/img/backgrounds/bg_footer_1-1.html);
   }
   .c-layout-footer.c-layout-footer-2 .row > div {
     margin-bottom: 80px;
@@ -11223,14 +11223,14 @@ h1 {
 }
 
 .c-content-line-icon {
-  background-image: url(../../../base/img/content/line-icons/default.png);
+  background-image: url(/img/line-icons/default.png);
   display: inline-block;
   width: 60px;
   height: 60px;
   background-size: cover;
 }
 .c-content-line-icon.c-white {
-  background-image: url(../../../base/img/content/line-icons/white.png);
+  background-image: url(/img/line-icons/white.png);
 }
 .c-content-line-icon.c-icon-screen-chart {
   background-position: 0px -1300%;
@@ -13266,7 +13266,7 @@ h1 {
 }
 
 .c-content-testimonials-4.c-icon-white .owl-theme .owl-controls .owl-nav div {
-  background-image: url(../../../base/img/content/line-icons/white.png);
+  background-image: url(/img/line-icons/white.png);
 }
 
 .c-content-testimonials-4 .owl-nav {
@@ -15299,7 +15299,7 @@ h1 {
   border: 0;
 }
 .c-content-feature-2.c-option-2:hover .c-icon-wrapper > .c-content-line-icon {
-  background-image: url(../../../base/img/content/line-icons/white.png);
+  background-image: url(/img/line-icons/white.png);
 }
 
 .c-content-feature-2-grid .c-content-v-center {
@@ -16979,7 +16979,7 @@ h1 {
 .c-content-tab-2 > .nav > li:not(.active) > a > .c-content-line-icon {
   opacity: 0.9;
   filter: alpha(opacity=90);
-  background-image: url(../../../base/img/content/line-icons/dark1.png);
+  background-image: url(/img/line-icons/dark1.png);
 }
 .c-content-tab-2 > .nav > li + li {
   margin-left: 20px;

@@ -149,5 +149,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
+
+//    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');
+
     Auth::routes();
 });

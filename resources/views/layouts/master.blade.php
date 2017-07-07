@@ -22,6 +22,12 @@
             @include('partials.styles_ltr')
         @endif
 
+        <link href="/css/custom.css" rel="stylesheet" id="style_theme" type="text/css"/>
+
+        @if(app()->getLocale() == 'ar')
+            <link href="/css/custom-rtl.css" rel="stylesheet" type="text/css"/>
+        @endif
+
     @show
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
