@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -75,6 +76,31 @@ class User extends Authenticatable
     public function addresses()
     {
         return $this->hasMany(Address::class,'user_id');
+    }
+
+    /**
+     * The Store
+     */
+    public function store()
+    {
+        return $this->hasOne('App\Store');
+    }
+
+    public function scopeDaily($query)
+    {
+        return $query->where('created_at', '>=', Carbon::today()->toDateString())
+            ->where('created_at', '<', Carbon::tomorrow()->toDateString());
+    }
+
+    public function scopeMonthly($query)
+    {
+        return $query->where('created_at', '>=', Carbon::now()->startOfMonth()->toDateString())
+            ->where('created_at', '<', Carbon::now()->endOfMonth()->toDateString());
+    }
+
+    public function scopeYearly($query)
+    {
+        return $query->whereYear('created_at', date('Y'));
     }
 
 }

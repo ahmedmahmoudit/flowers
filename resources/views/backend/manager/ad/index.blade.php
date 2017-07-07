@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Orders')
+@section('title', 'Ads')
 
 @section('styles')
     @parent
@@ -16,40 +16,28 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Orders</h3>
+                        <h3 class="box-title">All Ads</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="sliderTable" class="table table-bordered table-striped">
+                        <table id="adTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>User Name</th>
-                                <th>User Email</th>
-                                <th>User Address</th>
-                                <th>Delivery Date</th>
-                                <th>Payment Method</th>
-                                <th>Order Status</th>
-                                @if(Auth::user()->isManager())
-                                    <th>Net Amount</th>
-                                @endif
+                                <th>Image</th>
+                                <th>Link</th>
+                                <th>Order</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($orders as $order)
+                            @foreach($ads as $ad)
                                 <tr>
-                                    <td>{{$order->user->name or 'No Name'}}</td>
-                                    <td>{{$order->order_email}}</td>
-                                    <td>{{$order->order_address}}</td>
-                                    <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
-                                    <td>{{$order->payment_method}}</td>
-                                    <td>{{$order->orderStatusCast($order->order_status)}}</td>
-                                    @if(Auth::user()->isManager())
-                                        <td>{{$order->net_amount}}</td>
-                                    @endif
+                                    <td><a href="{{asset('uploads/ads/'.$ad->image)}}" target="_blank">{{$ad->image}}</a></td>
+                                    <td>{{$ad->order}}</td>
+                                    <td>{{$ad->link}}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route(Request::segment(1).'.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
+                                        <a href="{{ route('manager.ads.destroy', $ad->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -80,7 +68,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('#sliderTable').DataTable({
+            $('#adTable').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,

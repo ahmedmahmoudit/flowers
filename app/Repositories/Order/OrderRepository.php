@@ -4,6 +4,9 @@
 namespace App\Repositories;
 
 use App\Order;
+use App\OrderDetail;
+use App\Store;
+use Illuminate\Support\Facades\Auth;
 
 class OrderRepository implements OrderRepositoryInterface
 {
@@ -30,6 +33,26 @@ class OrderRepository implements OrderRepositoryInterface
     public function getAll()
     {
         return $this->model->all();
+    }
+
+    /**
+     * Get all Orders' store.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getByStore()
+    {
+        $store = Store::find(Auth::user()->store->id);
+//        $storeProducts = $store->productsIds;
+//        $items = OrderDetail::selectRaw('count(*) AS ord, order_id')->whereIn('product_id', $storeProducts)->groupBy('order_id')->get();
+//
+//        $orders = [];
+//        foreach ($items as $item)
+//        {
+//            $orders[] = $item->order;
+//        }
+
+        return $store->orders;
     }
 
     /**

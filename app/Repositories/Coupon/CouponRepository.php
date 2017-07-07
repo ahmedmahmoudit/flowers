@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 use App\Coupon;
+use App\Store;
+use Illuminate\Support\Facades\Auth;
 
 class CouponRepository implements CouponRepositoryInterface
 {
@@ -30,6 +32,18 @@ class CouponRepository implements CouponRepositoryInterface
     public function getAll()
     {
         return $this->model->all();
+    }
+
+    /**
+     * Get all Coupons' store.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getByStore()
+    {
+        $store = Store::find(Auth::user()->store->id);
+
+        return $store->coupons;
     }
 
     /**
@@ -78,7 +92,16 @@ class CouponRepository implements CouponRepositoryInterface
      */
     public function delete($id)
     {
-        return $this->model->find($id)->delete();
+        if(Auth::user()->isStoreAdmin())
+        {
+            $coupon = $this->model->find($id);
+
+            return $coupon->stores()->detach(Auth::user()->store->id);
+        }
+        else
+        {
+            return $this->model->find($id)->delete();
+        }
     }
 
     /**

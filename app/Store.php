@@ -36,6 +36,11 @@ class Store extends BaseModel
         return $this->hasMany('App\Product');
     }
 
+    public function productsIds()
+    {
+        return $this->hasMany('App\Product')->select(array('id'));
+    }
+
     /**
      * The areas that belong to the store.
      */
@@ -50,5 +55,15 @@ class Store extends BaseModel
     public function coupons()
     {
         return $this->belongsToMany('App\Coupon');
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->withPivot('order_status');
     }
 }

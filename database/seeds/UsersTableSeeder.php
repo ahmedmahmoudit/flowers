@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'manager',
             'email' => 'manger@asd.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('asdasd'),
             'role' => '1', // manager
             'api_token' => str_random(60),
         ]);
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@test.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('asdasd'),
             'role' => '2', // manager
             'api_token' => str_random(60),
         ]);

@@ -21,7 +21,7 @@
                         <h3 class="box-title">Daily Statistics </h3>
                     </div>
                     <div class="box-body">
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
@@ -35,35 +35,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>{{$storesD or '0'}}<sup style="font-size: 20px"></sup></h3>
-
-                                    <p>New Stores</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>{{$usersD or '0'}}</h3>
-
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">
@@ -89,7 +61,7 @@
                         <h3 class="box-title">Monthly Statistics </h3>
                     </div>
                     <div class="box-body">
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
@@ -103,35 +75,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>{{$storesM or '0'}}<sup style="font-size: 20px"></sup></h3>
-
-                                    <p>New Stores</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>{{$usersM or '0'}}</h3>
-
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">
@@ -157,7 +101,7 @@
                         <h3 class="box-title">Yearly Statistics </h3>
                     </div>
                     <div class="box-body">
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
@@ -171,35 +115,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>{{$storesY or '0'}}<sup style="font-size: 20px"></sup></h3>
-
-                                    <p>New Stores</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>{{$usersY or '0'}}</h3>
-
-                                    <p>User Registrations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-6 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">

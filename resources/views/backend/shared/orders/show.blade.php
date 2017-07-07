@@ -18,13 +18,31 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Order Details</h3>
                     </div>
-                    <div class="box-header with-border">
-                        <b class="box-title" style="width:70%;">Email will be sent to customer with status update!</b>
-                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <a href="{{ route('manager.orders.shipped', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-ship" {{$order->order_status >= '2' ? 'disabled' : ''}}>Shipped</a>
-                        <a href="{{ route('manager.orders.completed', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-orange margin confirm-complete" {{$order->order_status >= '3' ? 'disabled' : ''}}>Completed</a>
-                        <a href="{{ route('manager.orders.cancelled', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-cancel" {{$order->order_status >= '3' ? 'disabled' : ''}}>Cancel</a>
-                    </div>
+                    @if(!Auth::user()->isManager())
+                        <div class="box-header with-border">
+                            <b class="box-title" style="width:70%;">Email will be sent to customer with status update!</b>
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                            @if($order->order_status >= '2' || $statusOfThisPart >= '2')
+                                <a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-ship" disabled>Shipped</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-ship">Shipped</a>
+                            @endif
+
+                            @if($order->order_status >= '3' || $statusOfThisPart >= '3')
+                                <a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-orange margin confirm-complete" disabled>Completed</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-orange margin confirm-complete">Completed</a>
+                            @endif
+
+                            @if($order->order_status >= '3' || $statusOfThisPart >= '3')
+                                <a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-cancel" disabled>Cancel</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-cancel">Cancel</a>
+                            @endif
+
+                        </div>
+                    @endif
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="form-group">
@@ -68,15 +86,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-6">
-                                <label>Net Amount</label>
-                                @if($order->coupon_id)
-                                    <p>{{$order->net_amount - $order->coupon->value($order->net_amount,$order->coupon->percentage)}}</p>
-                                @else
-                                    <p>{{$order->net_amount}}</p>
-                                @endif
-                                <p class="help-block"></p>
-                            </div>
+                            @if(Auth::user()->isManager())
+                                <div class="col-xs-6">
+                                    <label>Net Amount</label>
+                                    @if($order->coupon_id)
+                                        <p>{{$order->net_amount - $order->coupon->value($order->net_amount,$order->coupon->percentage)}}</p>
+                                    @else
+                                        <p>{{$order->net_amount}}</p>
+                                    @endif
+                                    <p class="help-block"></p>
+                                </div>
+                            @endif
 
                             <div class="col-xs-6">
                                 <label>Coupon</label>
@@ -111,16 +131,31 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order->orderDetails as $item)
-                                <tr>
-                                    <td>{{$item->product->sku}}</td>
-                                    <td>{{$item->product->name_en}}</td>
-                                    <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                    <td>{{$item->product->detail->weight or 'No Weight'}}</td>
-                                    <td>{{$item->quantity}}</td>
-                                    <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                </tr>
-                            @endforeach
+                            @if(!Auth::user()->isManager())
+                                @foreach($order->orderDetails as $item)
+                                    @if($item->product->store->id == Auth::user()->store->id)
+                                        <tr>
+                                            <td>{{$item->product->sku}}</td>
+                                            <td>{{$item->product->name_en}}</td>
+                                            <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                            <td>{{$item->product->detail->weight or 'No Weight'}}</td>
+                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @else
+                                @foreach($order->orderDetails as $item)
+                                    <tr>
+                                        <td>{{$item->product->sku}}</td>
+                                        <td>{{$item->product->name_en}}</td>
+                                        <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                        <td>{{$item->product->detail->weight or 'No Weight'}}</td>
+                                        <td>{{$item->quantity}}</td>
+                                        <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

@@ -23,7 +23,9 @@
                         <table id="products-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Store</th>
+                                @if(Auth::user()->isManager())
+                                    <th>Store</th>
+                                @endif
                                 <th>Sku</th>
                                 <th>Name</th>
                                 <th>Price</th>
@@ -36,7 +38,9 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->store->name_en or 'Store Disabled'}}</td>
+                                    @if(Auth::user()->isManager())
+                                        <td>{{$product->store->name_en or 'Store Disabled'}}</td>
+                                    @endif
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price or 'No Price'}}</td>
@@ -50,13 +54,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route('manager.products.edit', $product->id) }}" class="btn bg-orange margin ">Edit</a>
-                                        <a href="{{ route('manager.products.destroy', $product->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
-                                        @if($product->active == '1')
-                                            <a href="{{ route('manager.products.disable', $product->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
+                                        @if(Auth::user()->isManager())
+                                            @include('backend.manager._products_actions')
                                         @else
-                                            <a href="{{ route('manager.products.activate', $product->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-green margin confirm-activate">Activate</a>
+                                            @include('backend.admin._products_actions')
                                         @endif
                                     </td>
                                 </tr>

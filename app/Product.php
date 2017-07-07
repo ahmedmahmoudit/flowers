@@ -6,6 +6,7 @@ use Cache;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends BaseModel
 {
@@ -87,6 +88,11 @@ class Product extends BaseModel
 //                ->where('articles.published',1)
             ;
         });
+    }
+
+    public function scopeByStore($query)
+    {
+        return $query->where('store_id', Auth::user()->store->id);
     }
 
 

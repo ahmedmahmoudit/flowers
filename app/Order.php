@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends BaseModel
 {
@@ -82,6 +82,10 @@ class Order extends BaseModel
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
 
+    public function stores()
+    {
+        return $this->belongsToMany('App\Store')->withPivot('order_status');
     }
 }

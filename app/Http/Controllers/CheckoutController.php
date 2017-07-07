@@ -114,6 +114,9 @@ class CheckoutController extends Controller
             'email' => $request->email
         ]);
 
+        $storesRelatedToOrder = $products->pluck('store_id')->unique();
+        $order->stores()->attach($storesRelatedToOrder);
+
         $productInfo = collect();
 
         // save order details

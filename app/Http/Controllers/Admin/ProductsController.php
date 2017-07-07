@@ -11,6 +11,7 @@ use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\StoreRepositoryInterface;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Intervention\Image\Facades\Image;
 use App\Category;
 
@@ -34,7 +35,6 @@ class ProductsController extends Controller
     {
         $this->product = $product;
         $this->store = $store;
-        $this->middleware('auth')->only('favorite');
     }
 
     /**
@@ -44,7 +44,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->product->getAll();
+        if(Auth::user()->isStoreAdmin())
+        {
+            $products = $this->product->getByStore();
+        }
+        else
+        {
+            $products = $this->product->getAll();
+        }
 
         return view('backend.shared.products.index', compact('products'));
     }
@@ -88,7 +95,7 @@ class ProductsController extends Controller
         }
         else
         {
-            $store_id = Auth::user()->id;
+            $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
@@ -100,7 +107,9 @@ class ProductsController extends Controller
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);
-        Image::make($mainImage['main_image'])->resize(320, 240)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+        Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$imageName.'.jpg');
+        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
+        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
         $attributesDetails['main_image'] = $imageName.'.jpg';
 
         $details = new ProductDetail([
@@ -129,7 +138,9 @@ class ProductsController extends Controller
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(320, 240)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);
@@ -140,7 +151,7 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-        return redirect('manager/products');
+        return redirect(Request::segment(1).'/products');
     }
 
     /**
@@ -176,7 +187,7 @@ class ProductsController extends Controller
         }
         else
         {
-            $store_id = Auth::user()->id;
+            $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
@@ -214,7 +225,9 @@ class ProductsController extends Controller
         if($mainImage['main_image'])
         {
             $imageName = str_random(15);
-            Image::make($mainImage['main_image'])->resize(320, 240)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+            Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$imageName.'.jpg');
+            Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
+            Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
             $attributesDetails['main_image'] = $imageName.'.jpg';
             $details['main_image'] = $attributesDetails['main_image'];
         }
@@ -232,7 +245,9 @@ class ProductsController extends Controller
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(320, 240)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);
@@ -243,7 +258,7 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-        return redirect()->back();
+        return redirect(Request::segment(1).'/products');
     }
 
     /**
@@ -257,7 +272,7 @@ class ProductsController extends Controller
     {
         $this->product->delete($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
     /**
@@ -285,7 +300,7 @@ class ProductsController extends Controller
     {
         $this->product->disable($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
     /**
@@ -299,7 +314,7 @@ class ProductsController extends Controller
     {
         $this->product->activate($id);
 
-        return route('manager.products.index');
+        return url()->previous();
     }
 
 
