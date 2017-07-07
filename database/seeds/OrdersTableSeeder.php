@@ -19,7 +19,8 @@ class OrdersTableSeeder extends Seeder
         foreach ($users as $user)
         {
             factory(App\Order::class, 5)
-                ->create(['user_id' => $user->id])
+                ->create()
+//                ->create(['user_id' => $user->id])
                 ->each(function ($u) {
                     $u->orderDetails()->saveMany(factory(App\OrderDetail::class,5)->make(['product_id' => random_int(1,150)]));
                 });

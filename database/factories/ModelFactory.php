@@ -139,7 +139,7 @@ $factory->define(App\ProductImage::class, function (Faker\Generator $faker) use 
 $factory->define(App\Order::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'user_id' => \App\User::find(1)->id ? \App\User::find(1)->id : $factory->create(App\User::class)->id,
+//        'user_id' => \App\User::find(1)->id ? \App\User::find(1)->id : $factory->create(App\User::class)->id,
         'sale_amount' => $faker->numberBetween(20, 50),
         'net_amount' => $faker->numberBetween(50, 200),
         'payment_method' => 'tab',

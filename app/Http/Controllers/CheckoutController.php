@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Cart\Cart;
 use App\Country;
+use App\Order;
 use App\Product;
 use Cache;
 use Illuminate\Http\Request;
@@ -15,12 +16,24 @@ class CheckoutController extends Controller
     private $cart;
     private $productModel;
     private $countryModel;
+    /**
+     * @var Order
+     */
+    private $orderModel;
 
-    public function __construct(Cart $cart, Product $productModel,Country $countryModel)
+    /**
+     * CheckoutController constructor.
+     * @param Cart $cart
+     * @param Product $productModel
+     * @param Country $countryModel
+     * @param Order $orderModel
+     */
+    public function __construct(Cart $cart, Product $productModel, Country $countryModel, Order $orderModel)
     {
         $this->cart = $cart;
         $this->productModel = $productModel;
         $this->countryModel = $countryModel;
+        $this->orderModel = $orderModel;
 //        $this->middleware('auth')->only(['index']);
     }
 
@@ -59,11 +72,14 @@ class CheckoutController extends Controller
     public function postCheckout(Request $request)
     {
         $user = auth()->user();
-        $user->load('addresses');
+        if($user) {
+            $user->load('addresses');
+        }
         $selectedCountry = Cache::get('selectedCountry');
 
 //        if(!$user->addresses->count()) {
             $this->validate($request,[
+                'email' => 'required|email',
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'mobile' => 'required',
@@ -72,8 +88,8 @@ class CheckoutController extends Controller
                 'block' => 'required|integer',
                 'street' => 'required|integer',
             ]);
-            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
-            $address = $user->addresses()->create($addressFields);
+//            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
+//            $address = $user->addresses()->create($addressFields);
 //        } else {
 //            $address  = $user->addresses()->first();
 //        }
@@ -81,13 +97,21 @@ class CheckoutController extends Controller
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
 
-        $order = $user->orders()->create([
-            'address_id' => $address->id,
+        //@todo: migrate new columns
+        $order = $this->orderModel->create([
             'net_amount' => $cart->subTotal,
             'sale_amount' => $cart->grandTotal,
             'order_status' => 1, // pending order
             'captured_status' => 0,
             'invoice_id' => strtolower(str_random(7)),
+            'country_id' => $request->country_id,
+            'area_id' => $request->area_id,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'mobile' => $request->mobile,
+            'block' => $request->block,
+            'street' =>$request->street,
+            'email' => $request->email
         ]);
 
         $productInfo = collect();
@@ -115,9 +139,9 @@ class CheckoutController extends Controller
         }
 
         $customerInfo = [
-            'Email' => $user->email,
-            'Mobile' => $order->address->mobile,
-            'Name' => $order->address->firstname . ' ' . $order->address->lastname
+            'Email' => $request->email,
+            'Mobile' => $request->mobile,
+            'Name' => $request->firstname . ' ' . $request->lastname
         ];
 
         $gatewayInfo = ['Name' => 'ALL'];
@@ -143,7 +167,7 @@ class CheckoutController extends Controller
             $order->save();
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error',__('Some error occurred during transaction, Please try again.'));
+            return redirect()->back()->withInput()->with('error',__('Some error occurred during transaction, Please try again.'));
         }
 
         //@todo : uncomment flush cart

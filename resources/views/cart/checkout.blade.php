@@ -58,11 +58,15 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-4">
+                                                        <label class="control-label">{{ __('Email') }} <span class="red">*</span></label>
+                                                        <input name="email" type="text" value="{{old('email')}}" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
                                                         <label class="control-label">{{ __('First Name') }} <span class="red">*</span></label>
                                                         <input name="firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label class="control-label">{{ __('Last Name') }} <span class="red">*</span></label>
                                                         <input name="lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">
                                                     </div>
