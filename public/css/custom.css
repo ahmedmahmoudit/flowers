@@ -83,7 +83,7 @@ select *.optionChild {
 }
 
 .c-content-tab-2.c-opt-1 > .nav li.active > .c-arrow:before {
-  border-bottom-color: #f7f7f7;
+  border-bottom-color: #FAF5F8;
 }
 
 .c-content-tab-2.c-opt-1 > .c-tab-content {

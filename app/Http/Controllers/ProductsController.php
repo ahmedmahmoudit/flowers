@@ -92,12 +92,36 @@ class ProductsController extends Controller
         return view('products.index', compact('parentCategories','cartItems'));
     }
 
-    public function bestSellers()
+    public function bestSellers(Request $request)
     {
         //@todo : replace with the best selling products
-        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes'])->latest()->paginate(20);
+
+        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes']);
+
+        if($request->sort) {
+            switch ($request->sort) {
+                case 'price-l-h':
+                    $bestSellers->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','ASC');
+                    break;
+                case 'price-h-l':
+                    $bestSellers->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','DESC');
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            $bestSellers = $bestSellers->latest();
+        }
+
+         $bestSellers = $bestSellers->paginate(20);
+
         $cartItems = $this->cart->getItems();
-        return view('products.top',compact('bestSellers','cartItems'));
+
+        $sort = $request->sort;
+
+        return view('products.top',compact('bestSellers','cartItems','sort'));
     }
 
 

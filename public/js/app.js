@@ -275,6 +275,23 @@ var App = function() {
       $('form.set-area-form').submit();
     });
   };
+
+  var sort = function() {
+    $( "#sort" ).change(function() {
+      $('form#sort-form').submit();
+      // $.ajax({
+      //   url: '/products/top',
+      //   type: 'get',
+      //   // dataType: 'json',
+      //   data: $('form#sort-form').serialize(),
+      //   success: function(data) {
+      //
+      //   }
+      // });
+
+      // $('form.sort-form').submit();
+    });
+  };
   //* END:CORE HANDLERS *//
 
   return {
@@ -305,12 +322,13 @@ var App = function() {
 
       changeCountry();
       changeArea();
+      sort();
     },
 
-    changeLogo: function(filename) {
-      var path = '../assets/jango/img/layout/logos/' + filename + '.png';
-      $('.c-brand img.c-desktop-logo').attr('src', path);
-    },
+    // changeLogo: function(filename) {
+    //   var path = '../assets/jango/img/layout/logos/' + filename + '.png';
+    //   $('.c-brand img.c-desktop-logo').attr('src', path);
+    // },
 
     //public function to remember last opened popover that needs to be closed on click
     setLastPopedPopover: function(el) {

@@ -80,9 +80,7 @@
                 <form class="c-quick-search" role="form" method="GET" action="{{ route('search') }}">
                     {{ csrf_field() }}
                     <input type="text" name="term" placeholder="Type to search..." value="{{ $searchTerm }}" class="form-control" autocomplete="off">
-                    <span class="c-theme-link" style="margin:0;padding:0;margin-top:-10px;margin-right:50px">
-                        <button type="submit" class="text-center c-font-uppercase btn btn-sm c-btn-green  c-btn-border-1x">{{ __('Search') }}</button>
-                    </span>
+                    <button type="submit" class="text-center c-font-uppercase btn btn-sm c-btn-green  c-btn-border-1x" style="position:absolute;top:35%;right:50px">{{ __('Search') }}</button>
                     <span class="c-theme-link">&times;</span>
                 </form>
 
