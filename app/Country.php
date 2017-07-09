@@ -16,7 +16,7 @@ class Country extends BaseModel
      */
     protected $dates = ['deleted_at'];
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     protected $localeStrings = ['name','currency'];
 

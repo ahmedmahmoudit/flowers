@@ -57,6 +57,14 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('sliders/{slide}/disable', ['as' => 'sliders.disable', 'uses' => 'SlidersController@disable']);
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
+    Route::resource('categories', 'CategoriesController',  ['except' => [
+        'show'
+    ]]);
+
+    Route::resource('subcategories', 'SubCategoriesController',  ['except' => [
+        'show'
+    ]]);
+
     Route::resource('ads', 'AdsController',  ['except' => [
         'show', 'update', 'edit'
     ]]);
@@ -90,6 +98,9 @@ Store Admin ROUTES
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@adminDashboard']);
+
+    Route::get('settings', ['as' => 'settings', 'uses' => 'StoresController@settings']);
+    Route::post('settings', ['as' => 'settings.update', 'uses' => 'StoresController@settingsUpdate']);
 
     Route::resource('products', 'ProductsController');
     Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);

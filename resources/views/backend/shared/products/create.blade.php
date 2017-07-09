@@ -69,6 +69,19 @@
                                 <p class="help-block"></p>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="inputHeight">Height</label>
+                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{old('height')}}" required>
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="inputWidth">Width</label>
+                                <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{old('width')}}" required>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
                         {{--IF manager will render status in this section --}}
                         @if(Auth::user()->isManager())
                             <div class="form-group">
@@ -177,22 +190,62 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="form-group">
-                            @foreach ($categories->chunk(3) as $array)
-                                @foreach($array as $category)
-                                    <div class="col-lg-4">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <label>
-                                                    {!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}
-                                                    {{ $category->name }}
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            @endforeach
+                        <div class="col-md-10">
+                            <div class="form-control" style="height: auto;">
+                                <div class="scroller" style="min-height:300px;"
+                                     data-always-visible="1">
+                                    @foreach($categories as $category)
+                                        <div class="col-lg-4">
+                                            <ul class="list-unstyled">
+                                                @if($category->parent_id == 0)
+                                                    <li>
+                                                        <label>
+                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}
+                                                            {{ $category->name }}
+                                                        </label>
+                                                        @if(count($category->children) > 0)
+                                                            <ul class="list-unstyled" style="padding-top: 10px;">
+                                                                @foreach($category->children as $child)
+                                                                    <li>
+                                                                        <label>
+                                                                            {!! Form::checkbox('categories[]',$child->id,(in_array($child->id,$categoriesList,true)) ? true : false) !!}
+                                                                            {{ $child->name }}
+                                                                        </label>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        @if(in_array($loop->index,[2,5,8,12]))
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                        @endif
+                                    @endforeach
+
+                                </div>
+                            </div>
+                            <span class="help-block">* at least one category must be choosen</span>
                         </div>
+                        {{--<div class="form-group">--}}
+                            {{--@foreach ($categories->chunk(3) as $array)--}}
+                                {{--@foreach($array as $category)--}}
+                                    {{--<div class="col-lg-4">--}}
+                                        {{--<ul class="list-unstyled">--}}
+                                            {{--<li>--}}
+                                                {{--<label>--}}
+                                                    {{--{!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}--}}
+                                                    {{--{{ $category->name }}--}}
+                                                {{--</label>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
                     </div>
                     <!-- /.box-body -->
                 </div>

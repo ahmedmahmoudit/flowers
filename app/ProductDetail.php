@@ -19,7 +19,7 @@ class ProductDetail extends BaseModel
     protected $dates = ['deleted_at', 'start_sale_date', 'end_sale_date'];
 //    protected $dateFormat = 'd-m-Y';
     protected $localeStrings = ['description'];
-    protected $guarded = [];
+    protected $guarded = ['id'];
     protected $appends = ['final_price','in_stock'];
 
     /**

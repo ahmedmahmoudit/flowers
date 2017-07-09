@@ -26,10 +26,12 @@
                                 @if(Auth::user()->isManager())
                                     <th>Store</th>
                                 @endif
+                                <th>Main Image</th>
                                 <th>Sku</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Weight</th>
+                                <th>Height / Width</th>
                                 <th>Qty</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -41,10 +43,18 @@
                                     @if(Auth::user()->isManager())
                                         <td>{{$product->store->name_en or 'Store Disabled'}}</td>
                                     @endif
+
+                                    @if(isset($product->detail->main_image))
+                                        <td><img width="50" src="{{asset('uploads/products/original/'.$product->detail->main_image)}}"></td>
+                                    @else
+                                        <td>No Main Image</td>
+                                    @endif
+
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price or 'No Price'}}</td>
                                     <td>{{$product->detail->weight or 'No Price'}}</td>
+                                    <td>{{$product->detail->height or 'No Height'}} / {{$product->detail->width or 'No Width'}}</td>
                                     <td>{{$product->detail->quantity or 'No Price'}}</td>
                                     <td>
                                         @if($product->active == '1')

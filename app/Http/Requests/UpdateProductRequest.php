@@ -26,16 +26,17 @@ class UpdateProductRequest extends FormRequest
     public function rules(Request $request)
     {
         $validationRules = [
-            'sku'               => 'required',
             'name_ar'           => 'required',
             'name_en'           => 'required',
+            'height'            => 'required',
+            'width'             => 'required',
             'active'            => 'required',
-            'price'             => 'required',
+            'price'             => 'required|numeric',
             'weight'            => 'required',
             'description_en'    => 'required',
             'description_ar'    => 'required',
             'main_image'        => 'mimes:jpeg,jpg,png,gif|max:3000',
-            'qty'               => 'required',
+            'qty'               => 'required|numeric',
         ];
 
         if($request->has('is_sale'))

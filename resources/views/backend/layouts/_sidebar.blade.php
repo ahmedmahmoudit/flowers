@@ -41,6 +41,32 @@
                     </ul>
                 </li>
 
+                <li class="{{ (str_contains(Request::route()->getName(),'.categor') ? 'active' : '' ) }} treeview">
+                    <a href="#">
+                        <i class="fa fa-folder-open"></i>
+                        <span>Categories</span>
+                        <span class="pull-right-container">
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.index') }}"><i class="fa fa-circle-o"></i> Categories </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.create') }}"><i class="fa fa-circle-o"></i> Add Category </a></li>
+                    </ul>
+                </li>
+
+                <li class="{{ (str_contains(Request::route()->getName(),'sub') ? 'active' : '' ) }} treeview">
+                    <a href="#">
+                        <i class="fa fa-folder-open"></i>
+                        <span>SubCategories</span>
+                        <span class="pull-right-container">
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.index') }}"><i class="fa fa-circle-o"></i> SubCategories </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.create') }}"><i class="fa fa-circle-o"></i> Add SubCategory </a></li>
+                    </ul>
+                </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'store') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-map-pin"></i>

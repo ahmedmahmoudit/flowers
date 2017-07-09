@@ -39,7 +39,13 @@
                                 url: $this.attr('href'),
                                 data: {_method: $this.data('laravel-method')},
                             }).done(function (data) {
-                                window.location = data;
+                                if(data.error) {
+                                    $('.content-header').append('<div class="alert alert-danger alert-dismissible" style="margin: 8px;"> \
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> \
+                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4> '+ data.error +' </div>');
+                                }else{
+                                    window.location = data;
+                                }
                             });
                         }
                     },

@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\ProductDetail;
 use App\ProductImage;
+use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\StoreRepositoryInterface;
 use Auth;
@@ -28,13 +29,20 @@ class ProductsController extends Controller
     private $store;
 
     /**
+     * @var $category
+     */
+    private $category;
+
+    /**
      * @param ProductRepositoryInterface $product
      * @param StoreRepositoryInterface $store
+     * @param CategoryRepository $category
      */
-    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store)
+    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store, CategoryRepository $category)
     {
         $this->product = $product;
         $this->store = $store;
+        $this->category = $category;
     }
 
     /**
@@ -73,7 +81,7 @@ class ProductsController extends Controller
     public function create()
     {
         $stores = $this->store->getAll();
-        $categories = Category::where('parent_id','!=', '0')->get();
+        $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = [];
 
         return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList'));
@@ -98,7 +106,8 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $attributesDetails = $request->only(['price','weight', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
         $images = $request->only(['images']);
@@ -115,6 +124,8 @@ class ProductsController extends Controller
         $details = new ProductDetail([
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
+            'height' => $attributesDetails['height'],
+            'width' => $attributesDetails['width'],
             'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
             'sale_price' => $attributesDetails['sale_price'],
             'start_sale_date' => $attributesDetails['start_sale_date'],
@@ -129,6 +140,7 @@ class ProductsController extends Controller
 
         if(count($categories['categories']) > 0)
         {
+            $product->categories()->sync($categoryParent['parent_id']);
             $product->categories()->syncWithoutDetaching($categories['categories']);
         }
 
@@ -165,8 +177,9 @@ class ProductsController extends Controller
     {
         $product = $this->product->getById($id);
         $stores = $this->store->getAll();
-        $categories = Category::where('parent_id','!=', '0')->get();
+        $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
+//        dd($categoriesList);
         return view('backend.shared.products.edit', compact('product','stores', 'categories', 'categoriesList'));
     }
 
@@ -189,8 +202,9 @@ class ProductsController extends Controller
         {
             $store_id = Auth::user()->store->id;
         }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $attributes = $request->only(['name_en', 'name_ar', 'active']);
+        $attributesDetails = $request->only(['price','weight','height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
         $images = $request->only(['images']);
@@ -203,6 +217,8 @@ class ProductsController extends Controller
         $details = [
             'price' => $attributesDetails['price'],
             'weight' => $attributesDetails['weight'],
+            'height' => $attributesDetails['height'],
+            'width' => $attributesDetails['width'],
             'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
             'sale_price' => $attributesDetails['sale_price'],
             'quantity' => $attributesDetails['qty'],
@@ -234,10 +250,11 @@ class ProductsController extends Controller
 
         $product->detail()->update($details);
 
-        if(count($categories['categories']) > 0)
-        {
-            $product->categories()->sync($categories['categories']);
-        }
+//        if(count($categories['categories']) > 0)
+//        {
+        $product->categories()->sync($categoryParent['parent_id']);
+        $product->categories()->syncWithoutDetaching($categories['categories']);
+//        }
 
         if(isset($images['images']) AND count($images['images'] > 0))
         {

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
 use App\Repositories\StoreRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Intervention\Image\Facades\Image;
 
 class StoresController extends Controller
@@ -191,6 +193,20 @@ class StoresController extends Controller
 
         Session()->flash('success', 'Store Activated Successfully!');
         return route('manager.stores.index');
+    }
+
+    public function settings()
+    {
+        $store = Auth::user()->store;
+        return view('backend.admin.settings', compact('store'));
+    }
+
+    public function settingsUpdate(\Illuminate\Http\Request $request)
+    {
+        $attributes = $request->only(['minimum_delivery_days', 'start_week_day', 'end_week_day']);
+        $this->store->update(Auth::user()->store->id, $attributes);
+
+        return redirect()->route('admin.settings');
     }
 
 }

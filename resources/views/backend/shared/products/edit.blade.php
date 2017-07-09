@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="exampleInputSku">Product ID (SKU)</label>
-                                <input type="text" name="sku" class="form-control" id="exampleInputSku" placeholder="Enter product ID" value="{{$product->sku or old('sku')}}">
+                                <input type="text" name="sku" class="form-control" id="exampleInputSku" value="{{$product->sku or old('sku')}}" disabled>
                                 <p class="help-block"></p>
                             </div>
                             @if(Auth::user()->isManager())
@@ -72,6 +72,20 @@
                                 <p class="help-block"></p>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="inputHeight">Height</label>
+                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{$product->detail->height or old('height')}}" required>
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="inputWidth">Width</label>
+                                <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{$product->detail->width or old('width')}}" required>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
                         {{--IF manager will render status in this section --}}
                         @if(Auth::user()->isManager())
                             <div class="form-group">
@@ -172,7 +186,7 @@
                             <div class="col-xs-6">
                                 <label for="inputMainImage">Main Image</label>
                                 <input type="file" name="main_image" id="inputMainImage">
-                                <div style="float: right;padding-right: 50%;"><img width="100" src="{{asset('uploads/products/'.$product->detail->main_image)}}"></div>
+                                <div style="float: right;padding-right: 50%;"><img width="100" src="{{asset('uploads/products/original/'.$product->detail->main_image)}}"></div>
                             </div>
                         </div>
                     </div>
@@ -186,22 +200,62 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="form-group">
-                            @foreach ($categories->chunk(3) as $array)
-                                @foreach($array as $category)
-                                    <div class="col-lg-4">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <label>
-                                                    {!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}
-                                                    {{ $category->name }}
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            @endforeach
+                        <div class="col-md-10">
+                            <div class="form-control" style="height: auto;">
+                                <div class="scroller" style="min-height:300px;"
+                                     data-always-visible="1">
+                                    @foreach($categories as $category)
+                                        <div class="col-lg-4">
+                                            <ul class="list-unstyled">
+                                                @if($category->parent_id == 0)
+                                                    <li>
+                                                        <label>
+                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}
+                                                            {{ $category->name }}
+                                                        </label>
+                                                        @if(count($category->children) > 0)
+                                                            <ul class="list-unstyled" style="padding-top: 10px;">
+                                                                @foreach($category->children as $child)
+                                                                    <li>
+                                                                        <label>
+                                                                            {!! Form::checkbox('categories[]',$child->id,(in_array($child->id,$categoriesList,true)) ? true : false) !!}
+                                                                            {{ $child->name }}
+                                                                        </label>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        @if(in_array($loop->index,[2,5,8,12]))
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                        @endif
+                                    @endforeach
+
+                                </div>
+                            </div>
+                            <span class="help-block">* at least one category must be choosen</span>
                         </div>
+                        {{--<div class="form-group">--}}
+                            {{--@foreach ($categories->chunk(3) as $array)--}}
+                                {{--@foreach($array as $category)--}}
+                                    {{--<div class="col-lg-4">--}}
+                                        {{--<ul class="list-unstyled">--}}
+                                            {{--<li>--}}
+                                                {{--<label>--}}
+                                                    {{--{!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}--}}
+                                                    {{--{{ $category->name }}--}}
+                                                {{--</label>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
                     </div>
                     <!-- /.box-body -->
                 </div>

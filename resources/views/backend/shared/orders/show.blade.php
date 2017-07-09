@@ -125,7 +125,7 @@
                                 <th>Sku</th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Weight</th>
+                                <th>Height / Width</th>
                                 <th>Qty</th>
                                 <th>Total</th>
                             </tr>
@@ -138,7 +138,7 @@
                                             <td>{{$item->product->sku}}</td>
                                             <td>{{$item->product->name_en}}</td>
                                             <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                            <td>{{$item->product->detail->weight or 'No Weight'}}</td>
+                                            <td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                         </tr>
@@ -150,7 +150,7 @@
                                         <td>{{$item->product->sku}}</td>
                                         <td>{{$item->product->name_en}}</td>
                                         <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                        <td>{{$item->product->detail->weight or 'No Weight'}}</td>
+                                        <td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>
                                         <td>{{$item->quantity}}</td>
                                         <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                     </tr>

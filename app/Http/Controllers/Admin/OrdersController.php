@@ -61,7 +61,7 @@ class OrdersController extends Controller
             $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
             $statusOfThisPart = $store->pivot->order_status;
         }
-        
+
         return view('backend.shared.orders.show', compact('order', 'statusOfThisPart'));
     }
 
