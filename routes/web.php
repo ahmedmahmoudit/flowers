@@ -128,12 +128,14 @@ Front End ROUTES
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('products','ProductsController@index')->name('products.index');
+    Route::get('products/top','ProductsController@bestSellers')->name('products.top');
     Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
     Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
     Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
     Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
     Route::get('products/search','ProductsController@searchProducts')->name('search');
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
+    Route::get('country/{id}/areas','LocaleController@getCountryAreas')->name('country.areas');
     Route::get('stores','StoresController@index')->name('stores.index');
     Route::get('stores/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
@@ -144,6 +146,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
+    Route::post('cart/coupon/apply','CartController@applyCoupon')->name('coupon.apply');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
 
     Route::get('profile','ProfileController@index')->name('profile');
@@ -157,5 +160,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('home','HomeController@index');
     Route::get('/', 'HomeController@index')->name('home');
+
+//    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');
+
     Auth::routes();
 });

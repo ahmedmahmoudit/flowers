@@ -111,4 +111,11 @@ class CartController extends Controller
         return $this->cart->getItemsCount();
     }
 
+    public function applyCoupon(Request $request)
+    {
+
+        return redirect()->back()->with('success',__('Coupon Applied'));
+
+    }
+
 }

@@ -25,15 +25,11 @@
                             <a href="{{ route('category.show',$childCategory->slug) }}" class=" pull-right c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x"  style="font-size: .8em">{{ __('View All '.$childCategory->name) }}</a>
                             <div class="clearfix"></div>
                         </div>
-                        @foreach($childCategory->products as $product)
-                            @include('products.item_grid',['cartItems'=>$cartItems])
-                        @endforeach
+                        @include('products.item_grid',['products'=>$childCategory->products,'cartItems'=>$cartItems])
                         <div class="clearfix"></div>
                     @endforeach
                 @else
-                    @foreach($category->products as $product)
-                        @include('products.item_grid',['cartItems'=>$cartItems])
-                    @endforeach
+                    @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems])
                 @endif
             </div>
         </div>

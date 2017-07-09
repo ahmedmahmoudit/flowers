@@ -16,10 +16,7 @@
                     <div class="c-line c-dot   c-theme-bg c-theme-bg-after"></div>
                 </div>
                 <div class="row" style="margin-bottom:100px">
-
-                    @foreach($category->products as $product)
-                        @include('products.item_grid',['cartItems'=>$cartItems])
-                    @endforeach
+                    @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems])
                 </div>
             @endforeach
         </div>

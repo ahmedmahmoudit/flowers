@@ -22,7 +22,6 @@
 
     <div style="margin-top:50px">
         <div class="container">
-
             @include('partials.ads')
         </div>
     </div>
@@ -39,12 +38,16 @@
 
             <div class="c-prefooter c-bg-grey-1">
                 <div class="row">
-                    @foreach($bestSellers as $product)
-                        @include('products.item_grid')
-                    @endforeach
+                    @include('products.item_grid',['products'=>$bestSellers])
                 </div>
             </div>
+            <div class="c-content-title-1">
+                <h3 class="c-center c-font-uppercase c-font-bold">
+                    <a href="{{ route('products.top') }}" class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All Best Selling Products') }}</a>
+                </h3>
+            </div>
         </div>
+
     </div>
 
 @endsection

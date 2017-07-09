@@ -53,6 +53,7 @@
                             <div class="c-content-title-1">
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <div class="c-line-left"></div>
+                                <p>Product Sku : {{ $product->sku  }}</p>
                             </div>
 
                             <div class="c-product-badge">
@@ -77,6 +78,20 @@
                             <div class="c-product-short-desc">
                                 {{ $product->detail->description }}
                             </div>
+
+                            <div class="btn-group" role="group">
+                                <form method="POST" action="{{route('product.favorite',$product->id)}}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
+                                        @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
+                                            <i class="fa fa-heart" style="color: red;font-size: 2.0em" ></i>
+                                        @else
+                                            <i class="fa fa-heart-o" style="color: red;font-size: 2.0em" ></i>
+                                        @endif
+                                    </button>
+                                </form>
+                            </div>
+
 
                             @if(in_array($product->id,$cartItems->keys()->toArray()))
                                 <a href="{{ route('cart.item.remove',$product->id) }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Remove from Cart') }}</a>

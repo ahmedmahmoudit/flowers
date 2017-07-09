@@ -38,16 +38,6 @@ class ProductDetail extends BaseModel
         $this->attributes['end_sale_date'] = (new Carbon($value))->format('d-m-y');
     }
 
-//    public function getPriceAttribute()
-//    {
-//        return $this->price;
-//    }
-//
-//    public function getSalePriceAttribute()
-//    {
-//        return $this->sale_price;
-//    }
-
     public function getPriceWithCurrency()
     {
         $productCountry = $this->getProductCountry();
@@ -78,12 +68,26 @@ class ProductDetail extends BaseModel
      */
     public function getProductCountry(): array
     {
-        $countries = collect(Cache::get('countries'));
-        $productCountry = $countries->first(function ($country) {
-            return $country['id'] === $this->product->store->country_id;
-        });
-        return $productCountry;
+        $country = Cache::get('selectedCountry');
+        return $country;
     }
+//    public function getProductCountry(): array
+//    {
+//        $countries = collect(Cache::get('countries'));
+//        $productCountry = $countries->first(function ($country) {
+//
+//
+//            if (!$this->relationLoaded('product')) {
+//                $this->load('product.store');
+//            }
+//
+//            $product = $this->getRelation('product');
+//
+//            return $country['id'] === $product->store->country_id;
+//        });
+//
+//        return $productCountry;
+//    }
 
     public function getInStockAttribute()
     {

@@ -382,7 +382,7 @@ fieldset[disabled] .c-theme-btn.c-btn-border-2x.active {
 }
 
 .c-content-line-icon.c-theme {
-  background-image: url(../../../../base/img/content/line-icons/default.png);
+  background-image: url(/img/line-icons/default.png);
 }
 
 .c-content-list-1.c-theme.c-separator-dot > li:before,
@@ -408,7 +408,7 @@ fieldset[disabled] .c-theme-btn.c-btn-border-2x.active {
 
 .c-content-tab-2.c-theme > ul > li.active > a > .c-content-line-icon,
 .c-content-tab-2.c-theme > ul > li:hover > a > .c-content-line-icon {
-  background-image: url(../../../../base/img/content/line-icons/default.png);
+  background-image: url(/img/line-icons/default.png);
 }
 
 .c-content-tab-5.c-theme .c-nav-tab > li.active > a,

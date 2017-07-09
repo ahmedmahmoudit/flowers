@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('address_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('coupon_id')->unsigned()->nullable();
             $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->integer('coupon_value')->default(0);

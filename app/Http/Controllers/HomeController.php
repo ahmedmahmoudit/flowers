@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         //@todo : replace with the best selling products
-        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes'])->latest()->limit(4)->get();
+        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes'])->latest()->paginate(20);
         $cartItems = $this->cart->getItems();
         return view('home',compact('bestSellers','cartItems'));
     }

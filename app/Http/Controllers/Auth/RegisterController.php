@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -51,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'role' => ['required',Rule::in(['1','2'])] //@todo:confirm rules
         ]);
     }
 
@@ -68,4 +70,5 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
 }

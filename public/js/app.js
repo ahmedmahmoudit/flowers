@@ -250,14 +250,46 @@ var App = function() {
   };
 
   var changeCountry = function(e) {
-    $( "#select_country").change(function() {
-      $('form#set-country-form').submit();
+    $( "#select_country").change(function(e) {
+      // $('form#set-country-form').submit();
+      var selectedCountry = $('#select_country').val();
+
+      var options = $("#area");
+
+      $.ajax({url: "/country/"+selectedCountry+"/areas",success: function(result) {
+        // $("#div1").html(result);
+        // $.each(result.data, function(item) {
+        //   options.append($("<option />").val(item.id).text(item.name));
+        // });
+        $.each(result.data, function(item) {
+          console.log('res',item.id);
+          options.append($("<option />").val(item.id).text(item.name));
+        });
+      }});
+
     });
   };
 
   var changeArea = function() {
     $( ".select_area" ).change(function() {
       $('form.set-area-form').submit();
+    });
+  };
+
+  var sort = function() {
+    $( "#sort" ).change(function() {
+      $('form#sort-form').submit();
+      // $.ajax({
+      //   url: '/products/top',
+      //   type: 'get',
+      //   // dataType: 'json',
+      //   data: $('form#sort-form').serialize(),
+      //   success: function(data) {
+      //
+      //   }
+      // });
+
+      // $('form.sort-form').submit();
     });
   };
   //* END:CORE HANDLERS *//
@@ -290,12 +322,13 @@ var App = function() {
 
       changeCountry();
       changeArea();
+      sort();
     },
 
-    changeLogo: function(filename) {
-      var path = '../assets/jango/img/layout/logos/' + filename + '.png';
-      $('.c-brand img.c-desktop-logo').attr('src', path);
-    },
+    // changeLogo: function(filename) {
+    //   var path = '../assets/jango/img/layout/logos/' + filename + '.png';
+    //   $('.c-brand img.c-desktop-logo').attr('src', path);
+    // },
 
     //public function to remember last opened popover that needs to be closed on click
     setLastPopedPopover: function(el) {

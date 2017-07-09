@@ -47,8 +47,9 @@ class StoresController extends Controller
     public function index()
     {
         $selectedArea = Cache::get('selectedArea');
-        $stores = $this->storeModel->with('areas')->whereHas('areas',function($q) use ($selectedArea) {
-            $q->where('areas.id',$selectedArea['id']);
+        $selectedCountry = Cache::get('selectedCountry');
+        $stores = $this->storeModel->with('areas')->whereHas('areas',function($q) use ($selectedCountry) {
+            $q->where('areas.country_id',$selectedCountry['id']);
         })->paginate(12);
 
         return view('stores.index', ['stores' => $stores,'area'=>$selectedArea]);

@@ -18,6 +18,7 @@ class OrdersTableSeeder extends Seeder
         $users = \App\user::where('role',3)->take(10)->get();
         foreach ($users as $user)
         {
+
             $products = \App\Product::skip(random_int(5,30))
                             ->take(random_int(2,7))
                             ->get();
@@ -28,7 +29,8 @@ class OrdersTableSeeder extends Seeder
             }
 
             $order = factory(App\Order::class)
-                ->create(['user_id' => $user->id, 'net_amount' => $totalPrice]);
+//                ->create(['user_id' => $user->id, 'net_amount' => $totalPrice]);
+                ->create(['net_amount' => $totalPrice]);
 
             $storesRelatedToOrder = $products->pluck('store_id')->unique();
 

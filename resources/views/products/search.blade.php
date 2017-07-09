@@ -32,17 +32,25 @@
         <div class="c-layout-sidebar-content">
             <div class="c-shop-product-details-2 c-opt-1">
                 {{--<div class="c-content-title-1">--}}
-                    {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
-                    {{--<div class="c-line-center c-theme-bg"></div>--}}
+                {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
+                {{--<div class="c-line-center c-theme-bg"></div>--}}
                 {{--</div>--}}
                 <div class=" c-size-lg c-bg-grey-1">
-                    <div class="row">
-                        <div style="padding:10px">
-                            @foreach($products as $product)
-                                @include('products.item_grid',['cartItems'=>$cartItems,'cols'=>4])
-                            @endforeach
+                    @if($products->count())
+                        <div class="row c-padding-10">
+                            <div style="padding:10px">
+                                @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>4])
+                            </div>
                         </div>
-                    </div>
+                        <div class="c-content-box c-size-sm c-bg-white text-center">
+                            {{ $products->links('partials.pagination') }}
+                        </div>
+                    @else
+                        <div class="c-shop-cart-page-1 c-center c-padding-10">
+                            <i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin "></i>
+                            <h2 class="c-font-thin c-center">{{ __('No Results') }}</h2>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
