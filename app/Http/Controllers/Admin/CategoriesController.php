@@ -47,7 +47,7 @@ class CategoriesController extends Controller
     public function store(CreateCategoryRequest $request)
     {
         $attributes = $request->only(['description_en', 'name_en', 'name_ar', 'description_ar']);
-        $category = $this->category->create(array_merge($attributes,['slug_en'=>$request->name_en,'slug_ar'=>$request->name_ar]));
+        $category = $this->category->create($attributes);
 
         if ($category) {
             return redirect()->route('manager.categories.index')->with('success', 'successfully created');
