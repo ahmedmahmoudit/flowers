@@ -40,6 +40,7 @@ class BaseModel extends Model
     {
         return $this->attributes['slug_en'] = slug($value);
     }
+
     public function setSlugArAttribute($value)
     {
         return $this->attributes['slug_ar'] = slug($value);

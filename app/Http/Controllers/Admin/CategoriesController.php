@@ -50,9 +50,7 @@ class CategoriesController extends Controller
         $category = $this->category->create($attributes);
 
         if ($category) {
-
             return redirect()->route('manager.categories.index')->with('success', 'successfully created');
-
         }
 
         return redirect()->back()->withErrors()->withInputs();
