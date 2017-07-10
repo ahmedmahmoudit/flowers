@@ -25,6 +25,7 @@
                             <tr>
                                 <th>Image</th>
                                 <th>Link</th>
+                                <th>Description</th>
                                 <th>Order</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -35,6 +36,7 @@
                                 <tr>
                                     <td><a href="{{asset('uploads/slides/'.$slide->image)}}" target="_blank">{{$slide->image}}</a></td>
                                     <td>{{$slide->link}}</td>
+                                    <td>{{$slide->description}}</td>
                                     <td>{{$slide->order}}</td>
                                     <td>
                                         @if($slide->active == '1')

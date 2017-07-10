@@ -15,7 +15,7 @@ class RemoveUserIdColumnFromOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->dropColumn('user_id');
+//            $table->dropColumn('user_id');
         });
     }
 
@@ -28,7 +28,7 @@ class RemoveUserIdColumnFromOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->integer('user_id')->unsigned();
+//            $table->integer('user_id')->unsigned();
         });
     }
 }

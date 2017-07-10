@@ -61,6 +61,7 @@ class SliderRepository implements SliderRepositoryInterface
         $data = [
             'order' => $attributes['order'],
             'link'  => $attributes['link'],
+            'description'  => $attributes['description'],
             'image' => $imageName.'.jpg'
         ];
 

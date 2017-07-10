@@ -26,6 +26,11 @@
                                 <p class="help-block">Full Path; copy link from browser.</p>
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputDescription">Description</label>
+                                <input type="text" name="description" class="form-control" id="exampleInputDescription" placeholder="Enter Description">
+                                <p class="help-block">Description will show in slider.</p>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
                                 <input type="file" name="image" id="exampleInputFile">
                                 <p class="help-block">Image Size 1920x520</p>
