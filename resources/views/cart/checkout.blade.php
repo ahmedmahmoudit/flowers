@@ -61,16 +61,16 @@
 
                                         <div class="form-group col-md-4">
                                             <label class="control-label">{{ __('First Name') }} <span class="red">*</span></label>
-                                            <input name="firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">
+                                            <input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label">{{ __('Last Name') }} <span class="red">*</span></label>
-                                            <input name="lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">
+                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="control-label">{{ __('Mobile') }} <span class="red">*</span></label>
-                                            <input name="mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">
+                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">
                                         </div>
 
                                     </div>

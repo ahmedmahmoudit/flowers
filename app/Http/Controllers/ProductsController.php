@@ -38,6 +38,11 @@ class ProductsController extends Controller
      */
     private $storeModel;
 
+    protected $deliveryTimes = [
+        'en' =>['morning 6-12am','afternoon 12-4pm','4-8pm'],
+        'ar' =>['morning 6-12am','afternoon 12-4pm','4-8pm']
+    ];
+
     /**
      * @param Product $productModel
      * @param Area $areaModel
@@ -312,8 +317,9 @@ class ProductsController extends Controller
     {
         $product = $this->productModel->find($id);
         $cartItems = $this->cart->getItems();
+        $deliveryTimes = $this->deliveryTimes[app()->getLocale()];
 
-        return view('products.view',compact('product','cartItems'));
+        return view('products.view',compact('product','cartItems','deliveryTimes'));
     }
 
     /**

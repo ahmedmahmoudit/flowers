@@ -21,6 +21,8 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('quantity');
             $table->float('price');
             $table->float('sale_price')->nullable();
+            $table->date('delivery_date')->nullable();
+            $table->string('delivery_time')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

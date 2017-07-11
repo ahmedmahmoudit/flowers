@@ -84,6 +84,8 @@ class Cart {
             $product->subTotal = $product->detail->price * $productQuantity;
             $product->grandTotal = $product->detail->final_price * $productQuantity;
             $product->quantity = $productQuantity;
+            $product->delivery_time = $cartItem['delivery_time'];
+            $product->delivery_date = $cartItem['delivery_date'];
             return $this->items->push($product);
         });
 
