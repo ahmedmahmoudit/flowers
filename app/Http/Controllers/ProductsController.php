@@ -13,6 +13,7 @@ use App\ProductDetail;
 use App\Store;
 use Auth;
 use Cache;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -42,6 +43,9 @@ class ProductsController extends Controller
         'en' =>['morning 6-12am','afternoon 12-4pm','4-8pm'],
         'ar' =>['morning 6-12am','afternoon 12-4pm','4-8pm']
     ];
+
+    protected $selectedPriceFrom = 50;
+    protected $selectedPriceTo = 150;
 
     /**
      * @param Product $productModel
@@ -120,7 +124,7 @@ class ProductsController extends Controller
             $bestSellers = $bestSellers->latest();
         }
 
-         $bestSellers = $bestSellers->paginate(20);
+        $bestSellers = $bestSellers->paginate(20);
 
         $cartItems = $this->cart->getItems();
 
@@ -192,10 +196,17 @@ class ProductsController extends Controller
         $selectedCategory = $categorySlug;
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
-        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
-        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
         $priceRangeMin = 1;
-        $priceRangeMax = 200;
+        $priceRangeMax  = DB::table('product_details')
+            ->select(DB::raw('MAX(price) as maxprice'))
+            ->get()
+            ->first()
+            ->maxprice
+        ; // @todo: refactor query
+
         $sort = $request->sort;
 
         $selectCountryID = \Cache::get('selectedCountryID');
@@ -258,15 +269,20 @@ class ProductsController extends Controller
 
     public function searchProducts(Request $request)
     {
-        $minPriceFrom = 1;
-        $minPriceTo = 200;
         $searchTerm = $request->has('term') ? $request->get('term') : '';
-        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $minPriceFrom;
-        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $minPriceTo;
         $selectedCategory = $request->has('category') ? $request->get('category') : false;
         $selectedStore = $request->has('store') ? $request->get('store') : '';
+
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
         $priceRangeMin = 1;
-        $priceRangeMax = 200;
+        $priceRangeMax  = DB::table('product_details')
+            ->select(DB::raw('MAX(price) as maxprice'))
+            ->get()
+            ->first()
+            ->maxprice
+        ; // @todo: refactor query
+
         $parentCategories = Cache::get('parentCategories');
         $selectCountryID = \Cache::get('selectedCountryID');
         $selectedArea = Cache::get('selectedArea');
@@ -318,7 +334,7 @@ class ProductsController extends Controller
             }
         }
 
-        if($priceRangeTo >= $minPriceTo) {
+        if($priceRangeTo >= $this->selectedPriceTo) {
             $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
                 $q->where('price','>=',$priceRangeFrom);
             });
