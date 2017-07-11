@@ -8,30 +8,53 @@
         <li class="c-active"><a href="{{ route('category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
     @endcomponent
 
-    <div class="c-content-box c-size-lg c-bg-grey-1">
+    <div class="c-content-box c-size-lg c-bg-white-1">
         <div class="container">
 
-            <div class="c-content-title-2">
-                <h3 class="pull-left c-font-uppercase">{{ $category->name }}</h3>
-                <a href="{{ route('category.show',$category->slug) }}" class=" pull-right c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
-                <div class="clearfix"></div>
-                <div class="c-line c-dot   c-theme-bg c-theme-bg-after"></div>
-            </div>
             <div class="row">
-                @if($isParent)
-                    @foreach($category->children as $childCategory)
-                        <div class="c-content-title-2" style="padding: 15px 15px 0px 15px;margin-top:50px">
-                            <h3 class="pull-left c-font-uppercase" style="font-size: 1.2em">{{ $childCategory->name }}</h3>
-                            <a href="{{ route('category.show',$childCategory->slug) }}" class=" pull-right c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x"  style="font-size: .8em">{{ __('View All '.$childCategory->name) }}</a>
+                <div class="col-md-6">
+                    <div class="c-content-title-3 c-theme-border">
+                        <h3 class="c-left c-font-uppercase">{{ $category->name }}</h3>
+                        <div class="c-line c-dot c-dot-left "></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="c-content-title-3 c-border-red c-right">
+                        <h3 class="c-right c-font-uppercase">
+                            <a href="{{ route('category.show',$category->slug) }}" class="c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            @if($isParent)
+                @foreach($category->children as $childCategory)
+                    <div  style="margin: 10px 0">
+                        <div class="c-content-box c-size-lg c-bg-grey-1" style="margin: 0;padding: 20px 0">
+                            <div class="col-md-6">
+                                <div class="c-content-title-2">
+                                    <h3 class="c-left c-font-uppercase">{{ $childCategory->name }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="c-content-title-2 c-right">
+                                    <h6 class="c-right c-font-uppercase">
+                                        <a href="{{ route('category.show',$childCategory->slug) }}" class="c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                                    </h6>
+                                </div>
+                            </div>
+                            @include('products.item_grid',['products'=>$childCategory->products,'cartItems'=>$cartItems])
                             <div class="clearfix"></div>
                         </div>
-                        @include('products.item_grid',['products'=>$childCategory->products,'cartItems'=>$cartItems])
-                        <div class="clearfix"></div>
-                    @endforeach
-                @else
-                    @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems])
-                @endif
-            </div>
+                    </div>
+                @endforeach
+
+            @else
+                @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems])
+            @endif
         </div>
+    </div>
     </div>
 @endsection
