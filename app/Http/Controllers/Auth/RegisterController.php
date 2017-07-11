@@ -68,6 +68,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'instagram_username' => $data['instagram_username'],
+            'role' => $data['role'] //@todo:confirm rules
         ]);
     }
 
