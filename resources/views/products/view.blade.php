@@ -142,6 +142,7 @@
 										                    <button class="btn default c-btn-square" type="button" style="background: white;border: 0"></button>
 										                </span>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

@@ -38,24 +38,11 @@
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
                         @endif
                     @endforeach
-                    <div class="col-md-3 pull-right">
-                        <div class="form-group">
-                            <label class="control-label pull-right">Sort By</label>
-                            <select class="form-control c-square c-theme input-lg" name="sort" id="sort">
-                                <option value="" {{ $sort == '' ? 'selected' : '' }} >{{ __('Relevance') }}</option>
-                                <option value="price-l-h" {{ $sort == 'price-l-h' ? 'selected' : '' }}>{{ __('Price (Low &gt; High)') }}</option>
-                                <option value="price-h-l" {{ $sort == 'price-h-l' ? 'selected' : '' }}>{{ __('Price (High &gt; Low)') }}</option>
-                            </select>
-                        </div>
-                    </div>
+                    @include('products.sort_button')
                 </form>
             </div>
 
             <div class="c-shop-product-details-2 c-opt-1">
-                {{--<div class="c-content-title-1">--}}
-                {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
-                {{--<div class="c-line-center c-theme-bg"></div>--}}
-                {{--</div>--}}
                 <div class=" c-size-lg c-bg-grey-1">
                     @if($products->count())
                         <div class="row c-padding-10">
