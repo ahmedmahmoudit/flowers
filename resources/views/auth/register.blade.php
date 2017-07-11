@@ -22,14 +22,14 @@
                 <div class="col-md-12">
                     <div class="c-content-tab-2 c-theme c-opt-1">
                         <ul class="nav c-tab-icon-stack c-font-sbold c-font-uppercase">
-                            <li class="{{ old('role') ? old('role') == '1' ? 'active' : '' : 'active' }}">
+                            <li class="{{ old('role') ? old('role') == '3' ? 'active' : '' : 'active' }}">
                                 <a href="#c-tab2-opt1-1" data-toggle="tab">
-                                    <span class="fa fa-user-secret" style="font-size: 100px"></span>
+                                    <span class="fa fa-user" style="font-size: 100px"></span>
                                     <span class="c-title">{{ __('As an Individual') }}</span>
                                 </a>
                                 <div class="c-arrow"></div>
                             </li>
-                            <li class="{{ old('role') && old('role') == '2' ? 'active' : ''  }}">
+                            <li class="{{ old('role') && old('role') == '1' ? 'active' : ''  }}">
                                 <a href="#c-tab2-opt1-2" data-toggle="tab">
                                     <span class="fa fa-newspaper-o" style="font-size: 100px"></span>
                                     <span class="c-title">{{ __('As a Company') }}</span>
@@ -47,12 +47,11 @@
 
                                         @include('partials.notifications')
 
-
-                                        <div class="tab-pane fade in {{ old('role') ? old('role') == '1' ? 'active' : '' : 'active' }} " id="c-tab2-opt1-1">
+                                        <div class="tab-pane fade in {{ old('role') ? old('role') == '3' ? 'active' : '' : 'active' }} " id="c-tab2-opt1-1">
                                             <div class="c-tab-pane">
 
                                                 <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
-                                                    <input type="hidden" value="1" name="role"/>
+                                                    <input type="hidden" value="3" name="role"/>
 
                                                     <div class="col-md-6 col-md-offset-3">
 
@@ -66,15 +65,27 @@
 
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade in {{ old('role') && old('role') == '2' ? 'active' : ''  }} " id="c-tab2-opt1-2">
+                                        <div class="tab-pane fade in {{ old('role') && old('role') == '1' ? 'active' : ''  }} " id="c-tab2-opt1-2">
                                             <div class="c-tab-pane">
                                                 <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
-                                                    <input type="hidden" value="2" name="role"/>
+                                                    <input type="hidden" value="1" name="role"/>
                                                     <div class="col-md-6 col-md-offset-3">
 
                                                         @include('auth.register_form')
                                                         <div class="form-group">
-                                                            <label class="control-label">{{ __('Instagram Username') }}</label>
+                                                            <label class="control-label">{{ __('Minimum Delivery Hours') }} <span class="red">*</span></label>
+                                                            <input type="text" name="minimum_delivery_days" value="{{ old('minimum_delivery_days') }}" class="form-control c-square c-theme" placeholder="{{ __('ex: 1') }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Start Week Day') }} <span class="red">*</span></label>
+                                                            <input type="text" name="start_week_day" value="{{ old('start_week_day') }}" class="form-control c-square c-theme" placeholder="{{ __('Start Week Day') }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('End Week Day') }} <span class="red">*</span></label>
+                                                            <input type="text" name="end_week_day" value="{{ old('end_week_day') }}" class="form-control c-square c-theme" placeholder="{{ __('End Week Day') }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Instagram Username') }} </label>
                                                             <input type="text" name="instagram_username" value="{{ old('instagram_username') }}" class="form-control c-square c-theme" placeholder="{{ __('Full Name') }}">
                                                         </div>
                                                         <div class="form-group c-margin-t-40">

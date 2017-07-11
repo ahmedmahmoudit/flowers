@@ -52,7 +52,10 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role' => ['required',Rule::in(['1','2'])] //@todo:confirm rules
+            'role' => ['required',Rule::in(['1','3'])],
+            'start_week_day' => 'required_if:role,==,1',
+            'end_week_day' => 'required_if:role,==,1',
+            'minimum_delivery_days' => 'required_if:role,==,1',
         ]);
     }
 
@@ -64,13 +67,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $storeData = [];
+
+        if($data['role'] == 1) {
+            $storeData = [
+                'instagram_username' => $data['instagram_username'],
+
+            ];
+        }
+
+        $commonData = [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'instagram_username' => $data['instagram_username'],
             'role' => $data['role'] //@todo:confirm rules
-        ]);
+        ];
+
+        if($data['role'] == 1) {
+            $commonData = array_merge($commonData,$storeData);
+        }
+
+        $user = User::create($commonData);
+
+//        if($user) {
+//            $user->store()->create([
+//                'start_week_day' => $data['start_week_day'],
+//                'end_week_day' => $data['end_week_day'],
+//                'minimum_delivery_days' => $data['minimum_delivery_days'],
+//            ]);
+//        }
+//        dd($user);
+
+        return User::create($commonData);
     }
 
 }
