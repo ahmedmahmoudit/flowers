@@ -31,7 +31,22 @@
 
         <div class="c-layout-sidebar-content">
 
+
+
             <div class="row">
+
+                <div class="col-md-9">
+                    @if($store)
+                        <div style="padding-top:20px">
+                            <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
+                            <br>
+                            <span class="fa fa-instagram ">&nbsp; instagram_name</span>&nbsp;&nbsp;
+                            |
+                            <span class="fa fa-twitter">&nbsp;Twitter name</span>
+                        </div>
+                    @endif
+                </div>
+
                 <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
                     @foreach(request()->all() as $key => $value)
                         @if($key != 'sort')
@@ -40,6 +55,7 @@
                     @endforeach
                     @include('products.sort_button')
                 </form>
+
             </div>
 
             <div class="c-shop-product-details-2 c-opt-1">

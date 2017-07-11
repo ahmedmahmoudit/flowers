@@ -331,7 +331,11 @@ class ProductsController extends Controller
             if($store) {
                 $products = $products
                     ->where('store_id',$store ? $store->id : 0);
+            } else {
+                $store = null;
             }
+        } else {
+            $store = null;
         }
 
         if($priceRangeTo >= $this->selectedPriceTo) {
@@ -361,7 +365,7 @@ class ProductsController extends Controller
 
         $products =  $products->paginate(30);
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort'));
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort','store'));
     }
 
     public function show(\Request $request, $id, $name)
