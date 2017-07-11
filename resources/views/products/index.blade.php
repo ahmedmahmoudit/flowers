@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="c-content-box  c-bg-grey-1 c-padding-10">
-                    <div class="row">
+                    <div class="row equal">
                         @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems])
                     </div>
                 </div>

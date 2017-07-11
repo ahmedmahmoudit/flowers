@@ -89,3 +89,16 @@ select *.optionChild {
 .c-content-tab-2.c-opt-1 > .c-tab-content {
   background-color: #f7f7f7;
 }
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .row.equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

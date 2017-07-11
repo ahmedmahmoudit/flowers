@@ -17,7 +17,7 @@
                 </form>
             </div>
 
-            <div class="row" style="padding-top:20px">
+            <div class="row equal" style="padding-top:20px">
                 @include('products.item_grid',['products'=>$bestSellers,'cartItems'=>$cartItems])
             </div>
             <div class="c-content-box c-size-sm c-bg-white text-center">

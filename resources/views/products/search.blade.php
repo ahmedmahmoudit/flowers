@@ -45,13 +45,13 @@
             <div class="c-shop-product-details-2 c-opt-1">
                 <div class=" c-size-lg c-bg-grey-1">
                     @if($products->count())
-                        <div class="row c-padding-10">
-                            <div style="padding:10px">
+                        <div class="row c-padding-10 ">
+                            <div class="equal" style="padding:10px">
                                 @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>4])
                             </div>
                         </div>
                         <div class="c-content-box c-size-sm c-bg-white text-center">
-                            {{ $products->links('partials.pagination') }}
+                            {{ $products->appends(request()->except('page'))->links('partials.pagination') }}
                         </div>
                     @else
                         <div class="c-shop-cart-page-1 c-center c-padding-10">
