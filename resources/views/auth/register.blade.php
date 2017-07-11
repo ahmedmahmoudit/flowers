@@ -53,7 +53,15 @@
 
                                                 <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
                                                     <input type="hidden" value="1" name="role"/>
-                                                    @include('auth.register_form')
+
+                                                    <div class="col-md-6 col-md-offset-3">
+
+                                                        @include('auth.register_form')
+
+                                                        <div class="form-group c-margin-t-40">
+                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Register</button>
+                                                        </div>
+                                                    </div>
                                                 </form>
 
                                             </div>
@@ -62,7 +70,17 @@
                                             <div class="c-tab-pane">
                                                 <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
                                                     <input type="hidden" value="2" name="role"/>
-                                                    @include('auth.register_form')
+                                                    <div class="col-md-6 col-md-offset-3">
+
+                                                        @include('auth.register_form')
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Instagram Username') }}</label>
+                                                            <input type="text" name="instagram_username" value="{{ old('instagram_username') }}" class="form-control c-square c-theme" placeholder="{{ __('Full Name') }}">
+                                                        </div>
+                                                        <div class="form-group c-margin-t-40">
+                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Register</button>
+                                                        </div>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

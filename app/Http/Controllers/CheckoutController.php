@@ -7,6 +7,7 @@ use App\Country;
 use App\Order;
 use App\Product;
 use Cache;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use IZaL\Tap\Billing;
 
@@ -125,12 +126,17 @@ class CheckoutController extends Controller
 
         $productInfo = collect();
 
+
         // save order details
         foreach ($cart->items as $product) {
+
+            $parsedDeliveryDate = Carbon::parse($product->delivery_date);
 
             $order->orderDetails()->create([
                 'product_id' => $product->id,
                 'quantity' => $product->quantity,
+                'delivery_time' => $product->delivery_time,
+                'delivery_date' => $parsedDeliveryDate,
                 'price' => $product->detail->price,
                 'sale_price' => $product->detail->final_price
             ]);

@@ -251,22 +251,14 @@ var App = function() {
 
   var changeCountry = function(e) {
     $( "#select_country").change(function(e) {
-      // $('form#set-country-form').submit();
       var selectedCountry = $('#select_country').val();
-
-      var options = $("#area");
-
+      var $select = $("#area");
       $.ajax({url: "/country/"+selectedCountry+"/areas",success: function(result) {
-        // $("#div1").html(result);
-        // $.each(result.data, function(item) {
-        //   options.append($("<option />").val(item.id).text(item.name));
-        // });
-        $.each(result.data, function(item) {
-          console.log('res',item.id);
-          options.append($("<option />").val(item.id).text(item.name));
+        $select.find('option').remove();
+        result.data.forEach(function(country){
+            $('<option>').val(country.id).text(country.name).appendTo($select);
         });
       }});
-
     });
   };
 
@@ -279,17 +271,6 @@ var App = function() {
   var sort = function() {
     $( "#sort" ).change(function() {
       $('form#sort-form').submit();
-      // $.ajax({
-      //   url: '/products/top',
-      //   type: 'get',
-      //   // dataType: 'json',
-      //   data: $('form#sort-form').serialize(),
-      //   success: function(data) {
-      //
-      //   }
-      // });
-
-      // $('form.sort-form').submit();
     });
   };
   //* END:CORE HANDLERS *//

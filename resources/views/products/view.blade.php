@@ -1,5 +1,31 @@
 @extends('layouts.master')
 
+@section('style')
+    @parent
+    <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+@endsection
+@section('script')
+    @parent
+    <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/js/datepicker.js" type="text/javascript"></script>
+
+    <script>
+
+      $(document).ready(function(){
+        $('#delivery-time').hide();
+
+        $('.select-time').on("click",function(){
+          $(".bs-example-modal-lg").trigger('click');
+          var time =  $(this).data("time");
+//          $()
+          $('input[name="delivery_time"]').val(time);
+          $('#delivery-time-result').html(time).css('color', '#32c5d2');
+          $('#delivery-time').show();
+        })
+      })
+    </script>
+
+@endsection
 @section('content')
 
     @component('partials.breadcrumb',['title' => $product->name, 'nav'=>true])
@@ -79,10 +105,12 @@
                                 {{ $product->detail->description }}
                             </div>
 
-                            <div class="btn-group" role="group">
+                            <div class="btn-group" role="group" style="margin-bottom: 20px">
                                 <form method="POST" action="{{route('product.favorite',$product->id)}}">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
+
+                                    <span class="c-font-17">{{ $product->userLikes->count() }} {{ __('likes') }}</span>
+                                    <button type="submit" class="btn  c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
                                         @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
                                             <i class="fa fa-heart" style="color: red;font-size: 2.0em" ></i>
                                         @else
@@ -97,7 +125,68 @@
                                 <a href="{{ route('cart.item.remove',$product->id) }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Remove from Cart') }}</a>
                             @else
                                 @if($product->detail->in_stock)
+
                                     <form method="POST" action="{{route('cart.item.add')}}">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="">
+                                                        {{ __('Delivery Date') }}
+                                                        <i class="fa fa-calendar"></i>
+                                                    </label>
+
+                                                    <div class="date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
+                                                        <input type="text" class="" style="border:0;color:#32c5d2;" name="delivery_date" placeholder="{{ __('Selected Delivery Date') }}">
+                                                        <span class="input-group-btn">
+										                    <button class="btn default c-btn-square" type="button" style="background: white;border: 0"></button>
+										                </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="">
+                                                        {{ __('Delivery Time') }}
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </label>
+
+                                                    <span type="button" class="" data-toggle="modal" data-target=".bs-example-modal-lg"
+                                                            id="delivery-time-result" style="display: block;background: white"
+                                                    >
+                                                        <span style="padding:0;margin:0">
+                                                        {{ __('Select Delivery Time') }}
+                                                        </span>
+                                                    </span>
+
+                                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content c-square">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                    <h4 class="modal-title" id="myLargeModalLabel">{{ __('Select Delivery Time') }}</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" value="" name="delivery_time"/>
+                                                                    @foreach($deliveryTimes as $time)
+                                                                        <a class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$time}}">{{ $time }}</a>
+                                                                    @endforeach
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <input type="hidden" name="product_id" value="{{ $product->id }}" />
 
                                         <div class="c-product-add-cart c-margin-t-20">
@@ -130,4 +219,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

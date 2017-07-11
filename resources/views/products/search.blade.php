@@ -30,20 +30,44 @@
         </div>
 
         <div class="c-layout-sidebar-content">
+
+
+
+            <div class="row">
+
+                <div class="col-md-9">
+                    @if($store)
+                        <div style="padding-top:20px">
+                            <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
+                            <br>
+                            <span class="fa fa-instagram ">&nbsp; instagram_name</span>&nbsp;&nbsp;
+                            |
+                            <span class="fa fa-twitter">&nbsp;Twitter name</span>
+                        </div>
+                    @endif
+                </div>
+
+                <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
+                    @foreach(request()->all() as $key => $value)
+                        @if($key != 'sort')
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
+                        @endif
+                    @endforeach
+                    @include('products.sort_button')
+                </form>
+
+            </div>
+
             <div class="c-shop-product-details-2 c-opt-1">
-                {{--<div class="c-content-title-1">--}}
-                {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
-                {{--<div class="c-line-center c-theme-bg"></div>--}}
-                {{--</div>--}}
                 <div class=" c-size-lg c-bg-grey-1">
                     @if($products->count())
-                        <div class="row c-padding-10">
-                            <div style="padding:10px">
+                        <div class="row c-padding-10 ">
+                            <div class="equal" style="padding:10px">
                                 @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>4])
                             </div>
                         </div>
                         <div class="c-content-box c-size-sm c-bg-white text-center">
-                            {{ $products->links('partials.pagination') }}
+                            {{ $products->appends(request()->except('page'))->links('partials.pagination') }}
                         </div>
                     @else
                         <div class="c-shop-cart-page-1 c-center c-padding-10">

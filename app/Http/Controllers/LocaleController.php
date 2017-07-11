@@ -75,7 +75,13 @@ class LocaleController extends Controller
         Cache::put('selectedCountry',$country->toArray(), 60 * 24);
         Cache::forget('selectedArea');
         $this->cart->flushCart();
-        return response()->json(['data'=>$country->areas]);
+
+        $data = $country->areas->map(function($c){
+            return ['id'=>$c->id, 'name' => $c->{'name_'.app()->getLocale()}];
+        });
+
+        return response()->json(['data'=>$data]);
+//        return response()->json(['data'=>$country->areas->pluck('name_'.app()->getLocale(),'id')]);
     }
 
 }

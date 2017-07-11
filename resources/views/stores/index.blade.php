@@ -14,33 +14,60 @@
     <div class="c-content-box c-size-md c-bg-white">
         <div class="container">
             <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Stores near ') . $area['name_'.app()->getLocale()]  }}</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold ">{{ __('Stores near ') . $area['name_'.app()->getLocale()]  }}</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
-            <div class="cbp-panel">
-                <div class="c-content-latest-works cbp cbp-l-grid-masonry-projects">
 
+            <div class="c-padding-10">
+                <a href="{{ route('stores.index',['type'=>$viewType == 'list' ? 'grid' : 'list']) }}"  class="cbp-l-grid-masonry-projects-title">
+                    <i class="fa {{ $viewType == 'list' ? 'fa-th-large' : 'fa-list' }} pull-right" style="font-size: 28px; color:#32c5d2" > </i>
+                </a>
+            </div>
+
+            <hr>
+
+            @if($viewType == 'list')
+                <ul class="c-content-list-1 c-theme">
                     @foreach($stores as $store)
-                        <div class="cbp-item web-design logos " data-wow-delay="0.2s">
-                            <div class="cbp-caption">
-                                <div class="cbp-caption-defaultWrap">
-                                    <img src="/img/{{rand(1,7).'.jpg'}}" alt="" class="img img-responsive" style="height: 340px">
-                                </div>
-                                <div class="cbp-caption-activeWrap">
-                                    <div class="c-masonry-border"></div>
-                                    <div class="cbp-l-caption-alignCenter">
-                                        <div class="cbp-l-caption-body">
-                                            <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('explore') }}</a>
-                                            <a href="/img/{{ rand(1,9).'.jpg' }}" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="{{ $store->name }}">{{ __('zoom') }}</a>
+                        <li class="col-md-4 c-bg-before-red">
+                            <a class="" href="{{route('search',['store'=>$store->slug])}}">
+                                {{ $store->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+            @else
+
+                <div class="cbp-panel">
+                    <div class="c-content-latest-works cbp cbp-l-grid-masonry-projects">
+
+                        @foreach($stores as $store)
+
+                            <div class="cbp-item web-design logos " data-wow-delay="0.2s">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <img src="/img/{{rand(1,7).'.jpg'}}" alt="" class="img img-responsive" style="height: 340px">
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="c-masonry-border"></div>
+                                        <div class="cbp-l-caption-alignCenter">
+                                            <div class="cbp-l-caption-body">
+                                                <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('explore') }}</a>
+                                                <a href="/img/{{ rand(1,9).'.jpg' }}" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="{{ $store->name }}">{{ __('zoom') }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <a href="{{ route('search',['store'=>$store->slug]) }}" class="cbp-l-grid-masonry-projects-title">
+                                    {{ $store->name }}
+                                </a>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                        @endif
 
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 @endsection

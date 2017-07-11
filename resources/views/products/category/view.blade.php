@@ -39,9 +39,14 @@
                 {{--<div class="c-line-center c-theme-bg"></div>--}}
                 {{--</div>--}}
 
+                <div class="row">
+                    <form class="c-shop-advanced-search-1" method="get" action="{{ route('category.show',$category->slug) }}" name="sort-form" id="sort-form">
+                        @include('products.sort_button')
+                    </form>
+                </div>
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
-                        <div style="margin:10px">
+                        <div class="equal" style="margin:10px">
                             @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems,'cols'=>4])
                         </div>
                     </div>

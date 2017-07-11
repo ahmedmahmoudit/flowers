@@ -13,20 +13,11 @@
 
             <div class="row">
                 <form class="c-shop-advanced-search-1" method="get" action="{{ route('products.top') }}" name="sort-form" id="sort-form">
-                    <div class="col-md-3 pull-right">
-                        <div class="form-group">
-                            <label class="control-label pull-right">Sort By</label>
-                            <select class="form-control c-square c-theme input-lg" name="sort" id="sort">
-                                <option value="" {{ $sort == '' ? 'selected' : '' }} >{{ __('Relevance') }}</option>
-                                <option value="price-l-h" {{ $sort == 'price-l-h' ? 'selected' : '' }}>{{ __('Price (Low &gt; High)') }}</option>
-                                <option value="price-h-l" {{ $sort == 'price-h-l' ? 'selected' : '' }}>{{ __('Price (High &gt; Low)') }}</option>
-                            </select>
-                        </div>
-                    </div>
+                    @include('products.sort_button')
                 </form>
             </div>
 
-            <div class="row" style="padding-top:20px">
+            <div class="row equal" style="padding-top:20px">
                 @include('products.item_grid',['products'=>$bestSellers,'cartItems'=>$cartItems])
             </div>
             <div class="c-content-box c-size-sm c-bg-white text-center">

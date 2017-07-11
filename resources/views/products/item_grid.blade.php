@@ -1,7 +1,7 @@
 
 @foreach($products as $product)
 
-    <div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20">
+    <div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20 ">
         <div class="c-content-product-2 c-bg-white">
             <div class="c-content-overlay">
                 @if($product->detail->is_sale)
@@ -41,14 +41,17 @@
                     @if(in_array($product->id,$cartItems->keys()->toArray()))
                         <a href="{{ route('cart.item.remove',$product->id) }}" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">{{ __('Remove from Cart') }}</a>
                     @else
-                        <form method="POST" action="{{route('cart.item.add')}}">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                            <input type="hidden" name="quantity" value="1" />
-                            <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
-                                {{ __('Add to Cart') }}
-                            </button>
-                        </form>
+                        <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                            {{ __('Add to Cart') }}
+                        </a>
+                        {{--<form method="POST" action="{{route('cart.item.add')}}">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<input type="hidden" name="product_id" value="{{ $product->id }}" />--}}
+                            {{--<input type="hidden" name="quantity" value="1" />--}}
+                            {{--<button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">--}}
+                                {{--{{ __('Add to Cart') }}--}}
+                            {{--</button>--}}
+                        {{--</form>--}}
                     @endif
                 </div>
             </div>

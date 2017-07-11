@@ -91,13 +91,21 @@ class CartController extends Controller
         $this->validate($request,[
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',
+            'delivery_date' => 'required',
+            'delivery_time' => 'required',
         ]);
 
         $product = $this->productModel->with('detail')->find($request->product_id);
 
         if($product->detail->in_stock) {
 
-            $this->cart->addItem(['id'=>$request->product_id,'quantity'=> (int) $request->quantity]);
+            $this->cart->addItem([
+                    'id'=>$request->product_id,
+                    'quantity'=> (int) $request->quantity,
+                    'delivery_date' => $request->delivery_date,
+                    'delivery_time' => $request->delivery_time
+                ]
+            );
             return redirect()->back();
 
         } else {

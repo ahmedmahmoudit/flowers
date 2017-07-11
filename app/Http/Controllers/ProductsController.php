@@ -13,6 +13,7 @@ use App\ProductDetail;
 use App\Store;
 use Auth;
 use Cache;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -37,6 +38,14 @@ class ProductsController extends Controller
      * @var Store
      */
     private $storeModel;
+
+    protected $deliveryTimes = [
+        'en' =>['morning 6-12am','afternoon 12-4pm','4-8pm'],
+        'ar' =>['morning 6-12am','afternoon 12-4pm','4-8pm']
+    ];
+
+    protected $selectedPriceFrom = 50;
+    protected $selectedPriceTo = 150;
 
     /**
      * @param Product $productModel
@@ -115,7 +124,7 @@ class ProductsController extends Controller
             $bestSellers = $bestSellers->latest();
         }
 
-         $bestSellers = $bestSellers->paginate(20);
+        $bestSellers = $bestSellers->paginate(20);
 
         $cartItems = $this->cart->getItems();
 
@@ -187,10 +196,18 @@ class ProductsController extends Controller
         $selectedCategory = $categorySlug;
         $cartItems = $this->cart->getItems();
         $selectedArea = Cache::get('selectedArea');
-        $priceRangeFrom = $request->has('price-from') ? $request->get('price-from') : 10;
-        $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
+
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
         $priceRangeMin = 1;
-        $priceRangeMax = 200;
+        $priceRangeMax  = DB::table('product_details')
+            ->select(DB::raw('MAX(price) as maxprice'))
+            ->get()
+            ->first()
+            ->maxprice
+        ; // @todo: refactor query
+
+        $sort = $request->sort;
 
         $selectCountryID = \Cache::get('selectedCountryID');
 
@@ -219,33 +236,57 @@ class ProductsController extends Controller
 
         $parentCategories = Cache::get('parentCategories');
 
-        $category->products =
+
+        $products =
             $this->productModel
                 ->has('detail')
                 ->with(['detail','store','userLikes'])
                 ->whereIn('store_id',$areaStores)
                 ->childrenCategoryProducts($childCategories)
                 ->select('products.*')
-                ->paginate(30);
+        ;
 
-        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin'));
+        if($request->sort) {
+            switch ($request->sort) {
+                case 'price-l-h':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','ASC');
+                    break;
+                case 'price-h-l':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','DESC');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $category->products = $products->paginate(30);
+
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin','sort'));
 
     }
 
     public function searchProducts(Request $request)
     {
-        $minPriceFrom = 1;
-        $minPriceTo = 200;
         $searchTerm = $request->has('term') ? $request->get('term') : '';
-        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $minPriceFrom;
-        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $minPriceTo;
         $selectedCategory = $request->has('category') ? $request->get('category') : false;
         $selectedStore = $request->has('store') ? $request->get('store') : '';
+
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
         $priceRangeMin = 1;
-        $priceRangeMax = 200;
+        $priceRangeMax  = DB::table('product_details')
+            ->select(DB::raw('MAX(price) as maxprice'))
+            ->get()
+            ->first()
+            ->maxprice
+        ; // @todo: refactor query
+
         $parentCategories = Cache::get('parentCategories');
         $selectCountryID = \Cache::get('selectedCountryID');
         $selectedArea = Cache::get('selectedArea');
+        $sort = $request->sort;
 
         $area = $this->areaModel->with(['stores'=>function($q){
             $q->select(['id']);
@@ -290,10 +331,14 @@ class ProductsController extends Controller
             if($store) {
                 $products = $products
                     ->where('store_id',$store ? $store->id : 0);
+            } else {
+                $store = null;
             }
+        } else {
+            $store = null;
         }
 
-        if($priceRangeTo >= $minPriceTo) {
+        if($priceRangeTo >= $this->selectedPriceTo) {
             $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
                 $q->where('price','>=',$priceRangeFrom);
             });
@@ -303,17 +348,33 @@ class ProductsController extends Controller
             });
         }
 
+        if($request->sort) {
+            switch ($request->sort) {
+                case 'price-l-h':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','ASC');
+                    break;
+                case 'price-h-l':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','DESC');
+                    break;
+                default:
+                    break;
+            }
+        }
+
         $products =  $products->paginate(30);
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products'));
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort','store'));
     }
 
     public function show(\Request $request, $id, $name)
     {
-        $product = $this->productModel->find($id);
+        $product = $this->productModel->with('userLikes')->find($id);
         $cartItems = $this->cart->getItems();
+        $deliveryTimes = $this->deliveryTimes[app()->getLocale()];
 
-        return view('products.view',compact('product','cartItems'));
+        return view('products.view',compact('product','cartItems','deliveryTimes'));
     }
 
     /**
