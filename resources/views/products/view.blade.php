@@ -105,10 +105,12 @@
                                 {{ $product->detail->description }}
                             </div>
 
-                            <div class="btn-group" role="group">
+                            <div class="btn-group" role="group" style="margin-bottom: 20px">
                                 <form method="POST" action="{{route('product.favorite',$product->id)}}">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
+
+                                    <span class="c-font-17">{{ $product->userLikes->count() }} {{ __('likes') }}</span>
+                                    <button type="submit" class="btn  c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
                                         @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
                                             <i class="fa fa-heart" style="color: red;font-size: 2.0em" ></i>
                                         @else

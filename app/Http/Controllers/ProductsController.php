@@ -196,6 +196,7 @@ class ProductsController extends Controller
         $priceRangeTo = $request->has('price-to') ? $request->get('price-to') : 190;
         $priceRangeMin = 1;
         $priceRangeMax = 200;
+        $sort = $request->sort;
 
         $selectCountryID = \Cache::get('selectedCountryID');
 
@@ -224,16 +225,34 @@ class ProductsController extends Controller
 
         $parentCategories = Cache::get('parentCategories');
 
-        $category->products =
+
+        $products =
             $this->productModel
                 ->has('detail')
                 ->with(['detail','store','userLikes'])
                 ->whereIn('store_id',$areaStores)
                 ->childrenCategoryProducts($childCategories)
                 ->select('products.*')
-                ->paginate(30);
+        ;
 
-        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin'));
+        if($request->sort) {
+            switch ($request->sort) {
+                case 'price-l-h':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','ASC');
+                    break;
+                case 'price-h-l':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','DESC');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $category->products = $products->paginate(30);
+
+        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin','sort'));
 
     }
 
@@ -251,6 +270,7 @@ class ProductsController extends Controller
         $parentCategories = Cache::get('parentCategories');
         $selectCountryID = \Cache::get('selectedCountryID');
         $selectedArea = Cache::get('selectedArea');
+        $sort = $request->sort;
 
         $area = $this->areaModel->with(['stores'=>function($q){
             $q->select(['id']);
@@ -308,14 +328,29 @@ class ProductsController extends Controller
             });
         }
 
+        if($request->sort) {
+            switch ($request->sort) {
+                case 'price-l-h':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','ASC');
+                    break;
+                case 'price-h-l':
+                    $products->join('product_details','products.id','=','product_details.product_id')
+                        ->orderBy('price','DESC');
+                    break;
+                default:
+                    break;
+            }
+        }
+
         $products =  $products->paginate(30);
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products'));
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort'));
     }
 
     public function show(\Request $request, $id, $name)
     {
-        $product = $this->productModel->find($id);
+        $product = $this->productModel->with('userLikes')->find($id);
         $cartItems = $this->cart->getItems();
         $deliveryTimes = $this->deliveryTimes[app()->getLocale()];
 

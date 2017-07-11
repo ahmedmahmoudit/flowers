@@ -9,6 +9,7 @@ use App\Http\Requests\CreateStoreRequest;
 use App\Repositories\StoreRepositoryInterface;
 use App\Store;
 use Cache;
+use Illuminate\Http\Request;
 
 class StoresController extends Controller
 {
@@ -42,9 +43,10 @@ class StoresController extends Controller
     /**
      * Show All stores
      *
+     * @param Request $request
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
         $selectedArea = Cache::get('selectedArea');
         $selectedCountry = Cache::get('selectedCountry');
@@ -52,7 +54,9 @@ class StoresController extends Controller
             $q->where('areas.country_id',$selectedCountry['id']);
         })->paginate(12);
 
-        return view('stores.index', ['stores' => $stores,'area'=>$selectedArea]);
+        $viewType = $request->has('type') && $request->type == 'list' ? 'list' : 'grid';
+
+        return view('stores.index', ['stores' => $stores,'area'=>$selectedArea,'viewType'=>$viewType]);
     }
 
     public function show($slug)

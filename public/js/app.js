@@ -271,17 +271,6 @@ var App = function() {
   var sort = function() {
     $( "#sort" ).change(function() {
       $('form#sort-form').submit();
-      // $.ajax({
-      //   url: '/products/top',
-      //   type: 'get',
-      //   // dataType: 'json',
-      //   data: $('form#sort-form').serialize(),
-      //   success: function(data) {
-      //
-      //   }
-      // });
-
-      // $('form.sort-form').submit();
     });
   };
   //* END:CORE HANDLERS *//

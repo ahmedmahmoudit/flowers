@@ -39,6 +39,20 @@
                 {{--<div class="c-line-center c-theme-bg"></div>--}}
                 {{--</div>--}}
 
+                <div class="row">
+                    <form class="c-shop-advanced-search-1" method="get" action="{{ route('category.show',$category->slug) }}" name="sort-form" id="sort-form">
+                        <div class="col-md-3 pull-right">
+                            <div class="form-group">
+                                <label class="control-label pull-right">Sort By</label>
+                                <select class="form-control c-square c-theme input-lg" name="sort" id="sort">
+                                    <option value="" {{ $sort == '' ? 'selected' : '' }} >{{ __('Relevance') }}</option>
+                                    <option value="price-l-h" {{ $sort == 'price-l-h' ? 'selected' : '' }}>{{ __('Price (Low &gt; High)') }}</option>
+                                    <option value="price-h-l" {{ $sort == 'price-h-l' ? 'selected' : '' }}>{{ __('Price (High &gt; Low)') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
                         <div style="margin:10px">

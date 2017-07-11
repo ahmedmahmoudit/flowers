@@ -30,6 +30,27 @@
         </div>
 
         <div class="c-layout-sidebar-content">
+
+            <div class="row">
+                <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
+                    @foreach(request()->all() as $key => $value)
+                        @if($key != 'sort')
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
+                        @endif
+                    @endforeach
+                    <div class="col-md-3 pull-right">
+                        <div class="form-group">
+                            <label class="control-label pull-right">Sort By</label>
+                            <select class="form-control c-square c-theme input-lg" name="sort" id="sort">
+                                <option value="" {{ $sort == '' ? 'selected' : '' }} >{{ __('Relevance') }}</option>
+                                <option value="price-l-h" {{ $sort == 'price-l-h' ? 'selected' : '' }}>{{ __('Price (Low &gt; High)') }}</option>
+                                <option value="price-h-l" {{ $sort == 'price-h-l' ? 'selected' : '' }}>{{ __('Price (High &gt; Low)') }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <div class="c-shop-product-details-2 c-opt-1">
                 {{--<div class="c-content-title-1">--}}
                 {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ __('Search Results') }}</h3>--}}
