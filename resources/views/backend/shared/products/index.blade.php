@@ -33,6 +33,8 @@
                                 <th>Weight</th>
                                 <th>Height / Width</th>
                                 <th>Qty</th>
+                                <th>Views</th>
+                                <th>Likes</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -56,6 +58,8 @@
                                     <td>{{$product->detail->weight or 'No Price'}}</td>
                                     <td>{{$product->detail->height or 'No Height'}} / {{$product->detail->width or 'No Width'}}</td>
                                     <td>{{$product->detail->quantity or 'No Price'}}</td>
+                                    <td>{{Counter::show('product', $product->id) }}</td>
+                                    <td>{{$product->userLikes->count()}}</td>
                                     <td>
                                         @if($product->active == '1')
                                             <span class="label label-success">Active</span>

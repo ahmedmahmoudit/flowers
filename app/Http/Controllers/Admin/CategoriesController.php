@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
+use Illuminate\Support\Facades\Cache;
 
 class CategoriesController extends Controller
 {
@@ -49,6 +50,8 @@ class CategoriesController extends Controller
         $attributes = $request->only(['description_en', 'name_en', 'name_ar', 'description_ar']);
         $category = $this->category->create($attributes);
 
+        //clear cache
+        cache::flush();
         if ($category) {
             return redirect()->route('manager.categories.index')->with('success', 'successfully created');
         }

@@ -94,6 +94,8 @@ class CategoryRepository
         $category->name_ar            = $data['name_ar'];
         $category->description_en     = $data['description_en'];
         $category->description_ar     = $data['description_ar'];
+        $category->slug_en   = $data['name_en'];
+        $category->slug_ar   = $data['name_ar'];
 
         return($category->save());
     }

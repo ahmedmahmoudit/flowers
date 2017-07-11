@@ -113,6 +113,8 @@ class ProductsController extends Controller
         $images = $request->only(['images']);
 
         $attributes['store_id'] = $store_id;
+        $attributes['slug_en'] = $attributes['name_en'];
+        $attributes['slug_ar'] = $attributes['name_ar'];
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);

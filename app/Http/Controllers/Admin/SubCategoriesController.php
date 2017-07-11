@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
 use App\Repositories\CategoryRepository;
+use Illuminate\Support\Facades\Cache;
 
 class SubCategoriesController extends Controller
 {
@@ -52,6 +53,8 @@ class SubCategoriesController extends Controller
         $attributes = $request->only(['parent_id', 'name_en', 'name_ar', 'description_en', 'description_ar']);
         $subCategory = $this->category->createSubCategory($attributes);
 
+        //clear cache
+        Cache::flush();
         if ($subCategory) {
 
             return redirect()->route('manager.subcategories.index')->with('success', 'successfully created');

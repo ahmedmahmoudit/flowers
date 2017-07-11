@@ -7,7 +7,7 @@
         <li>/</li>
         <li class="c-active"><a href="{{ route('category.index',$product->slug) }}">{{ ucfirst($product->name) }}</a></li>
     @endcomponent
-
+    {{Counter::count('product', $product->id)}}
     <div class="c-content-box c-size-md">
 
         <div class="container">
