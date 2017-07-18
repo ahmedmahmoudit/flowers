@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStaticPagesQuestionsTable extends Migration
+class CreateStoreDeliveryTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateStaticPagesQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('static_pages_questions', function (Blueprint $table) {
+        Schema::create('store_delivery_times', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('question_ar');
-            $table->string('question_en');
-            $table->text('answer_ar');
-            $table->text('answer_en');
-            $table->string('page_type');
+            $table->integer('store_id')->unsigned();
+            $table->foreign('store_id')->references('id')->on('stores');
+            $table->time('from');
+            $table->time('to');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateStaticPagesQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('static_pages_questions');
+        Schema::drop('store_delivery_times');
     }
 }

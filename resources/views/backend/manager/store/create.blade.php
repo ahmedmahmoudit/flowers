@@ -33,16 +33,15 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="exampleSlugEn">Slug English</label>
+                                <label for="exampleEmail">Email</label>
                                 <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="slug_en" class="form-control" id="exampleSlugEn" placeholder="Enter English Slug" value="{{old('slug_en')}}">
+                                <input type="text" name="email" class="form-control" id="exampleEmail" placeholder="Enter Email" value="{{old('email')}}">
                                 <p class="help-block"></p>
                             </div>
 
                             <div class="col-xs-6">
-                                <label for="exampleSlugAR">Slug Arabic</label>
-                                <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="slug_ar" class="form-control" id="exampleSlugAR" placeholder="Enter Arabic Slug" value="{{old('slug_ar')}}">
+                                <label for="exampleEmail2">Another Email</label>
+                                <input type="text" name="second_email" class="form-control" id="exampleEmail2" placeholder="Enter Another Email" value="{{old('second_email')}}">
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -51,23 +50,6 @@
                             <div class="col-xs-6">
                                 <label for="examplePhone">Phone</label>
                                 <input type="text" name="phone" class="form-control" id="examplePhone" placeholder="Enter Phone" value="{{old('phone')}}">
-                                <p class="help-block"></p>
-                            </div>
-
-                            <div class="col-xs-6">
-                                <label for="exampleEmail">Email</label>
-                                <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="email" class="form-control" id="exampleEmail" placeholder="Enter Email" value="{{old('email')}}">
-                                <p class="help-block"></p>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Upload Store Image</label>
-                                    <input type="file" name="image" id="exampleInputFile">
-                                </div>
                                 <p class="help-block"></p>
                             </div>
 
@@ -83,6 +65,15 @@
                                     </select>
                                     <p class="help-block"></p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Upload Store Image</label>
+                                    <input type="file" name="image" id="exampleInputFile">
+                                </div>
+                                <p class="help-block"></p>
                             </div>
                         </div>
 

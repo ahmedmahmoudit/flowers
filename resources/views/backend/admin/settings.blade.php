@@ -21,12 +21,16 @@
                     {{ Form::open(['route' => ['admin.settings.update'],'method'=>'POST','class' => 'form-horizontal']) }}
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-md-2 control-label"> Minimum Delivery Days:
+                            <label class="col-md-2 control-label"> Minimum Delivery Hours:
                                 <span class="required" style="color: red;"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="text" name="minimum_delivery_days" value="{{$store->minimum_delivery_days or old('minimum_delivery_days')}}" class="form-control" placeholder="Enter Minimum Hours" required>
-                                <p class="help-block">Enter Minimum hours to deliver order for example (24)</p>
+                                <select class="form-control" name="minimum_delivery_days" value="{{old('minimum_delivery_days')}}"  required>
+                                    <option value="same day" @if($store->minimum_delivery_days == 'same day') {{'selected'}} @endif>Same Day</option>
+                                    <option value="next day" @if($store->minimum_delivery_days == 'next day') {{'selected'}} @endif>Next Day</option>
+                                    <option value="after 2 days" @if($store->minimum_delivery_days == 'after 2 days') {{'selected'}} @endif>After 2 Days</option>
+                                </select>
+                                <p class="help-block">Select Available Delivery</p>
                             </div>
                         </div>
                         <div class="form-group">
