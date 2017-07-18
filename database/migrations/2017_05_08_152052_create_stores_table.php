@@ -22,6 +22,7 @@ class CreateStoresTable extends Migration
             $table->string('slug_ar')->nullable();
             $table->string('phone')->nullable();
             $table->string('email');
+            $table->string('instagram_username')->nullable();
             $table->enum('is_approved', [1, 0])->default(0);
             $table->timestamps();
             $table->softDeletes();

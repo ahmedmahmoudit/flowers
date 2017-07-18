@@ -40,8 +40,8 @@ class ProductsController extends Controller
     private $storeModel;
 
     protected $deliveryTimes = [
-        'en' =>['morning 6-12am','afternoon 12-4pm','4-8pm'],
-        'ar' =>['morning 6-12am','afternoon 12-4pm','4-8pm']
+        'en' =>['morning 9-2pm','afternoon 2-6pm','evening 6-10pm'],
+        'ar' =>['morning 9-2pm','afternoon 2-6pm','evening 6-10pm']
     ];
 
     protected $selectedPriceFrom = 50;
@@ -444,7 +444,7 @@ class ProductsController extends Controller
     {
         $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
-        $product = $this->product->update($id, $attributes);
+        $product = $this->productModel->update($id, $attributes);
 
         $details = new ProductDetail([
             'price' => $attributesDetails['price'],
@@ -473,7 +473,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->delete($id);
+        $this->productModel->delete($id);
 
         return redirect()->route('product.index');
     }
@@ -487,7 +487,7 @@ class ProductsController extends Controller
      */
     public function disable($id)
     {
-        $this->product->disable($id);
+        $this->productModel->disable($id);
 
         return redirect()->route('products.index');
     }
