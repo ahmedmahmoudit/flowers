@@ -37,7 +37,7 @@
             </div>
 
             <div class="c-prefooter c-bg-grey-1">
-                <div class="row">
+                <div class="row equal">
                     @include('products.item_grid',['products'=>$bestSellers])
                 </div>
             </div>
