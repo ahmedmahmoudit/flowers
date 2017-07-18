@@ -62,7 +62,7 @@ class StoresController extends Controller
     {
         $imageUpload = $request->only(['image']);
         $areas = $request->only(['areas']);
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','slug_en', 'slug_ar']);
+        $attributes = $request->only(['country_id','name_en','name_ar','phone','email', 'second_email']);
 
         if($imageUpload['image'])
         {

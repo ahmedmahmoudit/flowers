@@ -88,6 +88,18 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('newsletter/{newsletter}/disable', ['as' => 'newsletter.disable', 'uses' => 'NewsletterController@disable']);
     Route::post('newsletter/{newsletter}/activate', ['as' => 'newsletter.activate', 'uses' => 'NewsletterController@activate']);
 
+    Route::get('pages/about', ['as' => 'pages.about.index', 'uses' => 'PageController@getAboutUs']);
+    Route::post('pages/about', ['as' => 'pages.about.update', 'uses' => 'PageController@postAboutUs']);
+    Route::get('pages/privacy', ['as' => 'pages.privacy.index', 'uses' => 'PageController@getPrivacy']);
+    Route::post('pages/privacy', ['as' => 'pages.privacy.update', 'uses' => 'PageController@postPrivacy']);
+    Route::get('pages/terms', ['as' => 'pages.terms.index', 'uses' => 'PageController@getTerms']);
+    Route::post('pages/terms', ['as' => 'pages.terms.update', 'uses' => 'PageController@postTerms']);
+    Route::get('pages/delivery', ['as' => 'pages.delivery.index', 'uses' => 'PageController@getDelivery']);
+    Route::post('pages/delivery', ['as' => 'pages.delivery.update', 'uses' => 'PageController@postDelivery']);
+
+    Route::get('pages/contact', ['as' => 'pages.contact.index', 'uses' => 'PageController@getContact']);
+    Route::post('pages/contact', ['as' => 'pages.contact.update', 'uses' => 'PageController@postContactInfo']);
+
 });
 
 

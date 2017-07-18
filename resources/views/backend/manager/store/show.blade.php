@@ -35,20 +35,6 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="exampleSlugEn">Slug English</label>
-                                <p>{{$store->slug_en or 'No English Slug'}}</p>
-                                <p class="help-block"></p>
-                            </div>
-
-                            <div class="col-xs-6">
-                                <label for="exampleSlugAR">Slug Arabic</label>
-                                <p>{{$store->slug_ar or 'No Arabic Slug'}}</p>
-                                <p class="help-block"></p>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
                                 <label for="examplePhone">Phone</label>
                                 <p>{{$store->phone or 'No Phone'}}</p>
                                 <p class="help-block"></p>
@@ -56,7 +42,7 @@
 
                             <div class="col-xs-6">
                                 <label for="exampleEmail">Email</label>
-                                <p>{{$store->email or 'No Email'}}</p>
+                                <p>{{$store->email or 'No Email'}} @if($store->second_email) {{' | '.$store->second_email}}@endif</p>
                                 <p class="help-block"></p>
                             </div>
                         </div>

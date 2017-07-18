@@ -89,18 +89,18 @@
                     </a>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'country') ? 'active' : '' ) }} treeview">
-                    <a href="#">
-                        <i class="fa fa-globe"></i>
-                        <span>Countries</span>
-                        <span class="pull-right-container">
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Countries</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Areas</a></li>
-                    </ul>
-                </li>
+                {{--<li class="{{ (str_contains(Request::route()->getName(),'country') ? 'active' : '' ) }} treeview">--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa-globe"></i>--}}
+                        {{--<span>Countries</span>--}}
+                        {{--<span class="pull-right-container">--}}
+                {{--</span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="treeview-menu">--}}
+                        {{--<li><a href="#"><i class="fa fa-circle-o"></i> Countries</a></li>--}}
+                        {{--<li><a href="#"><i class="fa fa-circle-o"></i> Areas</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
                 <li class="{{ (str_contains(Request::route()->getName(),'coupon') ? 'active' : '' ) }} treeview">
                     <a href="#">
@@ -144,7 +144,7 @@
                     </ul>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'static') ? 'active' : '' ) }} treeview">
+                <li class="{{ (str_contains(Request::route()->getName(),'pages') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Static Pages</span>
@@ -152,9 +152,11 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Contact Us</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> FAQ</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> About Us</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'contact') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.contact.index') }}"><i class="fa fa-circle-o"></i> Contact Us</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'about') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.about.index') }}"><i class="fa fa-circle-o"></i> About Us</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'privacy') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.privacy.index') }}"><i class="fa fa-circle-o"></i> Privacy Policy</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'terms') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.terms.index') }}"><i class="fa fa-circle-o"></i> Terms & Conditions</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'delivery') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.delivery.index') }}"><i class="fa fa-circle-o"></i> Delivery</a></li>
                     </ul>
                 </li>
             <!-- Admin SideBar -->
