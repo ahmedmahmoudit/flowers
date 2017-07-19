@@ -45,9 +45,7 @@
                                     </h6>
                                 </div>
                             </div>
-                            <div class="equal">
-                                @include('products.item_grid',['products'=>$childCategory->products,'cartItems'=>$cartItems])
-                            </div>
+                            @include('products.item_grid',['products'=>$childCategory->products,'cartItems'=>$cartItems])
                             <div class="clearfix"></div>
                         </div>
                     </div>

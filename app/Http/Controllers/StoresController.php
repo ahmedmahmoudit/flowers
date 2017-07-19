@@ -50,7 +50,7 @@ class StoresController extends Controller
     {
         $selectedArea = Cache::get('selectedArea');
         $selectedCountry = Cache::get('selectedCountry');
-        $stores = $this->storeModel->with('areas')->whereHas('areas',function($q) use ($selectedCountry) {
+        $stores = $this->storeModel->with('areas')->approved()->whereHas('areas',function($q) use ($selectedCountry) {
             $q->where('areas.country_id',$selectedCountry['id']);
         })->paginate(12);
 

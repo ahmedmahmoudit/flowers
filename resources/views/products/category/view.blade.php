@@ -47,7 +47,7 @@
                 <div class=" c-size-lg c-bg-grey-1">
                     <div class="row">
                         <div class="equal" style="margin:10px">
-                            @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems,'cols'=>4])
+                            @include('products.item_grid',['products'=>$category->products,'cartItems'=>$cartItems,'cols'=>3])
                         </div>
                     </div>
                     <div class="c-content-box c-size-sm c-bg-white text-center">

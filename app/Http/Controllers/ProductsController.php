@@ -75,9 +75,11 @@ class ProductsController extends Controller
     {
         $selectedArea = Cache::get('selectedArea');
 
-        $area = $this->areaModel->with(['stores'=>function($q){
-            $q->select(['id']);
-        }])->find($selectedArea['id']);
+        $area = $this->areaModel
+            ->whereHas('stores',function($q){
+                return $q->where('is_approved',1);
+            })->with(['stores'])
+            ->find($selectedArea['id']);
 
         $areaStores = $area->stores->pluck('id');
 
@@ -89,6 +91,7 @@ class ProductsController extends Controller
                 $this->productModel
                     ->has('detail')
                     ->with(['detail','store','userLikes'])
+                    ->active()
                     ->whereIn('store_id',$areaStores)
                     ->childrenCategoryProducts($childCategories)
                     ->select('products.*')
@@ -105,7 +108,13 @@ class ProductsController extends Controller
     {
         //@todo : replace with the best selling products
 
-        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes']);
+        $bestSellers  = $this->productModel
+            ->active()
+            ->has('detail')
+            ->whereHas('store',function($q){
+                return $q->where('is_approved',1);
+            })
+            ->with(['detail','store','userLikes']);
 
         if($request->sort) {
             switch ($request->sort) {
@@ -146,9 +155,10 @@ class ProductsController extends Controller
 
         $selectedArea = Cache::get('selectedArea');
 
-        $area = $this->areaModel->with(['stores'=>function($q){
-            $q->select(['id']);
-        }])->find($selectedArea['id']);
+        $area = $this->areaModel
+            ->whereHas('stores',function($q){
+                return $q->where('is_approved',1);
+            })->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area->stores->pluck('id');
 
@@ -163,6 +173,7 @@ class ProductsController extends Controller
                     $this->productModel
                         ->has('detail')
                         ->with(['detail','store','userLikes'])
+                        ->active()
                         ->whereIn('store_id',$areaStores)
                         ->childrenCategoryProducts([$childCategory->id])
                         ->select('products.*')
@@ -173,6 +184,7 @@ class ProductsController extends Controller
             $category->products = $this->productModel
                 ->has('detail')
                 ->with(['detail','store','userLikes'])
+                ->active()
                 ->whereIn('store_id',$areaStores)
                 ->childrenCategoryProducts([$category->id])
                 ->select('products.*')
@@ -214,19 +226,27 @@ class ProductsController extends Controller
         if(Cache::has('stores')) {
             $stores = Cache::get('stores');
         } else {
-            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            $stores = $this->storeModel
+                ->where('country_id',$selectCountryID)
+                ->where('is_approved',1)
+                ->get();
             Cache::put('stores',$stores,60*24);
         }
 
         $selectedStore = $request->has('store') ? $request->get('store') : '';
 
-        $area = $this->areaModel->with(['stores'=>function($q){
-            $q->select(['id']);
-        }])->find($selectedArea['id']);
+        $area = $this->areaModel
+            ->whereHas('stores',function($q){
+                return $q->where('is_approved',1);
+            })
+            ->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area->stores->pluck('id');
 
-        $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
+        $category = $this->categoryModel
+            ->with('children')
+            ->where('slug_en',$categorySlug)
+            ->orWhere('slug_ar',$categorySlug)->first();
 
         $childCategories = [$category->id];
 
@@ -241,6 +261,7 @@ class ProductsController extends Controller
             $this->productModel
                 ->has('detail')
                 ->with(['detail','store','userLikes'])
+                ->active()
                 ->whereIn('store_id',$areaStores)
                 ->childrenCategoryProducts($childCategories)
                 ->select('products.*')
@@ -288,9 +309,11 @@ class ProductsController extends Controller
         $selectedArea = Cache::get('selectedArea');
         $sort = $request->sort;
 
-        $area = $this->areaModel->with(['stores'=>function($q){
-            $q->select(['id']);
-        }])->find($selectedArea['id']);
+        $area = $this->areaModel
+            ->whereHas('stores',function($q){
+                return $q->where('is_approved',1);
+            })
+            ->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area->stores->pluck('id');
         $cartItems = $this->cart->getItems();
@@ -298,18 +321,23 @@ class ProductsController extends Controller
         if(Cache::has('stores')) {
             $stores = Cache::get('stores');
         } else {
-            $stores = $this->storeModel->where('country_id',$selectCountryID)->get();
+            $stores = $this->storeModel->where('country_id',$selectCountryID)->where('is_approved',1)->get();
             Cache::put('stores',$stores,60*24);
         }
 
         $products = $this->productModel
             ->has('detail')
             ->with(['detail','store','userLikes'])
+            ->active()
             ->whereIn('store_id',$areaStores);
 
         if($selectedCategory) {
 
-            $category = $this->categoryModel->with('children')->where('slug_en',$selectedCategory)->orWhere('slug_ar',$selectedCategory)->first();
+            $category = $this->categoryModel
+                ->with('children')
+                ->where('slug_en',$selectedCategory)
+                ->orWhere('slug_ar',$selectedCategory)
+                ->first();
             $childCategories = [$category->id];
 
             if($category->parent_id === 0 ) {
@@ -327,10 +355,14 @@ class ProductsController extends Controller
         }
 
         if($selectedStore) {
-            $store = $this->storeModel->where('slug_en',$selectedStore)->orWhere('slug_ar',$selectedStore)->first();
+            $store = $this->storeModel
+                ->where('is_approved',1)
+                ->where(function($q) use($selectedStore){
+                    $q->where('slug_en',$selectedStore)->orWhere('slug_ar',$selectedStore);
+                })->first();
             if($store) {
                 $products = $products
-                    ->where('store_id',$store ? $store->id : 0);
+                    ->where('store_id',$store->id);
             } else {
                 $store = null;
             }
@@ -398,7 +430,7 @@ class ProductsController extends Controller
     {
         $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
         $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
-        $product = $this->product->create($attributes);
+        $product = $this->productModel->create($attributes);
 
         $details = new ProductDetail([
             'price' => $attributesDetails['price'],
@@ -427,7 +459,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product->getById($id);
+        $product = $this->productModel->getById($id);
 
         return view('manager.product.edit', compact('product'));
     }

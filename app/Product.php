@@ -95,5 +95,16 @@ class Product extends BaseModel
         return $query->where('store_id', Auth::user()->store->id);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active',1);
+    }
 
+    public function scopeApproved($query)
+    {
+        return $query->leftJoin('stores','products.store_id','stores.id')
+            ->where('products.id',$this->id)
+            ->where('stores.is_approved',1)
+            ;
+    }
 }

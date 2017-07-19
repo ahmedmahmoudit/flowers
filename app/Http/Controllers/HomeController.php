@@ -43,11 +43,19 @@ class HomeController extends Controller
 
     public function index()
     {
-        //@todo : replace with the best selling products
-        $bestSellers  = $this->productModel->has('detail')->with(['detail','store','userLikes'])->latest()->paginate(20);
-        $cartItems = $this->cart->getItems();
         $sliderImages = $this->sliderModel->orderBy('order','asc')->limit(5)->get();
         $ads = $this->adModel->orderBy('order','asc')->limit(3)->get();
+
+        //@todo : replace with the best selling products
+        $bestSellers  = $this->productModel
+            ->has('detail')
+            ->whereHas('store',function($q){
+                return $q->where('is_approved',1);
+            })
+            ->with(['detail','store','userLikes'])->limit(4)->get();
+
+        $cartItems = $this->cart->getItems();
+
         return view('home',compact('bestSellers','cartItems','sliderImages','ads'));
     }
 }

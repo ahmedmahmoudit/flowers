@@ -214,7 +214,7 @@
                             @endif
 
                         </div>
-                        <div style="padding-top:20px" >{{ __('minimum delivery hours') }} {{ $product->store->minimum_delivery_days }}</div>
+                        <div style="padding-top:20px" >{{ __('minimum delivery days') }} {{ $product->store->minimum_delivery_days }}</div>
                     </div>
                 </div>
             </div>
