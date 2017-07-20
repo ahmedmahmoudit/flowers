@@ -13,7 +13,7 @@ class AddMinimumDeliveryDateToStoresTable extends Migration
     public function up()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->string('minimum_delivery_days')->nullable()->after('image');
+            $table->integer('minimum_delivery_days')->default(0)->after('image');
         });
     }
 
