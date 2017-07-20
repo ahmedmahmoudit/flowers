@@ -149,7 +149,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::get('country/{id}/areas','LocaleController@getCountryAreas')->name('country.areas');
     Route::get('stores','StoresController@index')->name('stores.index');
-    Route::get('stores/{slug}','StoresController@show')->name('stores.show');
+    Route::get('stores/{id}/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');

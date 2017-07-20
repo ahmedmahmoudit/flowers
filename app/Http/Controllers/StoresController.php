@@ -59,10 +59,10 @@ class StoresController extends Controller
         return view('stores.index', ['stores' => $stores,'area'=>$selectedArea,'viewType'=>$viewType]);
     }
 
-    public function show($slug)
+    public function show($id,$slug)
     {
-        $store = $this->storeModel->where('slug_en',$slug)->orWhere('slug_ar',$slug)->first();
-        dd($store);
+        $store = $this->storeModel->find($id);
+        return view('stores.view',compact('store'));
     }
 
     /**

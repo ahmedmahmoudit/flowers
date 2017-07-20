@@ -95,8 +95,9 @@
                         <div class="c-product-meta">
                             <div class="c-content-title-1">
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
+                                <p class="hint"><a href="{{ route('stores.show',[$product->store->id,$product->store->slug]) }}">{{ $product->store->name }}</a></p>
                                 <div class="c-line-left"></div>
-                                <p>Product Sku : {{ $product->sku  }}</p>
+                                <p>{{ __('item code') }} : <span class="bold" style="font-weight: bold"> {{ $product->sku  }}</span></p>
                             </div>
 
                             <div class="c-product-badge">
