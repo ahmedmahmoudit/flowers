@@ -153,7 +153,7 @@
                                                         <i class="fa fa-calendar"></i>
                                                     </label>
 
-                                                    <div class="date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
+                                                    <div class="date date-picker" data-date-format="yyyy/mm/dd" data-rtl="false">
                                                         <input type="text" class="" style="border:0;color:#32c5d2;" name="delivery_date"
                                                                value="{{ old('delivery_date') ? old('delivery_date') :''}}"
                                                                placeholder="{{ __('Select Delivery Day')  }}"

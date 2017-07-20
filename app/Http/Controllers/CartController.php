@@ -6,6 +6,7 @@ use App\Country;
 use App\Http\Requests;
 use App\Core\Cart\Cart;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -93,47 +94,45 @@ class CartController extends Controller
 
     public function addItem(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',
             'delivery_date' => 'required',
             'delivery_time' => 'required',
         ]);
 
-
         $product = $this->productModel
             ->has('detail')
-            ->whereHas('store',function($q) {
-                $q->where('is_approved',1);
+            ->whereHas('store', function ($q) {
+                $q->where('is_approved', 1);
             })
-            ->with(['detail','store'])->active()->find($request->product_id);
-        return redirect()->back()->with('error',__('Product is Out of Stock'))->withInput();
+            ->with(['detail', 'store'])->active()->find($request->product_id);
 
+        if ($product) {
+            $deliveryDate = Carbon::parse($request->delivery_date)->toDateString();
+            $storeMinimumDeliveryDate = $product->store->minimum_delivery_days;
+            $minimumDeliveryDate = Carbon::now()->addDays($storeMinimumDeliveryDate)->toDateString();
 
-        if($product) {
+            if($deliveryDate <= $minimumDeliveryDate) {
+                return redirect()->back()->with('error',__('Cannot deliver before '.$minimumDeliveryDate));
+            }
 
-            // check whether the item delivers on the mentioned date
-            // get minimum delivery days
-            // if 1, cannot order on same day, if 0, can be ordered on same day,
-            // check if morning is past
-
-            if($product->detail->in_stock) {
+            if ($product->detail->in_stock) {
                 $this->cart->addItem([
-                        'id'=>$request->product_id,
-                        'quantity'=> (int) $request->quantity,
+                        'id'            => $request->product_id,
+                        'quantity'      => (int)$request->quantity,
                         'delivery_date' => $request->delivery_date,
                         'delivery_time' => $request->delivery_time
                     ]
                 );
                 return redirect()->back();
             } else {
-                return redirect()->back()->with('error',__('Product is Out of Stock'))->withInput();
+                return redirect()->back()->with('error', __('Product is Out of Stock'))->withInput();
             }
+
         } else {
-            return redirect()->back()->with('error',__('Cannot add this product to the cart'))->withInput();
+            return redirect()->back()->with('error', __('Cannot add this product to the cart'))->withInput();
         }
-
-
     }
 
     public function getCartItemCount()

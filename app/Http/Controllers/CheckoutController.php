@@ -79,19 +79,19 @@ class CheckoutController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
 
 //        if(!$user->addresses->count()) {
-            $this->validate($request,[
-                'email' => 'required|email',
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'mobile' => 'required',
-                'country_id' => 'required',
-                'area_id' => 'required',
-                'block' => 'required|integer',
-                'street' => 'required|integer',
-                'recipient_firstname' => 'required',
-                'recipient_lastname' => 'required',
-                'recipient_mobile' => 'required',
-            ]);
+//            $this->validate($request,[
+//                'email' => 'required|email',
+//                'firstname' => 'required',
+//                'lastname' => 'required',
+//                'mobile' => 'required',
+//                'country_id' => 'required',
+//                'area_id' => 'required',
+//                'block' => 'required|integer',
+//                'street' => 'required|integer',
+//                'recipient_firstname' => 'required',
+//                'recipient_lastname' => 'required',
+//                'recipient_mobile' => 'required',
+//            ]);
 //            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
 //            $address = $user->addresses()->create($addressFields);
 //        } else {

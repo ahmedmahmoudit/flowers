@@ -403,6 +403,7 @@ class ProductsController extends Controller
         $deliveryTimes = $this->productModel->deliveryTimes[app()->getLocale()];
         $selectedTime = null;
 
+//        dd($cartItems->toArray());
         return view('products.view',compact('product','cartItems','deliveryTimes','selectedTime'));
     }
 
