@@ -54,8 +54,11 @@ class HomeController extends Controller
             })
             ->with(['detail','store','userLikes'])->limit(4)->get();
 
+
+        $products = $this->productModel->latest()->paginate(20);
+
         $cartItems = $this->cart->getItems();
 
-        return view('home',compact('bestSellers','cartItems','sliderImages','ads'));
+        return view('home',compact('bestSellers','cartItems','sliderImages','ads','products'));
     }
 }

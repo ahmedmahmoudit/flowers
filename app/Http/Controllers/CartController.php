@@ -45,8 +45,6 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        //@todo: check for enough quantity
-
         $formDatas = $request->except('_token');
 
         $cartMessages = '';
@@ -55,17 +53,24 @@ class CartController extends Controller
             if(str_contains($key,'quantity')) {
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
                 $productID = substr($key,9);
-                $product = $this->productModel->with('detail')->find($productID);
+                $product = $this->productModel
+                    ->has('detail')
+                    ->whereHas('store',function($q) {
+                        $q->where('is_approved',1);
+                    })
+                    ->with(['detail'])->active()->find($productID);
 
                 // check for enough quantity
-                if((int) $value > $product->detail->quantity) {
-                    $cartMessages .= empty($cartMessages ? '' : ' .');
-                    $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
-                } else {
-                    try {
-                        $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
-                    } catch(\Exception $e) {
-                        return redirect()->back()->with('error',$e->getMessage());
+                if($product){
+                    if((int) $value > $product->detail->quantity) {
+                        $cartMessages .= empty($cartMessages ? '' : ' .');
+                        $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
+                    } else {
+                        try {
+                            $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
+                        } catch(\Exception $e) {
+                            return redirect()->back()->with('error',$e->getMessage());
+                        }
                     }
                 }
             }
@@ -95,22 +100,39 @@ class CartController extends Controller
             'delivery_time' => 'required',
         ]);
 
-        $product = $this->productModel->with('detail')->find($request->product_id);
 
-        if($product->detail->in_stock) {
+        $product = $this->productModel
+            ->has('detail')
+            ->whereHas('store',function($q) {
+                $q->where('is_approved',1);
+            })
+            ->with(['detail','store'])->active()->find($request->product_id);
+        return redirect()->back()->with('error',__('Product is Out of Stock'))->withInput();
 
-            $this->cart->addItem([
-                    'id'=>$request->product_id,
-                    'quantity'=> (int) $request->quantity,
-                    'delivery_date' => $request->delivery_date,
-                    'delivery_time' => $request->delivery_time
-                ]
-            );
-            return redirect()->back();
 
+        if($product) {
+
+            // check whether the item delivers on the mentioned date
+            // get minimum delivery days
+            // if 1, cannot order on same day, if 0, can be ordered on same day,
+            // check if morning is past
+
+            if($product->detail->in_stock) {
+                $this->cart->addItem([
+                        'id'=>$request->product_id,
+                        'quantity'=> (int) $request->quantity,
+                        'delivery_date' => $request->delivery_date,
+                        'delivery_time' => $request->delivery_time
+                    ]
+                );
+                return redirect()->back();
+            } else {
+                return redirect()->back()->with('error',__('Product is Out of Stock'))->withInput();
+            }
         } else {
-            return redirect()->back()->with('error',__('Product is Out of Stock'));
+            return redirect()->back()->with('error',__('Cannot add this product to the cart'))->withInput();
         }
+
 
     }
 

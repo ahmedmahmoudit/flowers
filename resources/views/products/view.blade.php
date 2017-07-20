@@ -2,6 +2,23 @@
 
 @section('style')
     @parent
+    <style>
+        input::-webkit-input-placeholder {
+            color: red !important;
+        }
+
+        input:-moz-placeholder { /* Firefox 18- */
+            color: red !important;
+        }
+
+        input::-moz-placeholder {  /* Firefox 19+ */
+            color: red !important;
+        }
+
+        input:-ms-input-placeholder {
+            color: red !important;
+        }
+    </style>
     <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
 @endsection
 @section('script')
@@ -17,9 +34,9 @@
         $('.select-time').on("click",function(){
           $(".bs-example-modal-lg").trigger('click');
           var time =  $(this).data("time");
-//          $()
+          var value =  $(this).data("value");
           $('input[name="delivery_time"]').val(time);
-          $('#delivery-time-result').html(time).css('color', '#32c5d2');
+          $('#delivery-time-result').html(value).css('color', '#32c5d2');
           $('#delivery-time').show();
         })
       })
@@ -137,7 +154,10 @@
                                                     </label>
 
                                                     <div class="date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
-                                                        <input type="text" class="" style="border:0;color:#32c5d2;" name="delivery_date" placeholder="{{ __('Selected Delivery Date') }}">
+                                                        <input type="text" class="" style="border:0;color:#32c5d2;" name="delivery_date"
+                                                               value="{{ old('delivery_date') ? old('delivery_date') :''}}"
+                                                               placeholder="{{ __('Select Delivery Day')  }}"
+                                                        >
                                                         <span class="input-group-btn">
 										                    <button class="btn default c-btn-square" type="button" style="background: white;border: 0"></button>
 										                </span>
@@ -151,6 +171,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="">
+
                                                         {{ __('Delivery Time') }}
                                                         <i class="fa fa-clock-o"></i>
                                                     </label>
@@ -158,8 +179,14 @@
                                                     <span type="button" class="" data-toggle="modal" data-target=".bs-example-modal-lg"
                                                             id="delivery-time-result" style="display: block;background: white"
                                                     >
-                                                        <span style="padding:0;margin:0">
-                                                        {{ __('Select Delivery Time') }}
+                                                        <span style="padding:0;margin:0" >
+                                                            @if(old('delivery_time'))
+                                                                <span style="color:#32c5d2 ">{{ $deliveryTimes[old('delivery_time')] }}</span>
+                                                            @else
+                                                                <span class="red">
+                                                                    {{ __('Select Delivery Time') }}
+                                                                </span>
+                                                            @endif
                                                         </span>
                                                     </span>
 
@@ -171,9 +198,12 @@
                                                                     <h4 class="modal-title" id="myLargeModalLabel">{{ __('Select Delivery Time') }}</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <input type="hidden" value="" name="delivery_time"/>
-                                                                    @foreach($deliveryTimes as $time)
-                                                                        <a class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$time}}">{{ $time }}</a>
+                                                                    <input type="hidden" value="{{ old('delivery_time') }}" name="delivery_time"/>
+                                                                    @foreach($deliveryTimes as $key => $time)
+                                                                        <a class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
+                                                                           data-value="{{$time}}"
+                                                                            @if(old('delivery_time') == $key ? 'active' : '') @endif
+                                                                        >{{ $time }}</a>
                                                                     @endforeach
                                                                 </div>
 

@@ -39,10 +39,6 @@ class ProductsController extends Controller
      */
     private $storeModel;
 
-    protected $deliveryTimes = [
-        'en' =>['morning 9-2pm','afternoon 2-6pm','evening 6-10pm'],
-        'ar' =>['morning 9-2pm','afternoon 2-6pm','evening 6-10pm']
-    ];
 
     protected $selectedPriceFrom = 50;
     protected $selectedPriceTo = 150;
@@ -404,9 +400,10 @@ class ProductsController extends Controller
     {
         $product = $this->productModel->with('userLikes')->find($id);
         $cartItems = $this->cart->getItems();
-        $deliveryTimes = $this->deliveryTimes[app()->getLocale()];
+        $deliveryTimes = $this->productModel->deliveryTimes[app()->getLocale()];
+        $selectedTime = null;
 
-        return view('products.view',compact('product','cartItems','deliveryTimes'));
+        return view('products.view',compact('product','cartItems','deliveryTimes','selectedTime'));
     }
 
     /**
