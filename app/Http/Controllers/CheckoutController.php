@@ -147,7 +147,8 @@ class CheckoutController extends Controller
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
-                'TotalPrice' => $product->total,
+//                'TotalPrice' => $product->total,
+                'TotalPrice' => $cart->coupon ?  $product->total - ($product->total * $cart->coupon->percentage) / 100 : $product->total,
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
                 'UnitPrice' => $product->detail->final_price,
