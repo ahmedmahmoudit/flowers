@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="c-layout-footer-6 c-bg-white" style="margin-top:50px;background-image: url(/img/best-seller-background.jpg)">
+    <div class="c-layout-footer-6 c-bg-white" style="margin-top:50px;background: url(/img/best-seller-background.jpg);">
         <div class="container">
             @include('partials.notifications')
             <div class="c-content-title-1" style="padding-top:20px">

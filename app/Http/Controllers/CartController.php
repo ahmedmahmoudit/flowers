@@ -104,7 +104,7 @@ class CartController extends Controller
         $product = $this->productModel
             ->has('detail')
             ->whereHas('store', function ($q) {
-                $q->where('is_approved', 1);
+//                $q->where('is_approved', 1);
             })
             ->with(['detail', 'store'])->active()->find($request->product_id);
 
