@@ -46,12 +46,13 @@ class PaymentsController extends Controller
             }
             $order->payment_method = $request->crdtype;
             $order->save();
-        }
 
-        try {
-            $this->dispatch(new SendPaymentEmail($order));
-        } catch (\Exception $e) {
-            dd($e);
+            try {
+                $this->dispatch(new SendPaymentEmail($order));
+            } catch (\Exception $e) {
+            }
+
+            //@todo: flush cart session
         }
 
         return view('payment.success',compact('status','order','selectedCountry'));

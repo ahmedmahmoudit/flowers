@@ -23,7 +23,7 @@
         @endforeach
     </ul>
     <div class="c-cart-menu-footer">
-        <a href="{{ route('cart.index') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
-        <a href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
+        <a href="{{ route('cart.index') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">{{ __('View Cart') }}</a>
+        <a href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">{{ __('Checkout') }}</a>
     </div>
 </div>
