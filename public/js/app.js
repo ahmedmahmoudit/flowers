@@ -269,7 +269,7 @@ var App = function() {
   };
 
   var sort = function() {
-    $( "#sort" ).change(function() {
+    $( ".sort" ).change(function() {
       $('form#sort-form').submit();
     });
   };
