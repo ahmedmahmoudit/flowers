@@ -119,6 +119,8 @@ class CheckoutController extends Controller
             'recipient_firstname' => $request->recipient_firstname,
             'recipient_lastname' => $request->recipient_lastname,
             'recipient_mobile' => $request->recipient_mobile,
+            'coupon_id' => $cart->coupon ? $cart->coupon->id : null,
+            'coupon_value' => $cart->coupon ?   ($cart->subTotal * $cart->coupon->percentage) / 100 : null
         ]);
 
         $storesRelatedToOrder = $products->pluck('store_id')->unique();
@@ -145,7 +147,7 @@ class CheckoutController extends Controller
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
-                'TotalPrice' => $product->grandTotal,
+                'TotalPrice' => $product->total,
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
                 'UnitPrice' => $product->detail->final_price,

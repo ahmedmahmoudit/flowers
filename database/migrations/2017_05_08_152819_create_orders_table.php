@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('address_id')->unsigned()->nullable();
-//            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->nullable();
             $table->integer('coupon_id')->unsigned()->nullable();
             $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->integer('coupon_value')->default(0);
@@ -31,7 +31,20 @@ class CreateOrdersTable extends Migration
             $table->date('delivery_date')->nullable();
             $table->string('delivery_time')->nullable();
             $table->string('reference_code')->nullable();
-
+            $table->integer('country_id')->nullable();
+            $table->integer('area_id')->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('block')->nullable();
+            $table->string('street')->nullable();
+            $table->string('house')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('recipient_firstname')->nullable();
+            $table->string('recipient_lastname')->nullable();
+            $table->string('recipient_mobile')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

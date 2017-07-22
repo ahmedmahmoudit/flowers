@@ -36,11 +36,18 @@ class PaymentsController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
         $status = 'success';
         $order = $this->orderModel->with('orderDetails')->where('reference_code',$request->ref)->first();
-        $order->captured_status = 1;
-        $order->payment_method = $request->crdtype;
-        $order->save();
 
-        //@todo : update stock
+        if($order->captured_status != 1) {
+            $order->captured_status = 1;
+            if($order->coupon) {
+                $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
+                $order->coupon->save();
+            }
+            $order->payment_method = $request->crdtype;
+            $order->save();
+
+
+            //@todo: send email
 //        try {
 //            $this->dispatch(new SendSubscriptionEmail($subscription));
 //        } catch (\Exception $e) {
@@ -52,6 +59,9 @@ class PaymentsController extends Controller
 //        } catch (\Exception $e) {
 //            dd($e);
 //        }
+        }
+
+
         return view('payment.success',compact('status','order','selectedCountry'));
     }
 }

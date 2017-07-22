@@ -68,7 +68,10 @@ class CartController extends Controller
                         $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
                     } else {
                         try {
-                            $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
+                            $this->cart->updateItem([
+                                'id'=> $productID,
+                                'quantity'=>(int) $value]
+                            );
                         } catch(\Exception $e) {
                             return redirect()->back()->with('error',$e->getMessage());
                         }

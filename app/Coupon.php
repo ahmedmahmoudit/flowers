@@ -15,11 +15,11 @@ class Coupon extends BaseModel
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'due_date'];
+    protected $dates = ['deleted_at', 'expiry_date'];
     protected $guarded = ['id'];
 
-    public function setDueDateAttribute( $value ) {
-        $this->attributes['due_date'] = (new Carbon($value))->format('d-m-y');
+    public function setExpiryDateAttribute( $value ) {
+        $this->attributes['expiry_date'] = (new Carbon($value))->format('Y-m-d');
     }
 
     public function value( $totalAmount, $percentage ) {
@@ -41,4 +41,22 @@ class Coupon extends BaseModel
     {
         return $this->hasMany('App\Order');
     }
+
+    public function hasExpired()
+    {
+        return Carbon::now()->toDateString() > $this->attributes['expiry_date'] ;
+    }
+
+    public function hasEnoughQuantity()
+    {
+        return $this->attributes['quantity_left'] > 0;
+    }
+
+    public function scopeActive()
+    {
+        return $this->active == 1;
+    }
+
+
+
 }

@@ -88,4 +88,14 @@ class Order extends BaseModel
     {
         return $this->belongsToMany('App\Store')->withPivot('order_status');
     }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

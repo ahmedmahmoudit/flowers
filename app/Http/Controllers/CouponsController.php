@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Core\Cart\Cart;
+use App\Country;
+use App\Coupon;
 use App\Http\Requests\CreateCouponRequest;
 use App\Http\Requests\UpdateCouponRequest;
 use App\Repositories\CouponRepositoryInterface;
+use function GuzzleHttp\Promise\all;
+use Illuminate\Http\Request;
 
 class CouponsController extends Controller
 {
@@ -13,15 +18,27 @@ class CouponsController extends Controller
      * @var $coupon
      */
     private $coupon;
+    /**
+     * @var Coupon
+     */
+    private $couponModel;
+    /**
+     * @var Cart
+     */
+    private $cart;
 
     /**
      * CouponController constructor.
      *
      * @param CouponRepositoryInterface $coupon
+     * @param Coupon $couponModel
+     * @param Cart $cart
      */
-    public function __construct(CouponRepositoryInterface $coupon)
+    public function __construct(CouponRepositoryInterface $coupon,Coupon $couponModel, Cart $cart)
     {
         $this->coupon = $coupon;
+        $this->couponModel = $couponModel;
+        $this->cart = $cart;
     }
 
     /**
@@ -131,4 +148,31 @@ class CouponsController extends Controller
 
         return redirect()->route('coupons.index');
     }
+
+    public function applyCoupon(Request $request)
+    {
+
+        $coupon = $this->couponModel->active()->where('code',$request->coupon)->first();
+
+        if($coupon) {
+
+            if(!$coupon->hasEnoughQuantity()) {
+                return redirect()->back()->with('warning',__('Coupon has been consumed'));
+            }
+
+            if($coupon->hasExpired()) {
+                return redirect()->back()->with('warning',__('Coupon has expired'));
+            }
+
+            $cart = $this->cart;
+            $cart->addCoupon((object) $coupon);
+
+            return redirect()->back()->with('success',__('Coupon applied'));
+
+        }
+
+        return redirect()->back()->with('warning',__('Invalid Coupon'));
+
+    }
+
 }

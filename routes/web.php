@@ -1,5 +1,9 @@
 <?php
 
+
+Route::get('test',function(){
+    return \Carbon\Carbon::now()->toDateString();
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +28,8 @@ Route::get('admin/login', function () {
     Auth::loginUsingId(2);
     return redirect('admin/dashboard');
 });
+
+//dd(\Carbon\Carbon::now()->format('d-m-Y'));
 
 /***************************************************************************************************
 Manager ROUTES
@@ -158,7 +164,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
-    Route::post('cart/coupon/apply','CartController@applyCoupon')->name('coupon.apply');
+    Route::post('cart/coupon/apply','CouponsController@applyCoupon')->name('coupon.apply');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
 
     Route::get('profile','ProfileController@index')->name('profile');

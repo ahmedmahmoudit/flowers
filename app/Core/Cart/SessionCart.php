@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Session;
 
 class SessionCart implements CartInterface {
 
-    const CART_KEY='MEEM_CART';
-    const CART_GRAND_TOTAL_KEY='MEEM_CART_GRAND_TOTAL';
-    const CART_SUB_TOTAL_KEY='MEEM_CART_SUB_TOTAL';
+    const CART_KEY='FLOWERS_CART';
+    const CART_GRAND_TOTAL_KEY='FLOWERS_CART_GRAND_TOTAL';
+    const CART_SUB_TOTAL_KEY='FLOWERS_CART_SUB_TOTAL';
     const SHIPPING_COUNTRY='SHIPPING_COUNTRY';
-    
+    const COUPON_KEY='COUPON';
+
     /**
      */
     public function __construct()
@@ -25,7 +26,21 @@ class SessionCart implements CartInterface {
             Session::put(self::CART_KEY,[]);
             Session::put(self::CART_GRAND_TOTAL_KEY,0);
             Session::put(self::CART_SUB_TOTAL_KEY,0);
+            Session::put(self::COUPON_KEY,null);
         }
+    }
+
+    public function addCoupon($coupon)
+    {
+        if(SESSION::has(self::COUPON_KEY)) {
+            SESSION::forget(self::COUPON_KEY);
+        }
+        SESSION::put(self::COUPON_KEY,$coupon);
+    }
+
+    public function getCoupon()
+    {
+        return SESSION::get(self::COUPON_KEY);
     }
 
     public function addItem(array $item)
@@ -67,6 +82,7 @@ class SessionCart implements CartInterface {
             $collection->forget($key);
         }
         Session::put(self::CART_KEY,$collection);
+        Session::put(self::COUPON_KEY,null);
     }
 
     private function setItem($item)

@@ -256,7 +256,7 @@ var App = function() {
       $.ajax({url: "/country/"+selectedCountry+"/areas",success: function(result) {
         $select.find('option').remove();
         result.data.forEach(function(country){
-            $('<option>').val(country.id).text(country.name).appendTo($select);
+          $('<option>').val(country.id).text(country.name).appendTo($select);
         });
       }});
     });
@@ -273,6 +273,8 @@ var App = function() {
       $('form#sort-form').submit();
     });
   };
+
+
   //* END:CORE HANDLERS *//
 
   return {

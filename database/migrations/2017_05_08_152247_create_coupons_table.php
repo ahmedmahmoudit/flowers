@@ -18,9 +18,8 @@ class CreateCouponsTable extends Migration
             $table->string('code');
             $table->enum('active', [1, 0])->default(1);
             $table->integer('minimum_charge');
-            $table->date('due_date');
-            $table->integer('is_limited')->default(-1); //only for numbers time to use
-            $table->enum('consumed', [1, 0])->default(0);
+            $table->date('expiry_date')->default(\Carbon\Carbon::now()->addDays(30)->toDateString());
+            $table->integer('quantity_left')->default(10000); //only for numbers time to use
             $table->timestamps();
             $table->softDeletes();
         });
