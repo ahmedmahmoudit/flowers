@@ -120,7 +120,9 @@ class CheckoutController extends Controller
             'recipient_lastname' => $request->recipient_lastname,
             'recipient_mobile' => $request->recipient_mobile,
             'coupon_id' => $cart->coupon ? $cart->coupon->id : null,
-            'coupon_value' => $cart->coupon ?   ($cart->subTotal * $cart->coupon->percentage) / 100 : null
+            'coupon_value' => $cart->coupon ?   ($cart->subTotal * $cart->coupon->percentage) / 100 : null,
+            'order_notes' => $request->order_notes,
+            'card_notes' => $request->card_notes,
         ]);
 
         $storesRelatedToOrder = $products->pluck('store_id')->unique();

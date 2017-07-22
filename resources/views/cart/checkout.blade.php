@@ -80,6 +80,12 @@
                                             <input name="recipient_mobile" type="tel" value="9999999" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">
                                         </div>
 
+                                        <div  style="padding-top:10px">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">{{ __('Card Notes') }}</label>
+                                                <textarea name="card_notes" class="form-control c-square c-theme" rows="3" placeholder="{{ __('Special messages to be written on the card') }}"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -145,10 +151,12 @@
                                             </div>
                                         </div>
 
+
+
                                         <div class="row" style="padding-top:10px">
                                             <div class="form-group col-md-12">
                                                 <label class="control-label">{{ __('Order Notes') }}</label>
-                                                <textarea class="form-control c-square c-theme" rows="3" placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
+                                                <textarea name="order_notes" class="form-control c-square c-theme" rows="3" placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
                                             </div>
                                         </div>
 

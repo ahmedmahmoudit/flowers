@@ -44,7 +44,8 @@ class CreateOrdersTable extends Migration
             $table->string('recipient_firstname')->nullable();
             $table->string('recipient_lastname')->nullable();
             $table->string('recipient_mobile')->nullable();
-            $table->text('notes')->nullable();
+            $table->text('order_notes')->nullable();
+            $table->text('card_notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

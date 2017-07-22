@@ -289,6 +289,7 @@ class ProductsController extends Controller
         $searchTerm = $request->has('term') ? $request->get('term') : '';
         $selectedCategory = $request->has('category') ? $request->get('category') : false;
         $selectedStore = $request->has('store') ? $request->get('store') : '';
+        $onSale = $request->has('sale');
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
@@ -326,6 +327,12 @@ class ProductsController extends Controller
             ->with(['detail','store','userLikes'])
             ->active()
             ->whereIn('store_id',$areaStores);
+
+        if($onSale) {
+            $products = $products->whereHas('detail',function($q) use ($onSale)  {
+                $q->where('is_sale','1');
+            });
+        }
 
         if($selectedCategory) {
 
@@ -393,7 +400,7 @@ class ProductsController extends Controller
 
         $products =  $products->paginate(30);
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort','store'));
+        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort','store','onSale'));
     }
 
     public function show(\Request $request, $id, $name)
