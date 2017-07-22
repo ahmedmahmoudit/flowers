@@ -176,7 +176,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('payment/process','PaymentsController@processPayment');
 
-    Route::get('home','HomeController@index');
+
+    Route::get('about','PagesController@index')->name('about');
+    Route::get('home','HomeController@index')->name('contact');
     Route::get('/', 'HomeController@index')->name('home');
 
 //    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');

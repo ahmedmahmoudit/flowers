@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->nullable();
             $table->integer('coupon_id')->unsigned()->nullable();
             $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->integer('coupon_value')->default(0);
+            $table->integer('coupon_value')->default(0)->nullable();
             $table->integer('sale_amount');
             $table->integer('net_amount');
             $table->string('payment_method')->nullable();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendPaymentEmail;
 use App\Order;
 use Cache;
 use Illuminate\Http\Request;
@@ -45,22 +46,13 @@ class PaymentsController extends Controller
             }
             $order->payment_method = $request->crdtype;
             $order->save();
-
-
-            //@todo: send email
-//        try {
-//            $this->dispatch(new SendSubscriptionEmail($subscription));
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
-//
-//        try {
-//            $this->dispatch(new SendPaymentEmail($subscription));
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
         }
 
+        try {
+            $this->dispatch(new SendPaymentEmail($order));
+        } catch (\Exception $e) {
+            dd($e);
+        }
 
         return view('payment.success',compact('status','order','selectedCountry'));
     }
