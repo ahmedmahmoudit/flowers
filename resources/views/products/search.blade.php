@@ -32,7 +32,7 @@
         <div class="c-layout-sidebar-content">
             <div class="row">
 
-                <div class="col-md-9">
+                <div class="col-md-6">
                     @if($store)
                         <div style="padding-top:20px">
                             <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
@@ -44,13 +44,41 @@
                     @endif
                 </div>
 
+
+
                 <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
                     @foreach(request()->all() as $key => $value)
                         @if($key != 'sort')
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
                         @endif
                     @endforeach
+
                     @include('products.sort_button')
+
+                        <div class="col-md-3 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}">
+                            <div class="form-group">
+                                <label class="control-label c-font-uppercase c-font-bold
+{{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}
+                                        ">{{ __('Category') }}</label>
+                                <select name="category" class="form-control sort c-square c-theme input-lg">
+                                    <option value="">{{ __('All Category') }}</option>
+                                    @foreach($parentCategories as $parentCategory)
+                                        <option value="{{ $parentCategory->slug }}"
+                                                @if($selectedCategory === $parentCategory->slug)
+                                                selected
+                                                @endif
+                                        >{{$parentCategory->name}}</option>
+                                        @foreach($parentCategory->children as $childCategory)
+                                            <option value="{{ $childCategory->slug }}"
+                                                    @if($selectedCategory === $childCategory->slug)
+                                                    selected
+                                                    @endif
+                                            >{{$childCategory->name}}</option>
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                 </form>
 
             </div>
@@ -60,7 +88,7 @@
                     @if($products->count())
                         <div class="row c-padding-10 ">
                             <div class="equal" style="padding:10px">
-                                @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>4])
+                                @include('products.item_grid',['products'=>$products,'cartItems'=>$cartItems,'cols'=>3])
                             </div>
                         </div>
                         <div class="c-content-box c-size-sm c-bg-white text-center">

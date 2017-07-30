@@ -18,6 +18,10 @@
         return false;
       }
 
+      //      function addCoupon() {
+      //        $('form#add-coupon').submit();
+      //      };
+
       function keypressed(event) {
         var charcode = (event.which) ? event.which : window.event.keyCode;
         if (charcode === 13) {
@@ -134,33 +138,66 @@
 
                         <div class="row">
 
-                        <div class="c-margin-t-20">
-                            <div class="col-sm-6">
-                                <h3 class="c-title c-font-30 c-font-uppercase c-font-bold">{{ __('Have Coupon ?') }}</h3>
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="coupon-form" class="input-group input-group-lg">
-                                    <input type="text" name="coupon" id="coupon" class="form-control input-lg" placeholder="{{ __('Coupon Code') }}">
-                                    <span class="input-group-btn">
+                            <div class="c-margin-t-20">
+                                <div class="col-sm-6">
+                                    <h3 class="c-title c-font-30 c-font-uppercase c-font-bold">{{ __('Have Coupon ?') }}</h3>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div id="coupon-form" class="input-group input-group-lg">
+                                        <input type="text" name="coupon"  id="coupon" class="form-control input-lg" placeholder="{{ __('Coupon Code') }}">
+                                        <span class="input-group-btn">
 								        <button id="apply_coupon" type="submit" class="btn c-theme-btn c-btn-uppercase btn-lg c-btn-sbold c-btn-square">{{ __('Apply') }}</button>
 							        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
                         </div>
+
+                        <hr>
+
+                        @if($cart->subTotal != $cart->actualAmount)
+                            <div class="row">
+                                <div class="c-cart-subtotal-row ">
+                                    <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+                                        <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">{{ __('Actual amount') }}</h3>
+                                    </div>
+                                    <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+
+                                        <h3 class="c-font-bold c-font-16 c-font-line-through c-font-red">
+                                            {{ $cart->actualAmount . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="row">
-                            <hr>
-                            <div class="c-cart-subtotal-row c-margin-t-20">
+                            <div class="c-cart-subtotal-row">
                                 <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
+                                    <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">{{ __('Sub total') }}</h3>
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-bold c-font-16 c-font-line-through c-font-red">{{ $cart->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
+
+                                    <h3 class="c-font-bold c-font-16">
+                                        {{ $cart->subTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}
+                                    </h3>
                                 </div>
                             </div>
                         </div>
+
+                        @if($cart->coupon)
+                            <div class="row">
+                                <div class="c-cart-subtotal-row">
+                                    <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+                                        <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">{{ __('Coupon') }}</h3>
+                                    </div>
+                                    <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+                                        <h3 class="c-font-bold c-font-16">{{ $cart->coupon->percentage }} %</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="row">
                             <div class="c-cart-subtotal-row">

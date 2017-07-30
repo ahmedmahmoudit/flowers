@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use App\Core\Cart\Cart;
+use App\Country;
+use App\Coupon;
 use App\Http\Requests\CreateCouponRequest;
 use App\Http\Requests\UpdateCouponRequest;
+use App\Product;
 use App\Repositories\CouponRepositoryInterface;
+use function GuzzleHttp\Promise\all;
+use Illuminate\Http\Request;
 
 class CouponsController extends Controller
 {
@@ -13,15 +19,33 @@ class CouponsController extends Controller
      * @var $coupon
      */
     private $coupon;
+    /**
+     * @var Coupon
+     */
+    private $couponModel;
+    /**
+     * @var Cart
+     */
+    private $cart;
+    /**
+     * @var Product
+     */
+    private $productModel;
 
     /**
      * CouponController constructor.
      *
      * @param CouponRepositoryInterface $coupon
+     * @param Coupon $couponModel
+     * @param Cart $cart
+     * @param Product $productModel
      */
-    public function __construct(CouponRepositoryInterface $coupon)
+    public function __construct(CouponRepositoryInterface $coupon,Coupon $couponModel, Cart $cart,Product $productModel)
     {
         $this->coupon = $coupon;
+        $this->couponModel = $couponModel;
+        $this->cart = $cart;
+        $this->productModel = $productModel;
     }
 
     /**
@@ -131,4 +155,51 @@ class CouponsController extends Controller
 
         return redirect()->route('coupons.index');
     }
+
+    public function applyCoupon(Request $request)
+    {
+
+        $coupon = $this->couponModel->active()->where('code',$request->coupon)->first();
+
+        if($coupon) {
+
+
+            if(!$coupon->hasEnoughQuantity()) {
+                return redirect()->back()->with('error',__('Coupon has been consumed'));
+            }
+
+            if($coupon->hasExpired()) {
+                return redirect()->back()->with('error',__('Coupon has expired'));
+            }
+
+            $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+
+            $cart = $this->cart->make($products);
+
+            if($cart->grandTotal < $coupon->minimum_charge) {
+
+                return redirect()->back()->with('error',__('minimum amount for this coupon is ' .$coupon->minimum_charge));
+            }
+
+            // check if the store's product is in coupons
+            $couponStores = $coupon->stores->pluck('id');
+            $productStores = collect();
+            $products->map(function($product) use ($productStores) {
+                $productStores->push($product->store->id);
+            });
+            $hasAnyCouponStoresInCart = $productStores->intersect($couponStores);
+            if($hasAnyCouponStoresInCart->count() <= 0) {
+                return redirect()->back()->with('error',__('this coupon is not valid for the items in the cart'));
+            }
+
+            $cart->addCoupon((object) $coupon);
+
+            return redirect()->back()->with('success',__('Coupon applied'));
+
+        }
+
+        return redirect()->back()->with('error',__('Invalid Coupon'));
+
+    }
+
 }

@@ -147,8 +147,8 @@
                         <div data-height="height">
                             <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">{{ __('Customer Details') }}</h3>
                             <ul class="list-unstyled">
-                                <li>{{ __('Name') }}: {{$order->user->name}}</li>
-                                <li>Email: <a href="mailto:{{$order->user->email}}" class="c-theme-color">{{$order->user->email}}</a></li>
+                                <li>{{ __('Customer Name') }}: {{ $order->firstname . ' ' .$order->lastname }}</li>
+                                <li>Email: <a href="mailto:{{$order->email}}" class="c-theme-color">{{$order->email}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -156,17 +156,17 @@
                         <div data-height="height">
                             <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">{{ __('Billing Address') }}</h3>
                             <ul class="list-unstyled">
-                                <li>{{ $order->address->firstname . ' ' . $order->address->lastname  }}</li>
+                                <li>{{ $order->recipient_firstname . ' ' . $order->recipient_lastname  }}</li>
                                 <li>
-                                    {{ __('Block') . ' ' . $order->address->block }},
-                                    {{ __('Street') . ' ' . $order->address->street }}
+                                    {{ __('Block') . ' ' . $order->block }},
+                                    {{ __('Street') . ' ' . $order->street }}
                                     <br>
-                                    {{ $order->address->area->name }},
-                                    {{ $order->address->country->name }}
+                                    {{ $order->area->name }},
+                                    {{ $order->country->name }}
                                     <br>
-                                    {{ $order->address->mobile }}
-                                    @if($order->address->phone)
-                                        , {{ $order->address->phone }},
+                                    {{ $order->mobile }}
+                                    @if($order->phone)
+                                        , {{ $order->phone }},
                                     @endif
                                 </li>
                             </ul>

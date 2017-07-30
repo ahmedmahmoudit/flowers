@@ -54,7 +54,6 @@
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
                                                 <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('explore') }}</a>
-                                                <a href="/img/{{ rand(1,9).'.jpg' }}" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="{{ $store->name }}">{{ __('zoom') }}</a>
                                             </div>
                                         </div>
                                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Core\Cart;
 
+use App\Coupon;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -11,8 +12,10 @@ class Cart {
      */
     private $cart;
 
+    public $actualAmount; // before calculating sale price
     public $subTotal; // before calculating sale price
-    public $grandTotal; // after calculating sale price
+    public $coupon = null;
+    public $grandTotal; // final price
     public $items = []; // Item Collection
 
     /**
@@ -24,7 +27,24 @@ class Cart {
         $this->cart = $cart;
     }
 
-    public function addItem(array $item ) {
+
+    /**
+     * @param Object $coupon
+     *
+     */
+    public function addCoupon($coupon)
+    {
+        return $this->cart->addCoupon($coupon);
+    }
+
+    public function getCoupon()
+    {
+        return $this->cart->getCoupon();
+    }
+
+    public function addItem($item ) {
+
+
         $this->validateItem($item);
         return $this->cart->addItem($item);
     }
@@ -74,23 +94,26 @@ class Cart {
     public function make(Collection $products)
     {
         $this->items = collect([]);
+        $this->coupon = $this->getCoupon();
         $cartItems = $this->getItems();
 
         $products->map(function($product) use ($cartItems) {
-
-//            $finalPrice = $product->detail->is_sale ?
             $cartItem = $cartItems[$product->id];
             $productQuantity = $cartItem['quantity'];
             $product->subTotal = $product->detail->price * $productQuantity;
-            $product->grandTotal = $product->detail->final_price * $productQuantity;
+            $product->total = $product->detail->final_price * $productQuantity;
             $product->quantity = $productQuantity;
             $product->delivery_time = $cartItem['delivery_time'];
             $product->delivery_date = $cartItem['delivery_date'];
             return $this->items->push($product);
         });
 
-        $this->subTotal = $this->items->sum('subTotal');
-        $this->grandTotal = $this->items->sum('grandTotal');
+        $this->actualAmount = $this->items->sum('subTotal');
+        $this->subTotal = $this->items->sum('total'); // actual price
+        $this->grandTotal = $this->coupon ?
+            $this->subTotal - ( ($this->subTotal * $this->coupon->percentage) / 100) :
+            $this->subTotal;
+        ;
 
         return $this;
     }

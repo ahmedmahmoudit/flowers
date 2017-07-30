@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendPaymentEmail;
 use App\Order;
 use Cache;
 use Illuminate\Http\Request;
@@ -36,22 +37,24 @@ class PaymentsController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
         $status = 'success';
         $order = $this->orderModel->with('orderDetails')->where('reference_code',$request->ref)->first();
-        $order->captured_status = 1;
-        $order->payment_method = $request->crdtype;
-        $order->save();
 
-        //@todo : update stock
-//        try {
-//            $this->dispatch(new SendSubscriptionEmail($subscription));
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
-//
-//        try {
-//            $this->dispatch(new SendPaymentEmail($subscription));
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
+        if($order->captured_status != 1) {
+            $order->captured_status = 1;
+            if($order->coupon) {
+                $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
+                $order->coupon->save();
+            }
+            $order->payment_method = $request->crdtype;
+            $order->save();
+
+            try {
+                $this->dispatch(new SendPaymentEmail($order));
+            } catch (\Exception $e) {
+            }
+
+            //@todo: flush cart session
+        }
+
         return view('payment.success',compact('status','order','selectedCountry'));
     }
 }

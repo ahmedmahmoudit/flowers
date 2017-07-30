@@ -23,6 +23,11 @@ class Product extends BaseModel
 
     protected $guarded = ['id'];
 
+    public $deliveryTimes = [
+        'en' =>['2pm'=>'morning 9-2pm','6pm'=>'afternoon 2-6pm','10pm'=>'evening 6-10pm'],
+        'ar' =>['2pm'=>'morning 9-2pm','6pm'=>'afternoon 2-6pm','10pm'=>'evening 6-10pm']
+    ];
+
     /**
      * Get the store that belongs to product.
      */
@@ -95,5 +100,16 @@ class Product extends BaseModel
         return $query->where('store_id', Auth::user()->store->id);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active',1);
+    }
 
+    public function scopeApproved($query)
+    {
+        return $query->leftJoin('stores','products.store_id','stores.id')
+            ->where('products.id',$this->id)
+            ->where('stores.is_approved',1)
+            ;
+    }
 }

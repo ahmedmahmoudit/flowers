@@ -1,5 +1,9 @@
 <?php
 
+
+Route::get('test',function(){
+    return \Carbon\Carbon::now()->toDateString();
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +28,8 @@ Route::get('admin/login', function () {
     Auth::loginUsingId(2);
     return redirect('admin/dashboard');
 });
+
+//dd(\Carbon\Carbon::now()->format('d-m-Y'));
 
 /***************************************************************************************************
 Manager ROUTES
@@ -151,7 +157,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('country/set','LocaleController@setCountry')->name('country.set');
     Route::get('country/{id}/areas','LocaleController@getCountryAreas')->name('country.areas');
     Route::get('stores','StoresController@index')->name('stores.index');
-    Route::get('stores/{slug}','StoresController@show')->name('stores.show');
+    Route::get('stores/{id}/{slug}','StoresController@show')->name('stores.show');
     Route::post('area/set','LocaleController@setArea')->name('area.set');
     Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
     Route::post('cart/add','CartController@addItem')->name('cart.item.add');
@@ -160,7 +166,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('cart','CartController@index')->name('cart.index');
     Route::get('cart/checkout','CheckoutController@index')->name('checkout');
     Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
-    Route::post('cart/coupon/apply','CartController@applyCoupon')->name('coupon.apply');
+    Route::post('cart/coupon/apply','CouponsController@applyCoupon')->name('coupon.apply');
     Route::get('area/select','LocaleController@selectArea')->name('area.select');
 
     Route::get('profile','ProfileController@index')->name('profile');
@@ -172,7 +178,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('payment/process','PaymentsController@processPayment');
 
-    Route::get('home','HomeController@index');
+
+    Route::get('about','PagesController@index')->name('about');
+    Route::get('home','HomeController@index')->name('contact');
     Route::get('/', 'HomeController@index')->name('home');
 
 //    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');

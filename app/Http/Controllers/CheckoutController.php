@@ -79,19 +79,19 @@ class CheckoutController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
 
 //        if(!$user->addresses->count()) {
-            $this->validate($request,[
-                'email' => 'required|email',
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'mobile' => 'required',
-                'country_id' => 'required',
-                'area_id' => 'required',
-                'block' => 'required|integer',
-                'street' => 'required|integer',
-                'recipient_firstname' => 'required',
-                'recipient_lastname' => 'required',
-                'recipient_mobile' => 'required',
-            ]);
+//            $this->validate($request,[
+//                'email' => 'required|email',
+//                'firstname' => 'required',
+//                'lastname' => 'required',
+//                'mobile' => 'required',
+//                'country_id' => 'required',
+//                'area_id' => 'required',
+//                'block' => 'required|integer',
+//                'street' => 'required|integer',
+//                'recipient_firstname' => 'required',
+//                'recipient_lastname' => 'required',
+//                'recipient_mobile' => 'required',
+//            ]);
 //            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
 //            $address = $user->addresses()->create($addressFields);
 //        } else {
@@ -119,6 +119,10 @@ class CheckoutController extends Controller
             'recipient_firstname' => $request->recipient_firstname,
             'recipient_lastname' => $request->recipient_lastname,
             'recipient_mobile' => $request->recipient_mobile,
+            'coupon_id' => $cart->coupon ? $cart->coupon->id : null,
+            'coupon_value' => $cart->coupon ?   ($cart->subTotal * $cart->coupon->percentage) / 100 : null,
+            'order_notes' => $request->order_notes,
+            'card_notes' => $request->card_notes,
         ]);
 
         $storesRelatedToOrder = $products->pluck('store_id')->unique();
@@ -145,7 +149,8 @@ class CheckoutController extends Controller
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
-                'TotalPrice' => $product->grandTotal,
+//                'TotalPrice' => $product->total,
+                'TotalPrice' => $cart->coupon ?  $product->total - ($product->total * $cart->coupon->percentage) / 100 : $product->total,
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
                 'UnitPrice' => $product->detail->final_price,

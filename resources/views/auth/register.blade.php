@@ -58,13 +58,14 @@
                                                         @include('auth.register_form')
 
                                                         <div class="form-group c-margin-t-40">
-                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Register</button>
+                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">{{ __('Register') }}</button>
                                                         </div>
                                                     </div>
                                                 </form>
 
                                             </div>
                                         </div>
+
                                         <div class="tab-pane fade in {{ old('role') && old('role') == '1' ? 'active' : ''  }} " id="c-tab2-opt1-2">
                                             <div class="c-tab-pane">
                                                 <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
@@ -72,24 +73,79 @@
                                                     <div class="col-md-6 col-md-offset-3">
 
                                                         @include('auth.register_form')
+
+                                                        <hr>
+                                                        <h2>{{ __('Store Information') }}</h2>
+
                                                         <div class="form-group">
-                                                            <label class="control-label">{{ __('Minimum Delivery Hours') }} <span class="red">*</span></label>
+                                                            <label class="control-label">{{ __('Store Name Arabic') }} <span class="red">*</span></label>
+                                                            <input type="text" name="store_name_ar" value="{{ old('store_name_ar') }}" class="form-control c-square c-theme" placeholder="{{ __('Store Name Arabic') }}">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Store Name English') }} <span class="red">*</span></label>
+                                                            <input type="text" name="store_name_en" value="{{ old('store_name_en') }}" class="form-control c-square c-theme" placeholder="{{ __('Store Name English') }}">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Store Email Address') }} <span class="red">*</span></label>
+                                                            <input type="text" name="store_email" value="{{ old('store_email') }}" class="form-control c-square c-theme" placeholder="{{ __('Store Email Address') }}">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Store Phone') }} <span class="red">*</span></label>
+                                                            <input type="text" name="store_phone" value="{{ old('store_phone') }}" class="form-control c-square c-theme" placeholder="{{ __('Store Phone') }}">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Store Country') }} <span class="red">*</span></label>
+                                                            <select class="form-control c-square c-theme" name="country_id" required>
+                                                                @foreach($countries as $country)
+                                                                    <option value="{{$country->id}}" @if(old('country_id') == $country->id) selected @endif>{{ $country->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Minimum Delivery Days') }} <span class="red">*</span></label>
                                                             <input type="text" name="minimum_delivery_days" value="{{ old('minimum_delivery_days') }}" class="form-control c-square c-theme" placeholder="{{ __('ex: 1') }}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label">{{ __('Start Week Day') }} <span class="red">*</span></label>
-                                                            <input type="text" name="start_week_day" value="{{ old('start_week_day') }}" class="form-control c-square c-theme" placeholder="{{ __('Start Week Day') }}">
+                                                            <label class=" control-label"> {{ __('Start Week Day:') }}
+                                                                <span class="required" style="color: red;"> * </span>
+                                                            </label>
+                                                            <select class="form-control c-square c-theme" name="start_week_day" required>
+                                                                <option value="saturday" @if(old('start_week_day') === 'saturday') selected @endif>{{ __('Saturday') }}</option>
+                                                                <option value="sunday" @if(old('start_week_day') === 'sunday') selected @endif>{{ __('Sunday') }}</option>
+                                                                <option value="monday" @if(old('start_week_day') === 'monday') selected @endif>{{ __('Monday') }}</option>
+                                                                <option value="tuesday" @if(old('start_week_day') === 'tuesday') selected @endif>{{ __('Tuesday') }}</option>
+                                                                <option value="wednesday" @if(old('start_week_day') === 'wednesday') selected @endif>{{ __('Wednesday') }}</option>
+                                                                <option value="thursday" @if(old('start_week_day') === 'thursday') selected @endif>{{ __('Thursday') }}</option>
+                                                                <option value="friday" @if(old('start_week_day') === 'friday') selected @endif>{{ __('Friday') }}</option>
+                                                            </select>
+                                                            <p class="help-block">{{ __('Select start of your business week day') }}</p>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label">{{ __('End Week Day') }} <span class="red">*</span></label>
-                                                            <input type="text" name="end_week_day" value="{{ old('end_week_day') }}" class="form-control c-square c-theme" placeholder="{{ __('End Week Day') }}">
+                                                            <label class=" control-label"> {{ __('End Week Day:') }}
+                                                                <span class="required" style="color: red;"> * </span>
+                                                            </label>
+                                                            <select  class="form-control c-square c-theme" name="end_week_day" required>
+                                                                <option value="saturday" @if(old('end_week_day') === 'saturday') selected @endif>{{ __('Saturday') }}</option>
+                                                                <option value="sunday" @if(old('end_week_day') === 'sunday') selected @endif>{{ __('Sunday') }}</option>
+                                                                <option value="monday" @if(old('end_week_day') === 'monday') selected @endif>{{ __('Monday') }}</option>
+                                                                <option value="tuesday" @if(old('end_week_day') === 'tuesday') selected @endif>{{ __('Tuesday') }}</option>
+                                                                <option value="wednesday" @if(old('end_week_day') === 'wednesday') selected @endif>{{ __('Wednesday') }}</option>
+                                                                <option value="thursday" @if(old('end_week_day') === 'thursday') selected @endif>{{ __('Thursday') }}</option>
+                                                                <option value="friday" @if(old('end_week_day') === 'friday') selected @endif>{{ __('Friday') }}</option>
+                                                            </select>
+                                                            <p class="help-block">{{ __('Select end of your business week day') }}</p>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">{{ __('Instagram Username') }} </label>
                                                             <input type="text" name="instagram_username" value="{{ old('instagram_username') }}" class="form-control c-square c-theme" placeholder="{{ __('Full Name') }}">
                                                         </div>
                                                         <div class="form-group c-margin-t-40">
-                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Register</button>
+                                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">{{ __('Register') }}</button>
                                                         </div>
                                                     </div>
                                                 </form>

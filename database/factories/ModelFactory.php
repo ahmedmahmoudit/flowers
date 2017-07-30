@@ -90,7 +90,8 @@ $factory->define(App\Coupon::class, function (Faker\Generator $faker) {
         'percentage' => $faker->numberBetween(5, 20),
         'code' => $faker->randomLetter . $faker->randomLetter . $faker->randomLetter . $faker->randomLetter,
         'minimum_charge' => $faker->numberBetween(100, 200),
-        'due_date' => new \Carbon\Carbon('+2 week'),
+        'expiry_date' => new \Carbon\Carbon('+2 week'),
+        'quantity_left' => rand(0,100)
     ];
 
 });

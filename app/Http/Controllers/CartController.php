@@ -6,6 +6,7 @@ use App\Country;
 use App\Http\Requests;
 use App\Core\Cart\Cart;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -45,8 +46,6 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        //@todo: check for enough quantity
-
         $formDatas = $request->except('_token');
 
         $cartMessages = '';
@@ -55,17 +54,27 @@ class CartController extends Controller
             if(str_contains($key,'quantity')) {
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
                 $productID = substr($key,9);
-                $product = $this->productModel->with('detail')->find($productID);
+                $product = $this->productModel
+                    ->has('detail')
+                    ->whereHas('store',function($q) {
+                        $q->where('is_approved',1);
+                    })
+                    ->with(['detail'])->active()->find($productID);
 
                 // check for enough quantity
-                if((int) $value > $product->detail->quantity) {
-                    $cartMessages .= empty($cartMessages ? '' : ' .');
-                    $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
-                } else {
-                    try {
-                        $this->cart->addItem(['id'=>$productID,'quantity'=>(int) $value]);
-                    } catch(\Exception $e) {
-                        return redirect()->back()->with('error',$e->getMessage());
+                if($product){
+                    if((int) $value > $product->detail->quantity) {
+                        $cartMessages .= empty($cartMessages ? '' : ' .');
+                        $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
+                    } else {
+                        try {
+                            $this->cart->updateItem([
+                                'id'=> $productID,
+                                'quantity'=>(int) $value]
+                            );
+                        } catch(\Exception $e) {
+                            return redirect()->back()->with('error',$e->getMessage());
+                        }
                     }
                 }
             }
@@ -88,30 +97,45 @@ class CartController extends Controller
 
     public function addItem(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',
             'delivery_date' => 'required',
             'delivery_time' => 'required',
         ]);
 
-        $product = $this->productModel->with('detail')->find($request->product_id);
+        $product = $this->productModel
+            ->has('detail')
+            ->whereHas('store', function ($q) {
+//                $q->where('is_approved', 1);
+            })
+            ->with(['detail', 'store'])->active()->find($request->product_id);
 
-        if($product->detail->in_stock) {
+        if ($product) {
+            $deliveryDate = Carbon::parse($request->delivery_date)->toDateString();
+            $storeMinimumDeliveryDate = $product->store->minimum_delivery_days;
+            $minimumDeliveryDate = Carbon::now()->addDays($storeMinimumDeliveryDate)->toDateString();
 
-            $this->cart->addItem([
-                    'id'=>$request->product_id,
-                    'quantity'=> (int) $request->quantity,
-                    'delivery_date' => $request->delivery_date,
-                    'delivery_time' => $request->delivery_time
-                ]
-            );
-            return redirect()->back();
+            if($deliveryDate < $minimumDeliveryDate) {
+                return redirect()->back()->with('error',__('Cannot deliver before '.$minimumDeliveryDate));
+            }
+
+            if ($product->detail->in_stock) {
+                $this->cart->addItem([
+                        'id'            => $request->product_id,
+                        'quantity'      => (int)$request->quantity,
+                        'delivery_date' => $request->delivery_date,
+                        'delivery_time' => $request->delivery_time
+                    ]
+                );
+                return redirect()->back();
+            } else {
+                return redirect()->back()->with('error', __('Product is Out of Stock'))->withInput();
+            }
 
         } else {
-            return redirect()->back()->with('error',__('Product is Out of Stock'));
+            return redirect()->back()->with('error', __('Cannot add this product to the cart'))->withInput();
         }
-
     }
 
     public function getCartItemCount()
