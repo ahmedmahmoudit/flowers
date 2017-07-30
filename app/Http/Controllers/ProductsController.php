@@ -207,12 +207,18 @@ class ProductsController extends Controller
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-        $priceRangeMin = 1;
+//        $priceRangeMin = 1;
         $priceRangeMax  = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
             ->first()
             ->maxprice
+        ;
+        $priceRangeMin  = DB::table('product_details')
+            ->select(DB::raw('Min(price) as minprice'))
+            ->get()
+            ->first()
+            ->minprice
         ; // @todo: refactor query
 
         $sort = $request->sort;
@@ -293,7 +299,13 @@ class ProductsController extends Controller
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-        $priceRangeMin = 1;
+//        $priceRangeMin = 1;
+        $priceRangeMin  = DB::table('product_details')
+            ->select(DB::raw('Min(price) as minprice'))
+            ->get()
+            ->first()
+            ->minprice
+        ; // @todo: refactor query
         $priceRangeMax  = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
