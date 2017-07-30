@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCampaignRequest;
 use App\Mail\Campaign;
 use App\Newsletter;
+use App\Store;
 use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
@@ -37,6 +38,29 @@ class NewsletterController extends Controller
         foreach ($subscribers as $subscriber) {
 
             Mail::to($subscriber->email)->queue(new Campaign($subscriber, $request->title, $request->body));
+
+        }
+
+        return redirect()->route('manager.newsletter.index')->with('success', 'campaign sent successfully');
+    }
+
+    public function storesCampaignView()
+    {
+        return view('backend.manager.newsletter.create_campaign_stores');
+    }
+
+    public function sendStoresCampaign(CreateCampaignRequest $request, Store $stores)
+    {
+        $subscribers = $stores::all();
+
+        foreach ($subscribers as $subscriber) {
+
+            Mail::to($subscriber->email)->queue(new Campaign($subscriber, $request->title, $request->body));
+
+            if($subscriber->second_email)
+            {
+                Mail::to($subscriber->second_email)->queue(new Campaign($subscriber, $request->title, $request->body));
+            }
 
         }
 

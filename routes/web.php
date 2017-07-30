@@ -85,6 +85,8 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     ]]);
     Route::get('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsletterController@campaignView']);
     Route::post('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsletterController@sendCampaign']);
+    Route::get('newsletter/mail/stores', ['as' => 'newsletter.mailStores', 'uses' => 'NewsletterController@storesCampaignView']);
+    Route::post('newsletter/mail/stores', ['as' => 'newsletter.mailStores', 'uses' => 'NewsletterController@sendStoresCampaign']);
     Route::post('newsletter/{newsletter}/disable', ['as' => 'newsletter.disable', 'uses' => 'NewsletterController@disable']);
     Route::post('newsletter/{newsletter}/activate', ['as' => 'newsletter.activate', 'uses' => 'NewsletterController@activate']);
 
