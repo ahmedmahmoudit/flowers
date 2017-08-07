@@ -178,4 +178,19 @@ class StoresController extends Controller
         return redirect()->route('stores.index');
     }
 
+    /**
+     * rate store
+     *
+     * @return mixed
+     */
+    public function userRate($token)
+    {
+        return view('store_rate');
+    }
+
+    public function saveUserRate(Request $request)
+    {
+        dd($request);
+    }
+
 }

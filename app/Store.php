@@ -41,6 +41,11 @@ class Store extends BaseModel
         return $this->hasMany('App\Product')->select(array('id'));
     }
 
+    public function deliveryTimes()
+    {
+        return $this->hasMany('App\StoreDeliveryTime');
+    }
+
     /**
      * The areas that belong to the store.
      */
@@ -59,7 +64,7 @@ class Store extends BaseModel
 
     public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\User');
     }
 
     public function orders()

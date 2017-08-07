@@ -41,7 +41,11 @@
                                     <td>{{$order->user->name or 'No Name'}}</td>
                                     <td>{{$order->order_email}}</td>
                                     <td>{{$order->order_address}}</td>
-                                    <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
+                                    @if($order->delivery_date)
+                                        <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
+                                    @else
+                                        <td>{{$order->delivery_time}}</td>
+                                    @endif
                                     <td>{{$order->payment_method}}</td>
                                     <td>{{$order->orderStatusCast($order->order_status)}}</td>
                                     @if(Auth::user()->isManager())

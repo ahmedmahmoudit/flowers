@@ -25,6 +25,9 @@ class Order extends BaseModel
             case '-1':
                 return $this->attributes['order_status'] = 'Pending';
                 break;
+            case '1':
+                return $this->attributes['order_status'] = 'Pending';
+                break;
             case '2':
                 return $this->attributes['order_status'] = 'Shipped';
                 break;
@@ -35,7 +38,7 @@ class Order extends BaseModel
                 return $this->attributes['order_status'] = 'Cancelled';
                 break;
             default:
-                return $this->attributes['order_status'] = 'Error!';
+                return $this->attributes['order_status'] = 'Un-known!';
         }
     }
 

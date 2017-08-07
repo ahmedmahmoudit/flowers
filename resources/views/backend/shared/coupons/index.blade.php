@@ -42,7 +42,7 @@
                                     <td>{{$coupon->code}}</td>
                                     <td>{{$coupon->percentage}}</td>
                                     <td>{{$coupon->minimum_charge}}</td>
-                                    <td>{{$coupon->due_date->format('d-m-Y')}}</td>
+                                    <td>@if($coupon->due_date){{$coupon->due_date->format('d-m-Y')}}@else {{'No Due Date'}} @endif</td>
                                     <td>{{($coupon->is_limited == '-1' ? 'Open' : 'Limited to '.$coupon->is_limited.' use')}}</td>
                                     <td>
                                         @if($coupon->consumed == '1')
