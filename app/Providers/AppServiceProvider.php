@@ -36,19 +36,19 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-//        if(!Cache::has('countries')) {
-//            Cache::put('countries',Country::all()->toArray(),60 * 24);
-//        }
+        if(!Cache::has('countries')) {
+            Cache::put('countries',Country::all()->toArray(),60 * 24);
+        }
 
-//        if(!Cache::has('selectedCountry')) {
-//            $country = Country::where('name_en','kuwait')->first()->toArray();
-//            Cache::put('selectedCountry',$country,60 * 24);
-//            Cache::put('selectedCountryID',$country['id'],60 * 24);
-//        }
+        if(!Cache::has('selectedCountry')) {
+            $country = Country::where('name_en','kuwait')->first()->toArray();
+            Cache::put('selectedCountry',$country,60 * 24);
+            Cache::put('selectedCountryID',$country['id'],60 * 24);
+        }
 
-//        if(!Cache::has('selectedArea')) {
-//            Cache::put('selectedArea',false, 60 * 24);
-//        }
+        if(!Cache::has('selectedArea')) {
+            Cache::put('selectedArea',false, 60 * 24);
+        }
 
 
         $this->app->bind(Billing::class, TapBilling::class);
