@@ -22,6 +22,7 @@ use Cache;
 use Illuminate\Support\ServiceProvider;
 use IZaL\Tap\Billing;
 use IZaL\Tap\TapBilling;
+use Laravel\Dusk\DuskServiceProvider;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -86,6 +87,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
             $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
             $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+            $this->app->register(DuskServiceProvider::class);
+
         }
     }
 }
