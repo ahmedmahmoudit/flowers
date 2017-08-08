@@ -40,11 +40,11 @@ class AppServiceProvider extends ServiceProvider
             Cache::put('countries',Country::all()->toArray(),60 * 24);
         }
 
-        if(!Cache::has('selectedCountry')) {
-            $country = Country::where('name_en','kuwait')->first()->toArray();
-            Cache::put('selectedCountry',$country,60 * 24);
-            Cache::put('selectedCountryID',$country['id'],60 * 24);
-        }
+//        if(!Cache::has('selectedCountry')) {
+//            $country = Country::where('name_en','kuwait')->first()->toArray();
+//            Cache::put('selectedCountry',$country,60 * 24);
+//            Cache::put('selectedCountryID',$country['id'],60 * 24);
+//        }
 
         if(!Cache::has('selectedArea')) {
             Cache::put('selectedArea',false, 60 * 24);
