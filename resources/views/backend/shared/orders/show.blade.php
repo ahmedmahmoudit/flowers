@@ -67,7 +67,7 @@
 
                             <div class="col-xs-6">
                                 <label>Delivery Date</label>
-                                <p>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</p>
+                                {{--<p>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</p>--}}
                                 <p class="help-block"></p>
                             </div>
                         </div>
