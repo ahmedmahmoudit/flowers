@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMinimumDeliveryDateToStoresTable extends Migration
+class RemoveUserIdFromStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class AddMinimumDeliveryDateToStoresTable extends Migration
     public function up()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->string('minimum_delivery_days')->default(0)->after('image')->comment('use 0 for same day delivery');
+            $table->dropForeign('stores_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 
@@ -25,7 +26,8 @@ class AddMinimumDeliveryDateToStoresTable extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->dropColumn('minimum_delivery_days');
+            $table->integer('user_id')->unsigned()->nullable()->after('country_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 }

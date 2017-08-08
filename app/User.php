@@ -83,7 +83,7 @@ class User extends Authenticatable
      */
     public function store()
     {
-        return $this->hasOne('App\Store');
+        return $this->belongsTo('App\Store');
     }
 
     public function scopeDaily($query)

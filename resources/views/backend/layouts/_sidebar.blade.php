@@ -139,8 +139,9 @@
                         <i class="fa fa-newspaper-o"></i> <span>Newsletter</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> Subscribers</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'index') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> Subscribers</a></li>
                         <li class="{{ (str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.campaign') }}"><i class="fa fa-circle-o"></i> Campaign </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'mail') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.mailStores') }}"><i class="fa fa-circle-o"></i> Email To Stores </a></li>
                     </ul>
                 </li>
 

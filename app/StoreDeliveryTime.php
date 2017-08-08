@@ -17,4 +17,12 @@ class StoreDeliveryTime extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = ['id'];
+
+    /**
+     * Get the store that belongs to product.
+     */
+    public function store()
+    {
+        return $this->belongsTo('App\Store');
+    }
 }

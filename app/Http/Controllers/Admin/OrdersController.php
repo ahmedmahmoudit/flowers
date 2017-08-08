@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderStatusUpdate;
+use App\Mail\StoreRateMail;
 use App\Repositories\OrderRepositoryInterface;
+use App\StoreRate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
@@ -75,6 +77,7 @@ class OrdersController extends Controller
     public function orderShipped($id)
     {
         $order = $this->order->getById($id);
+        $userEmail = $order->order_email ? $order->order_email : $order->user->email;
         if($order->stores->count() > 1)
         {
             $pendingOrderStores = $order->stores->filter(function ($order) {
@@ -96,7 +99,7 @@ class OrdersController extends Controller
 
             $order = $this->order->getById($id);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Shipped', $isLastPart));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Shipped', $isLastPart));
         }
         else
         {
@@ -108,7 +111,7 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
             $status = $order->orderStatusCast($order->order_status);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, $status));
 
         }
 
@@ -125,6 +128,7 @@ class OrdersController extends Controller
     public function orderCompleted($id)
     {
         $order = $this->order->getById($id);
+        $userEmail = $order->order_email ? $order->order_email : $order->user->email;
         if($order->stores->count() > 1)
         {
             $pendingOrderStores = $order->stores->filter(function ($order) {
@@ -146,7 +150,7 @@ class OrdersController extends Controller
 
             $order = $this->order->getById($id);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Completed', $isLastPart));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Completed', $isLastPart));
         }
         else
         {
@@ -158,9 +162,26 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
             $status = $order->orderStatusCast($order->order_status);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, $status));
 
         }
+
+        //create store rate record to make user send feedback about store
+        do
+        {
+            $token = sha1(time());
+            $checkUnique = StoreRate::where('token', $token)->first();
+        }
+        while(!empty($checkUnique));
+
+        StoreRate::create([
+            'user_id' => $order->user_id,
+            'store_id' => Auth::user()->store->id,
+            'token' => $token,
+        ]);
+
+        Mail::to($userEmail)->queue(new StoreRateMail($order->user->name, Auth::user()->store->name, $token));
+
 
         return route(Request::segment(1).'.orders.show', $order->id);
     }
@@ -175,6 +196,7 @@ class OrdersController extends Controller
     public function orderCancelled($id)
     {
         $order = $this->order->getById($id);
+        $userEmail = $order->order_email ? $order->order_email : $order->user->email;
         if($order->stores->count() > 1)
         {
             $pendingOrderStores = $order->stores->filter(function ($order) {
@@ -196,7 +218,7 @@ class OrdersController extends Controller
 
             $order = $this->order->getById($id);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, 'Cancelled', $isLastPart));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Cancelled', $isLastPart));
         }
         else
         {
@@ -208,7 +230,7 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
             $status = $order->orderStatusCast($order->order_status);
 
-            Mail::to($order->order_email)->queue(new OrderStatusUpdate($order, $status));
+            Mail::to($userEmail)->queue(new OrderStatusUpdate($order, $status));
 
         }
 

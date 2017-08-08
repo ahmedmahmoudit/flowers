@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
+use App\Http\Requests\UpdateStoreSettingsRequest;
 use App\Repositories\StoreRepositoryInterface;
+use App\StoreDeliveryTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Intervention\Image\Facades\Image;
@@ -200,13 +202,87 @@ class StoresController extends Controller
     public function settings()
     {
         $store = Auth::user()->store;
-        return view('backend.admin.settings', compact('store'));
+        $deliveryList = $store->deliveryTimes->pluck('type')->toArray();
+
+        return view('backend.admin.settings', compact('store','deliveryList'));
     }
 
-    public function settingsUpdate(\Illuminate\Http\Request $request)
+    public function settingsUpdate(UpdateStoreSettingsRequest $request)
     {
-        $attributes = $request->only(['minimum_delivery_days', 'start_week_day', 'end_week_day']);
+        $imageUpload = $request->only(['image']);
+        $delivery = $request->only([
+            'delivery_time1',
+            'delivery_time2',
+            'delivery_time3'
+        ]);
+        $attributes = $request->only([
+            'name_en',
+            'name_ar',
+            'phone',
+            'email',
+            'second_email',
+            'instagram_username',
+            'minimum_delivery_days',
+            'start_week_day',
+            'end_week_day'
+        ]);
+
+        if($imageUpload['image'])
+        {
+            $imageName = str_random(15);
+            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
+            $attributes['image'] = $imageName.'.jpg';
+        }
+
         $this->store->update(Auth::user()->store->id, $attributes);
+
+        $store = Auth::user()->store;
+        $deliveryList = $store->deliveryTimes->pluck('type')->toArray();
+        $result = array_diff(array_filter($delivery), $deliveryList);
+        $toRemoveResult = array_diff(array_filter($deliveryList), $delivery);
+
+        if(count($toRemoveResult) > 0)
+        {
+            foreach ($toRemoveResult as $deliveryTime)
+            {
+                StoreDeliveryTime::where([
+                    'store_id' => Auth::user()->store->id,
+                    'type' => $deliveryTime
+                ])->delete();
+            }
+        }
+
+        if(isset($result['delivery_time1']))
+        {
+            StoreDeliveryTime::create([
+                'store_id' => Auth::user()->store->id,
+                'from' => date("H:i:s", strtotime("09:00 AM")),
+                'to' => date("H:i:s", strtotime("02:00 PM")),
+                'type' => 1
+            ]);
+        }
+
+        if(isset($result['delivery_time2']))
+        {
+            StoreDeliveryTime::create([
+                'store_id' => Auth::user()->store->id,
+                'from' => date("H:i:s", strtotime("02:00 PM")),
+                'to' => date("H:i:s", strtotime("06:00 PM")),
+                'type' => 2
+            ]);
+        }
+
+        if(isset($result['delivery_time3']))
+        {
+            StoreDeliveryTime::create([
+                'store_id' => Auth::user()->store->id,
+                'from' => date("H:i:s", strtotime("06:00 PM")),
+                'to' => date("H:i:s", strtotime("10:00 PM")),
+                'type' => 3
+            ]);
+        }
+
+
 
         return redirect()->route('admin.settings');
     }
