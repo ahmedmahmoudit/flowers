@@ -100,7 +100,7 @@ $factory->define(App\Coupon::class, function (Faker\Generator $faker) {
 $factory->define(App\Product::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'store_id' => \App\Store::find(1)->id ? \App\Store::find(1)->id : $factory->create(App\Store::class)->id,
+        'store_id' => \App\Store::all()->random()->id,
         'sku' => $faker->randomLetter . $faker->randomLetter . $faker->randomLetter . $faker->randomLetter.$faker->randomNumber(),
         'name_en' => $faker->name,
         'name_ar' => $faker->name,
@@ -113,7 +113,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) use ($fac
 $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'product_id' => \App\Product::find(1)->id ? \App\Product::find(1)->id : $factory->create(App\Product::class)->id,
+        'product_id' => \App\Product::all()->random()->id,
         'weight' => $faker->numberBetween(50, 200),
         'is_sale' => $faker->boolean(90),
         'sale_price' => rand(1,100),
@@ -123,7 +123,7 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
         'quantity' => $faker->numberBetween(50, 100),
         'description_en' => $faker->text(20),
         'description_ar' => $faker->text(20),
-        'main_image' => $faker->imageUrl(400, 200),
+        'main_image' => 'test.jpg',
     ];
 
 });
@@ -131,8 +131,8 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
 $factory->define(App\ProductImage::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'product_id' => \App\Product::find(1)->id ? \App\Product::find(1)->id : $factory->create(App\Product::class)->id,
-        'image' => $faker->imageUrl(400, 200),
+        'product_id' => \App\Product::all()->random()->id,
+        'image' => 'test.jpg',
     ];
 
 });
@@ -140,7 +140,7 @@ $factory->define(App\ProductImage::class, function (Faker\Generator $faker) use 
 $factory->define(App\Order::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-//        'user_id' => \App\User::find(1)->id ? \App\User::find(1)->id : $factory->create(App\User::class)->id,
+        'user_id' => \App\User::all()->random()->id,
         'sale_amount' => $faker->numberBetween(20, 50),
         'net_amount' => $faker->numberBetween(50, 200),
         'payment_method' => 'tab',
@@ -159,8 +159,8 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) use ($facto
 $factory->define(App\OrderDetail::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'order_id' => \App\Order::find(1)->id ? \App\Order::find(1)->id : $factory->create(App\Order::class)->id,
-        'product_id' => \App\Product::find(1)->id ? \App\Product::find(1)->id : $factory->create(App\Product::class)->id,
+        'order_id' => \App\Order::all()->random()->id,
+        'product_id' => \App\Product::all()->random()->id,
         'price' => $faker->numberBetween(20, 50),
         'sale_price' => $faker->numberBetween(20, 50),
         'quantity' => $faker->numberBetween(50, 100),
