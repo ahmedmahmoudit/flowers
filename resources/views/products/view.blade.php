@@ -32,7 +32,7 @@
         $('#delivery-time').hide();
 
         $('.select-time').on("click",function(){
-          $(".bs-example-modal-lg").trigger('click');
+          $("#time-picker-modal").trigger('click');
           var time =  $(this).data("time");
           var value =  $(this).data("value");
           $('input[name="delivery_time"]').val(time);
@@ -178,12 +178,13 @@
                                                     </label>
 
 
-                                                    <button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">
-                                                        Launch default modal
-                                                    </button>
+                                                    {{--<button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">--}}
+                                                        {{--Launch default modal--}}
+                                                    {{--</button>--}}
 
-                                                    <span type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
-                                                          id="delivery-time-result" style="display: block;background: white"
+                                                    <button type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
+                                                          id="delivery-time-result" style="display: block;background: white; border:none;padding:0"
+
                                                     >
                                                         <span style="padding:0;margin:0" >
                                                             @if(old('delivery_time'))
@@ -194,7 +195,7 @@
                                                                 </span>
                                                             @endif
                                                         </span>
-                                                    </span>
+                                                    </button>
 
                                                     <div class="modal fade" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog ">
