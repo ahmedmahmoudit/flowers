@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Cart\Cart;
 use App\Http\Requests\UpdateUserRequest;
 use App\Order;
 use App\Repositories\UserRepositoryInterface;
@@ -15,19 +16,25 @@ class ProfileController extends Controller
      * @var Order
      */
     private $orderModel;
+    /**
+     * @var Cart
+     */
+    private $cart;
 
     /**
      * UserController constructor.
      *
      * @param User $userModel
      * @param Order $orderModel
+     * @param Cart $cart
      * @internal param UserRepositoryInterface $user
      */
-    public function __construct(User $userModel,Order $orderModel)
+    public function __construct(User $userModel,Order $orderModel, Cart $cart)
     {
         $this->userModel = $userModel;
         $this->middleware('auth');
         $this->orderModel = $orderModel;
+        $this->cart = $cart;
     }
 
     public function index()
@@ -45,15 +52,18 @@ class ProfileController extends Controller
     public function getOrders()
     {
         $user = \Auth::user();
-//        dd($user);
-        return view('profile.orders', ['user' => $user]);
+
+        $orders = $user->load('orders.detailExcerpt.product.detail');
+
+
+        return view('profile.orders', compact('user'));
     }
 
-    public function getOrderDetail($id)
+    public function getOrderDetail($invoiceID)
     {
+        dd($invoiceID);
         $user = \Auth::user();
-        $user->load('orders');
-        $order = $user->orders()->where('id',$id)->first();
+        $order = $this->orderModel->where('invoice_id',$invoiceID)->first();
 
         if(!$order) {
             return redirect()->back()->with('warning',__('Unknown Order'));
@@ -66,7 +76,9 @@ class ProfileController extends Controller
     public function getFavorites()
     {
         $user = \Auth::user();
-        return view('profile.favorites', ['user' => $user]);
+        $user->load('productLikes');
+        $cartItems = $this->cart->getItems();
+        return view('profile.favorites', ['user' => $user,'cartItems'=>$cartItems]);
     }
 
     public function getLogout()

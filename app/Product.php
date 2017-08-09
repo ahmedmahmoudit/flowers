@@ -73,8 +73,6 @@ class Product extends BaseModel
         return $this->hasOne(ProductDetail::class);
     }
 
-
-
 //    public function isOnSale()
 //    {
 //        if (!$this->relationLoaded('detail')) {

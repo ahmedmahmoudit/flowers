@@ -103,4 +103,5 @@ class User extends Authenticatable
         return $query->whereYear('created_at', date('Y'));
     }
 
+
 }

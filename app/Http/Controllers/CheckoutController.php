@@ -6,6 +6,7 @@ use App\Core\Cart\Cart;
 use App\Country;
 use App\Order;
 use App\Product;
+use Auth;
 use Cache;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -103,6 +104,7 @@ class CheckoutController extends Controller
 
         //@todo: migrate new columns
         $order = $this->orderModel->create([
+            'user_id' => Auth::user() ? Auth::user()->id : null,
             'net_amount' => $cart->subTotal,
             'sale_amount' => $cart->grandTotal,
             'order_status' => 1, // pending order
