@@ -14,7 +14,7 @@
     <div class="c-content-box c-size-md c-bg-white">
         <div class="container">
             <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold ">{{ __('Stores near ') . $area['name_'.app()->getLocale()]  }}</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold ">{{ __('Stores in ') . $country['name_'.app()->getLocale()]  }}</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
 
@@ -36,6 +36,7 @@
                         </li>
                     @endforeach
                 </ul>
+                <div class="clearfix"></div>
 
             @else
 
@@ -43,7 +44,6 @@
                     <div class="c-content-latest-works cbp cbp-l-grid-masonry-projects">
 
                         @foreach($stores as $store)
-
                             <div class="cbp-item web-design logos " data-wow-delay="0.2s">
                                 <div class="cbp-caption">
                                     <div class="cbp-caption-defaultWrap">
@@ -63,10 +63,14 @@
                                 </a>
                             </div>
                         @endforeach
-                        @endif
 
                     </div>
                 </div>
+            @endif
+
+            <div class="text-center" style="padding:50px 0">
+                {{ $stores->appends(request()->except('page'))->links('partials.pagination') }}
+            </div>
         </div>
     </div>
 @endsection

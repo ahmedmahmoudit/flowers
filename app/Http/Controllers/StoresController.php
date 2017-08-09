@@ -52,11 +52,11 @@ class StoresController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
         $stores = $this->storeModel->with('areas')->approved()->whereHas('areas',function($q) use ($selectedCountry) {
             $q->where('areas.country_id',$selectedCountry['id']);
-        })->paginate(12);
+        })->paginate(100);
 
         $viewType = $request->has('type') && $request->type == 'list' ? 'list' : 'grid';
 
-        return view('stores.index', ['stores' => $stores,'area'=>$selectedArea,'viewType'=>$viewType]);
+        return view('stores.index', ['stores' => $stores,'country'=>$selectedCountry,'viewType'=>$viewType]);
     }
 
     public function show($id,$slug)

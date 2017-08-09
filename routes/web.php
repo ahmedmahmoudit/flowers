@@ -15,9 +15,6 @@ Route::get('test',function(){
 |
 */
 
-Route::get('login', function () {
-    return 'login page';
-});
 
 Route::get('manager/login', function () {
     Auth::loginUsingId(1);

@@ -179,11 +179,11 @@
 
 
                                                     {{--<button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">--}}
-                                                        {{--Launch default modal--}}
+                                                    {{--Launch default modal--}}
                                                     {{--</button>--}}
 
                                                     <button type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
-                                                          id="delivery-time-result" style="display: block;background: white; border:none;padding:0"
+                                                            id="delivery-time-result" style="display: block;background: white; border:none;padding:0"
 
                                                     >
                                                         <span style="padding:0;margin:0" >
@@ -207,12 +207,10 @@
                                                                 <div class="modal-body text-center">
                                                                     <input type="hidden" value="{{ old('delivery_time') }}" name="delivery_time"/>
                                                                     @foreach($deliveryTimes as $key => $time)
-                                                                        <div class="">
-                                                                            <a class="col-md-3 btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
-                                                                               data-value="{{$time}}"
-                                                                            @if(old('delivery_time') == $key ? 'active' : '') @endif
-                                                                            >{{ $time }}</a>
-                                                                        </div>
+                                                                        <a class=" btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
+                                                                           data-value="{{$time}}"
+                                                                        @if(old('delivery_time') == $key ? 'active' : '') @endif
+                                                                        >{{ $time }}</a>
                                                                     @endforeach
                                                                 </div>
 
