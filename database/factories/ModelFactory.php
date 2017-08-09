@@ -18,7 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('asdasd'),
+        'password' => $password ?: $password = bcrypt('password'),
         'api_token' => str_random(60),
         'remember_token' => str_random(10),
     ];
@@ -38,7 +38,7 @@ $factory->define(App\Country::class, function (Faker\Generator $faker) {
 $factory->define(App\Store::class, function (Faker\Generator $faker) use ($factory) {
 
     return [
-        'country_id' => \App\Country::find(1)->id ? \App\Country::find(1)->id : $factory->create(App\Country::class)->id,
+        'country_id' => \App\Country::all()->random()->id,
         'name_en' => $faker->name,
         'name_ar' => $faker->name,
         'slug_en' => str_random(5),
@@ -46,6 +46,7 @@ $factory->define(App\Store::class, function (Faker\Generator $faker) use ($facto
         'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'is_approved' => '1',
+        'image' => 'test.jpg'
     ];
 });
 
@@ -53,8 +54,7 @@ $factory->define(App\Slider::class, function (Faker\Generator $faker) {
 
     return [
 
-        'image' => $faker->imageUrl(800, 400),
-
+        'image' => 'test.jpg',
         'order' => $faker->unique()->numberBetween(1, 5),
     ];
 
@@ -134,7 +134,6 @@ $factory->define(App\ProductImage::class, function (Faker\Generator $faker) use 
         'product_id' => \App\Product::all()->random()->id,
         'image' => 'test.jpg',
     ];
-
 });
 
 $factory->define(App\Order::class, function (Faker\Generator $faker) use ($factory) {
@@ -166,4 +165,10 @@ $factory->define(App\OrderDetail::class, function (Faker\Generator $faker) use (
         'quantity' => $faker->numberBetween(50, 100),
     ];
 
+});
+
+$factory->define(App\Ad::class, function (Faker\Generator $faker) use ($factory) {
+    return [
+        'image' => 'test.jpg',
+    ];
 });

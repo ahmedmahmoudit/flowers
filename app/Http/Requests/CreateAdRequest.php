@@ -25,8 +25,8 @@ class CreateAdRequest extends FormRequest
     {
         return [
             'image' => 'mimes:jpeg,jpg,png,gif|required|max:3000',
-            'order' => 'required',
-            'link'  => 'required',
+//            'order' => 'required',
+//            'link'  => 'required',
         ];
     }
 }

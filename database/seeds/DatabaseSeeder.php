@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
         'orders',
         'order_details',
         'users',
-        'addresses'
+        'addresses',
+        'ads'
 
     ];
 
@@ -65,6 +66,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategoriesTableSeeder::class);
 
         $this->call(OrdersTableSeeder::class);
+
+        factory(\App\Ad::class,3)->create();
 
         Model::reguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

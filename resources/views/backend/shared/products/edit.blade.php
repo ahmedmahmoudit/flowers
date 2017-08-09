@@ -186,7 +186,7 @@
                             <div class="col-xs-6">
                                 <label for="inputMainImage">Main Image</label>
                                 <input type="file" name="main_image" id="inputMainImage">
-                                <div style="float: right;padding-right: 50%;"><img width="100" src="{{asset('uploads/products/'.$product->detail->main_image)}}"></div>
+                                <div style="padding-top:10px"><img width="100px" src="{{asset('uploads/products/'.$product->detail->main_image)}}"></div>
                             </div>
                         </div>
                     </div>

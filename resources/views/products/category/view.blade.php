@@ -34,10 +34,6 @@
         </div>
         <div class="c-layout-sidebar-content ">
             <div class="c-shop-product-details-2 c-opt-1">
-                {{--<div class="c-content-title-1">--}}
-                {{--<h3 class="c-center c-font-uppercase c-font-bold">{{ $category->name }}</h3>--}}
-                {{--<div class="c-line-center c-theme-bg"></div>--}}
-                {{--</div>--}}
 
                 <div class="row">
                     <form class="c-shop-advanced-search-1" method="get" action="{{ route('category.show',$category->slug) }}" name="sort-form" id="sort-form">

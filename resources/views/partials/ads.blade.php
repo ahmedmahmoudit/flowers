@@ -1,9 +1,9 @@
 <div class="" style="margin-bottom:50px">
-    @for($i = 1; $i <= 3; $i++)
+    @foreach($ads as $ad)
         <div class="col-md-4 col-sm-4">
-            <div class="c-content c-content-overlay">
-                <img src="/img/{{rand(1,7)}}.jpg" class="img img-responsive" />
+            <div class="c-content">
+                <img src="{{ asset('uploads/ads/'.$ad->image) }}" class="img img-responsive" />
             </div>
         </div>
-    @endfor
+    @endforeach
 </div>

@@ -294,8 +294,8 @@ class ProductsController extends Controller
      */
     public function destroyImage($id)
     {
+        //@todo: also delete the image file from server
         ProductImage::find($id)->delete();
-
         return url()->previous();
     }
 
