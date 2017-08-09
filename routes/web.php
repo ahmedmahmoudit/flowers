@@ -2,7 +2,7 @@
 
 
 Route::get('test',function(){
-    return \Carbon\Carbon::now()->toDateString();
+    return view('test');
 });
 /*
 |--------------------------------------------------------------------------
