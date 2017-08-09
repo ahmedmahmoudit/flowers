@@ -65,7 +65,6 @@
 
                                 @foreach($product->productImages as $image)
                                     <div class="c-zoom">
-
                                         <img src="{{ asset('uploads/products/'.$image->image) }}" class="img img-responsive">
                                     </div>
                                 @endforeach
@@ -85,14 +84,15 @@
                         <div class="c-product-meta">
                             <div class="c-content-title-1">
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
+                                <p class="c-font-bold">{{ __('Item Code') }} : <span style="font-weight: normal"> {{ $product->sku  }}</span></p>
+
                                 <p class="hint"><a href="{{ route('stores.show',[$product->store->id,$product->store->slug]) }}">{{ $product->store->name }}</a></p>
                                 <div class="c-line-left"></div>
-                                <p>{{ __('item code') }} : <span class="bold" style="font-weight: bold"> {{ $product->sku  }}</span></p>
+
                             </div>
 
                             <div class="c-product-badge">
                                 @if($product->detail->is_sale)
-
                                     <div class="c-product-sale">{{ __('Sale') }}</div>
                                 @endif
 
@@ -109,25 +109,43 @@
                                     <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
                                 @endif
                             </div>
+
+
+                            <p class="c-product-meta-label c-font-bold">{{ __('Weight'). ' :  ' . $product->detail->weight }}</p>
+                            <p class="c-product-meta-label c-font-bold">{{ __('Dimension'). ' :  ' . $product->detail->height .' * '. $product->detail->width }}</p>
+
+                            <div class="row c-product-variant">
+                                <div class="col-sm-12 col-xs-12">
+                                    <p class="c-product-meta-label    " style="padding-top:9px">{{ $product->userLikes->count() }} {{ __('Likes') }}:</p>
+                                    <div class="btn-group" role="group" style="margin-bottom: 20px">
+                                        <form method="POST" action="{{route('product.favorite',$product->id)}}">
+                                            {{ csrf_field() }}
+
+                                            <button type="submit" class="btn  c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
+                                                @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
+                                                    <i class="fa fa-heart" style="color: red;font-size: 2.0em" ></i>
+                                                @else
+                                                    <i class="fa fa-heart-o" style="color: red;font-size: 2.0em" ></i>
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row c-product-variant">
+                                <div class="col-sm-12 col-xs-12">
+                                    <p class="c-product-meta-label c-product-margin-1  c-font-bold">{{ __('Description') }}:</p>
+                                    <div class="btn-group" role="group" style="margin-bottom: 20px">
+                                    </div>
+
+                                </div>
+                            </div>
+
                             <div class="c-product-short-desc">
                                 {{ $product->detail->description }}
                             </div>
-
-                            <div class="btn-group" role="group" style="margin-bottom: 20px">
-                                <form method="POST" action="{{route('product.favorite',$product->id)}}">
-                                    {{ csrf_field() }}
-
-                                    <span class="c-font-17">{{ $product->userLikes->count() }} {{ __('likes') }}</span>
-                                    <button type="submit" class="btn  c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
-                                        @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
-                                            <i class="fa fa-heart" style="color: red;font-size: 2.0em" ></i>
-                                        @else
-                                            <i class="fa fa-heart-o" style="color: red;font-size: 2.0em" ></i>
-                                        @endif
-                                    </button>
-                                </form>
-                            </div>
-
 
                             @if(in_array($product->id,$cartItems->keys()->toArray()))
                                 <a href="{{ route('cart.item.remove',$product->id) }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Remove from Cart') }}</a>

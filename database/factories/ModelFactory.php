@@ -114,7 +114,6 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
 
     return [
         'product_id' => \App\Product::all()->random()->id,
-        'weight' => $faker->numberBetween(50, 200),
         'is_sale' => $faker->boolean(90),
         'sale_price' => rand(1,100),
         'price' => rand(101, 200),
@@ -124,6 +123,9 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
         'description_en' => $faker->text(20),
         'description_ar' => $faker->text(20),
         'main_image' => 'test.jpg',
+        'height' => '150',
+        'width' => '100',
+        'weight' => '10',
     ];
 
 });
