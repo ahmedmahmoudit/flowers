@@ -32,7 +32,7 @@
                     <div class="row c-cart-table-row">
                         <h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 5</h2>
                         <div class="col-md-2 col-sm-2 col-xs-6 c-cart-image">
-                            <img src="{{ $orderDetail->product->detail->main_image }}" style="height: 90px;width: 120px" class="img img-responsive"/>
+                            <img src="{{ asset('uploads/products/'.$orderDetail->product->detail->main_image) }}" style="height: 90px;width: 120px" class="img img-responsive"/>
                         </div>
 
                         <div class="col-md-2 col-sm-4 col-xs-6 c-cart-desc">

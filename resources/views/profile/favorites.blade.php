@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="c-bg-img-top-center c-overlay-object" data-height="height">
-                                        <img style="width:100%;height:150px" class="img-responsive" src="{{ $product->detail->main_image }}">
+                                        <img style="width:100%;height:150px" class="img-responsive" src="{{ asset('uploads/products/'.$product->detail->main_image) }}">
                                     </div>
                                 </div>
                             </div>

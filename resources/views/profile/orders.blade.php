@@ -31,7 +31,7 @@
                         <div class="col-md-4">
                             <div class="c-content-overlay">
                                 <a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">
-                                    <img src="{{ $order->detailExcerpt->product->detail->main_image }}" class="img img-responsive" style="height:200px" />
+                                    <img src="{{ asset('uploads/products/'.$order->detailExcerpt->product->detail->main_image) }}" class="img img-responsive" style="height:200px" />
                                 </a>
                             </div>
                         </div>
