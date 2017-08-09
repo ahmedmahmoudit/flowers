@@ -35,8 +35,9 @@ class UpdateProductRequest extends FormRequest
             'weight'            => 'required',
             'description_en'    => 'required',
             'description_ar'    => 'required',
-            'main_image'        => 'mimes:jpeg,jpg,png,gif|max:3000',
+            'main_image'        => 'mimes:jpeg,jpg,png|max:3000',
             'qty'               => 'required|numeric',
+            'images.*' => 'image|mimes:jpg,jpeg,png|max:3000'
         ];
 
         if($request->has('is_sale'))

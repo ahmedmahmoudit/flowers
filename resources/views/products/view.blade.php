@@ -62,32 +62,22 @@
                     <div class="col-md-6">
                         <div class="c-product-gallery">
                             <div class="c-product-gallery-content">
-                                <div class="c-zoom">
-                                    <img src="/img/1.jpg" class="img img-responsive">
-                                </div>
-                                <div class="c-zoom">
-                                    <img src="/img/2.jpg" class="img img-responsive">
-                                </div>
-                                <div class="c-zoom">
-                                    <img src="/img/3.jpg" class="img img-responsive">
-                                </div>
-                                <div class="c-zoom">
-                                    <img src="/img/4.jpg" class="img img-responsive">
-                                </div>
+
+                                @foreach($product->productImages as $image)
+                                    <div class="c-zoom">
+
+                                        <img src="{{ asset('uploads/products/'.$image->image) }}" class="img img-responsive">
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="row c-product-gallery-thumbnail">
-                                <div class="col-xs-3 c-product-thumb img img-responsive" >
-                                    <img src="/img/1.jpg">
-                                </div>
-                                <div class="col-xs-3 c-product-thumb">
-                                    <img src="/img/2.jpg">
-                                </div>
-                                <div class="col-xs-3 c-product-thumb">
-                                    <img src="/img/3.jpg">
-                                </div>
-                                <div class="col-xs-3 c-product-thumb c-product-thumb-last">
-                                    <img src="/img/4.jpg">
-                                </div>
+
+                                @foreach($product->productImages as $image)
+                                    <div class="col-xs-3 c-product-thumb img img-responsive">
+                                        <img src="{{ asset('uploads/products/'.$image->image) }}" class="img img-responsive">
+                                    </div>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>

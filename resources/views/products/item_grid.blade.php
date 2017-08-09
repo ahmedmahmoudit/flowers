@@ -16,7 +16,9 @@
                     </div>
                 </div>
 
-                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(/img/{{rand(1,7)}}.jpg);"></div>
+                <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
+                     class="img img-responsive"
+                />
             </div>
             <div class="c-info">
                 <a href="{{ route('product.show',[$product->id,$product->slug]) }}">

@@ -38,6 +38,7 @@ class CreateProductRequest extends FormRequest
             'description_ar'    => 'required',
             'main_image'        => 'mimes:jpeg,jpg,png,gif|required|max:3000',
             'qty'               => 'required|numeric',
+            'images.*' => 'image|mimes:jpg,jpeg,png|max:3000'
         ];
 
         if($request->has('is_sale'))
