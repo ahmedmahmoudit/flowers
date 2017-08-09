@@ -31,14 +31,14 @@
       $(document).ready(function(){
         $('#delivery-time').hide();
 
-//        $('.select-time').on("click",function(){
-//          $("#time-picker-modal").trigger('click');
-//          var time =  $(this).data("time");
-//          var value =  $(this).data("value");
-//          $('input[name="delivery_time"]').val(time);
-//          $('#delivery-time-result').html(value).css('color', '#32c5d2');
-//          $('#delivery-time').show();
-//        })
+        $('.select-time').on("click",function(){
+          $(".bs-example-modal-lg").trigger('click');
+          var time =  $(this).data("time");
+          var value =  $(this).data("value");
+          $('input[name="delivery_time"]').val(time);
+          $('#delivery-time-result').html(value).css('color', '#32c5d2');
+          $('#delivery-time').show();
+        })
       })
     </script>
 
@@ -177,6 +177,11 @@
                                                         <i class="fa fa-clock-o"></i>
                                                     </label>
 
+
+                                                    <button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">
+                                                        Launch default modal
+                                                    </button>
+
                                                     <span type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
                                                           id="delivery-time-result" style="display: block;background: white"
                                                     >
@@ -191,7 +196,7 @@
                                                         </span>
                                                     </span>
 
-                                                    <div class="modal" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog ">
                                                             <div class="modal-content c-square">
                                                                 <div class="modal-header">
@@ -209,8 +214,11 @@
                                                                         </div>
                                                                     @endforeach
                                                                 </div>
+
                                                             </div>
+                                                            <!-- /.modal-content -->
                                                         </div>
+                                                        <!-- /.modal-dialog -->
                                                     </div>
 
                                                 </div>
