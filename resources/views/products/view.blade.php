@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="row c-product-gallery-thumbnail">
-                                <div class="col-xs-3 c-product-thumb">
+                                <div class="col-xs-3 c-product-thumb img img-responsive" >
                                     <img src="/img/1.jpg">
                                 </div>
                                 <div class="col-xs-3 c-product-thumb">

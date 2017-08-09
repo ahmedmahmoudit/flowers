@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSliderRequest;
+use App\Product;
 use App\Repositories\SliderRepositoryInterface;
+use App\Store;
 
 class SlidersController extends Controller
 {
@@ -12,15 +14,25 @@ class SlidersController extends Controller
      * @var $slider
      */
     private $slider;
+    /**
+     * @var Product
+     */
+    private $productModel;
+    /**
+     * @var Store
+     */
+    private $storeModel;
 
     /**
      * SliderController constructor.
      *
      * @param SliderRepositoryInterface $slider
+     * @param Store $storeModel
      */
-    public function __construct(SliderRepositoryInterface $slider)
+    public function __construct(SliderRepositoryInterface $slider,Store $storeModel)
     {
         $this->slider = $slider;
+        $this->storeModel = $storeModel;
     }
 
     /**
@@ -41,7 +53,8 @@ class SlidersController extends Controller
      */
     public function create()
     {
-        return view('backend.manager.slider.create');
+        $stores = $this->storeModel->latest()->get(['id','name_'.app()->getLocale()]);
+        return view('backend.manager.slider.create',compact('stores'));
     }
 
     /**
@@ -54,7 +67,7 @@ class SlidersController extends Controller
     public function store(CreateSliderRequest $request)
     {
 
-        $attributes = $request->only(['image', 'link', 'order', 'description']);
+        $attributes = $request->only(['image', 'store_id', 'order', 'description']);
         $this->slider->create($attributes);
 
         return redirect('manager/sliders');

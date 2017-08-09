@@ -17,4 +17,9 @@ class Slider extends BaseModel
     protected $dates = ['deleted_at'];
     protected $guarded = ['id'];
 
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
 }

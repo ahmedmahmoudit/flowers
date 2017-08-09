@@ -15,15 +15,21 @@
                     <!-- form start -->
                     {!! Form::open(['route'=>['manager.sliders.store'],'method'=>'POST','files' => 'true','role' => 'form','enctype' =>"multipart/form-data"]) !!}
                         <div class="box-body">
+
+                            <div class="form-group">
+                                <label for="exampleInputOrder">Related Store</label>
+                                <select name="store_id" class="form-control">
+                                    @foreach($stores as $store)
+                                        <option id="{{$store->id}}" value="{{$store->id}}">{{$store->name}}</option>
+                                    @endforeach
+                                </select>
+                                <p class="help-block">If order already exist, old slider's order will be changed and disabled.</p>
+                            </div>
+
                             <div class="form-group">
                                 <label for="exampleInputOrder">Order</label>
                                 <input type="text" name="order" class="form-control" id="exampleInputOrder" placeholder="Enter Slider Order" required>
                                 <p class="help-block">If order already exist, old slider's order will be changed and disabled.</p>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputLink">Link</label>
-                                <input type="text" name="link" class="form-control" id="exampleInputLink" placeholder="Enter Link" required>
-                                <p class="help-block">Full Path; copy link from browser.</p>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputDescription">Description</label>

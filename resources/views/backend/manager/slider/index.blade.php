@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th>Image</th>
+                                <th>Store</th>
                                 <th>Link</th>
                                 <th>Description</th>
                                 <th>Order</th>
@@ -35,6 +36,7 @@
                             @foreach($sliders as $slide)
                                 <tr>
                                     <td><a href="{{asset('uploads/slides/'.$slide->image)}}" target="_blank">{{$slide->image}}</a></td>
+                                    <td>{{ $slide->store ? $slide->store->name : '' }}</td>
                                     <td>{{$slide->link}}</td>
                                     <td>{{$slide->description}}</td>
                                     <td>{{$slide->order}}</td>

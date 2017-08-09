@@ -60,7 +60,7 @@ class SliderRepository implements SliderRepositoryInterface
 
         $data = [
             'order' => $attributes['order'],
-            'link'  => $attributes['link'],
+            'store_id'  => isset($attributes['store_id']) ? $attributes['store_id'] : null ,
             'description'  => $attributes['description'],
             'image' => $imageName.'.jpg'
         ];

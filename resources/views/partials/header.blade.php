@@ -73,7 +73,7 @@
                         <i class="fa fa-search"></i>
                     </button>
                     <button class="c-cart-toggler" type="button">
-                        <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">2</span>
+                        <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">{{ $cart->items->count() }}</span>
                     </button>
                 </div>
 
