@@ -32,7 +32,7 @@
         $('#delivery-time').hide();
 
         $('.select-time').on("click",function(){
-          $(".bs-example-modal-lg").trigger('click');
+          $("#time-picker-modal").trigger('click');
           var time =  $(this).data("time");
           var value =  $(this).data("value");
           $('input[name="delivery_time"]').val(time);
@@ -177,13 +177,8 @@
                                                         <i class="fa fa-clock-o"></i>
                                                     </label>
 
-
-                                                    <button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">
-                                                        Launch default modal
-                                                    </button>
-
                                                     <span type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
-                                                            id="delivery-time-result" style="display: block;background: white"
+                                                          id="delivery-time-result" style="display: block;background: white"
                                                     >
                                                         <span style="padding:0;margin:0" >
                                                             @if(old('delivery_time'))
@@ -196,20 +191,22 @@
                                                         </span>
                                                     </span>
 
-                                                    <div class="modal" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog ">
                                                             <div class="modal-content c-square">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                                     <h4 class="modal-title" id="myLargeModalLabel">{{ __('Select Delivery Time') }}</h4>
                                                                 </div>
-                                                                <div class="modal-body">
+                                                                <div class="modal-body text-center">
                                                                     <input type="hidden" value="{{ old('delivery_time') }}" name="delivery_time"/>
                                                                     @foreach($deliveryTimes as $key => $time)
-                                                                        <a class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
-                                                                           data-value="{{$time}}"
+                                                                        <div class="">
+                                                                            <a class="col-md-3 btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
+                                                                               data-value="{{$time}}"
                                                                             @if(old('delivery_time') == $key ? 'active' : '') @endif
-                                                                        >{{ $time }}</a>
+                                                                            >{{ $time }}</a>
+                                                                        </div>
                                                                     @endforeach
                                                                 </div>
 
