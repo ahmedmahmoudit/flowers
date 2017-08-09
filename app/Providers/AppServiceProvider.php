@@ -50,7 +50,6 @@ class AppServiceProvider extends ServiceProvider
             Cache::put('selectedArea',false, 60 * 24);
         }
 
-
         $this->app->bind(Billing::class, TapBilling::class);
 //
         $options = [
