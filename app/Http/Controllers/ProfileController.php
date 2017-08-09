@@ -52,18 +52,16 @@ class ProfileController extends Controller
     public function getOrders()
     {
         $user = \Auth::user();
-
-        $orders = $user->load('orders.detailExcerpt.product.detail');
-
-
+        $user->load('orders.detailExcerpt.product.detail');
         return view('profile.orders', compact('user'));
     }
 
     public function getOrderDetail($invoiceID)
     {
-        dd($invoiceID);
         $user = \Auth::user();
-        $order = $this->orderModel->where('invoice_id',$invoiceID)->first();
+        $order = $this->orderModel
+            ->has('orderDetails.product.detail')
+            ->with('orderDetails.product.detail')->where('invoice_id',$invoiceID)->first();
 
         if(!$order) {
             return redirect()->back()->with('warning',__('Unknown Order'));

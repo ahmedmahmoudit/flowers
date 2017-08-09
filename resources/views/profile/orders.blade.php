@@ -39,7 +39,7 @@
                             <div class="c-info-list">
                                 <h3 class="c-title c-font-bold c-font-22 c-font-dark">
                                     <p class="c-font-14 c-font-thin">{{ __('Order') }} #: {{ $order->invoice_id }}</p>
-                                    <a class="c-theme-link" href="{{ route('profile.orders.show',1) }}">
+                                    <a class="c-theme-link" href="{{ route('profile.orders.show',[$order->invoice_id]) }}">
                                         {{ $order->created_at->format('d M,Y') }}
                                     </a>
                                 </h3>
