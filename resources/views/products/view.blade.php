@@ -31,14 +31,14 @@
       $(document).ready(function(){
         $('#delivery-time').hide();
 
-        $('.select-time').on("click",function(){
-          $("#time-picker-modal").trigger('click');
-          var time =  $(this).data("time");
-          var value =  $(this).data("value");
-          $('input[name="delivery_time"]').val(time);
-          $('#delivery-time-result').html(value).css('color', '#32c5d2');
-          $('#delivery-time').show();
-        })
+//        $('.select-time').on("click",function(){
+//          $("#time-picker-modal").trigger('click');
+//          var time =  $(this).data("time");
+//          var value =  $(this).data("value");
+//          $('input[name="delivery_time"]').val(time);
+//          $('#delivery-time-result').html(value).css('color', '#32c5d2');
+//          $('#delivery-time').show();
+//        })
       })
     </script>
 
@@ -209,11 +209,8 @@
                                                                         </div>
                                                                     @endforeach
                                                                 </div>
-
                                                             </div>
-                                                            <!-- /.modal-content -->
                                                         </div>
-                                                        <!-- /.modal-dialog -->
                                                     </div>
 
                                                 </div>
