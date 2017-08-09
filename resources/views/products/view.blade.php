@@ -177,7 +177,12 @@
                                                         <i class="fa fa-clock-o"></i>
                                                     </label>
 
-                                                    <span type="button" class="" data-toggle="modal" data-target=".bs-example-modal-lg"
+
+                                                    <button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">
+                                                        Launch default modal
+                                                    </button>
+
+                                                    <span type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
                                                             id="delivery-time-result" style="display: block;background: white"
                                                     >
                                                         <span style="padding:0;margin:0" >
@@ -191,8 +196,8 @@
                                                         </span>
                                                     </span>
 
-                                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
+                                                    <div class="modal" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog ">
                                                             <div class="modal-content c-square">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
