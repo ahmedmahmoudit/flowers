@@ -389,15 +389,22 @@ class ProductsController extends Controller
             $store = null;
         }
 
-        if($priceRangeTo >= $this->selectedPriceTo) {
-            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
-                $q->where('price','>=',$priceRangeFrom);
-            });
-        } else {
+//        if($priceRangeTo >= $this->selectedPriceTo) {
+//            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
+//                $q
+//                    ->where('price','>=',$priceRangeFrom)
+//                    ->where('sale_price','>=',$priceRangeFrom)
+//                ;
+//            });
+//        } else {
             $products = $products->whereHas('detail',function($q) use ($priceRangeFrom,$priceRangeTo)  {
-                $q->whereBetween('price',[$priceRangeFrom,$priceRangeTo]);
+                $q
+                    ->where(function($q) use($priceRangeFrom,$priceRangeTo){
+                        $q->whereBetween('price', [$priceRangeFrom, $priceRangeTo])
+                        ->orWhereBetween('sale_price', [$priceRangeFrom, $priceRangeTo]);
+                });
             });
-        }
+//        }
 
         if($request->sort) {
             switch ($request->sort) {
