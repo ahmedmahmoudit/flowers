@@ -3,7 +3,7 @@ const mix = require('laravel-mix').mix;
 mix.styles([
   'public/plugins/bootstrap/css/bootstrap.min.css',
   'public/plugins/font-awesome/css/font-awesome.min.css',
-  'public/plugins/simple-line-icons/simple-line-icons.min.css',
+  'public/plugins/simple-line-icons/css/simple-line-icons.min.css',
   'public/plugins/cubeportfolio/css/cubeportfolio.min.css',
   'public/plugins/slider-for-bootstrap/css/slider.css',
   'public/plugins/rs-plugin/css/settings.css',
@@ -12,10 +12,11 @@ mix.styles([
   'public/css/default.css',
   'public/css/custom.css'
 ], 'public/dist/css/style.css').version();
+
 mix.styles([
   'public/plugins/bootstrap/css/bootstrap-rtl.min.css',
   'public/plugins/font-awesome/css/font-awesome.min.css',
-  'public/plugins/simple-line-icons/simple-line-icons.min.css',
+  'public/plugins/simple-line-icons/css/simple-line-icons.min.css',
   'public/plugins/cubeportfolio/css/cubeportfolio.min.css',
   'public/plugins/slider-for-bootstrap/css/slider.css',
   'public/plugins/rs-plugin/css/settings.css',
@@ -48,5 +49,4 @@ mix.copyDirectory('public/plugins/rs-plugin/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/font-awesome/fonts', 'public/dist/fonts');
 
 mix.copyDirectory('public/img', 'public/dist/img');
-mix.copyDirectory('public/plugins/simple-line-icons/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/rs-plugin/img', 'public/dist/img');
