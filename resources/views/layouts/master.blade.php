@@ -48,8 +48,6 @@
 
 @section('script')
 
-    @include('partials.scripts')
-
     @if(app()->getLocale() === 'production')
         <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
     @else
