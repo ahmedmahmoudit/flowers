@@ -50,11 +50,11 @@
 
     @include('partials.scripts')
 
-    {{--@if(app()->getLocale() === 'production')--}}
-    <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
-    {{--@else--}}
-    {{--@include('partials.scripts')--}}
-    {{--@endif--}}
+    @if(app()->getLocale() === 'production')
+        <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
+    @else
+        @include('partials.scripts')
+    @endif
 
     <script>
       $(document).ready(function() {
