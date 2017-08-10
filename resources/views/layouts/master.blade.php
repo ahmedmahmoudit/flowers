@@ -15,24 +15,17 @@
 
     @section('style')
         @if(app()->environment() === 'local')
-            <link rel="stylesheet" href="{{ mix('/css/core-styles.css') }}">
             @if(app()->getLocale() == 'ar')
-                <link rel="stylesheet" href="{{ mix('/css/rtl-styles.css') }}">
+                <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
             @else
-                <link rel="stylesheet" href="{{ mix('/css/ltr-styles.css') }}">
+                <link rel="stylesheet" href="{{ mix('/dist/css/style.css') }}">
             @endif
         @else
-            @include('partials.styles')
             @if(app()->getLocale() == 'ar')
-                @include('partials.styles_rtl')
+                @include('partials.style_rtl')
             @else
-                @include('partials.styles_ltr')
+                @include('partials.style')
             @endif
-        @endif
-        <link href="/css/custom.css" rel="stylesheet" id="style_theme" type="text/css"/>
-
-        @if(app()->getLocale() == 'ar')
-            <link href="/css/custom-rtl.css" rel="stylesheet" type="text/css"/>
         @endif
 
     @show
@@ -58,7 +51,7 @@
     @include('partials.scripts')
 
     @if(app()->getLocale() === 'production')
-        <script src="{{mix('/js/core-scripts.js')}}" type="text/javascript" ></script>
+        <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
     @else
         @include('partials.scripts')
     @endif
