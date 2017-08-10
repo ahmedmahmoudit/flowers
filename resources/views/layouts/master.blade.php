@@ -14,19 +14,19 @@
     <meta content="" name="author"/>
 
     @section('style')
-        @if(app()->environment() === 'local')
-            @if(app()->getLocale() == 'ar')
-                <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
-            @else
-                <link rel="stylesheet" href="{{ mix('/dist/css/style.css') }}">
-            @endif
+        {{--@if(app()->environment() === 'local')--}}
+        @if(app()->getLocale() == 'ar')
+            <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
         @else
-            @if(app()->getLocale() == 'ar')
-                @include('partials.style_rtl')
-            @else
-                @include('partials.style')
-            @endif
+            <link rel="stylesheet" href="{{ mix('/dist/css/style.css') }}">
         @endif
+        {{--@else--}}
+        {{--@if(app()->getLocale() == 'ar')--}}
+        {{--@include('partials.style_rtl')--}}
+        {{--@else--}}
+        {{--@include('partials.style')--}}
+        {{--@endif--}}
+        {{--@endif--}}
 
     @show
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
@@ -50,11 +50,11 @@
 
     @include('partials.scripts')
 
-    @if(app()->getLocale() === 'production')
+    {{--@if(app()->getLocale() === 'production')--}}
         <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
-    @else
-        @include('partials.scripts')
-    @endif
+    {{--@else--}}
+        {{--@include('partials.scripts')--}}
+    {{--@endif--}}
 
     <script>
       $(document).ready(function() {

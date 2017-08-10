@@ -22,22 +22,9 @@ mix.styles([
   'public/plugins/bootstrap/css/bootstrap-rtl.min.css',
   'public/css/plugins-rtl.css',
   'public/css/components-rtl.css',
-  'public/css/default-rtl.css',
+  'public/css/default.css',
   'public/css/custom.css'
 ], 'public/dist/css/style-rtl.css').version();
-
-// mix.styles([
-//   'public/plugins/bootstrap/css/bootstrap-rtl.min.css',
-//   'public/css/plugins-rtl.css',
-//   'public/css/components-rtl.css',
-//   'public/css/default-rtl.css'
-// ], 'public/css/rtl-styles.css').version();
-//
-// mix.styles([
-//   'public/css/plugins.css',
-//   'public/css/components.css',
-//   'public/css/default.css'
-// ], 'public/css/ltr-styles.css').version();
 
 mix.scripts([
   'public/plugins/jquery.min.js',

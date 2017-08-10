@@ -10606,18 +10606,8 @@ h1 {
 
 @media (max-width: 991px) {
   /* 991px */
-  .c-layout-footer.c-layout-footer-4.c-bg-footer-8 {
-    background: url(../img/content/backgrounds/bg-83.jpg)
-      center
-      center
-      no-repeat;
-    background-size: cover;
-  }
   .c-layout-footer.c-layout-footer-4.c-bg-footer-9 {
-    background: url(../img/content/backgrounds/bg-83.jpg)
-      center
-      center
-      no-repeat;
+
     background-size: cover;
   }
   .c-layout-footer.c-layout-footer-4.c-bg-footer-9 .c-footer-4-p-left {
@@ -11223,14 +11213,14 @@ h1 {
 }
 
 .c-content-line-icon {
-  background-image: url(/img/line-icons/default.png);
+  background-image: url(../img/line-icons/default.png);
   display: inline-block;
   width: 60px;
   height: 60px;
   background-size: cover;
 }
 .c-content-line-icon.c-white {
-  background-image: url(/img/line-icons/white.png);
+  background-image: url(../img/line-icons/white.png);
 }
 .c-content-line-icon.c-icon-screen-chart {
   background-position: 0px -1300%;
@@ -13240,7 +13230,7 @@ h1 {
 }
 
 .c-content-testimonials-4 .owl-theme .owl-controls .owl-nav div {
-  background: url(/img/line-icons/grey1.png);
+  background: url(../img/line-icons/grey1.png);
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -13266,7 +13256,7 @@ h1 {
 }
 
 .c-content-testimonials-4.c-icon-white .owl-theme .owl-controls .owl-nav div {
-  background-image: url(/img/line-icons/white.png);
+  background-image: url(../img/line-icons/white.png);
 }
 
 .c-content-testimonials-4 .owl-nav {
@@ -15299,7 +15289,7 @@ h1 {
   border: 0;
 }
 .c-content-feature-2.c-option-2:hover .c-icon-wrapper > .c-content-line-icon {
-  background-image: url(/img/line-icons/white.png);
+  background-image: url(../img/line-icons/white.png);
 }
 
 .c-content-feature-2-grid .c-content-v-center {
@@ -16979,7 +16969,7 @@ h1 {
 .c-content-tab-2 > .nav > li:not(.active) > a > .c-content-line-icon {
   opacity: 0.9;
   filter: alpha(opacity=90);
-  background-image: url(/img/line-icons/dark1.png);
+  background-image: url(../img/line-icons/dark1.png);
 }
 .c-content-tab-2 > .nav > li + li {
   margin-right: 20px;
@@ -17878,7 +17868,6 @@ h1 {
 .c-content-step-3 .c-steps-3-block span {
   width: 36px;
   height: 71px;
-  background: url(../img/content/misc/step3-angle-right.png) no-repeat 100% 50%;
   position: absolute;
   top: 0;
   left: 10px;
