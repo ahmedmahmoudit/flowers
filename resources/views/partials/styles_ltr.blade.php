@@ -1,5 +1,3 @@
-<link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<!-- END GLOBAL MANDATORY STYLES -->
 
 <!-- BEGIN THEME STYLES -->
 <link href="/css/plugins.css" rel="stylesheet" type="text/css"/>

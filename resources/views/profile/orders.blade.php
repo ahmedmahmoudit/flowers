@@ -28,14 +28,14 @@
             @foreach($user->orders as $order)
                 <div class="row c-margin-b-40">
                     <div class="c-content-product-2 c-bg-white">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="c-content-overlay">
                                 <a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">
                                     <img src="{{ asset('uploads/products/'.$order->detailExcerpt->product->detail->main_image) }}" class="img img-responsive" style="height:200px" />
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <div class="c-info-list">
                                 <h3 class="c-title c-font-bold c-font-22 c-font-dark">
                                     <p class="c-font-14 c-font-thin">{{ __('Order') }} #: {{ $order->invoice_id }}</p>

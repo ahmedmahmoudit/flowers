@@ -40,6 +40,8 @@
                             <p><a href="{{ route('product.show',[$orderDetail->product->id,$orderDetail->product->slug]) }}" class="c-font-bold c-theme-link c-font-dark">{{ $orderDetail->product->name }}</a></p>
                         </div>
 
+
+
                         <div class="col-md-2 col-sm-2 col-xs-6 c-cart-price">
                             <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Price</p>
                             <p class="c-cart-price c-font-bold">{{$orderDetail->sale_price}} KWD</p>
@@ -50,6 +52,12 @@
                                 <p class="c-font-red c-font-line-through ">{{$orderDetail->price}} KWD</p>
                             </div>
                         @endif
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 c-cart-desc">
+                            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Quantity</p>
+                            <p class="c-cart-price c-font-bold">{{$orderDetail->quantity}}</p>
+                        </div>
+
                     </div>
                 @endforeach
 
