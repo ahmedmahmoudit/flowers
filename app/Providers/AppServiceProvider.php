@@ -37,11 +37,18 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         if(!Cache::has('countries')) {
-            Cache::put('countries',Country::all()->toArray(),60 * 24);
+            $countries = Country::with(['areas'=>function($q){
+                $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
+                $q->orderBy($sortOrder,'ASC');
+            }])->get()->toArray();
+            Cache::put('countries',$countries,60 * 24);
         }
 
         if(!Cache::has('selectedCountry')) {
-            $country = Country::where('name_en','kuwait')->first()->toArray();
+            $country = Country::with(['areas'=>function($q){
+                $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
+                $q->orderBy($sortOrder,'ASC');
+            }])->where('name_en','kuwait')->first()->toArray();
             Cache::put('selectedCountry',$country,60 * 24);
             Cache::put('selectedCountryID',$country['id'],60 * 24);
         }

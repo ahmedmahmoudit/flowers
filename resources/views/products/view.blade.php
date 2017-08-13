@@ -206,7 +206,7 @@
                                                     </button>
 
                                                     <div class="modal fade" id="time-picker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog ">
+                                                        <div class="modal-dialog modal-lg ">
                                                             <div class="modal-content c-square">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -215,7 +215,7 @@
                                                                 <div class="modal-body text-center">
                                                                     <input type="hidden" value="{{ old('delivery_time') }}" name="delivery_time"/>
                                                                     @foreach($deliveryTimes as $key => $time)
-                                                                        <a class=" btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
+                                                                        <a class=" btn c-btn btn-lg c-font-bold c-font-white btn-warning c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
                                                                            data-value="{{$time}}"
                                                                         @if(old('delivery_time') == $key ? 'active' : '') @endif
                                                                         >{{ $time }}</a>

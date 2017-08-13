@@ -76,7 +76,10 @@ class LocaleController extends Controller
         Cache::forget('selectedArea');
         $this->cart->flushCart();
 
-        $data = $country->areas->map(function($c){
+        $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
+
+        $area = $country->areas()->orderBy($sortOrder,'ASC')->get();
+        $data = $area->map(function($c){
             return ['id'=>$c->id, 'name' => $c->{'name_'.app()->getLocale()}];
         });
 

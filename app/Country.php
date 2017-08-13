@@ -20,7 +20,7 @@ class Country extends BaseModel
 
     protected $localeStrings = ['name','currency'];
 
-    protected $with = ['areas'];
+//    protected $with = ['areas'];
 
     /**
      * Get stores associated with the country.
@@ -35,6 +35,7 @@ class Country extends BaseModel
      */
     public function areas()
     {
+//        $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
         return $this->hasMany('App\Area');
     }
 }
