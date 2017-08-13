@@ -35,28 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        if(!Cache::has('countries')) {
-            $countries = Country::with(['areas'=>function($q){
-                $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
-                $q->orderBy($sortOrder,'ASC');
-            }])->get()->toArray();
-            Cache::put('countries',$countries,60 * 24);
-        }
-
-        if(!Cache::has('selectedCountry')) {
-            $country = Country::with(['areas'=>function($q){
-                $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
-                $q->orderBy($sortOrder,'ASC');
-            }])->where('name_en','kuwait')->first()->toArray();
-            Cache::put('selectedCountry',$country,60 * 24);
-            Cache::put('selectedCountryID',$country['id'],60 * 24);
-        }
-
-        if(!Cache::has('selectedArea')) {
-            Cache::put('selectedArea',false, 60 * 24);
-        }
-
+//
         $this->app->bind(Billing::class, TapBilling::class);
 //
         $options = [
