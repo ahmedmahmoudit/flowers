@@ -42,22 +42,6 @@ class Order extends BaseModel
         }
     }
 
-    //If product on sale will return sale price else will return price
-//    public function getPriceOrSale()
-//    {
-//        if($this->orderDetails->is_sale)
-//        {
-//            if(Carbon::now()->between(Carbon::parse($this->orderDetails->start_sale_date), Carbon::parse($this->orderDetails->end_sale_date)))
-//            {
-//                return $this->orderDetails->sale_price;
-//            }
-//
-//            return $this->orderDetails->price;
-//        }
-//
-//        return $this->orderDetails->price;
-//    }
-
     /**
      * Get the user that belongs to order.
      */
@@ -72,6 +56,12 @@ class Order extends BaseModel
     public function orderDetails()
     {
         return $this->hasMany('App\OrderDetail');
+    }
+
+    // just get any one order detail, to show as excerpt in order details page
+    public function detailExcerpt()
+    {
+        return $this->hasOne(OrderDetail::class);
     }
 
     /**

@@ -27,36 +27,39 @@
             </div>
             <div class="row c-margin-b-40 c-order-history-2">
 
-                {{--@foreach($user->orders as $order)--}}
+                @foreach($order->orderDetails as $orderDetail)
 
                     <div class="row c-cart-table-row">
                         <h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 5</h2>
-                        <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
-                            <img src="/img/9.jpg" style="height: 90px;width: 120px" class="img img-responsive"/>
+                        <div class="col-md-2 col-sm-2 col-xs-6 c-cart-image">
+                            <img src="{{ asset('uploads/products/'.$orderDetail->product->detail->main_image) }}" style="height: 90px;width: 120px" class="img img-responsive"/>
                         </div>
-                        <div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
-                            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Order</p>
-                            <p>#1136</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6 c-cart-desc">
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 c-cart-desc">
                             <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Description</p>
-{{--                            <p><a href="{{ route('products.show',$order->product->id) }}" class="c-font-bold c-theme-link c-font-dark">{{ $order->product->name }}</a></p>--}}
-                            <p><a href="#" class="c-font-bold c-theme-link c-font-dark"> Winter Jacker</a></p>
+                            <p><a href="{{ route('product.show',[$orderDetail->product->id,$orderDetail->product->slug]) }}" class="c-font-bold c-theme-link c-font-dark">{{ $orderDetail->product->name }}</a></p>
                         </div>
-                        <div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
+
+
+
+                        <div class="col-md-2 col-sm-2 col-xs-6 c-cart-price">
                             <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Price</p>
-                            <p class="c-cart-price c-font-bold">$135.00</p>
+                            <p class="c-cart-price c-font-bold">{{$orderDetail->sale_price}} KWD</p>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 c-cart-total">
-                            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Payment Method</p>
-                            <p class="c-cart-price c-font-bold">Credit Cart (Visa)</p>
+                        @if($orderDetail->price !== $orderDetail->sale_price)
+                            <div class="col-md-2 col-sm-2 col-xs-6 c-cart-desc">
+                                <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Actual Price</p>
+                                <p class="c-font-red c-font-line-through ">{{$orderDetail->price}} KWD</p>
+                            </div>
+                        @endif
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 c-cart-desc">
+                            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Quantity</p>
+                            <p class="c-cart-price c-font-bold">{{$orderDetail->quantity}}</p>
                         </div>
-                        <div class="col-md-2 col-sm-3 col-xs-6 c-cart-qty">
-                            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Date</p>
-                            <p>10 Sep 2015</p>
-                        </div>
+
                     </div>
-                {{--@endforeach--}}
+                @endforeach
 
             </div>
         </div>

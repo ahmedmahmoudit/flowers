@@ -35,6 +35,7 @@ class Country extends BaseModel
      */
     public function areas()
     {
-        return $this->hasMany('App\Area');
+        $sortOrder = app()->getLocale() == 'ar' ? 'name_ar' : 'name_en';
+        return $this->hasMany('App\Area')->orderBy($sortOrder,'ASC');
     }
 }

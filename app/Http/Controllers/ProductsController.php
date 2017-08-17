@@ -116,11 +116,11 @@ class ProductsController extends Controller
             switch ($request->sort) {
                 case 'price-l-h':
                     $bestSellers->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','ASC');
+                        ->orderBy('sale_price','ASC');
                     break;
                 case 'price-h-l':
                     $bestSellers->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','DESC');
+                        ->orderBy('sale_price','DESC');
                     break;
                 default:
                     break;
@@ -207,13 +207,23 @@ class ProductsController extends Controller
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-        $priceRangeMin = 1;
+//        $priceRangeMin = 1;
+
+        $priceRangeMin  = DB::table('product_details')
+            ->select(DB::raw('Min(sale_price) as minprice'))
+            ->get()
+            ->first()
+            ->minprice
+        ; // @todo: refactor query
+
+
         $priceRangeMax  = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
             ->first()
             ->maxprice
-        ; // @todo: refactor query
+        ;
+
 
         $sort = $request->sort;
 
@@ -267,11 +277,11 @@ class ProductsController extends Controller
             switch ($request->sort) {
                 case 'price-l-h':
                     $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','ASC');
+                        ->orderBy('sale_price','ASC');
                     break;
                 case 'price-h-l':
                     $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','DESC');
+                        ->orderBy('sale_price','DESC');
                     break;
                 default:
                     break;
@@ -293,7 +303,13 @@ class ProductsController extends Controller
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-        $priceRangeMin = 1;
+//        $priceRangeMin = 1;
+        $priceRangeMin  = DB::table('product_details')
+            ->select(DB::raw('Min(sale_price) as minprice'))
+            ->get()
+            ->first()
+            ->minprice
+        ; // @todo: refactor query
         $priceRangeMax  = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
@@ -373,25 +389,32 @@ class ProductsController extends Controller
             $store = null;
         }
 
-        if($priceRangeTo >= $this->selectedPriceTo) {
-            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
-                $q->where('price','>=',$priceRangeFrom);
-            });
-        } else {
+//        if($priceRangeTo >= $this->selectedPriceTo) {
+//            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
+//                $q
+//                    ->where('price','>=',$priceRangeFrom)
+//                    ->where('sale_price','>=',$priceRangeFrom)
+//                ;
+//            });
+//        } else {
             $products = $products->whereHas('detail',function($q) use ($priceRangeFrom,$priceRangeTo)  {
-                $q->whereBetween('price',[$priceRangeFrom,$priceRangeTo]);
+                $q
+                    ->where(function($q) use($priceRangeFrom,$priceRangeTo){
+                        $q->whereBetween('price', [$priceRangeFrom, $priceRangeTo])
+                        ->orWhereBetween('sale_price', [$priceRangeFrom, $priceRangeTo]);
+                });
             });
-        }
+//        }
 
         if($request->sort) {
             switch ($request->sort) {
                 case 'price-l-h':
                     $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','ASC');
+                        ->orderBy('sale_price','ASC');
                     break;
                 case 'price-h-l':
                     $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('price','DESC');
+                        ->orderBy('sale_price','DESC');
                     break;
                 default:
                     break;

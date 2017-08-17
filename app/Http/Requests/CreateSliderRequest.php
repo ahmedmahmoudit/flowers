@@ -25,7 +25,7 @@ class CreateSliderRequest extends FormRequest
     {
         return [
             'image'=> 'mimes:jpeg,jpg,png,gif|required|max:3000',
-            'link'   => 'required',
+//            'link'   => 'required',
             'order'   => 'required'
         ];
     }

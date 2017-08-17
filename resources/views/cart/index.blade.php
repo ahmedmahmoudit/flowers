@@ -96,7 +96,7 @@
                         @foreach($cart->items as $product)
                             <div class="row c-cart-table-row">
                                 <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
-                                    <img src="/img/{{ rand(1,7) }}.jpg"/>
+                                    <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"/>
                                 </div>
                                 <div class="col-md-5 col-sm-9 col-xs-7 c-cart-desc">
                                     <h3><a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $product->name }}</a></h3>

@@ -24,8 +24,8 @@ class Product extends BaseModel
     protected $guarded = ['id'];
 
     public $deliveryTimes = [
-        'en' =>['2pm'=>'morning 9-2pm','6pm'=>'afternoon 2-6pm','10pm'=>'evening 6-10pm'],
-        'ar' =>['2pm'=>'morning 9-2pm','6pm'=>'afternoon 2-6pm','10pm'=>'evening 6-10pm']
+        'en' =>['2pm'=>'morning 9am-2pm','6pm'=>'afternoon 2pm-6pm','10pm'=>'evening 6pm-10pm'],
+        'ar' =>['2pm'=>'morning 9am-2pm','6pm'=>'afternoon 2pm-6pm','10pm'=>'evening 6pm-10pm']
     ];
 
     /**
@@ -72,18 +72,6 @@ class Product extends BaseModel
     {
         return $this->hasOne(ProductDetail::class);
     }
-
-
-
-//    public function isOnSale()
-//    {
-//        if (!$this->relationLoaded('detail')) {
-//            $this->load('detail');
-//        }
-//        $productDetail = $this->getRelation('detail')->first();
-//        if($productDetail->is_sale) {
-//        }
-//    }
 
     public function scopeChildrenCategoryProducts($query,$ids)
     {

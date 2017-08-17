@@ -123,9 +123,9 @@ class ProductsController extends Controller
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);
-        Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$imageName.'.jpg');
-        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
-        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
+        Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+//        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
+//        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
         $attributesDetails['main_image'] = $imageName.'.jpg';
 
         $details = new ProductDetail([
@@ -151,15 +151,13 @@ class ProductsController extends Controller
             $product->categories()->syncWithoutDetaching($categories['categories']);
         }
 
-        if(isset($images['images']) AND count($images['images'] > 0))
+        if($request->has('images'))
         {
-            $savedImages = array();
+            $savedImages = [];
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$randomImageName.'.jpg');
-                Image::make($image)->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$randomImageName.'.jpg');
-                Image::make($image)->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);
@@ -186,7 +184,6 @@ class ProductsController extends Controller
         $stores = $this->store->getAll();
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
-//        dd($categoriesList);
         return view('backend.shared.products.edit', compact('product','stores', 'categories', 'categoriesList'));
     }
 
@@ -245,33 +242,27 @@ class ProductsController extends Controller
             $details['end_sale_date'] = $endDate->format('Y-m-d');
         }
 
+
         if($mainImage['main_image'])
         {
             $imageName = str_random(15);
-            Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$imageName.'.jpg');
-            Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
-            Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
+            Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
             $attributesDetails['main_image'] = $imageName.'.jpg';
             $details['main_image'] = $attributesDetails['main_image'];
         }
 
         $product->detail()->update($details);
 
-//        if(count($categories['categories']) > 0)
-//        {
         $product->categories()->sync($categoryParent['parent_id']);
         $product->categories()->syncWithoutDetaching($categories['categories']);
-//        }
 
-        if(isset($images['images']) AND count($images['images'] > 0))
+        if($request->has('images'))
         {
             $savedImages = array();
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/original/'.$randomImageName.'.jpg');
-                Image::make($image)->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$randomImageName.'.jpg');
-                Image::make($image)->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$randomImageName.'.jpg');
+                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);
@@ -308,8 +299,8 @@ class ProductsController extends Controller
      */
     public function destroyImage($id)
     {
+        //@todo: also delete the image file from server
         ProductImage::find($id)->delete();
-
         return url()->previous();
     }
 

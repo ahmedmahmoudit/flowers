@@ -14,22 +14,22 @@
     <meta content="" name="author"/>
 
     @section('style')
-        @include('partials.styles')
-
-        @if(app()->getLocale() == 'ar')
-            @include('partials.styles_rtl')
+        @if(app()->environment() === 'production')
+            @if(app()->getLocale() == 'ar')
+                <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
+            @else
+                <link rel="stylesheet" href="{{ mix('/dist/css/style.css') }}">
+            @endif
         @else
-            @include('partials.styles_ltr')
+            @if(app()->getLocale() == 'ar')
+                @include('partials.style_rtl')
+            @else
+                @include('partials.style')
+            @endif
         @endif
-
-        <link href="/css/custom.css" rel="stylesheet" id="style_theme" type="text/css"/>
-
-        @if(app()->getLocale() == 'ar')
-            <link href="/css/custom-rtl.css" rel="stylesheet" type="text/css"/>
-        @endif
-
     @show
-    <link rel="shortcut icon" href="favicon.ico"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
 </head>
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
 
@@ -47,13 +47,16 @@
 </div>
 
 @section('script')
-    @include('partials.scripts')
-    <script>
+    @if(app()->environment() === 'production')
+        <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
+    @else
+        @include('partials.scripts')
+    @endif
 
+    <script>
       $(document).ready(function() {
         App.init(); // init core
       });
-
     </script>
 @show
 

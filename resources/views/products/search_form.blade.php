@@ -5,46 +5,6 @@
             <input type="text" name="term" class="form-control c-square c-theme input-lg" value="{{ $searchTerm }}" placeholder="{{ __('Product name, Sku or Item number') }}">
         </li>
 
-        {{--<li>--}}
-            {{--<div class="c-checkbox">--}}
-                {{--<input type="checkbox" id="checkbox1-77" class="c-check" id="checkbox1-77">--}}
-
-                {{--<label class="control-label c-font-uppercase c-font-bold">--}}
-                    {{--<span></span>--}}
-                    {{--<span class="check"></span>--}}
-                    {{--<span class="box"></span>--}}
-                    {{--{{ __('On Sale') }}--}}
-                {{--</label>--}}
-
-                {{--<label for="checkbox1-77">--}}
-                    {{--<span></span>--}}
-                    {{--<span class="check"></span>--}}
-                    {{--<span class="box"></span>--}}
-                    {{--Regular Option</label>--}}
-            {{--</div>--}}
-
-        {{--</li>--}}
-
-        {{--<li>--}}
-            {{--<label class="control-label c-font-uppercase c-font-bold">{{ __('Category') }}</label>--}}
-            {{--<select name="category" class="form-control c-square c-theme">--}}
-                {{--<option value="">{{ __('All Category') }}</option>--}}
-                {{--@foreach($parentCategories as $parentCategory)--}}
-                    {{--<option value="{{ $parentCategory->slug }}"--}}
-                            {{--@if($selectedCategory === $parentCategory->slug)--}}
-                            {{--selected--}}
-                            {{--@endif--}}
-                    {{-->{{$parentCategory->name}}</option>--}}
-                    {{--@foreach($parentCategory->children as $childCategory)--}}
-                        {{--<option value="{{ $childCategory->slug }}"--}}
-                                {{--@if($selectedCategory === $childCategory->slug)--}}
-                                {{--selected--}}
-                                {{--@endif--}}
-                        {{-->{{$childCategory->name}}</option>--}}
-                    {{--@endforeach--}}
-                {{--@endforeach--}}
-            {{--</select>--}}
-        {{--</li>--}}
         <li>
             <label class="control-label c-font-uppercase c-font-bold">{{ __('Store') }}</label>
             <select name="store" class="form-control c-square c-theme">
@@ -90,12 +50,12 @@
                 <input type="checkbox" id="checkbox-same-day" class="c-check" name="same-day-delivery"
                         {{ isset($onSale) && $onSale == 'on' ? 'checked' : '' }}
                 >
-                <label for="checkbox-same-day" style="color: black;font-weight: bold">
-                    <span></span>
-                    <span class="check" value="1"></span>
-                    <span class="box" value="0"></span>
-                    {{ __('SAME DAY DELIVERY') }}
-                </label>
+                {{--<label for="checkbox-same-day" style="color: black;font-weight: bold">--}}
+                    {{--<span></span>--}}
+                    {{--<span class="check" value="1"></span>--}}
+                    {{--<span class="box" value="0"></span>--}}
+                    {{--{{ __('SAME DAY DELIVERY') }}--}}
+                {{--</label>--}}
             </div>
 
         </li>

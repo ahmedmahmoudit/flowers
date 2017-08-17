@@ -52,10 +52,12 @@ class HomeController extends Controller
             ->whereHas('store',function($q){
                 return $q->where('is_approved',1);
             })
-            ->with(['detail','store','userLikes'])->limit(4)->get();
+            ->with(['detail','store','userLikes'])
+            ->active()
+            ->limit(4)->get();
 
 
-        $products = $this->productModel->latest()->paginate(20);
+        $products = $this->productModel->latest()->active()->paginate(20);
 
         $cartItems = $this->cart->getItems();
 

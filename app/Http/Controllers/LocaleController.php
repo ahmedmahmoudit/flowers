@@ -81,7 +81,6 @@ class LocaleController extends Controller
         });
 
         return response()->json(['data'=>$data]);
-//        return response()->json(['data'=>$country->areas->pluck('name_'.app()->getLocale(),'id')]);
     }
 
 }

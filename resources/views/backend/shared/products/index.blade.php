@@ -47,7 +47,7 @@
                                     @endif
 
                                     @if(isset($product->detail->main_image))
-                                        <td><img width="50" src="{{asset('uploads/products/original/'.$product->detail->main_image)}}"></td>
+                                        <td><img width="75" src="{{ asset('uploads/products/'.$product->detail->main_image) }}"></td>
                                     @else
                                         <td>No Main Image</td>
                                     @endif

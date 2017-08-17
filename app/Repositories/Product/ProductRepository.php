@@ -23,6 +23,8 @@ class ProductRepository implements ProductRepositoryInterface
         $this->model = $model;
     }
 
+    protected $with = ['detail'];
+
     /**
      * Get all Products.
      *

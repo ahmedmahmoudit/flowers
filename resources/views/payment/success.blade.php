@@ -92,7 +92,7 @@
                                             </div>
                                         </div>
                                         <div class="c-bg-img-top-center c-overlay-object" data-height="height">
-                                            <img width="100%" class="img img-responsive" src="/img/1.jpg" style="height: 100px;width: 100px">
+                                            <img width="100%" class="img img-responsive" src="{{ asset('uploads/products/'.$orderDetail->product->detail->main_image) }}" style="height: 100px;width: 100px">
                                         </div>
                                     </div>
                                 </div>

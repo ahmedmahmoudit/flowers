@@ -435,10 +435,5 @@ var App = function() {
 
       return sizes[size] ? sizes[size] : 0;
     }
-
-
-
   };
-
-
 }();

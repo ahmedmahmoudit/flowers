@@ -13,7 +13,7 @@
                     </a>
                 </div>
 
-                <img src="/img/{{rand(1,7)}}.jpg" class="img img-responsive" />
+                <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}" class="img img-responsive" />
 
                 <div class="c-cart-menu-content">
                     <p>{{ $product->quantity }} x <span class="c-item-price c-theme-font">{{ $product->detail->getFinalPriceWithCurrency() }}</span></p>

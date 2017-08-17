@@ -22,6 +22,7 @@ use Cache;
 use Illuminate\Support\ServiceProvider;
 use IZaL\Tap\Billing;
 use IZaL\Tap\TapBilling;
+use Laravel\Dusk\DuskServiceProvider;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,22 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        if(!Cache::has('countries')) {
-            Cache::put('countries',Country::all()->toArray(),60 * 24);
-        }
-
-        if(!Cache::has('selectedCountry')) {
-            $country = Country::where('name_en','kuwait')->first()->toArray();
-            Cache::put('selectedCountry',$country,60 * 24);
-            Cache::put('selectedCountryID',$country['id'],60 * 24);
-        }
-
-        if(!Cache::has('selectedArea')) {
-            Cache::put('selectedArea',false, 60 * 24);
-        }
-
-
+//
         $this->app->bind(Billing::class, TapBilling::class);
 //
         $options = [
@@ -86,6 +72,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
             $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
             $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+            $this->app->register(DuskServiceProvider::class);
+
         }
     }
 }
