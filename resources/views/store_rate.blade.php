@@ -47,12 +47,13 @@
             </div>
             <div id="contentarea">
                 {{ Form::open(['route' => ['stores.rate'],'method'=>'POST', 'class' => 'form-horizontal']) }}
+                <input type="hidden" value="{{$token}}" name="user_token">
                     <div class="form-group">
 
                         <div class=" questionContent clearfix"> <div class="questionColor"><span class="zsf_Seqno">1. </span><span class="textBreakQuest" name="qmessage">Age</span></div></div>
                         <div class="clearBoth"></div>
                         <div class="answerContent">
-                            <input id="3000001639771" type="text" pattern="\d*" value="" name="3000001639771" size="30" min="-9223372036854775808" max="9223372036854775807">
+                            <input id="age" type="text" pattern="\d*" value="" name="age" size="30">
 
                         </div>
                     </div>

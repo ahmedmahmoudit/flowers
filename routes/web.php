@@ -86,6 +86,13 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
     Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
+    Route::get('verifications/products', ['as' => 'verifications.products', 'uses' => 'ProductsController@getAllWithVerifications']);
+    Route::post('verifications/products/{product}/un-verify', ['as' => 'verifications.products.un-verify', 'uses' => 'ProductsController@unVerify']);
+    Route::post('verifications/products/{product}/verify', ['as' => 'verifications.products.verify', 'uses' => 'ProductsController@verify']);
+    Route::get('verifications/stores', ['as' => 'verifications.stores', 'uses' => 'StoresController@getAllWithVerifications']);
+    Route::post('verifications/stores/{product}/un-verify', ['as' => 'verifications.stores.un-verify', 'uses' => 'StoresController@unVerify']);
+    Route::post('verifications/stores/{product}/verify', ['as' => 'verifications.stores.verify', 'uses' => 'StoresController@verify']);
+
     Route::resource('newsletter', 'NewsletterController',  ['except' => [
         'show'
     ]]);
@@ -108,6 +115,9 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::get('pages/contact', ['as' => 'pages.contact.index', 'uses' => 'PageController@getContact']);
     Route::post('pages/contact', ['as' => 'pages.contact.update', 'uses' => 'PageController@postContactInfo']);
 
+    Route::get('reports/sales', ['as' => 'reports.sales', 'uses' => 'ReportController@saleView']);
+    Route::post('reports/sales', ['as' => 'reports.sales', 'uses' => 'ReportController@getSales']);
+
 });
 
 
@@ -121,6 +131,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','midd
 
     Route::get('settings', ['as' => 'settings', 'uses' => 'StoresController@settings']);
     Route::post('settings', ['as' => 'settings.update', 'uses' => 'StoresController@settingsUpdate']);
+
+    Route::get('areas', ['as' => 'areas', 'uses' => 'StoresController@showAreas']);
+    Route::post('areas', ['as' => 'areas.update', 'uses' => 'StoresController@updateAreas']);
 
     Route::resource('products', 'ProductsController');
     Route::post('products/{product}/disable', ['as' => 'products.disable', 'uses' => 'ProductsController@disable']);

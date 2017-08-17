@@ -79,9 +79,9 @@ class StoreRepository implements StoreRepositoryInterface
      */
     public function updateAreas($id, array $attributes)
     {
-        $this->model->find($id)->areas->detach();
+        $this->model->find($id)->areas()->detach();
 
-        return $this->model->find($id)->areas->attach($attributes);
+        return $this->model->find($id)->areas()->attach($attributes);
     }
 
     /**
@@ -118,5 +118,29 @@ class StoreRepository implements StoreRepositoryInterface
     public function activate($id)
     {
         return $this->model->find($id)->update(['is_approved' => '1']);
+    }
+
+    /**
+     * Verify a store.
+     *
+     * @param integer $id
+     *
+     * @return boolean
+     */
+    public function Verify($id)
+    {
+        return $this->model->find($id)->update(['verified' => '1']);
+    }
+
+    /**
+     * Un-Verify a store.
+     *
+     * @param integer $id
+     *
+     * @return boolean
+     */
+    public function unVerify($id)
+    {
+        return $this->model->find($id)->update(['verified' => NULL]);
     }
 }

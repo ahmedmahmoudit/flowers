@@ -67,7 +67,7 @@
                     </ul>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'store') ? 'active' : '' ) }} treeview">
+                <li class="{{ (str_contains(Request::route()->getName(),'store') && !str_contains(Request::route()->getName(),'verification') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-map-pin"></i>
                         <span>Stores</span>
@@ -115,7 +115,7 @@
                     </ul>
                 </li>
 
-                <li class="{{ (str_contains(Request::route()->getName(),'product') ? 'active' : '' ) }} treeview">
+                <li class="{{ (str_contains(Request::route()->getName(),'product') && !str_contains(Request::route()->getName(),'verification') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-th"></i>
                         <span>Products</span>
@@ -125,6 +125,19 @@
                     <ul class="treeview-menu">
                         <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.index') }}"><i class="fa fa-circle-o"></i> Products</a></li>
                         <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.create') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
+                    </ul>
+                </li>
+
+                <li class="{{ (str_contains(Request::route()->getName(),'verifications') ? 'active' : '' ) }} treeview">
+                    <a href="#">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Verification</span>
+                        <span class="pull-right-container">
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.store') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.stores') }}"><i class="fa fa-circle-o"></i> Stores</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.prod') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.products') }}"><i class="fa fa-circle-o"></i> Products </a></li>
                     </ul>
                 </li>
 
@@ -142,6 +155,15 @@
                         <li class="{{ (str_contains(Request::route()->getName(),'index') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> Subscribers</a></li>
                         <li class="{{ (str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.campaign') }}"><i class="fa fa-circle-o"></i> Campaign </a></li>
                         <li class="{{ (str_contains(Request::route()->getName(),'mail') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.mailStores') }}"><i class="fa fa-circle-o"></i> Email To Stores </a></li>
+                    </ul>
+                </li>
+
+                <li class="{{ (str_contains(Request::route()->getName(),'report') ? 'active' : '' ) }} treeview">
+                    <a href="#">
+                        <i class="fa fa-line-chart"></i> <span>Reports</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ (str_contains(Request::route()->getName(),'sale') ? 'active' : '' ) }}"><a href="{{ route('manager.reports.sales') }}"><i class="fa fa-circle-o"></i> Sales </a></li>
                     </ul>
                 </li>
 

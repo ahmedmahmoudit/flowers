@@ -10,6 +10,7 @@ use App\ProductImage;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\StoreRepositoryInterface;
+use App\Store;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
@@ -100,10 +101,13 @@ class ProductsController extends Controller
         {
             $store = $request->only(['store']);
             $store_id = $store['store'];
+            $storeDb = Store::find($store_id);
+            $storeVerification = $storeDb->verified;
         }
         else
         {
             $store_id = Auth::user()->store->id;
+            $storeVerification = Auth::user()->store->verified;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
         $attributesDetails = $request->only(['price','weight', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
@@ -115,6 +119,7 @@ class ProductsController extends Controller
         $attributes['store_id'] = $store_id;
         $attributes['slug_en'] = $attributes['name_en'];
         $attributes['slug_ar'] = $attributes['name_ar'];
+        $attributes['verified'] = $storeVerification;
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);
@@ -334,6 +339,28 @@ class ProductsController extends Controller
         $this->product->activate($id);
 
         return url()->previous();
+    }
+
+    public function getAllWithVerifications()
+    {
+        $products = $this->product->getAll();
+        return view('backend.manager.verifications.products', compact('products'));
+    }
+
+    public function verify($id)
+    {
+        $this->product->verify($id);
+
+        Session()->flash('success', 'Store Verified Successfully!');
+        return route('manager.verifications.products');
+    }
+
+    public function unVerify($id)
+    {
+        $this->product->unVerify($id);
+
+        Session()->flash('success', 'Store Un Verified Successfully!');
+        return route('manager.verifications.products');
     }
 
 

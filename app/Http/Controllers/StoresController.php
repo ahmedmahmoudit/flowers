@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
 use App\Repositories\StoreRepositoryInterface;
 use App\Store;
+use App\StoreRate;
 use Cache;
 use Illuminate\Http\Request;
 
@@ -181,16 +182,33 @@ class StoresController extends Controller
     /**
      * rate store
      *
+     * @var string $token
+     *
      * @return mixed
      */
     public function userRate($token)
     {
-        return view('store_rate');
+        return view('store_rate', compact('token'));
     }
 
     public function saveUserRate(Request $request)
     {
-        dd($request);
+        $attributes = $request->only('user_token', 'age', 'gender', 'good_selection', 'pricing', 'quality', 'service', 'ease_shopping', 'comments');
+        $storeRate = StoreRate::where('token', $attributes['user_token'])->first();
+        if($storeRate)
+        {
+            $goodSelection = ($attributes['good_selection'] ? $attributes['good_selection'] : 0);
+            $pricing = ($attributes['pricing'] ? $attributes['pricing'] : 0);
+            $quality = ($attributes['quality'] ? $attributes['quality'] : 0);
+            $service = ($attributes['service'] ? $attributes['service'] : 0);
+            $easeShopping = ($attributes['ease_shopping'] ? $attributes['ease_shopping'] : 0);
+
+            $rate = ($goodSelection + $pricing + $quality + $service + $easeShopping)/5;
+        }
+
+        $storeRate->update(['rates' => $rate]);
+
+        return redirect('/');
     }
 
 }

@@ -67,7 +67,7 @@
                                     <a href="{{ route('admin.settings') }}">Profile</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">Areas</a>
+                                    <a href="{{route('admin.areas')}}">Areas</a>
                                 </div>
                             </div>
                             <!-- /.row -->

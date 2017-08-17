@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Area;
 use App\Country;
 use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Controllers\Controller;
@@ -9,6 +10,7 @@ use App\Http\Requests\UpdateStoreRequest;
 use App\Http\Requests\CreateStoreRequest;
 use App\Http\Requests\UpdateStoreSettingsRequest;
 use App\Repositories\StoreRepositoryInterface;
+use App\Store;
 use App\StoreDeliveryTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -133,19 +135,33 @@ class StoresController extends Controller
     }
 
     /**
+     * show a store area
+     *
+     * @return mixed
+     */
+    public function showAreas()
+    {
+        $store_id = Auth::user()->store->id;
+        $store = Store::find($store_id);
+        $areas = $store->areas->pluck(['id'])->toArray();
+        $dbAreas = Area::where('country_id', $store->country_id)->get();
+
+        return view('backend.admin.areas', compact('dbAreas', 'areas'));
+    }
+
+    /**
      * Update a store area
      *
-     * @var integer $id Store ID
      * @var UpdateStoreAreaRequest $request
      *
      * @return mixed
      */
-    public function updateAreas($id, UpdateStoreAreaRequest $request)
+    public function updateAreas(UpdateStoreAreaRequest $request)
     {
         $attributes = $request->only(['areas']);
-        $this->store->updateAreas($id, $attributes);
+        $this->store->updateAreas(Auth::user()->store->id, $attributes['areas']);
 
-        return redirect()->route('stores.index');
+        return redirect()->route('admin.areas');
     }
 
     /**
@@ -167,6 +183,28 @@ class StoresController extends Controller
 
         $this->store->delete($id);
         return route('manager.stores.index');
+    }
+
+    public function getAllWithVerifications()
+    {
+        $stores = $this->store->getAll();
+        return view('backend.manager.verifications.stores', compact('stores'));
+    }
+
+    public function verify($id)
+    {
+        $this->store->verify($id);
+
+        Session()->flash('success', 'Store Verified Successfully!');
+        return route('manager.verifications.stores');
+    }
+
+    public function unVerify($id)
+    {
+        $this->store->unVerify($id);
+
+        Session()->flash('success', 'Store Un Verified Successfully!');
+        return route('manager.verifications.stores');
     }
 
     /**

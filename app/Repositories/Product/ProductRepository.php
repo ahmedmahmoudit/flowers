@@ -115,4 +115,28 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->model->find($id)->update(['active' => '1']);
     }
+
+    /**
+     * Verify a store.
+     *
+     * @param integer $id
+     *
+     * @return boolean
+     */
+    public function Verify($id)
+    {
+        return $this->model->find($id)->update(['verified' => '1']);
+    }
+
+    /**
+     * Un-Verify a store.
+     *
+     * @param integer $id
+     *
+     * @return boolean
+     */
+    public function unVerify($id)
+    {
+        return $this->model->find($id)->update(['verified' => NULL]);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStoreAreaRequest extends FormRequest
+class CreateStoreCampaignRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class UpdateStoreAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            'areas'=> 'required',
+            'title' => 'required|min:3',
+            'body' => 'required|min:3',
+            'stores' => 'required'
         ];
     }
 }

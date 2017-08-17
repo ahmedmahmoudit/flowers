@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCampaignRequest;
+use App\Http\Requests\CreateStoreCampaignRequest;
 use App\Mail\Campaign;
+use App\Mail\StoreCampaign;
 use App\Newsletter;
 use App\Store;
 use Illuminate\Support\Facades\Mail;
@@ -46,25 +48,30 @@ class NewsletterController extends Controller
 
     public function storesCampaignView()
     {
-        return view('backend.manager.newsletter.create_campaign_stores');
+        $stores = Store::all();
+        return view('backend.manager.newsletter.create_campaign_stores', compact('stores'));
     }
 
-    public function sendStoresCampaign(CreateCampaignRequest $request, Store $stores)
+    public function sendStoresCampaign(CreateStoreCampaignRequest $request, Store $stores)
     {
-        $subscribers = $stores::all();
+        $subscribers = $request->only(['stores']);
 
-        foreach ($subscribers as $subscriber) {
+        foreach ($subscribers['stores'] as $subscriber) {
+            $store = Store::find($subscriber);
 
-            Mail::to($subscriber->email)->queue(new Campaign($subscriber, $request->title, $request->body));
-
-            if($subscriber->second_email)
+            if($store->email)
             {
-                Mail::to($subscriber->second_email)->queue(new Campaign($subscriber, $request->title, $request->body));
+                Mail::to( $store->email )->queue( new StoreCampaign( $store, $request->title, $request->body ) );
+            }
+
+            if($store->second_email)
+            {
+                Mail::to($store->second_email)->queue(new StoreCampaign($store, $request->title, $request->body));
             }
 
         }
 
-        return redirect()->route('manager.newsletter.index')->with('success', 'campaign sent successfully');
+        return redirect()->route('manager.newsletter.mailStores')->with('success', 'campaign sent successfully');
     }
 
     /**
