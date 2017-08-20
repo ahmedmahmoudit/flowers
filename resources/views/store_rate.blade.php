@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-    @component('partials.breadcrumb',['title' => __('Welcome To Store Rate ') , 'nav'=>true])
+    @component('partials.breadcrumb',['title' => __('Welcome To Store Rate') , 'nav'=>true])
     @endcomponent
 
     <div class="container">
@@ -314,7 +314,7 @@
 
                 <div class="form-group">
                     <div class="col-md-3 col-lg-push-1 pull-right">
-                        {{ Form::submit('submit',['class'=>'btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16']) }}
+                        {{ Form::submit(__('Submit'),['class'=>'btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16']) }}
                     </div>
                 </div>
 
