@@ -2,7 +2,7 @@
     <ul class="c-shop-filter-search-1 list-unstyled">
         <li>
             <label class="control-label c-font-uppercase c-font-bold">{{ __('Search Term') }}</label>
-            <input type="text" name="term" class="form-control c-square c-theme input-lg" value="{{ $searchTerm }}" placeholder="{{ __('Product name, Sku or Item number') }}">
+            <input type="text" name="term" class="form-control c-square c-theme input-lg" value="{{ $searchTerm }}" placeholder="{{ __('Product Name or Item number') }}">
         </li>
 
         <li>
@@ -20,7 +20,7 @@
         </li>
 
         <li>
-            <label class="control-label c-font-uppercase c-font-bold">Price</label>
+            <label class="control-label c-font-uppercase c-font-bold">{{ __('Price') }}</label>
             <p class="price-display">Price: {{$priceRangeFrom}} - {{$priceRangeTo}}</p>
             <div class="c-price-range-slider c-theme-1 input-group">
                 <input type="hidden" name="pricefrom" id="pricefrom" value="{{ $priceRangeFrom }}" />
@@ -40,7 +40,7 @@
                     <span></span>
                     <span class="check" value="1"></span>
                     <span class="box" value="0"></span>
-                    {{ __('ON SALE') }}
+                    {{ __('On Sale') }}
                 </label>
             </div>
 

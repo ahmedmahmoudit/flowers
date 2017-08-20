@@ -7,8 +7,8 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">{{ __('Email Address') }} <span class="red">*</span></label>
-    <input type="email" name="email" value="{{ old('email') }}" class="form-control c-square c-theme" placeholder="{{ __('Email Address') }}">
+    <label class="control-label">{{ __('Email') }} <span class="red">*</span></label>
+    <input type="email" name="email" value="{{ old('email') }}" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">
 </div>
 
 <div class="form-group">

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{{ __('Vasat') }}</title>
+    <title>{{ __('Vassat') }}</title>
     @section('style')
     @show
 </head>
@@ -23,7 +23,7 @@
                                         <!-- logo -->
                                         <tr>
                                             <td align="left">
-                                                <h1 style="font-family:helvetica, Arial, sans-serif;">{{ __('Vasat') }}</h1>
+                                                <h1 style="font-family:helvetica, Arial, sans-serif;">{{ __('Vassat') }}</h1>
                                             </td>
                                         </tr>
 

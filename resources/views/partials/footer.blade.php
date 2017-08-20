@@ -10,16 +10,16 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <ul class="c-links c-theme-ul">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &	Conditions</a></li>
-                            <li><a href="#">Delivery</a></li>
+                            <li><a href="#">{{ __('About us') }}</a></li>
+                            <li><a href="#">{{ __('Privacy Policy') }}</a></li>
+                            <li><a href="#">{{ __('Terms &	Conditions') }}</a></li>
+                            <li><a href="#">{{ __('Delivery') }}</a></li>
                         </ul>
 
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
                         <div class="c-content-title-1 c-title-md">
-                            <h3 class="c-title c-font-uppercase c-font-bold">Contact Us</h3>
+                            <h3 class="c-title c-font-uppercase c-font-bold">{{ __('Contact Us') }}</h3>
                             <div class="c-line-left hide"></div>
                         </div>
                         <p class="c-address c-font-16">
@@ -36,14 +36,14 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="c-content-title-1 c-title-md">
-                            <h3 class="c-font-uppercase c-font-bold">About <span class="c-theme-font">Vazzat</span></h3>
+                            <h3 class="c-font-uppercase c-font-bold">{{ __('About') }} <span class="c-theme-font">Vazzat</span></h3>
                             <div class="c-line-left hide"></div>
                         </div>
-                        <p class="c-text c-font-16 c-font-regular">Tolerare unus ducunt ad brevis buxum. Est alter buxum, cesaris. Eheu, lura! Racanas crescere in emeritis oenipons! Ubi est rusticus repressor? Lixa grandis clabulare est. Eposs tolerare.</p>
+                        <p class="c-text c-font-16 c-font-regular"></p>
                     </div>
                     <div class="col-md-5">
                         <div class="c-content-title-1 c-title-md">
-                            <h3 class="c-font-uppercase c-font-bold">Subscribe to Newsletter</h3>
+                            <h3 class="c-font-uppercase c-font-bold">{{ __('Subscribe to Newsletter') }}</h3>
                             <div class="c-line-left hide"></div>
                         </div>
                         <div class="c-line-left hide"></div>
@@ -51,7 +51,7 @@
                             <div class="input-group input-group-lg c-square">
                                 <input type="text" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="Your Email Here"/>
                                 <span class="input-group-btn">
-					            	<button class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">Subscribe</button>
+					            	<button class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Subscribe') }}</button>
 					        	</span>
                             </div>
                         </form>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => __('Welcome, ') . $user->name, 'nav'=>true, 'sub'=>__('Your order history')])
+    @component('partials.breadcrumb',['title' => __('Welcome') . ' '. $user->name, 'nav'=>true, 'sub'=>__('Order History')])
         <li class=""><a href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
         <li>/</li>
         <li class="c-active"><a href="{{ route('profile.orders') }}">{{ __('Orders') }}</a></li>
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="c-layout-sidebar-menu c-theme ">
             <div class="c-sidebar-menu-toggler">
-                <h3 class="c-title c-font-uppercase c-font-bold">{{ __('Welcome, '), $user->name }}</h3>
+                <h3 class="c-title c-font-uppercase c-font-bold">{{ __('Welcome') .' '. $user->name }}</h3>
                 <a href="javascript:;" class="c-content-toggler" data-toggle="collapse" data-target="#sidebar-menu-1">
                     <span class="c-line"></span> <span class="c-line"></span> <span class="c-line"></span>
                 </a>
@@ -44,7 +44,7 @@
                                     </a>
                                 </h3>
                                 <span style="font-weight: bold">{{ __('status') }} :<span class="c-order-date c-font-14 c-font-thin c-theme-font"> {{$order->orderStatusCast($order->order_status)}}</span></span>
-                                <p class="c-price c-font-26 c-font-thin">{{ $order->net_amount }} KWD</p>
+                                <p class="c-price c-font-26 c-font-thin">{{ $order->net_amount }} {{ __('KD') }}</p>
                                 <p class="c-payment-type c-font-14 c-font-bold">via ({{ $order->payment_method }})</p>
                             </div>
                         </div>

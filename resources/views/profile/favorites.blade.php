@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => __('Welcome, ') . $user->name, 'nav'=>true, 'sub'=>__('Your favorites list')])
+    @component('partials.breadcrumb',['title' => __('Welcome') . ' ' . $user->name, 'nav'=>true, 'sub'=>__('Favorites')])
         <li class=""><a href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
         <li>/</li>
         <li class="c-active"><a href="{{ route('profile.favorites') }}">{{ __('Favorites') }}</a></li>
@@ -11,7 +11,7 @@
     <div class="container">
         <div class="c-layout-sidebar-menu c-theme ">
             <div class="c-sidebar-menu-toggler">
-                <h3 class="c-title c-font-uppercase c-font-bold">{{ __('Welcome, '), $user->name }}</h3>
+                <h3 class="c-title c-font-uppercase c-font-bold">{{ __('Welcome') . ' ' . $user->name }}</h3>
                 <a href="javascript:;" class="c-content-toggler" data-toggle="collapse" data-target="#sidebar-menu-1">
                     <span class="c-line"></span> <span class="c-line"></span> <span class="c-line"></span>
                 </a>
@@ -20,7 +20,7 @@
         </div>
         <div class="c-layout-sidebar-content ">
             <div class="c-content-title-1">
-                <h3 class="c-font-uppercase c-font-bold">{{ __('My Favorites') }}</h3>
+                <h3 class="c-font-uppercase c-font-bold">{{ __('Favorites') }}</h3>
                 <div class="c-line-left"></div>
             </div>
 
@@ -49,7 +49,7 @@
                                     <div class="c-overlay-wrapper">
                                         <div class="c-overlay-content">
                                             <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">
-                                                {{ __('Explore') }}
+                                                {{ __('View') }}
                                             </a>
                                         </div>
                                     </div>
@@ -99,8 +99,8 @@
                                 @endif
                             </div>
                             <div class="col-md-2 col-sm-2">
-                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                <p class="c-font-sbold c-font-uppercase c-font-18">{{ $product->detail->sale_price }} KWD</p>
+                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Unit Price') }}</p>
+                                <p class="c-font-sbold c-font-uppercase c-font-18">{{ $product->detail->sale_price }} {{ __('KD') }}</p>
                             </div>
                         </div>
                     </div>

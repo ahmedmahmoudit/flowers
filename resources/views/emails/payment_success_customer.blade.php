@@ -102,8 +102,8 @@
     </tr>
     <tr>
         <td width="100%" align="left" style="font-size: 15px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#666666;">
-            <p>Your Transaction has been successful.</p>
-            <p>We have received your order.</p>
+            <p>{{ __('Your Transaction has been successful') }}</p>
+            <p>{{ __('We have received your order') }}</p>
         </td>
     </tr>
 
@@ -113,20 +113,21 @@
                 <tr>
                     <td>
                         {{ $name }}
-                        <br>Invoice #{{ $invoiceNo }}
+                        <br>{{ __('Invoice') }} #{{ $invoiceNo }}
                         <br>{{ $date }}
-                        <br>Delivery date on {{ $deliveryDate }}</td>
-                        <br>Delivery time on {{ $deliveryTime }}</td>
+                        <br>{{ __('Delivery date') .' '.$deliveryDate }}
+                        <br>{{ __('Delivery time') .' '. $deliveryTime }}
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <table class="invoice-items" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td class="alignright">{{ $amount }} KD</td>
+                                <td class="alignright">{{ $amount }} {{ __('KD') }}</td>
                             </tr>
                             <tr class="total">
-                                <td class="alignright" width="80%">Total</td>
-                                <td class="alignright">{{ $amount }} KD</td>
+                                <td class="alignright" width="80%">{{ __('Total') }}</td>
+                                <td class="alignright">{{ $amount }} {{ __('KD') }}</td>
                             </tr>
                         </table>
                     </td>

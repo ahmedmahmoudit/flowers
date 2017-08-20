@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    @component('partials.breadcrumb',['title' => 'Checkout', 'nav'=>true])
+    @component('partials.breadcrumb',['title' => __('Checkout'), 'nav'=>true])
         <li ><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
         <li >/</li>
         <li class="c-active"><a href="{{ route('checkout') }}">{{ __('Checkout') }}</a></li>
@@ -58,7 +58,7 @@
                             </div>
                             <hr>
 
-                            <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Recepient Information') }}</h3>
+                            <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Recipient Information') }}</h3>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
@@ -144,8 +144,8 @@
 {{--                                                        <input name="street" type="text" value="{{old('street')}}" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">--}}
                                                         <input name="street" type="text" value="4" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">
                                                     </div><div class="col-md-4">
-                                                        <label class="control-label">{{ __('House / Apartment') }} </label>
-                                                        <input name="house" type="text" value="{{old('house')}}" class="form-control c-square c-theme" placeholder="{{ __('house') }}">
+                                                        <label class="control-label">{{ __('House') }} </label>
+                                                        <input name="house" type="text" value="{{old('house')}}" class="form-control c-square c-theme" placeholder="{{ __('House') }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,7 +169,7 @@
                         <!-- BEGIN: ORDER FORM -->
                         <div class="col-md-5">
                             <div class="c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
-                                <h1 class="c-font-bold c-font-uppercase c-font-24">Your Order</h1>
+                                <h1 class="c-font-bold c-font-uppercase c-font-24">{{ __('Your Order') }}</h1>
                                 <ul class="c-order list-unstyled">
                                     <li class="row c-margin-b-15">
                                         <div class="col-md-6 c-font-20"><h2>{{ __('Product') }}</h2></div>
@@ -188,7 +188,7 @@
                                     <li class="row c-border-top c-margin-b-15"></li>
                                     <li class="row c-margin-b-15 c-margin-t-15">
                                         <div class="col-md-6 c-font-20">
-                                            <p class="c-font-30">Total</p>
+                                            <p class="c-font-30">{{ __('Total') }}</p>
                                         </div>
                                         <div class="col-md-6 c-font-20">
                                             <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ $cart->grandTotal . ' ' .$selectedCountry['currency_'.app()->getLocale()]}}</span></p>
@@ -203,7 +203,7 @@
                                                         <span class="inc"></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
-                                                        Knet / Visa
+                                                        {{ __('Knet / Visa') }}
                                                     </label>
                                                     <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" />
                                                 </div>

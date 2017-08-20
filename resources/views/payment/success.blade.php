@@ -49,14 +49,14 @@
                             <p>{{ $order->sale_amount }} KD</p>
                         </li>
                         <li>
-                            <h3>Payment Method</h3>
+                            <h3>{{ __('Payment Method') }}</h3>
                             <p>{{ $order->payment_method }}</p>
                         </li>
                     </ul>
                 </div>
                 <div class="c-bank-details c-margin-t-30 c-margin-b-30">
                     <p class="c-margin-b-20">
-                        {{ __('Your Item(s) are ready for Shipping. Please use your Order Number as the payment reference.') }}
+                        {{ __('Your Items are ready for Shipping. Please use your Order Number as the payment reference') }}
                     </p>
                 </div>
                 <div class="c-order-details">
@@ -129,7 +129,7 @@
                     <div class="c-row-item c-row-total c-right">
                         <ul class="c-list list-unstyled">
                             <li>
-                                <h3 class="c-font-regular c-font-22">{{ __('Subtotal') }} : &nbsp;
+                                <h3 class="c-font-regular c-font-22">{{ __('Sub Total') }} : &nbsp;
                                     &nbsp;<span class="c-font-line-through c-font-red">{{$order->net_amount . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>
                                 </h3>
                             </li>

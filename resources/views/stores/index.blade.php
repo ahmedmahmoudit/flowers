@@ -53,7 +53,7 @@
                                         <div class="c-masonry-border"></div>
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('explore') }}</a>
+                                                <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('View') }}</a>
                                             </div>
                                         </div>
                                     </div>

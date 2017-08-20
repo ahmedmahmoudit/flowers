@@ -49,7 +49,7 @@
     <div class="c-layout-footer-6 c-bg-white">
         <div class="container">
             <div class="c-content-title-1" style="padding-top:20px">
-                <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Latest Flowers') }}</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Recent') }}</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
 
@@ -60,7 +60,7 @@
             </div>
             <div class="c-content-title-1" style="padding-top:20px">
                 <h3 class="c-center c-font-uppercase c-font-bold">
-                    <a href="{{ route('products.index') }}" class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x" >{{ __('View All Flowers') }}</a>
+                    <a href="{{ route('products.index') }}" class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x" >{{ __('View All') }}</a>
                 </h3>
             </div>
         </div>
