@@ -111,12 +111,12 @@
                             </div>
 
 
-                            <p class="c-product-meta-label c-font-bold">{{ __('Weight'). ' :  ' . $product->detail->weight }}</p>
-                            <p class="c-product-meta-label c-font-bold">{{ __('Dimension'). ' :  ' . $product->detail->height .' * '. $product->detail->width }}</p>
+{{--                            <p class="c-product-meta-label c-font-bold">{{ __('Weight'). ' :  ' . $product->detail->weight }}</p>--}}
+                            <p class="c-product-meta-label c-font-bold">{{ __('Dimension'). ' :  ' . $product->detail->height .' x '. $product->detail->width }}</p>
 
                             <div class="row c-product-variant">
                                 <div class="col-sm-12 col-xs-12">
-                                    <p class="c-product-meta-label    " style="padding-top:9px">{{ $product->userLikes->count() }} {{ __('Likes') }}:</p>
+                                    <p class="c-product-meta-label" style="padding-top:9px">{{ $product->userLikes->count() }} {{ __('Likes') }}:</p>
                                     <div class="btn-group" role="group" style="margin-bottom: 20px">
                                         <form method="POST" action="{{route('product.favorite',$product->id)}}">
                                             {{ csrf_field() }}
@@ -238,7 +238,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-xs-12">
                                                     <div class="c-input-group c-spinner">
-                                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">{{ __('Quantity') }}</p>
                                                         <input name="quantity" type="text" class="form-control c-item-1" value="1">
                                                         <div class="c-input-group-btn-vertical">
                                                             <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
