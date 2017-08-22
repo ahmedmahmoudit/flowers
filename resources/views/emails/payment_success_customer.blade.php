@@ -103,7 +103,7 @@
     <tr>
         <td width="100%" align="left" style="font-size: 15px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#666666;">
             <p>{{ __('Your Transaction has been successful') }}</p>
-            <p>{{ __('We have received your order') }}</p>
+            <p>{{ __('We are processing your order') }}</p>
         </td>
     </tr>
 
@@ -114,7 +114,6 @@
                     <td>
                         {{ $name }}
                         <br>{{ __('Invoice') }} #{{ $invoiceNo }}
-                        <br>{{ $date }}
                         <br>{{ __('Delivery date') .' '.$deliveryDate }}
                         <br>{{ __('Delivery time') .' '. $deliveryTime }}
                     </td>

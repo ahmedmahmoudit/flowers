@@ -88,7 +88,7 @@
                     <ul class="nav navbar-nav c-theme-nav">
 
                         <li class="c-active ">
-                            <a href="{{ route('products.index') }}" class="c-link dropdown-toggle">Products  <span class="c-arrow c-toggler"></span>  </a>
+                            <a href="{{ route('products.index') }}" class="c-link dropdown-toggle">{{ __('Products') }}  <span class="c-arrow c-toggler"></span>  </a>
 
                             <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
                                 @foreach($parentCategories as $parentCategory)

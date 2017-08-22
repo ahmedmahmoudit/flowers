@@ -2,8 +2,8 @@
 
 @section('content')
     @component('partials.breadcrumb',['title' => __('Checkout'), 'nav'=>true])
-        <li ><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
-        <li >/</li>
+        <li><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
+        <li>/</li>
         <li class="c-active"><a href="{{ route('checkout') }}">{{ __('Checkout') }}</a></li>
     @endcomponent
 
@@ -27,28 +27,40 @@
                                     <div class="row">
 
                                         <div class="form-group col-md-6">
-                                            <label class="control-label">{{ __('First Name') }} <span class="red">*</span></label>
-{{--                                            <input name="firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="firstname" type="text" value="afzal" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">
+                                            <label class="control-label">{{ __('First Name') }} <span
+                                                        class="red">*</span></label>
+                                            {{--                                            <input name="firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
+                                            <input name="firstname" type="text" value="afzal"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('First Name') }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="control-label">{{ __('Last Name') }} <span class="red">*</span></label>
-{{--                                            <input name="lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="lastname" type="text" value="um" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">
+                                            <label class="control-label">{{ __('Last Name') }} <span
+                                                        class="red">*</span></label>
+                                            {{--                                            <input name="lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
+                                            <input name="lastname" type="text" value="um"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Last Name') }}">
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    <label class="control-label">{{ __('Email') }} <span class="red">*</span></label>
-{{--                                                    <input name="email" type="text" value="{{old('email')}}" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">--}}
-                                                    <input name="email" type="text" value="z4ls@live.com" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">
+                                                    <label class="control-label">{{ __('Email') }} <span
+                                                                class="red">*</span></label>
+                                                    {{--                                                    <input name="email" type="text" value="{{old('email')}}" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">--}}
+                                                    <input name="email" type="text" value="z4ls@live.com"
+                                                           class="form-control c-square c-theme"
+                                                           placeholder="{{ __('Email') }}">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label class="control-label">{{ __('Mobile') }} <span class="red">*</span></label>
-{{--                                                    <input name="mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                                    <input name="mobile" type="tel" value="97978803" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">
+                                                    <label class="control-label">{{ __('Mobile') }} <span
+                                                                class="red">*</span></label>
+                                                    {{--                                                    <input name="mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
+                                                    <input name="mobile" type="tel" value="97978803"
+                                                           class="form-control c-square c-theme"
+                                                           placeholder="{{ __('Mobile') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,26 +76,37 @@
                                     <div class="row">
 
                                         <div class="form-group col-md-4">
-                                            <label class="control-label">{{ __('First Name') }} <span class="red">*</span></label>
+                                            <label class="control-label">{{ __('First Name') }} <span
+                                                        class="red">*</span></label>
                                             {{--<input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="recipient_firstname" type="text" value="faizal" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">
+                                            <input name="recipient_firstname" type="text" value="faizal"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('First Name') }}">
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="control-label">{{ __('Last Name') }} <span class="red">*</span></label>
-{{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="recipient_lastname" type="text" value="um" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">
+                                            <label class="control-label">{{ __('Last Name') }} <span
+                                                        class="red">*</span></label>
+                                            {{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
+                                            <input name="recipient_lastname" type="text" value="um"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Last Name') }}">
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="control-label">{{ __('Mobile') }} <span class="red">*</span></label>
-{{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                            <input name="recipient_mobile" type="tel" value="9999999" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">
+                                            <label class="control-label">{{ __('Mobile') }} <span
+                                                        class="red">*</span></label>
+                                            {{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
+                                            <input name="recipient_mobile" type="tel" value="9999999"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Mobile') }}">
                                         </div>
 
-                                        <div  style="padding-top:10px">
+                                        <div style="padding-top:10px">
                                             <div class="form-group col-md-12">
                                                 <label class="control-label">{{ __('Card Notes') }}</label>
-                                                <textarea name="card_notes" class="form-control c-square c-theme" rows="3" placeholder="{{ __('Special messages to be written on the card') }}"></textarea>
+                                                <textarea name="card_notes" class="form-control c-square c-theme"
+                                                          rows="3"
+                                                          placeholder="{{ __('Special messages to be written on the card') }}"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -113,14 +136,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label class="control-label">{{ __('Country') }} <span class="red">*</span> </label>
-                                                <select name="country_id" class="form-control c-square c-theme">
-                                                    <option value="{{ $selectedCountry['id'] }}">{{ $selectedCountry['name_'.app()->getLocale()] }}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="control-label">{{ __('Area') }} <span class="red">*</span> </label>
+                                            <div class="form-group col-md-4">
+                                                <label class="control-label">{{ __('Area') }} <span class="red">*</span>
+                                                </label>
                                                 <select name="area_id" class="form-control c-square c-theme">
                                                     @foreach($selectedCountry['areas'] as $area)
                                                         <option value="{{ $area['id']  }}"
@@ -135,28 +153,38 @@
                                             <div class="col-md-12">
                                                 <div class="row">
                                                     <div class="form-group col-md-4">
-                                                        <label class="control-label">{{ __('Block') }} <span class="red">*</span></label>
-{{--                                                        <input name="block" type="text" value="{{old('block')}}" class="form-control c-square c-theme" placeholder="{{ __('Block') }}">--}}
-                                                        <input name="block" type="text" value="5" class="form-control c-square c-theme" placeholder="{{ __('Block') }}">
+                                                        <label class="control-label">{{ __('Block') }} <span
+                                                                    class="red">*</span></label>
+                                                        {{--                                                        <input name="block" type="text" value="{{old('block')}}" class="form-control c-square c-theme" placeholder="{{ __('Block') }}">--}}
+                                                        <input name="block" type="text" value="5"
+                                                               class="form-control c-square c-theme"
+                                                               placeholder="{{ __('Block') }}">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label class="control-label">{{ __('Street') }} <span class="red">*</span></label>
-{{--                                                        <input name="street" type="text" value="{{old('street')}}" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">--}}
-                                                        <input name="street" type="text" value="4" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">
-                                                    </div><div class="col-md-4">
+                                                        <label class="control-label">{{ __('Street') }} <span
+                                                                    class="red">*</span></label>
+                                                        {{--                                                        <input name="street" type="text" value="{{old('street')}}" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">--}}
+                                                        <input name="street" type="text" value="4"
+                                                               class="form-control c-square c-theme"
+                                                               placeholder="{{ __('Street') }}">
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <label class="control-label">{{ __('House') }} </label>
-                                                        <input name="house" type="text" value="{{old('house')}}" class="form-control c-square c-theme" placeholder="{{ __('House') }}">
+                                                        <input name="house" type="text" value="{{old('house')}}"
+                                                               class="form-control c-square c-theme"
+                                                               placeholder="{{ __('House') }}">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
 
-
                                         <div class="row" style="padding-top:10px">
                                             <div class="form-group col-md-12">
                                                 <label class="control-label">{{ __('Order Notes') }}</label>
-                                                <textarea name="order_notes" class="form-control c-square c-theme" rows="3" placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
+                                                <textarea name="order_notes" class="form-control c-square c-theme"
+                                                          rows="3"
+                                                          placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
                                             </div>
                                         </div>
 
@@ -178,7 +206,10 @@
                                     <li class="row c-border-bottom"></li>
                                     @foreach($cart->items as $product)
                                         <li class="row c-margin-b-15 c-margin-t-15">
-                                            <div class="col-md-6 c-font-20"><a href="{{ route('product.show',[$product->id,$product->slug])}}" class="c-theme-link">{{ $product->name }} x {{ $product->quantity }}</a></div>
+                                            <div class="col-md-6 c-font-20"><a
+                                                        href="{{ route('product.show',[$product->id,$product->slug])}}"
+                                                        class="c-theme-link">{{ $product->name }}
+                                                    x {{ $product->quantity }}</a></div>
                                             <div class="col-md-6 c-font-20">
                                                 <p class="">{{ $product->quantity * $product->detail->final_price . ' ' .$selectedCountry['currency_'.app()->getLocale()] }}</p>
                                             </div>
@@ -191,21 +222,31 @@
                                             <p class="c-font-30">{{ __('Total') }}</p>
                                         </div>
                                         <div class="col-md-6 c-font-20">
-                                            <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ $cart->grandTotal . ' ' .$selectedCountry['currency_'.app()->getLocale()]}}</span></p>
+                                            <p class="c-font-bold c-font-30"><span
+                                                        class="c-shipping-total">{{ $cart->grandTotal . ' ' .$selectedCountry['currency_'.app()->getLocale()]}}</span>
+                                            </p>
                                         </div>
                                     </li>
                                     <li class="row">
                                         <div class="col-md-12">
                                             <div class="c-radio-list">
                                                 <div class="c-radio">
-                                                    <input type="radio" id="radio3" class="c-radio" name="payment" checked="">
+                                                    <input type="radio" id="radio3" class="c-radio" name="payment"
+                                                           checked="">
                                                     <label for="radio3" class="c-font-bold c-font-20">
                                                         <span class="inc"></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
                                                         {{ __('Knet / Visa') }}
                                                     </label>
-                                                    <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" />
+                                                    <div>
+                                                        <span class="list-inline">
+                                                            <img class="img-responsive"
+                                                                 width="150;height:60"
+                                                                 style="width: 150px;height:50px"
+                                                                 src="/img/payment-icon.png"/>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,8 +254,10 @@
 
                                     <li class="row">
                                         <div class="form-group col-md-12" role="group">
-                                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">{{ __('Continue to Payment') }}</button>
-                                            <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">{{ __('Cancel') }}</button>
+                                            <button type="submit"
+                                                    class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">{{ __('Continue to Payment') }}</button>
+                                            <button type="submit"
+                                                    class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">{{ __('Cancel') }}</button>
                                         </div>
                                     </li>
                                 </ul>
