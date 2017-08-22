@@ -49,7 +49,7 @@
     <div class="c-layout-footer-6 c-bg-white">
         <div class="container">
             <div class="c-content-title-1" style="padding-top:20px">
-                <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Recent') }}</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Latest Flowers') }}</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
 
