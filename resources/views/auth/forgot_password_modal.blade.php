@@ -5,11 +5,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h3 class="c-font-24 c-font-sbold">Password Recovery</h3>
+                <h3 class="c-font-24 c-font-sbold">{{ __('Password Recovery') }}</h3>
                 <p>{{ __('To recover your password please fill in your email address') }}</p>
                 <form>
                     <div class="form-group">
-                        <label for="forget-email" class="hide">Email</label>
+                        <label for="forget-email" class="hide">{{ __('Email') }}</label>
                         <input type="email" class="form-control input-lg c-square" id="forget-email" placeholder="{{ __('Email') }}">
                     </div>
                     <div class="form-group">
@@ -19,8 +19,8 @@
                 </form>
             </div>
             <div class="modal-footer c-no-border">
-                <span class="c-text-account">{{ __('Don\'t Have An Account Yet ?') }}</span>
-                <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">{{ __('Signup!') }}</a>
+                <span class="c-text-account">{{ __("Dont Have An Account Yet ?") }}</span>
+                <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">{{ __('Signup') }}</a>
             </div>
         </div>
     </div>

@@ -59,7 +59,7 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => 'Cart', 'nav'=>true])
+    @component('partials.breadcrumb',['title' => __('Cart'), 'nav'=>true])
         <li class="c-active"><a href="{{ route('cart.index') }}">{{ __('Cart') }}</a></li>
     @endcomponent
 
@@ -83,7 +83,7 @@
                                 <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Description') }}</h3>
                             </div>
                             <div class="col-md-1 c-cart-qty">
-                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Qty') }}</h3>
+                                <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Quantity') }}</h3>
                             </div>
                             <div class="col-md-2 c-cart-price">
                                 <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">{{ __('Unit Price') }}</h3>
@@ -202,7 +202,7 @@
                         <div class="row">
                             <div class="c-cart-subtotal-row">
                                 <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-                                    <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
+                                    <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">{{ __('Grand Total') }}</h3>
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
                                     <h3 class="c-font-bold c-font-16">{{ $cart->grandTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</h3>
@@ -211,8 +211,8 @@
                         </div>
 
                         <div class="c-cart-buttons">
-                            <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Update Cart</button>
-                            <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
+                            <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Update Cart') }}</button>
+                            <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">{{ __('Checkout') }}</a>
                         </div>
                     </div>
                 </form>

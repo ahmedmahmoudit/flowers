@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{{ __('Vasat') }}</title>
+    <title>{{ __('Vassat') }}</title>
     @section('style')
     @show
 </head>
@@ -23,7 +23,7 @@
                                         <!-- logo -->
                                         <tr>
                                             <td align="left">
-                                                <h1 style="font-family:helvetica, Arial, sans-serif;">{{ __('Vasat') }}</h1>
+                                                <h1 style="font-family:helvetica, Arial, sans-serif;">{{ __('Vassat') }}</h1>
                                             </td>
                                         </tr>
 
@@ -33,10 +33,10 @@
                                     <table align="right" border="0" cellpadding="0" cellspacing="0" width="350" style="border-collapse: collapse;">
                                         <tr>
                                             <td  height="75" style="text-align: right; vertical-align: middle;">
-                                                <a href="{{ url('/') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('HOME') }}</a> &nbsp;&nbsp;
-                                                <a href="{{ route('products.index') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('PRODUCTS') }}</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="{{ route('about') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('ABOUT') }}</a> &nbsp;&nbsp;
-                                                <a href="{{ route('contact') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('CONTACT') }}</a>
+                                                <a href="{{ url('/') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('Home') }}</a> &nbsp;&nbsp;
+                                                <a href="{{ route('products.index') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('Products') }}</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="{{ route('about') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('About') }}</a> &nbsp;&nbsp;
+                                                <a href="{{ route('contact') }}" style="font-family:helvetica, Arial, sans-serif; color: #666666; font-size: 12px; font-weight: bold; text-decoration: none;">{{ __('Contact') }}</a>
                                             </td>
                                         </tr>
                                     </table>

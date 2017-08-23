@@ -47,8 +47,10 @@ class LocaleController extends Controller
 
     public function setArea(Request $request)
     {
-        $area = $this->areaModel->find($request->area)->toArray();
-        Cache::put('selectedArea',$area, 60 * 24);
+        if($request->area) {
+            $area = $this->areaModel->find($request->area)->toArray();
+            Cache::put('selectedArea',$area, 60 * 24);
+        }
         return redirect()->intended('/');
     }
 
@@ -57,6 +59,7 @@ class LocaleController extends Controller
         if(in_array($locale,['en','ar'])) {
             session()->put('locale', $locale);
         }
+        Cache::forget('selectedArea');
 
         return redirect()->back();
     }

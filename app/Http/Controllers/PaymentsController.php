@@ -29,18 +29,18 @@ class PaymentsController extends Controller
      */
     public function processPayment(Request $request)
     {
-        if($request->result !== 'SUCCESS') {
+        if ($request->result !== 'SUCCESS') {
             $status = 'danger';
-            return view('payments.failure',compact('status'));
+            return view('payments.failure', compact('status'));
         }
 
         $selectedCountry = Cache::get('selectedCountry');
         $status = 'success';
-        $order = $this->orderModel->with('orderDetails')->where('reference_code',$request->ref)->first();
+        $order = $this->orderModel->with('orderDetails')->where('reference_code', $request->ref)->first();
 
-        if($order->captured_status != 1) {
+        if ($order->captured_status != 1) {
             $order->captured_status = 1;
-            if($order->coupon) {
+            if ($order->coupon) {
                 $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
                 $order->coupon->save();
             }
@@ -50,11 +50,13 @@ class PaymentsController extends Controller
             try {
                 $this->dispatch(new SendPaymentEmail($order));
             } catch (\Exception $e) {
+                return redirect()->home()->with('error',__('Something went wrong during payment, try again'));
             }
+
 
             //@todo: flush cart session
         }
 
-        return view('payment.success',compact('status','order','selectedCountry'));
+        return view('payment.success', compact('status', 'order', 'selectedCountry'));
     }
 }

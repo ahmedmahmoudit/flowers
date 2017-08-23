@@ -48,7 +48,7 @@ class LoginController extends Controller
                     return redirect('admin/dashboard');
                 } else{
 //                    Auth::logout();
-                    return redirect()->intended('/')->with('success','Logged in');
+                    return redirect()->intended('/')->with('success',__('Logged in'));
 //                    return redirect()->route('login')->with('error',__("You Don't have any store!"));
                 }
             }

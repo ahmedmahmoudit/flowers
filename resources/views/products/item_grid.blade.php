@@ -6,13 +6,13 @@
         <div class="c-content-product-2 c-bg-white">
             <div class="c-content-overlay">
                 @if($product->detail->is_sale)
-                    <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-14 c-font-bold">Sale</div>
+                    <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-14 c-font-bold">{{ __('Sale') }}</div>
                 @endif
 
                 <div class="c-overlay-wrapper">
 
                     <div class="c-overlay-content">
-                        <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">{{ __('Explore') }}</a>
+                        <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">{{ __('View') }}</a>
                     </div>
                 </div>
 

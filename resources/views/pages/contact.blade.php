@@ -10,7 +10,7 @@
     @include('backend.partials._actions')
 @stop
 @section('page-title')
-    Contact Us
+    {{ __('Contact Us') }}
 @stop
 @section('panel-title')
     Contact.index

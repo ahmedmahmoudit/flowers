@@ -5,8 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h3 class="c-font-24 c-font-sbold">{{ __('WHERE DO YOU WANT TO SEND YOUR GIFT?') }}</h3>
-                <div class="c-body">
+                <h3 class="c-font-24 c-font-sbold text-center ">{{ __('Where Do You Want To Send Your Gift?') }}</h3>
+                <div class="c-body m-top-20">
 
                     {!! Form::open(['route' => 'country.set', 'method' => 'post', 'class'=>'form-horizontal', 'id'=>'set-country-form','name'=>'set-country-form']) !!}
 

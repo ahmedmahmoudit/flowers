@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    @component('partials.breadcrumb',['title' => __('Payment Success'), 'nav'=>true])
+    @component('partials.breadcrumb',['title' => __(''), 'nav'=>true])
         <li class="c-active">{{ __('Payment') }}</li>
     @endcomponent
 
@@ -30,8 +30,8 @@
         <div class="container">
             <div class="c-shop-cart-page-1 c-center">
                 <i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin "></i>
-                <h2 class="c-font-thin c-center">{{ __('Payment failed') }}</h2>
-                <a href="{{ route('home') }}" class="btn c-btn btn-lg c-btn-dark c-btn-square c-font-white c-font-bold c-font-uppercase">{{ __('Go to home') }}</a>
+                <h2 class="c-font-thin c-center">{{ __('Payment Failed') }}</h2>
+                <a href="{{ route('home') }}" class="btn c-btn btn-lg c-btn-dark c-btn-square c-font-white c-font-bold c-font-uppercase">{{ __('Home') }}</a>
             </div>
         </div>
     </div>

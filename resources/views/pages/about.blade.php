@@ -10,7 +10,7 @@
     @include('backend.partials._actions')
 @stop
 @section('page-title')
-    About Us
+    {{ __('About Us') }}
 @stop
 @section('panel-title')
     about.index

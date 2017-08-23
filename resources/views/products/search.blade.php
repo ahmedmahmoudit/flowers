@@ -37,9 +37,9 @@
                         <div style="padding-top:20px">
                             <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
                             <br>
-                            <span class="fa fa-instagram ">&nbsp; instagram_name</span>&nbsp;&nbsp;
+                            <span class="fa fa-instagram ">&nbsp;{{ __('Instagram Username') }}</span>&nbsp;&nbsp;
                             |
-                            <span class="fa fa-twitter">&nbsp;Twitter name</span>
+                            <span class="fa fa-twitter">&nbsp;{{ __('Twitter Username') }}</span>
                         </div>
                     @endif
                 </div>
