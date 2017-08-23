@@ -4,21 +4,24 @@
     <div class="col-md-{{ isset($cols) ? $cols : '3' }} col-sm-6 c-margin-b-20 ">
 
         <div class="c-content-product-2 c-bg-white">
-            <div class="c-content-overlay">
+            <div class="">
                 @if($product->detail->is_sale)
                     <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-14 c-font-bold">{{ __('Sale') }}</div>
                 @endif
 
-                <div class="c-overlay-wrapper">
+                {{--<div class="">--}}
 
-                    <div class="c-overlay-content">
-                        <a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">{{ __('View') }}</a>
-                    </div>
-                </div>
+                {{--<div class="">--}}
+                {{--<a href="{{ route('product.show',[$product->id,$product->slug]) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">{{ __('View') }}</a>--}}
+                {{--</div>--}}
+                {{--</div>--}}
 
-                <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
-                     class="img img-responsive"
-                />
+
+                <a href="{{ route('product.show',[$product->id,$product->slug]) }}">
+                    <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
+                         class="img img-responsive"
+                    />
+                </a>
             </div>
             <div class="c-info">
                 <a href="{{ route('product.show',[$product->id,$product->slug]) }}">

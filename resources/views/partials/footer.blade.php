@@ -11,9 +11,7 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <ul class="c-links c-theme-ul">
                             <li><a href="#">{{ __('About us') }}</a></li>
-                            <li><a href="#">{{ __('Privacy Policy') }}</a></li>
                             <li><a href="#">{{ __('Terms &	Conditions') }}</a></li>
-                            <li><a href="#">{{ __('Delivery') }}</a></li>
                         </ul>
 
                     </div>
@@ -23,8 +21,9 @@
                             <div class="c-line-left hide"></div>
                         </div>
                         <p class="c-address c-font-16">
-                            25, Lorem Lis Street, Orange <br/> Sharq, Kuwait <br/> Phone: +965 99999999
-                            <br/> Mail: <a href="#"><span class="c-theme-color">email@test.com</span></a>
+                            <i class="fa fa-mail-forward"></i>&nbsp;<span class="c-theme-color">info@vazzat.com</span>
+                            <br>
+                            <i class="fa fa-instagram"></i>&nbsp;<span class="c-theme-color">@vazzat</span>
                         </p>
                     </div>
                 </div>

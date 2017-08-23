@@ -162,7 +162,7 @@
                                     {{ __('Street') . ' ' . $order->street }}
                                     <br>
                                     {{ $order->area->name }},
-                                    {{ $order->country->name }}
+                                    {{--{{ $order->country->name }}--}}
                                     <br>
                                     {{ $order->mobile }}
                                     @if($order->phone)

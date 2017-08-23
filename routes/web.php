@@ -22,7 +22,7 @@ Route::get('manager/login', function () {
 });
 
 Route::get('admin/login', function () {
-    Auth::loginUsingId(2);
+//    Auth::loginUsingId(1);
     return redirect('admin/dashboard');
 });
 
