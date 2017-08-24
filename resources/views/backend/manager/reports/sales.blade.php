@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Sales')
+@section('title', __('adminPanel.sales'))
 
 @section('styles')
     @parent
@@ -17,34 +17,34 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Sales</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_sales_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         {!! Form::open(['route'=>['manager.reports.sales'],'method'=>'POST','role' => 'form']) !!}
                         <div class="form-group">
                             <div class="col-xs-5">
-                                <label for="exampleInputFrom">From</label>
+                                <label for="exampleInputFrom">{{__('adminPanel.from')}}</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right for-sale" name="from" value="{{old('from')}}" id="from" placeholder="Select From Date" required>
+                                    <input type="text" class="form-control pull-right for-sale" name="from" value="{{old('from')}}" id="from" placeholder="{{__('adminPanel.select_date')}}" required>
                                 </div>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-5">
-                                <label for="exampleInputTo">To</label>
+                                <label for="exampleInputTo">{{__('adminPanel.to')}}</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right for-sale" name="to" value="{{old('to')}}" id="to" placeholder="Select To Date" required>
+                                    <input type="text" class="form-control pull-right for-sale" name="to" value="{{old('to')}}" id="to" placeholder="{{__('adminPanel.select_date')}}" required>
                                 </div>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-2">
-                                <button type="submit" style="margin-top: 14%;" class="btn btn-primary">Find Sales</button>
+                                <button type="submit" style="margin-top: 14%;" class="btn btn-primary">{{__('adminPanel.find_sales')}}</button>
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -53,13 +53,13 @@
                             <table id="products-table" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Store</th>
-                                    <th>Main Image</th>
-                                    <th>Sku</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total Price</th>
+                                    <th>{{__('adminPanel.store')}}</th>
+                                    <th>{{__('adminPanel.main_image')}}</th>
+                                    <th>{{__('adminPanel.sku')}}</th>
+                                    <th>{{__('adminPanel.name')}}</th>
+                                    <th>{{__('adminPanel.price')}}</th>
+                                    <th>{{__('adminPanel.qty')}}</th>
+                                    <th>{{__('adminPanel.total_price')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

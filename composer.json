@@ -23,6 +23,7 @@
         "laravel/browser-kit-testing": "^1.0",
         "laravel/dusk": "^1.1",
         "mockery/mockery": "0.9.*",
+        "barryvdh/laravel-translation-manager": "0.2.x",
         "phpunit/phpunit": "~5.7"
     },
     "autoload": {

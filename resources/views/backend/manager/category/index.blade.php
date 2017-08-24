@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Categories')
+@section('title', __('adminPanel.categories'))
 
 @section('styles')
     @parent
@@ -16,16 +16,16 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Categories</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_categories_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>name</th>
-                                <th>description</th>
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.description')}}</th>
+                                <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

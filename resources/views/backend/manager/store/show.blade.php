@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'View Store')
+@section('title', __('adminPanel.view_store'))
 
 @section('styles')
     @parent
@@ -16,18 +16,18 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Store Details</h3>
+                        <h3 class="box-title">{{__('adminPanel.store_details')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="inputNameEn">Name English</label>
+                                <label for="inputNameEn">{{__('adminPanel.english_name')}}</label>
                                 <p>{{$store->name_en or 'No English Name'}}</p>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
-                                <label for="inputNameAr">Name Arabic</label>
+                                <label for="inputNameAr">{{__('adminPanel.arabic_name')}}</label>
                                 <p>{{$store->name_ar or 'No Arabic Name'}}</p>
                                 <p class="help-block"></p>
                             </div>
@@ -35,20 +35,20 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="examplePhone">Phone</label>
+                                <label for="examplePhone">{{__('adminPanel.phone')}}</label>
                                 <p>{{$store->phone or 'No Phone'}}</p>
                                 <p class="help-block"></p>
                             </div>
 
                             <div class="col-xs-6">
-                                <label for="exampleEmail">Email</label>
+                                <label for="exampleEmail">{{__('adminPanel.email')}}</label>
                                 <p>{{$store->email or 'No Email'}} @if($store->second_email) {{' | '.$store->second_email}}@endif</p>
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label >User</label>
+                                <label >{{__('adminPanel.user')}}</label>
                                 @if($store->user_id)
                                     <p>{{$store->user->name}}</p>
                                     <p class="help-block"></p>
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label>Store Image</label>
+                                <label>{{__('adminPanel.store_image')}}</label>
                                 @if($store->image)
                                     <img src="{{asset('uploads/stores/'.$store->image)}}" style="display: block;width: 100px;"/>
                                 @else
@@ -79,19 +79,19 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Store Products</h3>
+                        <h3 class="box-title">{{__('adminPanel.store_products')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="products-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Sku</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Weight</th>
-                                <th>Qty</th>
-                                <th>Status</th>
+                                <th>{{__('adminPanel.sku')}}</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.price')}}</th>
+                                <th>{{__('adminPanel.weight')}}</th>
+                                <th>{{__('adminPanel.qty')}}</th>
+                                <th>{{__('adminPanel.status')}}</th>
                             </tr>
                             </thead>
                             <tbody>

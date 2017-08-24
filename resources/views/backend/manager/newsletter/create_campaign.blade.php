@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Campaigns')
+@section('title', __('adminPanel.campaigns'))
 @section('styles')
     @parent
 
@@ -15,14 +15,14 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Add Campaign</h3>
+                        <h3 class="box-title">{{__('adminPanel.add_campaign_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
                     {{ Form::open(['route' => ['manager.newsletter.campaign'],'method'=>'POST','files' => 'true','class' => 'form-horizontal']) }}
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-md-2 control-label"> title:
+                            <label class="col-md-2 control-label"> {{__('adminPanel.title')}}:
                                 <span class="required" style="color: red;"> * </span>
                             </label>
                             <div class="col-md-5">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Campaign Content:
+                            <label class="col-md-2 control-label">{{__('adminPanel.campaign_content')}}:
                                 <span class="required" style="color: red;"> * </span>
                             </label>
                             <div class="col-md-10">
@@ -46,7 +46,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Send To All Subscribers</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.send_to_all_subscribers')}}</button>
                     </div>
                     {!!  Form::close() !!}
                 </div>

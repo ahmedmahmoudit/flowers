@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Settings')
+@section('title', __('adminPanel.settings'))
 @section('styles')
     @parent
 
@@ -14,7 +14,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Store Settings</h3>
+                        <h3 class="box-title">{{__('adminPanel.store_settings')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -22,7 +22,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> English Name:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.english_name')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Arabic Name:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.arabic_name')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Email:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.email')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Second Email:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.second_email')}}:
                                 </label>
                                 <div class="col-md-6">
                                     <input type="text" name="second_email" class="form-control" placeholder="Enter Second Email" value="{{$store->second_email or old('second_email')}}">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Phone:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.phone')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Minimum Delivery Hours:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.min_delivery_days')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -82,13 +82,13 @@
                                         <option value="next day" @if($store->minimum_delivery_days == 'next day') {{'selected'}} @endif>Next Day</option>
                                         <option value="after 2 days" @if($store->minimum_delivery_days == 'after 2 days') {{'selected'}} @endif>After 2 Days</option>
                                     </select>
-                                    <p class="help-block">Select Available Delivery</p>
+                                    <p class="help-block">{{__('adminPanel.select_available_delivery')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Start Week Day:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.start_week_day')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -106,7 +106,7 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> End Week Day:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.end_week_day')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Store Image:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.store_image')}}:
                                 </label>
                                 <div class="col-md-6">
                                     <input type="file" name="image" id="inputMainImage" style="font-size: larger;">
@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Instagram:</label>
+                                <label class="col-md-3 control-label"> {{__('adminPanel.instagram')}}:</label>
                                 <div class="col-md-6">
                                     <input type="text" name="instagram_username" class="form-control" placeholder="Enter Instagram username" value="{{$store->instagram_username or old('instagram_username')}}">
                                     <p class="help-block"></p>
@@ -145,7 +145,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label class="col-md-3 control-label"> Store Delivery Times:
+                                <label class="col-md-3 control-label"> {{__('adminPanel.store_delivery_times')}}:
                                     <span class="required" style="color: red;"> * </span>
                                 </label>
                                 <div class="col-md-6">
@@ -181,7 +181,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.update')}}</button>
                     </div>
                     {!!  Form::close() !!}
                 </div>

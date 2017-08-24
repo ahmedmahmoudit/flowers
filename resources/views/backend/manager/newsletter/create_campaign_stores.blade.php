@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Store Campaigns')
+@section('title', __('adminPanel.store_campaigns'))
 @section('styles')
     @parent
 
@@ -17,13 +17,13 @@
                 {{ Form::open(['route' => ['manager.newsletter.mailStores'],'method'=>'POST','files' => 'true','class' => 'form-horizontal']) }}
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Stores' Email</h3>
+                        <h3 class="box-title">{{__('adminPanel.send_to_store_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-md-2 control-label"> title:
+                            <label class="col-md-2 control-label"> {{__('adminPanel.title')}}:
                                 <span class="required" style="color: red;"> * </span>
                             </label>
                             <div class="col-md-5">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Content:
+                            <label class="col-md-2 control-label">{{__('adminPanel.campaign_content')}}:
                                 <span class="required" style="color: red;"> * </span>
                             </label>
                             <div class="col-md-10">
@@ -44,14 +44,14 @@
                 <!-- /.box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Select Stores</h3>
+                        <h3 class="box-title">{{__('adminPanel.select_stores')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
 
                         <div class="form-group" style="text-align: center;font-size: x-large;">
                             {!! Form::checkbox('checkAll', null, null, ['id' => 'checkAll']) !!}
-                            {!! Form::label('checkAll', 'Check All Stores', array('for' => 'checkAll')) !!}
+                            {!! Form::label('checkAll', __('adminPanel.check_all_stores'), array('for' => 'checkAll')) !!}
                         </div>
                         <div class="form-group">
                             @foreach ($stores->chunk(3) as $array)
@@ -73,7 +73,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.send')}}</button>
                     </div>
                 </div>
                 {!!  Form::close() !!}

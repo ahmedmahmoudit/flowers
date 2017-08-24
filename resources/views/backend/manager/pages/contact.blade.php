@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'contact')
+@section('title', __('adminPanel.contact_us'))
 
 @section('content')
     <!-- Main content -->
@@ -9,7 +9,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Contact Us</h3>
+                        <h3 class="box-title">{{__('adminPanel.contact_us')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -17,28 +17,28 @@
                         <div class="box-body">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="exampleInputAddress">English Address</label>
+                                    <label for="exampleInputAddress">{{__('adminPanel.english_address')}}</label>
                                     {!! Form::text('address_en', (isset($contactData) ? $contactData->address_en : old('address_en')) ,['class' => 'form-control','required']) !!}
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="exampleInputAddressAr">Arabic Address</label>
+                                    <label for="exampleInputAddressAr">{{__('adminPanel.arabic_address')}}</label>
                                     {!! Form::text('address_ar', (isset($contactData) ? $contactData->address_ar : old('address_ar')) ,['class' => 'form-control','required']) !!}
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label>{{__('adminPanel.email')}}</label>
                                     {!! Form::text('email', (isset($contactData) ? $contactData->email : old('email')) ,['class' => 'form-control','required']) !!}
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label>phone</label>
+                                    <label>{{__('adminPanel.phone')}}</label>
                                     {!! Form::text('phone', (isset($contactData) ? $contactData->phone : old('phone')) ,['class' => 'form-control','required']) !!}
                                     <p class="help-block"></p>
                                 </div>
@@ -47,7 +47,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">{{__('adminPanel.save')}}</button>
                         </div>
                     {!!  Form::close() !!}
                 </div>

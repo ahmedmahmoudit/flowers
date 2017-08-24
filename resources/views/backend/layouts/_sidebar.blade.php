@@ -4,86 +4,86 @@
     <section class="sidebar">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">{{__('adminPanel.main_nav')}}</li>
 
             <!-- Manager SideBar -->
 {{--            {{dd(Auth::user())}}--}}
             @if(Auth::user()->isManager())
                 <li class="{{ (str_contains(Request::route()->getName(),'dashboard') ? 'active' : '' ) }}">
                     <a href="{{ route('manager.dashboard') }}">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <i class="fa fa-dashboard"></i> <span>{{__('adminPanel.dashboard')}}</span>
                     </a>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'slider') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
-                        <span>Slider</span>
+                        <span>{{__('adminPanel.slider')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.sliders.index') }}"><i class="fa fa-circle-o"></i> sliders </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.sliders.create') }}"><i class="fa fa-circle-o"></i> Add Slider </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.sliders.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.sliders')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.sliders.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_slider')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'ad') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-clone"></i>
-                        <span>Ads</span>
+                        <span>{{__('adminPanel.ads')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.index') }}"><i class="fa fa-circle-o"></i> ads </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.create') }}"><i class="fa fa-circle-o"></i> Add New Ad </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.ads')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.ads.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.new_ad')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'.categor') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-folder-open"></i>
-                        <span>Categories</span>
+                        <span>{{__('adminPanel.categories')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.index') }}"><i class="fa fa-circle-o"></i> Categories </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.create') }}"><i class="fa fa-circle-o"></i> Add Category </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.categories')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.categories.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_category')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'sub') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-folder-open"></i>
-                        <span>SubCategories</span>
+                        <span>{{__('adminPanel.subCategories')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.index') }}"><i class="fa fa-circle-o"></i> SubCategories </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.create') }}"><i class="fa fa-circle-o"></i> Add SubCategory </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.sub_categories')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.subcategories.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_sub_categories')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'store') && !str_contains(Request::route()->getName(),'verification') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-map-pin"></i>
-                        <span>Stores</span>
+                        <span>{{__('adminPanel.stores')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.index') }}"><i class="fa fa-circle-o"></i> Stores</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.create') }}"><i class="fa fa-circle-o"></i> Add Store</a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.stores')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.stores.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_store')}}</a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'user') ? 'active' : '' ) }}">
                     <a href="{{ route('manager.users.index') }}">
                         <i class="fa fa-group"></i>
-                        <span>Users</span>
+                        <span>{{__('adminPanel.users')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -105,119 +105,119 @@
                 <li class="{{ (str_contains(Request::route()->getName(),'coupon') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-money"></i>
-                        <span>Coupons</span>
+                        <span>{{__('adminPanel.coupons')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.index') }}"><i class="fa fa-circle-o"></i> Coupons </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.create') }}"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.coupons')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.coupons.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_coupon')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'product') && !str_contains(Request::route()->getName(),'verification') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-th"></i>
-                        <span>Products</span>
+                        <span>{{__('adminPanel.products')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.index') }}"><i class="fa fa-circle-o"></i> Products</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.create') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.products')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('manager.products.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_product')}}</a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'verifications') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-check-circle"></i>
-                        <span>Verification</span>
+                        <span>{{__('adminPanel.verification')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.store') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.stores') }}"><i class="fa fa-circle-o"></i> Stores</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.prod') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.products') }}"><i class="fa fa-circle-o"></i> Products </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.store') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.stores') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.stores')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'verifications.prod') ? 'active' : '' ) }}"><a href="{{ route('manager.verifications.products') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.products')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'order') ? 'active' : '' ) }}">
                     <a href="{{ route('manager.orders.index') }}">
-                        <i class="fa fa-shopping-cart"></i> <span>Orders</span>
+                        <i class="fa fa-shopping-cart"></i> <span>{{__('adminPanel.orders')}}</span>
                     </a>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'newsletter') ? 'active' : '' ) }} treeview">
                     <a href="#">
-                        <i class="fa fa-newspaper-o"></i> <span>Newsletter</span>
+                        <i class="fa fa-newspaper-o"></i> <span>{{__('adminPanel.newsletter')}}</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (str_contains(Request::route()->getName(),'index') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> Subscribers</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.campaign') }}"><i class="fa fa-circle-o"></i> Campaign </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'mail') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.mailStores') }}"><i class="fa fa-circle-o"></i> Email To Stores </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'index') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.subscribers')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'campaign') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.campaign') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.campaign')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'mail') ? 'active' : '' ) }}"><a href="{{ route('manager.newsletter.mailStores') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.email_to_stores')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'report') ? 'active' : '' ) }} treeview">
                     <a href="#">
-                        <i class="fa fa-line-chart"></i> <span>Reports</span>
+                        <i class="fa fa-line-chart"></i> <span>{{__('adminPanel.reports')}}</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (str_contains(Request::route()->getName(),'sale') ? 'active' : '' ) }}"><a href="{{ route('manager.reports.sales') }}"><i class="fa fa-circle-o"></i> Sales </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'sale') ? 'active' : '' ) }}"><a href="{{ route('manager.reports.sales') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.sales')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'pages') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span>Static Pages</span>
+                        <span>{{__('adminPanel.static_pages')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (str_contains(Request::route()->getName(),'contact') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.contact.index') }}"><i class="fa fa-circle-o"></i> Contact Us</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'about') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.about.index') }}"><i class="fa fa-circle-o"></i> About Us</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'privacy') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.privacy.index') }}"><i class="fa fa-circle-o"></i> Privacy Policy</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'terms') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.terms.index') }}"><i class="fa fa-circle-o"></i> Terms & Conditions</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'delivery') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.delivery.index') }}"><i class="fa fa-circle-o"></i> Delivery</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'contact') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.contact.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.contact_us')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'about') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.about.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.about_us')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'privacy') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.privacy.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.privacy_policy')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'terms') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.terms.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.terms_and_conditions')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'delivery') ? 'active' : '' ) }}"><a href="{{ route('manager.pages.delivery.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.delivery')}}</a></li>
                     </ul>
                 </li>
             <!-- Admin SideBar -->
             @else
                 <li class="{{ (str_contains(Request::route()->getName(),'dashboard') ? 'active' : '' ) }}">
                     <a href="{{ route('admin.dashboard') }}">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <i class="fa fa-dashboard"></i> <span>{{__('adminPanel.dashboard')}}</span>
                     </a>
                 </li>
                 <li class="{{ (str_contains(Request::route()->getName(),'coupon') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-money"></i>
-                        <span>Coupons</span>
+                        <span>{{__('adminPanel.coupons')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.index') }}"><i class="fa fa-circle-o"></i> Coupons </a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.create') }}"><i class="fa fa-circle-o"></i> Add Coupon </a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.coupons')}} </a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.coupons.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_coupon')}} </a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'product') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-th"></i>
-                        <span>Products</span>
+                        <span>{{__('adminPanel.products')}}</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.products.index') }}"><i class="fa fa-circle-o"></i> Products</a></li>
-                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.products.create') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
+                        <li class="{{ (!str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.products.index') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.products')}}</a></li>
+                        <li class="{{ (str_contains(Request::route()->getName(),'create') ? 'active' : '' ) }}"><a href="{{ route('admin.products.create') }}"><i class="fa fa-circle-o"></i> {{__('adminPanel.add_product')}}</a></li>
                     </ul>
                 </li>
 
                 <li class="{{ (str_contains(Request::route()->getName(),'order') ? 'active' : '' ) }}">
                     <a href="{{ route('admin.orders.index') }}">
-                        <i class="fa fa-shopping-cart"></i> <span>Orders</span>
+                        <i class="fa fa-shopping-cart"></i> <span>{{__('adminPanel.orders')}}</span>
                     </a>
                 </li>
             @endif

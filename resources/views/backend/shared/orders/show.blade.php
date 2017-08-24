@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'View Order')
+@section('title', __('adminPanel.view_order'))
 
 @section('styles')
     @parent
@@ -16,7 +16,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Order Details</h3>
+                        <h3 class="box-title">{{__('adminPanel.order_details')}}</h3>
                     </div>
                     @if(!Auth::user()->isManager())
                         <div class="box-header with-border">
@@ -47,12 +47,12 @@
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label>User Name</label>
+                                <label>{{__('adminPanel.name')}}</label>
                                 <p>{{$order->user->name or 'No Name'}}</p>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
-                                <label>Email</label>
+                                <label>{{__('adminPanel.email')}}</label>
                                 <p>{{$order->order_email or 'No Email'}}</p>
                                 <p class="help-block"></p>
                             </div>
@@ -60,13 +60,13 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label>Address</label>
+                                <label>{{__('adminPanel.address')}}</label>
                                 <p>{{$order->order_address or 'No Address'}}</p>
                                 <p class="help-block"></p>
                             </div>
 
                             <div class="col-xs-6">
-                                <label>Delivery Date</label>
+                                <label>{{__('adminPanel.delivery_date')}}</label>
                                 @if($order->delivery_date)
                                     <p>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</p>
                                 @else
@@ -78,13 +78,13 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label>Payment Method</label>
+                                <label>{{__('adminPanel.payment_method')}}</label>
                                 <p>{{$order->payment_method}}</p>
                                 <p class="help-block"></p>
                             </div>
 
                             <div class="col-xs-6">
-                                <label>Order Status</label>
+                                <label>{{__('adminPanel.order_status')}}</label>
                                 <p>{{$order->orderStatusCast($order->order_status)}}</p>
                                 <p class="help-block"></p>
                             </div>
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             @if(Auth::user()->isManager())
                                 <div class="col-xs-6">
-                                    <label>Net Amount</label>
+                                    <label>{{__('adminPanel.net_amount')}}</label>
                                     @if($order->coupon_id)
                                         <p>{{$order->net_amount - $order->coupon->value($order->net_amount,$order->coupon->percentage)}}</p>
                                     @else
@@ -103,7 +103,7 @@
                             @endif
 
                             <div class="col-xs-6">
-                                <label>Coupon</label>
+                                <label>{{__('adminPanel.coupon')}}</label>
                                 <p>{{$order->coupon_id ? $order->coupon->code.' | Value: '.$order->coupon->value($order->net_amount,$order->coupon->percentage) : 'No Coupon'}}</p>
                                 <p class="help-block"></p>
                             </div>
@@ -119,19 +119,19 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Order Items</h3>
+                        <h3 class="box-title">{{__('adminPanel.order_items')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="products-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Sku</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Height / Width</th>
-                                <th>Qty</th>
-                                <th>Total</th>
+                                <th>{{__('adminPanel.sku')}}</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.price')}}</th>
+                                <th>{{__('adminPanel.height_and_width')}}</th>
+                                <th>{{__('adminPanel.qty')}}</th>
+                                <th>{{__('adminPanel.total')}}</th>
                             </tr>
                             </thead>
                             <tbody>

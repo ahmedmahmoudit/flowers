@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Verification Products')
+@section('title', __('adminPanel.verification_products'))
 
 @section('styles')
     @parent
@@ -16,7 +16,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Products</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_products_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -24,13 +24,13 @@
                             <thead>
                             <tr>
                                 @if(Auth::user()->isManager())
-                                    <th>Store</th>
+                                    <th>{{__('adminPanel.store')}}</th>
                                 @endif
-                                <th>Main Image</th>
-                                <th>Sku</th>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.main_image')}}</th>
+                                <th>{{__('adminPanel.sku')}}</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.status')}}</th>
+                                <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

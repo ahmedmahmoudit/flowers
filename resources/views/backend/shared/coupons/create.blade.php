@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'New Coupon')
+@section('title', __('adminPanel.new_coupon'))
 
 @section('styles')
     @parent
@@ -18,20 +18,20 @@
                 {!! Form::open(['route'=>[Request::segment(1).'.coupons.store'],'method'=>'POST','role' => 'form']) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Add Coupon</h3>
+                        <h3 class="box-title">{{__('adminPanel.add_coupon')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="inputPercentage">Percentage</label>
+                                <label for="inputPercentage">{{__('adminPanel.percentage')}}</label>
                                 <span class="required" style="color: red;"> * </span>
                                 <input type="text" name="percentage" class="form-control" id="inputPercentage" placeholder="Enter Coupon Percentage" value="{{old('percentage')}}">
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
-                                <label for="inputCode">Code</label>
+                                <label for="inputCode">{{__('adminPanel.code')}}</label>
                                 <span class="required" style="color: red;"> * </span>
                                 <input type="text" name="code" class="form-control" id="inputCode" placeholder="Enter Coupon Code" value="{{old('code')}}">
                                 <p class="help-block">User will enter this code to get percentage discount</p>
@@ -40,14 +40,14 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="exampleMinCharge">Minimum Charge</label>
+                                <label for="exampleMinCharge">{{__('adminPanel.min_charge')}}</label>
                                 <span class="required" style="color: red;"> * </span>
                                 <input type="text" name="minimum_charge" class="form-control" id="exampleMinCharge" placeholder="Enter Minimum Charge" value="{{old('minimum_charge')}}">
                                 <p class="help-block">This Coupon will be applied if total order equal or more than minimum charge</p>
                             </div>
 
                             <div class="col-xs-6">
-                                <label for="inputDueDate">Due Date</label>
+                                <label for="inputDueDate">{{__('adminPanel.due_date')}}</label>
                                 <span class="required" style="color: red;"> * </span>
                                 <input type="text" name="due_date" class="form-control" id="inputDueDate" placeholder="Select Due Date" value="{{old('due_date')}}">
                                 <p class="help-block">Coupon will be available till this due date</p>
@@ -56,7 +56,7 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="exampleLimited">Is Limited</label>
+                                <label for="exampleLimited">{{__('adminPanel.is_limited')}}</label>
                                 <span class="required" style="color: red;"> * </span>
                                 <input type="text" name="is_limited" class="form-control" id="exampleLimited" placeholder="Enter Number" value="{{old('is_limited')}}">
                                 <p class="help-block"> 0 for open uses, 2 means coupon will be used only two times then disabled auto</p>
@@ -66,7 +66,7 @@
                     @if(!Auth::user()->isManager())
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">{{__('adminPanel.save')}}</button>
                         </div>
                     @endif
                 </div>
@@ -74,14 +74,14 @@
                 @if(Auth::user()->isManager())
                     <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Select Stores</h3>
+                        <h3 class="box-title">{{__('adminPanel.select_stores')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
 
                         <div class="form-group" style="text-align: center;font-size: x-large;">
                             {!! Form::checkbox('checkAll', null, null, ['id' => 'checkAll']) !!}
-                            {!! Form::label('checkAll', 'Check All', array('for' => 'checkAll')) !!}
+                            {!! Form::label('checkAll', __('adminPanel.check_all'), array('for' => 'checkAll')) !!}
                         </div>
                         <div class="form-group">
                             @foreach ($stores->chunk(3) as $array)
@@ -103,7 +103,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.save')}}</button>
                     </div>
                 </div>
                 @endif
