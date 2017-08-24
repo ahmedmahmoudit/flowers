@@ -41,14 +41,6 @@ class AreasTableSeeder extends Seeder
 
         DB::table('areas')->insert([
             'country_id'    => '1',
-            'name_en'       => 'Kuwait City',
-            'name_ar'       => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
             'name_en'       => 'Mirgāb',
             'name_ar'       => 'المرقاب',
             'group_name_en' => 'Capital Governorate',
@@ -991,7 +983,6 @@ class AreasTableSeeder extends Seeder
 
 
         DB::table('areas')->insert([
-<<<<<<< HEAD
             'country_id' => '3',
             'name_en' => 'Nizwa',
             'name_ar' => 'نزوى‎‎',
@@ -2692,279 +2683,279 @@ class AreasTableSeeder extends Seeder
             'group_name_en' => 'Umm al-Quwain',
             'group_name_ar' => 'أمّ القيوين‎‎',
         ]);
-=======
-            "country_id" => "2",
-            "name_ar"    => "عالي",
-            "name_en"    => "a'ali"
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "أبو ابهام", "name_en" => "abu-baham"]);
-
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "أبو صيبع", "name_en" => "abu-saiba"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "عذاري ", "name_en" => "adhari"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "العدلية", "name_en" => "adliya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "البحير", "name_en" => "al-bahair"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "البرهامة", "name_en" => "al-burhama"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الدير", "name_en" => "al-dair"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الحجر", "name_en" => "al-hajar"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الحورة", "name_en" => "al-hoora"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الجنبية", "name_en" => "al-janabiyah",]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الجسرة", "name_en" => "al-jasra"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "اللوزي", "name_en" => "al-lawzi"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المقشع", "name_en" => "al-maqsha"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المرخ", "name_en" => "al-markh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المزروعية", "name_en" => "al-mazrowiah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المصلى", "name_en" => "al-musalla"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "القدم ", "name_en" => "al-qadam"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "القلعة", "name_en" => "al-qalah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "القرية", "name_en" => "al-qurayyah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الصافرية", "name_en" => "al-safriyah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الساية", "name_en" => "al-sayh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "العرين", "name_en" => "alareen"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الكورنيش", "name_en" => "alcorniche"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الفاتح", "name_en" => "alfateh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الغريفة", "name_en" => "alghurayfah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "القفول", "name_en" => "alguful"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الحجيات", "name_en" => "alhajiyat"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الحنينية", "name_en" => "alhunayniyah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الجفير", "name_en" => "aljuffair"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "النعيم", "name_en" => "alnaim"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السلمانية", "name_en" => "alsalmaniya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السويفية", "name_en" => "alsuwayfiyah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "أمواج ", "name_en" => "amwaj"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "عراد", "name_en" => "arad"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "عسكر", "name_en" => "askar"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "عسكر ألبا", "name_en" => "askar-alba"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "عوالي", "name_en" => "awali"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بحرين باي", "name_en" => "bahrain-bay"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المرفأ المالي", "name_en" => "bahrain-financial-harbour"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بني جمرة", "name_en" => "bni-jamra"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "باربار", "name_en" => "barbar"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "البلاد القديم", "name_en" => "bilad-al-qadeem"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بو عشيرة", "name_en" => "bu-ashira"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بو غزال", "name_en" => "bu-ghazal"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بو كوارة", "name_en" => "bu-kowarah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بوقوة", "name_en" => "bu-quwah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "البديع", "name_en" => "budaiya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بوري", "name_en" => "buri"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "البسيتين", "name_en" => "busaiteen"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الديه", "name_en" => "daih"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "دمستان", "name_en" => "damist"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "دار كليب", "name_en" => "dar-kulaib"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المنطقة الدبلوماسية", "name_en" => "diplomatic-area"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الدراز", "name_en" => "diraz"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "ديار المحرق", "name_en" => "diyar-al-muharraq"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "درة البحرين", "name_en" => "durrat-al-bahrain"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الرفاع الشرقي", "name_en" => "east-riffa"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "العكر الشرقي", "name_en" => "eastern-eker"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "قلالي", "name_en" => "galaly"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "حالة النعيم", "name_en" => "halat-naim"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "حالة السلطة", "name_en" => "halat-seltah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الهملة", "name_en" => "hamala"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الحد", "name_en" => "hidd"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "منطقة الحد الصناعية", "name_en" => "hidd-industrial-area"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "حلة العبد الصالح", "name_en" => "hillat-abdul-saleh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "هورة عالي", "name_en" => "hoarat-a'ali"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "مدينة عيسى", "name_en" => "isa-town"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جنوسان", "name_en" => "jnusan"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جاري الشيخ", "name_en" => "jary-al-shaikh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جو", "name_en" => "jaww"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "بلاج الجزائر", "name_en" => "jazaair-beach-/-bilag-al-jazaair"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جبلة حبشي", "name_en" => "jeblat-hebshi"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جد الحاج", "name_en" => "jid-al-haj"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جد علي", "name_en" => "jid-ali"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جدحفص", "name_en" => "jidhafs"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جرداب", "name_en" => "jurdab"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "كرباباد", "name_en" => "karbabad"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "كرانة ", "name_en" => "karranah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "كرزكان", "name_en" => "karzakkan"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الكوره", "name_en" => "kawarah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الخميس", "name_en" => "khamis"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المعامير", "name_en" => "ma`ameer"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "مدينة حمد", "name_en" => "madinat-hamad-/-hamad-town"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الماحوز", "name_en" => "mahooz"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المالكية", "name_en" => "malkiya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "وسط المنامة", "name_en" => "manama-center"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "مقابة", "name_en" => "maqabah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "ميناء سلمان", "name_en" => "mina-salman"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المحرق", "name_en" => "muharraq"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "النبيه صالح", "name_en" => "nabih-saleh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السهلة الشمالية", "name_en" => "north-sehla"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "المدينة الشمالية", "name_en" => "northern-city"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "النويدرات", "name_en" => "nuwaidrat"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "القضيبية", "name_en" => "qudaibiya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "رأس الرمان", "name_en" => "ras-rumman"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "جزيرة ريف", "name_en" => "reef-island"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الرفاع الشمالي", "name_en" => "riffa-alshamali-/-north-riffa"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "رفاع فيوز", "name_en" => "riffa-views"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سار", "name_en" => "saar"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "صدد", "name_en" => "sadad"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سافرة", "name_en" => "safreh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الصخير", "name_en" => "sakhir"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الصالحية", "name_en" => "salihiya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سلماباد", "name_en" => "salmabad"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سماهيج ", "name_en" => "samaheej"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سنابس", "name_en" => "sanabis"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سند", "name_en" => "sanad"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الواجهة البحرية / سيتي سنتر", "name_en" => "sea-front-/-city-center"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السيف", "name_en" => "seef"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السقية", "name_en" => "segaya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "شهركان", "name_en" => "shahrakkan"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الشاخورة", "name_en" => "shakhurah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة أبو العيش", "name_en" => "sitra-abu-alayash"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة الحمرية / مجمع سترة", "name_en" => "sitra-al-hamriyah-/-sitra-mall"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة الخارجية", "name_en" => "sitra-al-kharijiya"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة القريه", "name_en" => "sitra-al-qaryah"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "منطقة سترة الصناعية", "name_en" => "sitra-industrial-area"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة مهزة", "name_en" => "sitra-mahaza"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة مرقوبان", "name_en" => "sitra-murqoban"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة سفالة", "name_en" => "sitra-sufala"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة أم البيض", "name_en" => "sitra-um-al-baidh"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "سترة واديان", "name_en" => "sitra-wadiyan"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "السهلة الجنوبية", "name_en" => "south-sehla"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "طشان", "name_en" => "tashan"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "توبلي", "name_en" => "tubli"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "ام الحصم", "name_en" => "umm-al-hassam"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "وادي السيل", "name_en" => "wadi-alsail"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الرفاع الغربي", "name_en" => "west-riffa"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "العكر الغربي", "name_en" => "western-eker"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الزلاق", "name_en" => "zallaq"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "مدينة زايد", "name_en" => "zayed-town"]);
-        DB::table('areas')->insert([
-            'country_id' => "2", "name_ar" => "الزنج", "name_en" => "zinj"]);
-
->>>>>>> 3ff1472b9cf2576dc2903aa36a34a1ade76a21ab
+//=======
+//            "country_id" => "2",
+//            "name_ar"    => "عالي",
+//            "name_en"    => "a'ali"
+//        ]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "أبو ابهام", "name_en" => "abu-baham"]);
+//
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "أبو صيبع", "name_en" => "abu-saiba"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "عذاري ", "name_en" => "adhari"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "العدلية", "name_en" => "adliya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "البحير", "name_en" => "al-bahair"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "البرهامة", "name_en" => "al-burhama"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الدير", "name_en" => "al-dair"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الحجر", "name_en" => "al-hajar"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الحورة", "name_en" => "al-hoora"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الجنبية", "name_en" => "al-janabiyah",]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الجسرة", "name_en" => "al-jasra"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "اللوزي", "name_en" => "al-lawzi"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المقشع", "name_en" => "al-maqsha"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المرخ", "name_en" => "al-markh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المزروعية", "name_en" => "al-mazrowiah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المصلى", "name_en" => "al-musalla"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "القدم ", "name_en" => "al-qadam"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "القلعة", "name_en" => "al-qalah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "القرية", "name_en" => "al-qurayyah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الصافرية", "name_en" => "al-safriyah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الساية", "name_en" => "al-sayh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "العرين", "name_en" => "alareen"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الكورنيش", "name_en" => "alcorniche"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الفاتح", "name_en" => "alfateh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الغريفة", "name_en" => "alghurayfah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "القفول", "name_en" => "alguful"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الحجيات", "name_en" => "alhajiyat"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الحنينية", "name_en" => "alhunayniyah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الجفير", "name_en" => "aljuffair"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "النعيم", "name_en" => "alnaim"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السلمانية", "name_en" => "alsalmaniya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السويفية", "name_en" => "alsuwayfiyah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "أمواج ", "name_en" => "amwaj"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "عراد", "name_en" => "arad"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "عسكر", "name_en" => "askar"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "عسكر ألبا", "name_en" => "askar-alba"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "عوالي", "name_en" => "awali"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بحرين باي", "name_en" => "bahrain-bay"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المرفأ المالي", "name_en" => "bahrain-financial-harbour"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بني جمرة", "name_en" => "bni-jamra"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "باربار", "name_en" => "barbar"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "البلاد القديم", "name_en" => "bilad-al-qadeem"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بو عشيرة", "name_en" => "bu-ashira"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بو غزال", "name_en" => "bu-ghazal"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بو كوارة", "name_en" => "bu-kowarah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بوقوة", "name_en" => "bu-quwah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "البديع", "name_en" => "budaiya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بوري", "name_en" => "buri"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "البسيتين", "name_en" => "busaiteen"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الديه", "name_en" => "daih"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "دمستان", "name_en" => "damist"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "دار كليب", "name_en" => "dar-kulaib"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المنطقة الدبلوماسية", "name_en" => "diplomatic-area"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الدراز", "name_en" => "diraz"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "ديار المحرق", "name_en" => "diyar-al-muharraq"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "درة البحرين", "name_en" => "durrat-al-bahrain"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الرفاع الشرقي", "name_en" => "east-riffa"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "العكر الشرقي", "name_en" => "eastern-eker"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "قلالي", "name_en" => "galaly"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "حالة النعيم", "name_en" => "halat-naim"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "حالة السلطة", "name_en" => "halat-seltah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الهملة", "name_en" => "hamala"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الحد", "name_en" => "hidd"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "منطقة الحد الصناعية", "name_en" => "hidd-industrial-area"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "حلة العبد الصالح", "name_en" => "hillat-abdul-saleh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "هورة عالي", "name_en" => "hoarat-a'ali"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "مدينة عيسى", "name_en" => "isa-town"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جنوسان", "name_en" => "jnusan"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جاري الشيخ", "name_en" => "jary-al-shaikh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جو", "name_en" => "jaww"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "بلاج الجزائر", "name_en" => "jazaair-beach-/-bilag-al-jazaair"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جبلة حبشي", "name_en" => "jeblat-hebshi"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جد الحاج", "name_en" => "jid-al-haj"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جد علي", "name_en" => "jid-ali"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جدحفص", "name_en" => "jidhafs"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جرداب", "name_en" => "jurdab"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "كرباباد", "name_en" => "karbabad"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "كرانة ", "name_en" => "karranah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "كرزكان", "name_en" => "karzakkan"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الكوره", "name_en" => "kawarah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الخميس", "name_en" => "khamis"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المعامير", "name_en" => "ma`ameer"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "مدينة حمد", "name_en" => "madinat-hamad-/-hamad-town"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الماحوز", "name_en" => "mahooz"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المالكية", "name_en" => "malkiya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "وسط المنامة", "name_en" => "manama-center"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "مقابة", "name_en" => "maqabah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "ميناء سلمان", "name_en" => "mina-salman"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المحرق", "name_en" => "muharraq"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "النبيه صالح", "name_en" => "nabih-saleh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السهلة الشمالية", "name_en" => "north-sehla"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "المدينة الشمالية", "name_en" => "northern-city"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "النويدرات", "name_en" => "nuwaidrat"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "القضيبية", "name_en" => "qudaibiya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "رأس الرمان", "name_en" => "ras-rumman"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "جزيرة ريف", "name_en" => "reef-island"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الرفاع الشمالي", "name_en" => "riffa-alshamali-/-north-riffa"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "رفاع فيوز", "name_en" => "riffa-views"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سار", "name_en" => "saar"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "صدد", "name_en" => "sadad"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سافرة", "name_en" => "safreh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الصخير", "name_en" => "sakhir"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الصالحية", "name_en" => "salihiya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سلماباد", "name_en" => "salmabad"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سماهيج ", "name_en" => "samaheej"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سنابس", "name_en" => "sanabis"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سند", "name_en" => "sanad"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الواجهة البحرية / سيتي سنتر", "name_en" => "sea-front-/-city-center"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السيف", "name_en" => "seef"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السقية", "name_en" => "segaya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "شهركان", "name_en" => "shahrakkan"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الشاخورة", "name_en" => "shakhurah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة أبو العيش", "name_en" => "sitra-abu-alayash"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة الحمرية / مجمع سترة", "name_en" => "sitra-al-hamriyah-/-sitra-mall"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة الخارجية", "name_en" => "sitra-al-kharijiya"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة القريه", "name_en" => "sitra-al-qaryah"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "منطقة سترة الصناعية", "name_en" => "sitra-industrial-area"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة مهزة", "name_en" => "sitra-mahaza"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة مرقوبان", "name_en" => "sitra-murqoban"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة سفالة", "name_en" => "sitra-sufala"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة أم البيض", "name_en" => "sitra-um-al-baidh"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "سترة واديان", "name_en" => "sitra-wadiyan"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "السهلة الجنوبية", "name_en" => "south-sehla"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "طشان", "name_en" => "tashan"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "توبلي", "name_en" => "tubli"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "ام الحصم", "name_en" => "umm-al-hassam"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "وادي السيل", "name_en" => "wadi-alsail"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الرفاع الغربي", "name_en" => "west-riffa"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "العكر الغربي", "name_en" => "western-eker"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الزلاق", "name_en" => "zallaq"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "مدينة زايد", "name_en" => "zayed-town"]);
+//        DB::table('areas')->insert([
+//            'country_id' => "2", "name_ar" => "الزنج", "name_en" => "zinj"]);
+//
+//>>>>>>> 3ff1472b9cf2576dc2903aa36a34a1ade76a21ab
 
 
 
