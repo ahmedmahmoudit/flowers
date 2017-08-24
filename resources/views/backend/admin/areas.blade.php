@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Store Areas')
+@section('title', __('adminPanel.store_areas'))
 
 @section('styles')
     @parent
@@ -18,14 +18,14 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Select Areas</h3>
+                        <h3 class="box-title">{{__('adminPanel.select_areas')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
 
                         <div class="form-group" style="text-align: center;font-size: x-large;">
                             {!! Form::checkbox('checkAll', null, null, ['id' => 'checkAll']) !!}
-                            {!! Form::label('checkAll', 'Check All', array('for' => 'checkAll')) !!}
+                            {!! Form::label('checkAll', __('adminPanel.check_all'), array('for' => 'checkAll')) !!}
                         </div>
                         <div class="form-group">
                             @foreach ($dbAreas->chunk(3) as $array)
@@ -47,7 +47,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.update')}}</button>
                     </div>
                 </div>
                 <!-- /.box -->

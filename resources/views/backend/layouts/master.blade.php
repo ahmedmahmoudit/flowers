@@ -31,7 +31,7 @@
                 <section class="content-header">
                     <h1>
                         @yield('title')
-                        <small>Control panel</small>
+                        <small>{{__('adminPanel.control_panel')}}</small>
                     </h1>
                 </section>
 

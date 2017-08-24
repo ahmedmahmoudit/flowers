@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Ads')
+@section('title', __('adminPanel.ads'))
 
 @section('styles')
     @parent
@@ -16,17 +16,17 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Ads</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_ads_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="adTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Link</th>
-                                <th>Order</th>
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.ad_image')}}</th>
+                                <th>{{__('adminPanel.ad_link')}}</th>
+                                <th>{{__('adminPanel.ad_order')}}</th>
+                                <th>{{__('adminPanel.ad_actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

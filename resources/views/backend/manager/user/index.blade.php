@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Users')
+@section('title', __('adminPanel.users'))
 
 @section('styles')
     @parent
@@ -16,18 +16,18 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Users</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_users_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Role</th>
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.email')}}</th>
+                                <th>{{__('adminPanel.status')}}</th>
+                                <th>{{__('adminPanel.role')}}</th>
+                                <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

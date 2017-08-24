@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Coupons')
+@section('title', __('adminPanel.coupons'))
 
 @section('styles')
     @parent
@@ -16,24 +16,24 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Coupons</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_coupons')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Percentage</th>
-                                <th>Minimum Charge</th>
-                                <th>Due Date</th>
-                                <th>Is Limited</th>
-                                <th>Consumed</th>
-                                <th>status</th>
+                                <th>{{__('adminPanel.code')}}</th>
+                                <th>{{__('adminPanel.percentage')}}</th>
+                                <th>{{__('adminPanel.min_charge')}}</th>
+                                <th>{{__('adminPanel.due_date')}}</th>
+                                <th>{{__('adminPanel.is_limited')}}</th>
+                                <th>{{__('adminPanel.consumed')}}</th>
+                                <th>{{__('adminPanel.status')}}</th>
                                 @if(Auth::user()->isManager())
-                                    <th>Stores</th>
+                                    <th>{{__('adminPanel.stores')}}</th>
                                 @endif
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Dashboard')
+@section('title', __('adminPanel.dashboard'))
 
 @section('styles')
     @parent
@@ -18,7 +18,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Daily Statistics </h3>
+                        <h3 class="box-title">{{__('adminPanel.daily_statistics')}}</h3>
                     </div>
                     <div class="box-body">
                         <div class="col-lg-3 col-xs-6">
@@ -27,7 +27,7 @@
                                 <div class="inner">
                                     <h3>{{$ordersD or '0'}}</h3>
 
-                                    <p>New Orders</p>
+                                    <p>{{__('adminPanel.new_orders')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -41,7 +41,7 @@
                                 <div class="inner">
                                     <h3>{{$storesD or '0'}}<sup style="font-size: 20px"></sup></h3>
 
-                                    <p>New Stores</p>
+                                    <p>{{__('adminPanel.new_stores')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
@@ -55,7 +55,7 @@
                                 <div class="inner">
                                     <h3>{{$usersD or '0'}}</h3>
 
-                                    <p>User Registrations</p>
+                                    <p>{{__('adminPanel.user_registrations')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
@@ -69,7 +69,7 @@
                                 <div class="inner">
                                     <h3>{{$productsD or '0'}}</h3>
 
-                                    <p>New Products</p>
+                                    <p>{{__('adminPanel.new_products')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
@@ -86,7 +86,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Monthly Statistics </h3>
+                        <h3 class="box-title">{{__('adminPanel.monthly_statistics')}} </h3>
                     </div>
                     <div class="box-body">
                         <div class="col-lg-3 col-xs-6">
@@ -95,7 +95,7 @@
                                 <div class="inner">
                                     <h3>{{$ordersM or '0'}}</h3>
 
-                                    <p>New Orders</p>
+                                    <p>{{__('adminPanel.new_orders')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -109,7 +109,7 @@
                                 <div class="inner">
                                     <h3>{{$storesM or '0'}}<sup style="font-size: 20px"></sup></h3>
 
-                                    <p>New Stores</p>
+                                    <p>{{__('adminPanel.new_stores')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
@@ -123,7 +123,7 @@
                                 <div class="inner">
                                     <h3>{{$usersM or '0'}}</h3>
 
-                                    <p>User Registrations</p>
+                                    <p>{{__('adminPanel.user_registrations')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
@@ -137,7 +137,7 @@
                                 <div class="inner">
                                     <h3>{{$productsM or '0'}}</h3>
 
-                                    <p>New Products</p>
+                                    <p>{{__('adminPanel.new_products')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
@@ -154,7 +154,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Yearly Statistics </h3>
+                        <h3 class="box-title">{{__('adminPanel.yearly_statistics')}} </h3>
                     </div>
                     <div class="box-body">
                         <div class="col-lg-3 col-xs-6">
@@ -163,7 +163,7 @@
                                 <div class="inner">
                                     <h3>{{$ordersY or '0'}}</h3>
 
-                                    <p>New Orders</p>
+                                    <p>{{__('adminPanel.new_orders')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -177,7 +177,7 @@
                                 <div class="inner">
                                     <h3>{{$storesY or '0'}}<sup style="font-size: 20px"></sup></h3>
 
-                                    <p>New Stores</p>
+                                    <p>{{__('adminPanel.new_stores')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
@@ -191,7 +191,7 @@
                                 <div class="inner">
                                     <h3>{{$usersY or '0'}}</h3>
 
-                                    <p>User Registrations</p>
+                                    <p>{{__('adminPanel.user_registrations')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
@@ -205,7 +205,7 @@
                                 <div class="inner">
                                     <h3>{{$productsY or '0'}}</h3>
 
-                                    <p>New Products</p>
+                                    <p>{{__('adminPanel.new_products')}}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>

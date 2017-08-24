@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Orders')
+@section('title', __('adminPanel.orders'))
 
 @section('styles')
     @parent
@@ -16,23 +16,23 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Orders</h3>
+                        <h3 class="box-title">{{__('adminPanel.all_orders')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>User Name</th>
-                                <th>User Email</th>
-                                <th>User Address</th>
-                                <th>Delivery Date</th>
-                                <th>Payment Method</th>
-                                <th>Order Status</th>
+                                <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.email')}}</th>
+                                <th>{{__('adminPanel.address')}}</th>
+                                <th>{{__('adminPanel.delivery_date')}}</th>
+                                <th>{{__('adminPanel.payment_method')}}</th>
+                                <th>{{__('adminPanel.order_status')}}</th>
                                 @if(Auth::user()->isManager())
-                                    <th>Net Amount</th>
+                                    <th>{{__('adminPanel.net_amount')}}</th>
                                 @endif
-                                <th>Actions</th>
+                                <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>

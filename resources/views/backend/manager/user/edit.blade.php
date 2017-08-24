@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'User')
+@section('title', __('adminPanel.user'))
 
 @section('content')
     <!-- Main content -->
@@ -9,7 +9,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Edit User</h3>
+                        <h3 class="box-title">{{__('adminPanel.edit_user_title')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -17,21 +17,21 @@
                     <div class="box-body">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="exampleInputName">Name</label>
+                                <label for="exampleInputName">{{__('adminPanel.name')}}</label>
                                 <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter Name" value="{{$user->name or old('name')}}">
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail">Email</label>
+                                <label for="exampleInputEmail">{{__('adminPanel.email')}}</label>
                                 <input type="text" name="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email" value="{{$user->email or old('email')}}">
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label>Role</label>
+                                <label>{{__('adminPanel.user_role')}}</label>
                                 <select class="form-control" name="role" id="user_role">
                                     <option value="1" {{$user->role == '1' ? 'Selected' : ''}}>Manager</option>
                                     <option value="2" {{$user->role == '2' ? 'Selected' : ''}}>Admin</option>
@@ -46,7 +46,7 @@
                             @else
                                 <div class="form-group" id="store_select" style="display: none;">
                             @endif
-                                <label>Stores</label>
+                                <label>{{__('adminPanel.stores')}}</label>
                                 <select class="form-control" name="store">
                                     @foreach($stores as $store)
                                         <option value="{{$store->id}}" {{$store->user_id == $user->id ? 'Selected' : ''}}>{{$store->name}}</option>
@@ -59,7 +59,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="submit" class="btn btn-primary">{{__('adminPanel.save')}}</button>
                     </div>
                     {!!  Form::close() !!}
                 </div>

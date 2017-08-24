@@ -181,6 +181,7 @@ return [
         App\Providers\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kryptonit3\Counter\CounterServiceProvider::class,
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
 
     ],
 
