@@ -91,7 +91,10 @@ class CheckoutController extends Controller
                 'recipient_lastname' => 'required',
                 'recipient_mobile' => 'required',
             ]);
-            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
+            $requestFields = $request->only(['area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
+            $extraFields = ['country_id'=>$selectedCountry['id']];
+
+            $addressFields = array_merge($requestFields,$extraFields);
             $address = $user->addresses()->create($addressFields);
         } else {
             $address  = $user->addresses()->first();

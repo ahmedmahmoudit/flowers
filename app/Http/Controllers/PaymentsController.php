@@ -38,7 +38,7 @@ class PaymentsController extends Controller
         $status = 'success';
         $order = $this->orderModel->with('orderDetails')->where('reference_code', $request->ref)->first();
 
-        if ($order->captured_status != 1) {
+//        if ($order->captured_status != 1) {
             $order->captured_status = 1;
             if ($order->coupon) {
                 $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
@@ -47,15 +47,17 @@ class PaymentsController extends Controller
             $order->payment_method = $request->crdtype;
             $order->save();
 
-            try {
+//            try {
                 $this->dispatch(new SendPaymentEmail($order));
-            } catch (\Exception $e) {
-                return redirect()->home()->with('error',__('Something went wrong during payment, try again'));
-            }
+//            } catch (\Exception $e) {
+//                return redirect()->home()->with('error',__('Something went wrong during payment, try again'));
+//            }
 
 
             //@todo: flush cart session
-        }
+//        }
+
+        dd('reached');
 
         return view('payment.success', compact('status', 'order', 'selectedCountry'));
     }

@@ -62,11 +62,7 @@
   "Coupon":" كوبون مشتريات",
   "Update Cart":" تحديث كوبون المشتريات ",
   "home":"الرئيسية ",
-  "Your Transaction has been successful":" تمت عملية الدفع بنجاح",
-  "We have received your order":" تم استلام طلبك ",
   "Invoice":" فاتورة",
-  "Delivery time":"وقت التوصيل ",
-  "Delivery date":"تاريخ التوصيل  ",
   "KD":"د.ك",
   "Select Delivery Area":" اختار منطقة التوصيل ",
   "Select Area":" اختار المنطقة ",
@@ -148,7 +144,7 @@
   "Sort By":" ترتيب ",
   "Relevance":"المناسب",
   "Delivery Date":" تاريخ التوصيل ",
-  "Select Delivery Day":" يوم التوصيل",
+  "Select Delivery Day":" اختر تاريخ التوصيل التوصيل",
   "Delivery Time":" وقت التوصيل",
   "Select Delivery Time":" حدد وقت التوصيل",
   "Minimum Delivery Days":"اقل ايام لتوصل طلبك  ",
@@ -175,5 +171,10 @@
   "Tuesday":"يوم الثلثاء",
   "Wednesday":"يوم الاربعاء",
   "Thursday":"يوم الخميس",
-  "Friday":"يوم الجمعة"
+  "Friday":"يوم الجمعة",
+  "Admin Panel": "لوحة التحكم",
+  "Payment receipt from Vazzat store ": "فاتورة الدفع من موقع Vazzat",
+  "New order at Vazzat store" : "طلب جديد في موقع Vazzat",
+  "Your transaction has been successful":" تمت عملية الدفع بنجاح",
+  "We have received your order":" تم استلام طلبك "
 }

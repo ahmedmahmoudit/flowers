@@ -33,8 +33,9 @@ class UsersTableSeeder extends Seeder
             'store_id' => \App\Store::all()->random()->id
         ]);
 
-        factory(App\User::class, 5)->create([
+        factory(App\User::class, 1)->create([
             'role' => '3',
+            'email' => 'user@test.com'
         ]);
 
         $this->command->info('Users Seeded!');

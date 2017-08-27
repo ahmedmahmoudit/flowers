@@ -1,8 +1,37 @@
 <?php
 
 
-Route::get('test',function(){
-    return view('test');
+Route::get('test', function () {
+
+    $body = [
+        "id"               => 2,
+        "invoice"        => 3,
+        "amount"           => 94.0,
+        "name"             => "afzal um",
+        "mobile"           => "97978803",
+        "recipient_name"   => "faizal um",
+        "recipient_mobile" => "9999999",
+        "delivery_date"    => "2017-08-30",
+        "delivery_time"    => "2pm",
+        "order_date"       => "27-08-2017",
+        "order_notes"      => null,
+        "card_notes"       => null,
+        "area"             => "",
+        "block"            => "5",
+        "street"           => "4",
+        "house"            => null,
+        "email"            => "z4ls@live.com",
+        "country"          => "Kuwait",
+    ];
+
+    $a = extract($body);
+    return view('emails.payment_success_customer',[
+        'invoice' => $body['invoice'],
+        'name'=>$body['name'],
+        'delivery_date'=>$body['delivery_date'],
+        'delivery_time'=>$body['delivery_time'],
+        'amount'=>$body['amount'],
+    ]);
 });
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +58,10 @@ Route::get('admin/login', function () {
 //dd(\Carbon\Carbon::now()->format('d-m-Y'));
 
 /***************************************************************************************************
-Manager ROUTES
+ * Manager ROUTES
  ***************************************************************************************************/
 
-Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','middleware' => ['auth', 'ManagerOnly']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'manager', 'as' => 'manager.', 'middleware' => ['auth', 'ManagerOnly']], function () {
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@managerDashboard']);
     Route::resource('stores', 'StoresController');
@@ -54,25 +83,25 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('orders/{order}/completed', ['as' => 'orders.completed', 'uses' => 'OrdersController@orderCompleted']);
     Route::post('orders/{order}/cancelled', ['as' => 'orders.cancelled', 'uses' => 'OrdersController@orderCancelled']);
 
-    Route::resource('sliders', 'SlidersController',  ['except' => [
+    Route::resource('sliders', 'SlidersController', ['except' => [
         'show', 'update', 'edit'
     ]]);
     Route::post('sliders/{slide}/disable', ['as' => 'sliders.disable', 'uses' => 'SlidersController@disable']);
     Route::post('sliders/{slide}/activate', ['as' => 'sliders.activate', 'uses' => 'SlidersController@activate']);
 
-    Route::resource('categories', 'CategoriesController',  ['except' => [
+    Route::resource('categories', 'CategoriesController', ['except' => [
         'show'
     ]]);
 
-    Route::resource('subcategories', 'SubCategoriesController',  ['except' => [
+    Route::resource('subcategories', 'SubCategoriesController', ['except' => [
         'show'
     ]]);
 
-    Route::resource('ads', 'AdsController',  ['except' => [
+    Route::resource('ads', 'AdsController', ['except' => [
         'show', 'update', 'edit'
     ]]);
 
-    Route::resource('coupons', 'CouponsController',  ['except' => [
+    Route::resource('coupons', 'CouponsController', ['except' => [
         'update', 'edit'
     ]]);
     Route::post('coupons/{coupon}/disable', ['as' => 'coupons.disable', 'uses' => 'CouponsController@disable']);
@@ -90,7 +119,7 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
     Route::post('verifications/stores/{product}/un-verify', ['as' => 'verifications.stores.un-verify', 'uses' => 'StoresController@unVerify']);
     Route::post('verifications/stores/{product}/verify', ['as' => 'verifications.stores.verify', 'uses' => 'StoresController@verify']);
 
-    Route::resource('newsletter', 'NewsletterController',  ['except' => [
+    Route::resource('newsletter', 'NewsletterController', ['except' => [
         'show'
     ]]);
     Route::get('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsletterController@campaignView']);
@@ -119,10 +148,10 @@ Route::group(['namespace' => 'Admin','prefix' => 'manager','as' => 'manager.','m
 
 
 /***************************************************************************************************
-Store Admin ROUTES
+ * Store Admin ROUTES
  ***************************************************************************************************/
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','middleware' => ['auth', 'StoreAdminOnly']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'StoreAdminOnly']], function () {
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@adminDashboard']);
 
@@ -137,7 +166,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','midd
     Route::post('products/{product}/activate', ['as' => 'products.activate', 'uses' => 'ProductsController@activate']);
     Route::Delete('products/image/{image}', ['as' => 'products.image.destroy', 'uses' => 'ProductsController@destroyImage']);
 
-    Route::resource('coupons', 'CouponsController',  ['except' => [
+    Route::resource('coupons', 'CouponsController', ['except' => [
         'show', 'update', 'edit'
     ]]);
     Route::post('coupons/{coupon}/disable', ['as' => 'coupons.disable', 'uses' => 'CouponsController@disable']);
@@ -153,47 +182,48 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin','as' => 'admin.','midd
 
 //Auth::logout();
 /***************************************************************************************************
-Front End ROUTES
+ * Front End ROUTES
  ***************************************************************************************************/
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('products','ProductsController@index')->name('products.index');
-    Route::get('products/top','ProductsController@bestSellers')->name('products.top');
-    Route::get('product/{id}/{name}','ProductsController@show')->name('product.show');
-    Route::post('product/{id}/favorite','ProductsController@favorite')->name('product.favorite');
-    Route::get('category/{category}','ProductsController@getProductsForCategory')->name('category.index');
-    Route::get('category/{category}/all','ProductsController@getAllProductsForCategory')->name('category.show');
-    Route::get('products/search','ProductsController@searchProducts')->name('search');
-    Route::post('country/set','LocaleController@setCountry')->name('country.set');
-    Route::get('country/{id}/areas','LocaleController@getCountryAreas')->name('country.areas');
-    Route::get('stores','StoresController@index')->name('stores.index');
-    Route::get('stores/{id}/{slug}','StoresController@show')->name('stores.show');
-    Route::get('store/rate/{token}','StoresController@userRate')->name('store.rate');
-    Route::post('stores/rate','StoresController@saveUserRate')->name('stores.rate');
-    Route::post('area/set','LocaleController@setArea')->name('area.set');
-    Route::get('locale/{locale}/set','LocaleController@setLocale')->name('locale.set');
-    Route::post('cart/add','CartController@addItem')->name('cart.item.add');
-    Route::get('cart/{id}/remove','CartController@removeItem')->name('cart.item.remove');
-    Route::post('cart/update','CartController@update')->name('cart.update');
-    Route::get('cart','CartController@index')->name('cart.index');
-    Route::get('cart/checkout','CheckoutController@index')->name('checkout');
-    Route::post('cart/checkout','CheckoutController@postCheckout')->name('checkout');
-    Route::post('cart/coupon/apply','CouponsController@applyCoupon')->name('coupon.apply');
-    Route::get('area/select','LocaleController@selectArea')->name('area.select');
+    Route::get('products', 'ProductsController@index')->name('products.index');
+    Route::get('products/top', 'ProductsController@bestSellers')->name('products.top');
+    Route::get('product/{id}/{name}', 'ProductsController@show')->name('product.show');
+    Route::post('product/{id}/favorite', 'ProductsController@favorite')->name('product.favorite');
+    Route::get('category/{category}', 'ProductsController@getProductsForCategory')->name('category.index');
+    Route::get('category/{category}/all', 'ProductsController@getAllProductsForCategory')->name('category.show');
+    Route::get('products/search', 'ProductsController@searchProducts')->name('search');
+    Route::post('country/set', 'LocaleController@setCountry')->name('country.set');
+    Route::get('country/{id}/areas', 'LocaleController@getCountryAreas')->name('country.areas');
+    Route::get('stores', 'StoresController@index')->name('stores.index');
+    Route::get('stores/{id}/{slug}', 'StoresController@show')->name('stores.show');
+    Route::get('store/rate/{token}', 'StoresController@userRate')->name('store.rate');
+    Route::post('stores/rate', 'StoresController@saveUserRate')->name('stores.rate');
+    Route::post('area/set', 'LocaleController@setArea')->name('area.set');
+    Route::get('locale/{locale}/set', 'LocaleController@setLocale')->name('locale.set');
+    Route::post('cart/add', 'CartController@addItem')->name('cart.item.add');
+    Route::get('cart/{id}/remove', 'CartController@removeItem')->name('cart.item.remove');
+    Route::post('cart/update', 'CartController@update')->name('cart.update');
+    Route::get('cart', 'CartController@index')->name('cart.index');
+    Route::get('cart/checkout', 'CheckoutController@index')->name('checkout');
+    Route::post('cart/checkout', 'CheckoutController@postCheckout')->name('checkout');
+    Route::post('cart/coupon/apply', 'CouponsController@applyCoupon')->name('coupon.apply');
+    Route::get('area/select', 'LocaleController@selectArea')->name('area.select');
 
-    Route::get('profile','ProfileController@index')->name('profile');
-    Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
-    Route::get('profile/orders','ProfileController@getOrders')->name('profile.orders');
-    Route::get('profile/orders/{id}/detail','ProfileController@getOrderDetail')->name('profile.orders.show');
-    Route::get('profile/favorites','ProfileController@getFavorites')->name('profile.favorites');
-    Route::get('logout','ProfileController@getLogout')->name('profile.logout');
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::get('profile/orders', 'ProfileController@getOrders')->name('profile.orders');
+    Route::get('profile/orders/{id}/detail', 'ProfileController@getOrderDetail')->name('profile.orders.show');
+    Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
+    Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
 
-    Route::get('payment/process','PaymentsController@processPayment');
+    Route::get('payment/process', 'PaymentsController@processPayment');
 
 
-    Route::get('about','PagesController@index')->name('about');
-    Route::get('home','HomeController@index')->name('contact');
-    Route::get('register/store','Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
+    Route::get('about', 'PagesController@index')->name('about');
+    Route::get('contact', 'PagesController@contact')->name('contact');
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('register/store', 'Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
     Route::get('/', 'HomeController@index')->name('home');
 
 //    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');

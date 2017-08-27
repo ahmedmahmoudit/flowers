@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{URL('/')}}" class="logo">
+    <a href="{{URL('/')}}" class="logo" target="_blank">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>Vazzat</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Flowers</b>Admin Panel</span>
+        <span class="logo-lg"><b>Vazzat</b>Admin Panel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
