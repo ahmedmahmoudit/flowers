@@ -13,12 +13,14 @@
 
 
 Route::get('manager/login', function () {
+    Auth::logout();
     Auth::loginUsingId(1);
     return redirect('manager/dashboard');
 });
 
 Route::get('admin/login', function () {
-    Auth::loginUsingId(1);
+    Auth::logout();
+    Auth::loginUsingId(2);
     return redirect('admin/dashboard');
 });
 
