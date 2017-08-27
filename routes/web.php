@@ -1,38 +1,5 @@
 <?php
 
-
-Route::get('test', function () {
-
-    $body = [
-        "id"               => 2,
-        "invoice"        => 3,
-        "amount"           => 94.0,
-        "name"             => "afzal um",
-        "mobile"           => "97978803",
-        "recipient_name"   => "faizal um",
-        "recipient_mobile" => "9999999",
-        "delivery_date"    => "2017-08-30",
-        "delivery_time"    => "2pm",
-        "order_date"       => "27-08-2017",
-        "order_notes"      => null,
-        "card_notes"       => null,
-        "area"             => "",
-        "block"            => "5",
-        "street"           => "4",
-        "house"            => null,
-        "email"            => "z4ls@live.com",
-        "country"          => "Kuwait",
-    ];
-
-    $a = extract($body);
-    return view('emails.payment_success_customer',[
-        'invoice' => $body['invoice'],
-        'name'=>$body['name'],
-        'delivery_date'=>$body['delivery_date'],
-        'delivery_time'=>$body['delivery_time'],
-        'amount'=>$body['amount'],
-    ]);
-});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,11 +18,9 @@ Route::get('manager/login', function () {
 });
 
 Route::get('admin/login', function () {
-//    Auth::loginUsingId(1);
+    Auth::loginUsingId(1);
     return redirect('admin/dashboard');
 });
-
-//dd(\Carbon\Carbon::now()->format('d-m-Y'));
 
 /***************************************************************************************************
  * Manager ROUTES
@@ -220,8 +185,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('payment/process', 'PaymentsController@processPayment');
 
 
-    Route::get('about', 'PagesController@index')->name('about');
-    Route::get('contact', 'PagesController@contact')->name('contact');
+    Route::get('about', 'PagesController@getAbout')->name('about');
+    Route::get('terms', 'PagesController@getTerms')->name('terms');
+    Route::get('contact', 'PagesController@getContact')->name('contact');
+    Route::post('contact', 'PagesController@postContact')->name('contact.post');
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('register/store', 'Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
     Route::get('/', 'HomeController@index')->name('home');

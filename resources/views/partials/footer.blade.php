@@ -10,8 +10,9 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <ul class="c-links c-theme-ul">
-                            <li><a href="#">{{ __('About us') }}</a></li>
-                            <li><a href="#">{{ __('Terms &	Conditions') }}</a></li>
+                            <li><a href="{{ route('contact') }}">{{ __('Contact Us') }}</a></li>
+                            <li><a href="{{ route('about') }}">{{ __('About Us') }}</a></li>
+                            <li><a href="{{ route('terms') }}">{{ __('Terms & Conditions') }}</a></li>
                         </ul>
 
                     </div>

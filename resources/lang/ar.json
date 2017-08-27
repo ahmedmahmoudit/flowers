@@ -176,5 +176,9 @@
   "Payment receipt from Vazzat store ": "فاتورة الدفع من موقع Vazzat",
   "New order at Vazzat store" : "طلب جديد في موقع Vazzat",
   "Your transaction has been successful":" تمت عملية الدفع بنجاح",
-  "We have received your order":" تم استلام طلبك "
+  "We have received your order":" تم استلام طلبك ",
+  "Success" : "العملية تمت بنجاح",
+  "Send" : "ارسل",
+  "Name" : "اسم",
+  "Comment" : "تعليق"
 }
