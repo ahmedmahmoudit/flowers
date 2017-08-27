@@ -156,5 +156,8 @@
   "About":" عن ",
   "Contact":" اتصل ",
   "Something went wrong during payment, try again" : "حدث خطأ أثناء الدفع، أعد المحاولة",
-  "Home" : "الرئيسية"
+  "Home" : "الرئيسية",
+  "width" : "عرض",
+  "height" : "طول",
+  "select": "اختر"
 }

@@ -79,25 +79,23 @@ class CheckoutController extends Controller
         }
         $selectedCountry = Cache::get('selectedCountry');
 
-//        if(!$user->addresses->count()) {
-//            $this->validate($request,[
-//                'email' => 'required|email',
-//                'firstname' => 'required',
-//                'lastname' => 'required',
-//                'mobile' => 'required',
-//                'country_id' => 'required',
-//                'area_id' => 'required',
-//                'block' => 'required|integer',
-//                'street' => 'required|integer',
-//                'recipient_firstname' => 'required',
-//                'recipient_lastname' => 'required',
-//                'recipient_mobile' => 'required',
-//            ]);
-//            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
-//            $address = $user->addresses()->create($addressFields);
-//        } else {
-//            $address  = $user->addresses()->first();
-//        }
+        if(!$user->addresses->count()) {
+            $this->validate($request,[
+                'email' => 'required|email',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'mobile' => 'required',
+                'block' => 'integer',
+                'street' => 'integer',
+                'recipient_firstname' => 'required',
+                'recipient_lastname' => 'required',
+                'recipient_mobile' => 'required',
+            ]);
+            $addressFields = $request->only(['country_id','area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
+            $address = $user->addresses()->create($addressFields);
+        } else {
+            $address  = $user->addresses()->first();
+        }
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
@@ -110,7 +108,7 @@ class CheckoutController extends Controller
             'order_status' => 1, // pending order
             'captured_status' => 0,
             'invoice_id' => strtolower(str_random(7)),
-            'country_id' => $request->country_id,
+            'country_id' => $selectedCountry['id'],
             'area_id' => $request->area_id,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,

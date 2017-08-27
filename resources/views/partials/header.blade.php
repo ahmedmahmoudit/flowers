@@ -6,10 +6,10 @@
 <header class="c-layout-header c-layout-header-dark c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light">
         <div class="container">
-            <nav class="c-top-menu c-pull-left">
+            <nav class="c-top-menu c-pull-right">
                 <ul class="c-icons c-theme-ul">
                     <li>
-                        <a href="javascript:;" data-toggle="modal" data-target="#select-country-form" ><i class="icon-globe"></i>
+                        <a href="#" data-toggle="modal" data-target="#select-country-form" ><i class="icon-globe"></i>
                             @if($selectedArea)
                                 {{ $selectedArea['name_'.$locale] }},
                             @endif
@@ -18,7 +18,7 @@
                     </li>
                 </ul>
             </nav>
-            <nav class="c-top-menu c-pull-right">
+            <nav class="c-top-menu c-pull-left">
                 <ul class="c-links c-theme-ul">
 
                     @if(Auth::check())

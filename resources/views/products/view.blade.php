@@ -112,7 +112,8 @@
 
 
 {{--                            <p class="c-product-meta-label c-font-bold">{{ __('Weight'). ' :  ' . $product->detail->weight }}</p>--}}
-                            <p class="c-product-meta-label c-font-bold">{{ __('Dimension'). ' :  ' . $product->detail->height .' x '. $product->detail->width }}</p>
+                            <p class="c-product-meta-label c-font-bold">{{ __('width'). ' :  ' .  $product->detail->width }}</p>
+                            <p class="c-product-meta-label c-font-bold">{{ __('height'). ' :  ' . $product->detail->height  }}</p>
 
                             <div class="row c-product-variant">
                                 <div class="col-sm-12 col-xs-12">
@@ -185,11 +186,6 @@
                                                         <i class="fa fa-clock-o"></i>
                                                     </label>
 
-
-                                                    {{--<button type="button" class="btn c-btn-red c-btn-square c-btn-bold c-btn-uppercase" data-toggle="modal" data-target="#time-picker-modal">--}}
-                                                    {{--Launch default modal--}}
-                                                    {{--</button>--}}
-
                                                     <button type="button" class="" data-toggle="modal" data-target="#time-picker-modal"
                                                             id="delivery-time-result" style="display: block;background: white; border:none;padding:0"
 
@@ -214,20 +210,20 @@
                                                                 </div>
                                                                 <div class="modal-body text-center">
                                                                     <input type="hidden" value="{{ old('delivery_time') }}" name="delivery_time"/>
+                                                                    <div style="margin: 0 auto">
                                                                     @foreach($deliveryTimes as $key => $time)
-                                                                        <a class=" btn c-btn btn-lg c-font-bold c-font-white btn-warning c-btn-square c-font-uppercase select-time" data-time="{{$key}}"
+                                                                        <a class="btn c-btn btn-lg c-font-bold c-font-white btn-warning c-btn-square c-font-uppercase select-time " data-time="{{$key}}"
                                                                            data-value="{{$time}}"
+                                                                           style="margin-bottom: 10px"
                                                                         @if(old('delivery_time') == $key ? 'active' : '') @endif
                                                                         >{{ $time }}</a>
                                                                     @endforeach
+                                                                    </div>¡
                                                                 </div>
 
                                                             </div>
-                                                            <!-- /.modal-content -->
                                                         </div>
-                                                        <!-- /.modal-dialog -->
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>

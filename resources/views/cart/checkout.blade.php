@@ -137,9 +137,10 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="form-group col-md-4">
-                                                <label class="control-label">{{ __('Area') }} <span class="red">*</span>
+                                                <label class="control-label">{{ __('Area') }}
                                                 </label>
                                                 <select name="area_id" class="form-control c-square c-theme">
+                                                    <option value="">{{ __('select') }}</option>
                                                     @foreach($selectedCountry['areas'] as $area)
                                                         <option value="{{ $area['id']  }}"
                                                                 {{ old('area_id') == $area['id'] ? "selected": ($selectedArea['id'] == $area['id']) ? 'selected' : '' }}
@@ -153,16 +154,14 @@
                                             <div class="col-md-12">
                                                 <div class="row">
                                                     <div class="form-group col-md-4">
-                                                        <label class="control-label">{{ __('Block') }} <span
-                                                                    class="red">*</span></label>
+                                                        <label class="control-label">{{ __('Block') }}</label>
                                                         {{--                                                        <input name="block" type="text" value="{{old('block')}}" class="form-control c-square c-theme" placeholder="{{ __('Block') }}">--}}
                                                         <input name="block" type="text" value="5"
                                                                class="form-control c-square c-theme"
                                                                placeholder="{{ __('Block') }}">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label class="control-label">{{ __('Street') }} <span
-                                                                    class="red">*</span></label>
+                                                        <label class="control-label">{{ __('Street') }} </label>
                                                         {{--                                                        <input name="street" type="text" value="{{old('street')}}" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">--}}
                                                         <input name="street" type="text" value="4"
                                                                class="form-control c-square c-theme"
