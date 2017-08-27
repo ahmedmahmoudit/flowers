@@ -193,6 +193,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('about','PagesController@index')->name('about');
     Route::get('home','HomeController@index')->name('contact');
+    Route::get('register/store','Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
     Route::get('/', 'HomeController@index')->name('home');
 
 //    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');

@@ -218,7 +218,7 @@
                                                                         @if(old('delivery_time') == $key ? 'active' : '') @endif
                                                                         >{{ $time }}</a>
                                                                     @endforeach
-                                                                    </div>¡
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -255,7 +255,7 @@
                             @endif
 
                         </div>
-                        <div style="padding-top:20px" >{{ __('minimum delivery days') }} {{ $product->store->minimum_delivery_days }}</div>
+                        <div style="padding-top:20px" >{{ __('Minimum Delivery Days') }} {{ $product->store->minimum_delivery_days }}</div>
                     </div>
                 </div>
             </div>

@@ -30,9 +30,10 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => '2', // manager
             'api_token' => str_random(60),
+            'store_id' => \App\Store::all()->random()->id
         ]);
 
-        factory(App\User::class, 20)->create([
+        factory(App\User::class, 5)->create([
             'role' => '3',
         ]);
 

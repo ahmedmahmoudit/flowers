@@ -14,7 +14,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $redirectTo = '/';
-    protected $loginPath = '/login';
 
     public function __construct()
     {
@@ -37,21 +36,22 @@ class LoginController extends Controller
 
         $email = $request->email;
         $password = $request->password;
-
         $remember = $request->remember;
 
         if (Auth::attempt(['email' => $email, 'password' => $password],$remember)) {
             //if Admin
-            if(Auth::user()->isStoreAdmin()){
+
+            if(Auth::user()->isManager()){
+               return redirect()->intended('/')->with('success',__('Logged in'));
+            }
+
+            if(Auth::user()->isStoreAdmin()) {
                 //if Has store
-                if(Auth::user()->store){
+                if(Auth::user()->store) {
                     return redirect('admin/dashboard');
-                } else{
-//                    Auth::logout();
-                    return redirect()->intended('/')->with('success',__('Logged in'));
-//                    return redirect()->route('login')->with('error',__("You Don't have any store!"));
                 }
             }
+
             return redirect()->intended('/');
         }
 

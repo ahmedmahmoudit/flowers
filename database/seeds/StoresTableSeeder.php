@@ -14,6 +14,7 @@ class StoresTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('stores')->truncate();
 
+
         factory(App\Store::class, 5)->create();
 
         $this->command->info('Stores Seeded!');

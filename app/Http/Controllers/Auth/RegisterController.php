@@ -71,16 +71,16 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role' => ['required',Rule::in(['1','3'])],
+            'role' => ['required',Rule::in(['2','3'])],
 
-            'store_name_en' => 'required_if:role,==,1',
-            'store_name_ar' => 'required_if:role,==,1',
-            'store_email' => 'required_if:role,==,1',
-            'store_phone' => 'required_if:role,==,1',
-            'start_week_day' => 'required_if:role,==,1',
-            'end_week_day' => 'required_if:role,==,1',
-            'minimum_delivery_days' => 'required_if:role,==,1',
-            'country_id' => 'required_if:role,==,1'
+            'store_name_en' => 'required_if:role,==,2',
+            'store_name_ar' => 'required_if:role,==,2',
+            'store_email' => 'required_if:role,==,2',
+            'store_phone' => 'required_if:role,==,2',
+            'start_week_day' => 'required_if:role,==,2',
+            'end_week_day' => 'required_if:role,==,2',
+            'minimum_delivery_days' => 'required_if:role,==,2',
+            'country_id' => 'required_if:role,==,2'
         ]);
     }
 
@@ -102,7 +102,7 @@ class RegisterController extends Controller
 
         $user = User::create($userData);
 
-        if($data['role'] == 1) {
+        if($data['role'] == 2) {
             $this->storeModel->create([
                 'name_en' => $data['store_name_en'],
                 'name_ar' => $data['store_name_ar'],
@@ -122,4 +122,9 @@ class RegisterController extends Controller
         return $user;
     }
 
+    public function getStoreRegistrationForm()
+    {
+        $countries  = $this->countryModel->all();
+        return view('auth.register_store',compact('countries'));
+    }
 }

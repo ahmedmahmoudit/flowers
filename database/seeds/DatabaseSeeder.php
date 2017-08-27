@@ -43,7 +43,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CountriesTableSeeder::class);
 
-        $this->call(UsersTableSeeder::class);
 
         $this->call(SlidersTableSeeder::class);
 
@@ -52,6 +51,8 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsLettersTableSeeder::class);
 
         $this->call(StoresTableSeeder::class);
+
+        $this->call(UsersTableSeeder::class);
 
         $this->call(AreasTableSeeder::class);
 
