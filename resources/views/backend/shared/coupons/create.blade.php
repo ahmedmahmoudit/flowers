@@ -56,9 +56,9 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="exampleLimited">{{__('adminPanel.is_limited')}}</label>
+                                <label for="exampleLimited">{{__('adminPanel.quantity')}}</label>
                                 <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="quantity" class="form-control" id="exampleLimited" placeholder="Enter Number" value="{{old('quantity')}}">
+                                <input type="text" name="quantity_left" class="form-control" id="exampleLimited" placeholder="Enter Number" value="{{old('quantity')}}">
                                 <p class="help-block"></p>
                             </div>
                         </div>

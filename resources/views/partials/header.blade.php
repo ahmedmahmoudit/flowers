@@ -54,12 +54,12 @@
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ route('home') }}" class="c-logo">
-                        {{--<img src="/img/logo.png" class="c-desktop-logo">--}}
+                        <img src="/img/logo.png" class="c-desktop-logo">
                         {{--<img src="/img/logo.png" class="c-desktop-logo-inverse">--}}
-                        {{--<img src="/img/logo.png" class="c-mobile-logo">--}}
-                        <span class="site-title c-desktop-logo">Vazzat</span>
-                        <span class="site-title c-desktop-logo-inverse">Vazzat</span>
-                        <span class="site-title c-mobile-logo">Vazzat</span>
+                        <img src="/img/logo.png" class="c-mobile-logo">
+                        {{--<span class="site-title c-desktop-logo">Vazzat</span>--}}
+                        {{--<span class="site-title c-desktop-logo-inverse">Vazzat</span>--}}
+                        {{--<span class="site-title c-mobile-logo">Vazzat</span>--}}
                     </a>
                     <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
                         <span class="c-line"></span>
@@ -90,7 +90,7 @@
                         <li class="c-active ">
                             <a href="{{ route('products.index') }}" class="c-link dropdown-toggle">{{ __('Products') }}  <span class="c-arrow c-toggler"></span>  </a>
 
-                            <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
+                            <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth">
                                 @foreach($parentCategories as $parentCategory)
                                     <li>
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">

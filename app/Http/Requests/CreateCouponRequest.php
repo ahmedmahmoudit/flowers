@@ -31,16 +31,16 @@ class CreateCouponRequest extends FormRequest
                 'percentage'        => 'required|numeric',
                 'code'              => 'required|unique:coupons,code',
                 'minimum_charge'    => 'required|numeric',
-                'due_date'          => 'required|Date',
-                'is_limited'        => 'required',
+                'expiry_date'          => 'required|Date',
+                'quantity_left'        => 'numeric|required',
             ];
         }
         return [
             'percentage'        => 'required|numeric',
             'code'              => 'required|unique:coupons,code',
             'minimum_charge'    => 'required|numeric',
-            'due_date'          => 'required|Date',
-            'is_limited'        => 'required',
+            'expiry_date'          => 'required|Date',
+            'quantity_left'        => 'numeric|required',
         ];
     }
 }

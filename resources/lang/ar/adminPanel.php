@@ -179,6 +179,7 @@ return array (
   'email_to_stores' => 'ارسال لجميع المتاجر',
   'subscribers' => 'المشتركين',
   'new_ad' => 'إعلان جديد',
-  'expiry_date' => 'تاريخ الانتها'
+  'expiry_date' => 'تاريخ الانتها',
+    'quantity' => 'كمية'
 
 );

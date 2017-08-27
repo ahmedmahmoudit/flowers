@@ -78,7 +78,7 @@ class CouponsController extends Controller
      */
     public function store(CreateCouponRequest $request)
     {
-        $attributes = $request->only(['percentage','code', 'minimum_charge', 'expiry_date', 'quantity']);
+        $attributes = $request->only(['percentage','code', 'minimum_charge', 'expiry_date', 'quantity_left']);
         $this->coupon->create($attributes);
 
         return redirect('manager/coupons');
@@ -108,7 +108,7 @@ class CouponsController extends Controller
      */
     public function update($id, UpdateCouponRequest $request)
     {
-        $attributes = $request->only(['percentage','code', 'minimum_charge', 'due_date', 'is_limited']);
+        $attributes = $request->only(['percentage','code', 'minimum_charge', 'expiry_date', 'quantity']);
         $this->coupon->update($id, $attributes);
 
         return redirect()->route('coupons.index');

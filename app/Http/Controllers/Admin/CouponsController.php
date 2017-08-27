@@ -66,7 +66,7 @@ class CouponsController extends Controller
      */
     public function store(CreateCouponRequest $request)
     {
-        $attributes = $request->only(['percentage','code', 'minimum_charge', 'due_date', 'is_limited']);
+        $attributes = $request->only(['percentage','code', 'minimum_charge', 'expiry_date', 'quantity_left']);
         $stores = [];
         if(Auth::user()->isManager())
         {
@@ -77,10 +77,10 @@ class CouponsController extends Controller
             $stores['stores'] = [Auth::user()->store->id];
         }
 
-        if($attributes['is_limited'] == '0')
-        {
-            $attributes['is_limited'] = '-1';
-        }
+//        if($attributes['quantity'] == '0')
+//        {
+//            $attributes['is_limited'] = '-1';
+//        }
 
         $coupon = $this->coupon->create($attributes);
         if(count($stores['stores']) > 0)

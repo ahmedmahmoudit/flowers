@@ -28,7 +28,6 @@
                                 <th>{{__('adminPanel.min_charge')}}</th>
                                 <th>{{__('adminPanel.expiry_date')}}</th>
                                 <th>{{__('adminPanel.quantity')}}</th>
-{{--                                <th>{{__('adminPanel.consumed')}}</th>--}}
                                 <th>{{__('adminPanel.status')}}</th>
                                 @if(Auth::user()->isManager())
                                     <th>{{__('adminPanel.stores')}}</th>
@@ -44,14 +43,7 @@
                                     <td>{{$coupon->minimum_charge}}</td>
                                     <td>@if($coupon->expiry_date){{$coupon->expiry_date->format('d-m-Y')}}@else {{'No Expiry Date'}} @endif</td>
                                     {{--<td>{{($coupon->is_limited == '-1' ? 'Open' : 'Limited to '.$coupon->is_limited.' use')}}</td>--}}
-                                    <td>{{$coupon->quantity}}</td>
-                                    <td>
-                                        @if($coupon->consumed == '1')
-                                            <span class="label label-danger">Consumed</span>
-                                        @else
-                                            <span class="label label-success">Not Consumed</span>
-                                        @endif
-                                    </td>
+                                    <td>{{$coupon->quantity_left}}</td>
                                     <td>
                                         @if($coupon->active == '1')
                                             <span class="label label-success">Active</span>
