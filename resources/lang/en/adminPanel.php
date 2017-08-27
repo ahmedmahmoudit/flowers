@@ -179,4 +179,5 @@ return array (
   'campaign' => 'Campaign',
   'email_to_stores' => 'Email to Stores',
   'delivery' => 'Delivery',
+    'expiry_date' => 'Expiry Date'
 );

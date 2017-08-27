@@ -47,9 +47,9 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <label for="inputDueDate">{{__('adminPanel.due_date')}}</label>
+                                <label for="inputDueDate">{{__('adminPanel.expiry_date')}}</label>
                                 <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="due_date" class="form-control" id="inputDueDate" placeholder="Select Due Date" value="{{old('due_date')}}">
+                                <input type="text" name="expiry_date" class="form-control" id="inputDueDate" placeholder="Select Due Date" value="{{old('expiry_date')}}">
                                 <p class="help-block">Coupon will be available till this due date</p>
                             </div>
                         </div>
@@ -58,8 +58,8 @@
                             <div class="col-xs-6">
                                 <label for="exampleLimited">{{__('adminPanel.is_limited')}}</label>
                                 <span class="required" style="color: red;"> * </span>
-                                <input type="text" name="is_limited" class="form-control" id="exampleLimited" placeholder="Enter Number" value="{{old('is_limited')}}">
-                                <p class="help-block"> 0 for open uses, 2 means coupon will be used only two times then disabled auto</p>
+                                <input type="text" name="quantity" class="form-control" id="exampleLimited" placeholder="Enter Number" value="{{old('quantity')}}">
+                                <p class="help-block"></p>
                             </div>
                         </div>
                     </div>

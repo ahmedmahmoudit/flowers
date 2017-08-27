@@ -26,9 +26,9 @@
                                 <th>{{__('adminPanel.code')}}</th>
                                 <th>{{__('adminPanel.percentage')}}</th>
                                 <th>{{__('adminPanel.min_charge')}}</th>
-                                <th>{{__('adminPanel.due_date')}}</th>
-                                <th>{{__('adminPanel.is_limited')}}</th>
-                                <th>{{__('adminPanel.consumed')}}</th>
+                                <th>{{__('adminPanel.expiry_date')}}</th>
+                                <th>{{__('adminPanel.quantity')}}</th>
+{{--                                <th>{{__('adminPanel.consumed')}}</th>--}}
                                 <th>{{__('adminPanel.status')}}</th>
                                 @if(Auth::user()->isManager())
                                     <th>{{__('adminPanel.stores')}}</th>
@@ -42,8 +42,9 @@
                                     <td>{{$coupon->code}}</td>
                                     <td>{{$coupon->percentage}}</td>
                                     <td>{{$coupon->minimum_charge}}</td>
-                                    <td>@if($coupon->due_date){{$coupon->due_date->format('d-m-Y')}}@else {{'No Due Date'}} @endif</td>
-                                    <td>{{($coupon->is_limited == '-1' ? 'Open' : 'Limited to '.$coupon->is_limited.' use')}}</td>
+                                    <td>@if($coupon->expiry_date){{$coupon->expiry_date->format('d-m-Y')}}@else {{'No Expiry Date'}} @endif</td>
+                                    {{--<td>{{($coupon->is_limited == '-1' ? 'Open' : 'Limited to '.$coupon->is_limited.' use')}}</td>--}}
+                                    <td>{{$coupon->quantity}}</td>
                                     <td>
                                         @if($coupon->consumed == '1')
                                             <span class="label label-danger">Consumed</span>
