@@ -1,4 +1,5 @@
-@extends('emails.master')
-@section('content')
-    <p> {{ $body }} </p>
-@stop
+@component('mail::message')
+# {{ $name }} ({{$email}})
+
+{{ $body }}
+@endcomponent

@@ -10,6 +10,7 @@ use App\Core\Cart\Cart;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Jobs\SendContactEmail;
+use App\Mail\Contact;
 use App\Product;
 use App\ProductDetail;
 use App\Store;
@@ -24,13 +25,13 @@ class PagesController extends Controller
     public function getTerms()
     {
         $content = '';
-        return view('terms',compact('content'));
+        return view('terms', compact('content'));
     }
 
     public function getAbout()
     {
         $content = '';
-        return view('about',compact($content));
+        return view('about', compact($content));
     }
 
     public function getContact()
@@ -42,7 +43,7 @@ class PagesController extends Controller
      * Post Contact Form
      * @param Request $request
      */
-    public function postContact(Request $request, Contactus $contactus)
+    public function postContact(Request $request)
     {
         $this->validate($request, [
             'name'  => 'required',
@@ -50,20 +51,18 @@ class PagesController extends Controller
             'body'  => 'required'
         ]);
 
-        $contact = $contactus->first();
+        $params = $request->all();
+        $adminEmail = config('mail.from.address');
 
-        if($contact) {
-            $email = $contact->email;
-            $job = (new SendContactEmail($request,$contact));
+        try {
 
-            try {
-                $this->dispatch($job);
+            \Mail::to($adminEmail)->send(new Contact($params));
+//            $this->dispatch($job);
 
-            } catch (\Exception $e) {
-                dd($e);
-                return redirect()->back()->with('info', 'Sorry Couldnt Send you Mail this time. Please try again later');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->with('info', 'Sorry Couldnt Send you Mail this time. Please try again later');
 
-            }
         }
 
         return redirect('home')->with('success', __('Success'));

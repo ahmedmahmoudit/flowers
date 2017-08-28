@@ -1,10 +1,5 @@
 @extends('layouts.master')
 
-@section('script')
-    @parent
-    {{--<script src="/js/masonry-portfolio.js" type="text/javascript"></script>--}}
-@endsection
-
 @section('content')
 
     @component('partials.breadcrumb',['title' => __('Stores'), 'nav'=>true])

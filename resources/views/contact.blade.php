@@ -23,13 +23,16 @@
                                         <div class="c-line-left"></div>
                                     </div>
                                         <div class="form-group">
-                                            <input type="text" placeholder="{{ __('Name') }}" class="form-control c-square c-theme input-lg">
+                                            <input type="text" value="afzal" name="name" placeholder="{{ __('Name') }}" class="form-control c-square c-theme input-lg">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" placeholder="{{ __('Email') }}" class="form-control c-square c-theme input-lg">
+                                            <input type="text" value="z4ls@live.com" name="email" placeholder="{{ __('Email') }}" class="form-control c-square c-theme input-lg">
                                         </div>
                                         <div class="form-group">
-                                            <textarea rows="8" name="body" placeholder="{{ __('Comment') }}" class="form-control c-theme c-square input-lg"></textarea>
+                                            <textarea rows="8" name="body" placeholder="{{ __('Comment') }}" class="form-control c-theme c-square input-lg">
+                                                test
+
+                                            </textarea>
                                         </div>
 
                                         <button type="submit" class="btn c-theme-btn c-btn-uppercase btn-lg c-btn-bold c-btn-square">{{ __('Send') }}</button>
