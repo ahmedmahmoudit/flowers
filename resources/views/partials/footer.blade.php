@@ -11,8 +11,8 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <ul class="c-links c-theme-ul">
                             <li><a href="{{ route('contact') }}">{{ __('Contact Us') }}</a></li>
-                            <li><a href="{{ route('about') }}">{{ __('About Us') }}</a></li>
-                            <li><a href="{{ route('terms') }}">{{ __('Terms & Conditions') }}</a></li>
+                            <li><a href="{{ route('page',['about']) }}">{{ __('About Us') }}</a></li>
+                            <li><a href="{{ route('page',['terms']) }}">{{ __('Terms & Conditions') }}</a></li>
                         </ul>
 
                     </div>
@@ -42,16 +42,19 @@
                         <p class="c-text c-font-16 c-font-regular"></p>
                     </div>
                     <div class="col-md-5">
+
                         <div class="c-content-title-1 c-title-md">
                             <h3 class="c-font-uppercase c-font-bold">{{ __('Subscribe to Newsletter') }}</h3>
                             <div class="c-line-left hide"></div>
                         </div>
+
                         <div class="c-line-left hide"></div>
-                        <form action="#">
+                        <form action="{{route('newsletter.subscribe')}}" method="POST">
+                            {!! csrf_field() !!}
                             <div class="input-group input-group-lg c-square">
-                                <input type="text" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="Your Email Here"/>
+                                <input type="text" name="email" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Email') }}"/>
                                 <span class="input-group-btn">
-					            	<button class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Subscribe') }}</button>
+					            	<button type="submit" class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Subscribe') }}</button>
 					        	</span>
                             </div>
                         </form>
@@ -68,7 +71,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12 c-col">
                     <p class="c-copyright c-font-grey">{{ date('Y') }} &copy;
-                        <span class="c-font-grey-3">IdeasOwners.</span>
+                        <span class="c-font-grey-3">IdeasOwners</span>
                     </p>
                 </div>
             </div>

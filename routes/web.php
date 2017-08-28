@@ -186,11 +186,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('payment/process', 'PaymentsController@processPayment');
 
-
-    Route::get('about', 'PagesController@getAbout')->name('about');
-    Route::get('terms', 'PagesController@getTerms')->name('terms');
+    Route::get('page/{type}', 'PagesController@getPage')->name('page');
     Route::get('contact', 'PagesController@getContact')->name('contact');
     Route::post('contact', 'PagesController@postContact')->name('contact.post');
+    Route::post('newsletter/subscribe', 'PagesController@postNewsletterSubscription')->name('newsletter.subscribe');
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('register/store', 'Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
     Route::get('/', 'HomeController@index')->name('home');

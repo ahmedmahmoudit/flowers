@@ -190,11 +190,10 @@ class CheckoutController extends Controller
             $order->save();
 
         } catch (\Exception $e) {
-            return redirect()->back()->withInput()->with('error',__('Some error occurred during transaction, Please try again.'));
+            return redirect()->back()->withInput()->with('error',__('Something went wrong during payment, try again'));
         }
 
-        //@todo : uncomment flush cart
-//        $this->cart->flushCart();
+        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
 

@@ -180,5 +180,9 @@
   "Success" : "العملية تمت بنجاح",
   "Send" : "ارسل",
   "Name" : "اسم",
-  "Comment" : "تعليق"
+  "Comment" : "تعليق",
+  "Subscribe" : "اشترك",
+  "Error occurred" : "حدث خلل في التطبيق",
+  "quantity left" : "كمية متبقي",
+  "Cannot deliver before" : ""
 }

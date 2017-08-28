@@ -65,7 +65,7 @@ class CartController extends Controller
                 if($product){
                     if((int) $value > $product->detail->quantity) {
                         $cartMessages .= empty($cartMessages ? '' : ' .');
-                        $cartMessages .= $product->name . __(' has only '.$product->detail->quantity ) . ' items left. ';
+                        $cartMessages .= $product->name . $product->detail->quantity . __('items left');
                     } else {
                         try {
                             $this->cart->updateItem([
@@ -86,13 +86,13 @@ class CartController extends Controller
     public function clearCart()
     {
         $this->cart->flushCart();
-        return redirect()->back()->with('success','Cart Cleared');
+        return redirect()->back();
     }
 
     public function removeItem(Request $request,$id)
     {
         $this->cart->removeItem($id);
-        return redirect()->back()->with('success','Item Removed');
+        return redirect()->back();
     }
 
     public function addItem(Request $request)
@@ -117,7 +117,7 @@ class CartController extends Controller
             $minimumDeliveryDate = Carbon::now()->addDays($storeMinimumDeliveryDate)->toDateString();
 
             if($deliveryDate < $minimumDeliveryDate) {
-                return redirect()->back()->with('error',__('Cannot deliver before '.$minimumDeliveryDate))->withInput();
+                return redirect()->back()->with('error',__('Cannot deliver before'). ' '.$minimumDeliveryDate)->withInput();
             }
 
             if ($product->detail->in_stock) {

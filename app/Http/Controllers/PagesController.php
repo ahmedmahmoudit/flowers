@@ -3,46 +3,42 @@
 namespace App\Http\Controllers;
 
 
-use App\Area;
-use App\Category;
-use App\Contactus;
-use App\Core\Cart\Cart;
-use App\Http\Requests\CreateProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Jobs\SendContactEmail;
 use App\Mail\Contact;
-use App\Product;
-use App\ProductDetail;
-use App\Store;
-use Auth;
-use Cache;
-use DB;
+use App\Newsletter;
+use App\StaticPage;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    /**
+     * @var StaticPage
+     */
+    private $staticPage;
 
-    public function getTerms()
+    /**
+     * PagesController constructor.
+     * @param StaticPage $staticPage
+     */
+    public function __construct(StaticPage $staticPage)
     {
-        $content = '';
-        return view('terms', compact('content'));
+        $this->staticPage = $staticPage;
     }
 
-    public function getAbout()
+    public function getPage($type)
     {
-        $content = '';
-        return view('about', compact($content));
+        $page = $this->staticPage->where('page_type',$type)->first();
+        if(!$page) {
+            return redirect()->back();
+        }
+        return view('page', compact('page'));
     }
+
 
     public function getContact()
     {
         return view('contact');
     }
 
-    /**
-     * Post Contact Form
-     * @param Request $request
-     */
     public function postContact(Request $request)
     {
         $this->validate($request, [
@@ -55,18 +51,23 @@ class PagesController extends Controller
         $adminEmail = config('mail.from.address');
 
         try {
-
             \Mail::to($adminEmail)->send(new Contact($params));
-//            $this->dispatch($job);
-
         } catch (\Exception $e) {
-            dd($e);
-            return redirect()->back()->with('info', 'Sorry Couldnt Send you Mail this time. Please try again later');
-
+            return redirect()->back()->with('info', __('Error occurred'));
         }
 
         return redirect('home')->with('success', __('Success'));
     }
 
 
+    public function postNewsletterSubscription(Request $request,Newsletter $newsletter)
+    {
+        $this->validate($request,[
+           'email' => 'required|email|unique:newsletters,email'
+        ]);
+
+        $newsletter->create(['email'=>$request->email]);
+
+        return redirect()->back()->with('success',__('Success'));
+    }
 }
