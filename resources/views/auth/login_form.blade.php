@@ -25,7 +25,7 @@
 
     <div class="form-group">
         <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">{{ __('Login') }}</button>
-        <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">{{ __('Forgot your Password ?') }}</a>
+        <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">{{ __('Forgot your Password') }}</a>
     </div>
 
 </form>

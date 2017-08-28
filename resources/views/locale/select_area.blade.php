@@ -1,13 +1,7 @@
 @extends('layouts.master')
 
-@section('script')
-    @parent
-@endsection
-
 @section('content')
-
     <div class="c-content-box c-size-lg c-bg-grey-1">
-
         <div class="container">
             <div class="c-content-title-4">
                 <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-grey-1">{{ __('Select Delivery Area') }}</span></h3>

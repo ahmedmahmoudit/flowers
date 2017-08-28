@@ -117,7 +117,7 @@
                         </li>
 
                         <li >
-                            <a href="{{ route('stores.index') }}" class="c-link dropdown-toggle">{{ __('Store') }}</a>
+                            <a href="{{ route('stores.index') }}" class="c-link dropdown-toggle">{{ __('Stores') }}</a>
                         </li>
 
 
