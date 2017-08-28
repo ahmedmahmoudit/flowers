@@ -98,7 +98,7 @@ return array (
   'find_sales' => 'Find Sales',
   'store' => 'Store',
   'main_image' => 'Main Image',
-  'sku' => 'SKU',
+  'sku' => 'Code',
   'price' => 'Price',
   'qty' => 'quantity',
   'total_price' => 'Total Price',
@@ -154,7 +154,7 @@ return array (
   'height_and_width' => 'Height / Width',
   'total' => 'Total',
   'add_product_title' => 'Add Product',
-  'product_id_sku' => 'Product ID (SKU)',
+  'product_id_sku' => 'Product ID (Code)',
   'select_store' => 'Select Store',
   'product_status' => 'Product Details',
   'height' => 'Height',
@@ -180,5 +180,8 @@ return array (
   'email_to_stores' => 'Email to Stores',
   'delivery' => 'Delivery',
     'expiry_date' => 'Expiry Date',
-    'quantity' => 'Quantity'
+    'quantity' => 'Quantity',
+    'cm' => 'cm',
+    "country" => 'Country'
+
 );

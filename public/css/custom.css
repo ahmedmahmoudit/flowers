@@ -108,13 +108,21 @@ select *.optionChild {
 }
 
 .c-desktop-logo {
+  /*width: 221px;*/
   width: 192px;
+  /*height: 111px;*/
   height: 94px;
   margin-top: -38px;
   padding: 0;
 }
 
 .c-mobile-logo {
+  width: 122px;
+  height: 60px;
+  margin-top: -20px;
+  padding: 0;
+}
+.c-desktop-logo-inverse {
   width: 122px;
   height: 60px;
   margin-top: -20px;

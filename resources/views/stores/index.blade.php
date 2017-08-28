@@ -41,17 +41,9 @@
                         @foreach($stores as $store)
                             <div class="cbp-item web-design logos " data-wow-delay="0.2s">
                                 <div class="cbp-caption">
-                                    <div class="cbp-caption-defaultWrap">
+                                    <a href="{{ route('search',['store'=>$store->slug]) }}">
                                         <img src="{{ asset('uploads/products/'.$store->image) }}" class="img img-responsive" style="height: 340px">
-                                    </div>
-                                    <div class="cbp-caption-activeWrap">
-                                        <div class="c-masonry-border"></div>
-                                        <div class="cbp-l-caption-alignCenter">
-                                            <div class="cbp-l-caption-body">
-                                                <a href="{{ route('search',['store'=>$store->slug]) }}" class=" cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">{{ __('View') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <a href="{{ route('search',['store'=>$store->slug]) }}" class="cbp-l-grid-masonry-projects-title">
                                     {{ $store->name }}

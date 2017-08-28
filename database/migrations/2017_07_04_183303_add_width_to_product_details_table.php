@@ -13,7 +13,7 @@ class AddWidthToProductDetailsTable extends Migration
     public function up()
     {
         Schema::table('product_details', function (Blueprint $table) {
-            $table->string('width')->nullable()->after('weight');
+            $table->string('width')->nullable();
         });
     }
 

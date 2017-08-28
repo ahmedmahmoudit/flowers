@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th>{{__('adminPanel.name')}}</th>
+                                <th>{{__('adminPanel.country')}}</th>
                                 <th>{{__('adminPanel.phone')}}</th>
                                 <th>{{__('adminPanel.email')}}</th>
                                 <th>{{__('adminPanel.status')}}</th>
@@ -33,7 +34,8 @@
                             <tbody>
                             @foreach($stores as $store)
                                 <tr>
-                                    <td>{{$store->name_en}}</td>
+                                    <td>{{$store->name}}</td>
+                                    <td>{{$store->country->name}}</td>
                                     <td>{{$store->phone}}</td>
                                     <td>{{$store->email}}</td>
                                     <td>

@@ -52,10 +52,10 @@
     <div class="c-navbar">
         <div class="container">
             <div class="c-navbar-wrapper clearfix">
-                <div class="c-brand c-pull-left">
+                <div class="c-brand c-pull-right">
                     <a href="{{ route('home') }}" class="c-logo">
                         <img src="/img/logo.png" class="c-desktop-logo">
-                        {{--<img src="/img/logo.png" class="c-desktop-logo-inverse">--}}
+                        <img src="/img/logo.png" class="c-desktop-logo-inverse">
                         <img src="/img/logo.png" class="c-mobile-logo">
                         {{--<span class="site-title c-desktop-logo">Vazzat</span>--}}
                         {{--<span class="site-title c-desktop-logo-inverse">Vazzat</span>--}}
@@ -84,7 +84,7 @@
                     <span class="c-theme-link">&times;</span>
                 </form>
 
-                <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                <nav class="c-mega-menu c-pull-left c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                     <ul class="nav navbar-nav c-theme-nav">
 
                         <li class="c-active ">

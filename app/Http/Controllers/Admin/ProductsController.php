@@ -110,7 +110,7 @@ class ProductsController extends Controller
             $storeVerification = Auth::user()->store->verified;
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -130,7 +130,6 @@ class ProductsController extends Controller
 
         $details = new ProductDetail([
             'price' => $attributesDetails['price'],
-            'weight' => $attributesDetails['weight'],
             'height' => $attributesDetails['height'],
             'width' => $attributesDetails['width'],
             'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
@@ -207,7 +206,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
         }
         $attributes = $request->only(['name_en', 'name_ar', 'active']);
-        $attributesDetails = $request->only(['price','weight','height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $attributesDetails = $request->only(['price','height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -220,7 +219,6 @@ class ProductsController extends Controller
 
         $details = [
             'price' => $attributesDetails['price'],
-            'weight' => $attributesDetails['weight'],
             'height' => $attributesDetails['height'],
             'width' => $attributesDetails['width'],
             'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',

@@ -38,6 +38,7 @@ class LocaleController extends Controller
 
     public function setCountry(Request $request)
     {
+        dd('a');
         $country = $this->countryModel->find($request->country)->toArray();
         Cache::put('selectedCountry',$country, 60 * 24);
         Cache::forget('selectedArea');

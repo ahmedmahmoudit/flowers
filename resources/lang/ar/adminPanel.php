@@ -107,7 +107,7 @@ return array (
   'phone' => 'الهاتف',
   'price' => 'السعر',
   'privacy_policy' => 'سياسة الخصوصية',
-  'product_id_sku' => 'رقم المنتج (SKU)',
+  'product_id_sku' => 'كود المنتج',
   'product_status' => 'تفاصيل المنتج',
   'products' => 'منتجات',
   'profile' => 'الملف الشخصي',
@@ -180,6 +180,8 @@ return array (
   'subscribers' => 'المشتركين',
   'new_ad' => 'إعلان جديد',
   'expiry_date' => 'تاريخ الانتها',
-    'quantity' => 'كمية'
+    'quantity' => 'كمية',
+    "cm" => "سم",
+    "country" => 'دولة'
 
 );

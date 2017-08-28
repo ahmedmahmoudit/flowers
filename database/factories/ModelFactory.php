@@ -125,7 +125,7 @@ $factory->define(App\ProductDetail::class, function (Faker\Generator $faker) use
         'main_image' => 'test.jpg',
         'height' => '150',
         'width' => '100',
-        'weight' => '10',
+//        'weight' => '10',
     ];
 
 });

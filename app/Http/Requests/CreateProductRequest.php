@@ -33,7 +33,6 @@ class CreateProductRequest extends FormRequest
             'width'             => 'required',
             'active'            => 'required',
             'price'             => 'required|numeric',
-            'weight'            => 'required',
             'description_en'    => 'required',
             'description_ar'    => 'required',
             'main_image'        => 'mimes:jpeg,jpg,png,gif|required|max:3000',

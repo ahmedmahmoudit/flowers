@@ -20,6 +20,16 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <label for="inputNameEn">{{__('adminPanel.country')}}</label>
+                                <p>{{$store->country->name}}</p>
+                                <p class="help-block"></p>
+                            </div>
+
+                        </div>
+
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputNameEn">{{__('adminPanel.english_name')}}</label>

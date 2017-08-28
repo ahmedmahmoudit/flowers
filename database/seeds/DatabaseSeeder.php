@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         'users',
         'addresses',
         'ads'
-
     ];
 
     /**

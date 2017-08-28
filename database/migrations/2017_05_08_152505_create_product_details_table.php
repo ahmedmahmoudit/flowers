@@ -17,7 +17,7 @@ class CreateProductDetailsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->float('price');
-            $table->integer('weight');
+//            $table->integer('weight');
             $table->tinyInteger('is_sale');
             $table->float('sale_price')->nullable();
             $table->date('start_sale_date')->nullable();

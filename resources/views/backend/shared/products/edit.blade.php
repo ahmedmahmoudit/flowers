@@ -75,12 +75,12 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="inputHeight">{{__('adminPanel.height')}}</label>
+                                <label for="inputHeight">{{__('adminPanel.height')}} ({{__('adminPanel.cm')}})</label>
                                 <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{$product->detail->height or old('height')}}" required>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
-                                <label for="inputWidth">{{__('adminPanel.width')}}</label>
+                                <label for="inputWidth">{{__('adminPanel.width')}} ({{__('adminPanel.cm')}})</label>
                                 <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{$product->detail->width or old('width')}}" required>
                                 <p class="help-block"></p>
                             </div>
@@ -115,11 +115,8 @@
                                 <input type="text" name="price" class="form-control" id="inputPrice" placeholder="Enter Price" value="{{$product->detail->price or old('price')}}">
                                 <p class="help-block"></p>
                             </div>
-                            <div class="col-xs-6">
-                                <label for="inputWeight">{{__('adminPanel.weight')}}</label>
-                                <input type="text" name="weight" class="form-control" id="inputWeight" placeholder="Enter Weight" value="{{$product->detail->weight or old('weight')}}">
-                                <p class="help-block"></p>
-                            </div>
+                            <div class="col-xs-6"></div>
+                            <div class="clearfix"></div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
@@ -130,7 +127,7 @@
                                         @else
                                             <input type="checkbox" id="is-sale" value="1" name="is_sale" value="{{old('is_sale')}}">
                                         @endif
-                                        {{__('adminPanel.for_sale')}}
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.for_sale')}}
                                     </label>
                                 </div>
                             </div>

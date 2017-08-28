@@ -19,7 +19,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <span class="hidden-xs">{{ app()->getLocale() === 'en' ? 'EN' : 'ع' }}</span>
+                        <span >{{ app()->getLocale() === 'en' ? 'EN' : 'ع' }}</span>
                     </a>
                     <ul class="dropdown-menu">
 
@@ -47,7 +47,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <span class="hidden-xs">{{__('adminPanel.settings')}}</span>
+                        <span >{{__('adminPanel.settings')}}</span>
                         {{--<ul class="c-ext c-theme-ul">--}}
                             {{--<li class="c-lang dropdown c-last">--}}
                                 {{--<a href="#">{{ app()->getLocale() === 'en' ? 'en' : 'ع' }}</a>--}}

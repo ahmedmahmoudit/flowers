@@ -13,7 +13,7 @@ class AddHeightToProductDetailsTable extends Migration
     public function up()
     {
         Schema::table('product_details', function (Blueprint $table) {
-            $table->string('height')->nullable()->after('weight');
+            $table->string('height')->nullable();
         });
     }
 
