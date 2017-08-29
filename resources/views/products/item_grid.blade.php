@@ -30,7 +30,7 @@
                 <p class="c-price c-font-18 c-font-slim text-center">
                     {{ $product->detail->getFinalPriceWithCurrency() }} &nbsp;
                     @if($product->detail->is_sale)
-                        <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail->getPriceWithCurrency() }}</span>
+                        <span class="c-font-18 c-font-line-through c-font-red">{{ $product->detail ? $product->detail->getPriceWithCurrency() : '' }}</span>
                     @endif
                 </p>
 
@@ -40,7 +40,7 @@
                     <form method="POST" action="{{route('product.favorite',$product->id)}}">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
-                            @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
+                            @if(auth()->check() && $product->userLikes && $product->userLikes->contains('id',auth()->id()))
                                 <i class="fa fa-heart" style="color: red;font-size: 1.6em" ></i>
                             @else
                                 <i class="fa fa-heart-o" style="color: red;font-size: 1.6em" ></i>
