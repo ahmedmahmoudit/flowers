@@ -55,7 +55,7 @@
 
             <div class="c-prefooter c-bg-grey-1">
                 <div class="row equal">
-                    @include('products.item_grid',['products'=>$products])
+                    {{--@include('products.item_grid',['products'=>$products])--}}
                 </div>
             </div>
             <div class="c-content-title-1" style="padding-top:20px">
