@@ -56,7 +56,12 @@ class HomeController extends Controller
             ->active()
             ->limit(4)->get();
 
-        $products = $this->productModel->has('detail','store')->latest()->active()->paginate(20);
+        $products = $this->productModel->has('detail')
+            ->whereHas('store',function($q){
+                return $q->where('is_approved',1);
+            })
+            ->with(['detail','store','userLikes'])
+            ->latest()->active()->paginate(20);
 
         $cartItems = $this->cart->getItems();
 
