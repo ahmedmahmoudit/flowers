@@ -25,13 +25,7 @@ class Product extends BaseModel
 
     protected $guarded = ['id'];
 
-    public $deliveryTimes = [];
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->deliveryTimes = ['2pm' => __('morning 9am-2pm'), '6pm' => __('afternoon 2pm-6pm'), '10pm' => __('evening 6pm-10pm')];
-    }
+    public $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
 
     /**
      * Get the store that belongs to product.
