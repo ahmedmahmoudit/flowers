@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
                                     <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">{{ __('Total') }}</p>
-                                    <p class="c-cart-price c-font-bold">{{ $product->grandTotal . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
+                                    <p class="c-cart-price c-font-bold">{{ $product->total . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</p>
                                 </div>
                                 <div class="col-md-1 col-sm-12 c-cart-remove">
                                     <a href="{{ route('cart.item.remove',$product->id) }}" class="c-theme-link c-cart-remove-desktop">

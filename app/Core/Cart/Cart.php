@@ -44,7 +44,6 @@ class Cart {
 
     public function addItem($item ) {
 
-
         $this->validateItem($item);
         return $this->cart->addItem($item);
     }

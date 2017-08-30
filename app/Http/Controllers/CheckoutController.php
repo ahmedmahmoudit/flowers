@@ -77,7 +77,8 @@ class CheckoutController extends Controller
         }
         $selectedCountry = Cache::get('selectedCountry');
 
-        if(!$user->addresses->count()) {
+
+//        if(!$user->addresses->count()) {
             $this->validate($request,[
                 'email' => 'required|email',
                 'firstname' => 'required',
@@ -89,14 +90,14 @@ class CheckoutController extends Controller
                 'recipient_lastname' => 'required',
                 'recipient_mobile' => 'required',
             ]);
-            $requestFields = $request->only(['area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
-            $extraFields = ['country_id'=>$selectedCountry['id']];
+//            $requestFields = $request->only(['area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
+//            $extraFields = ['country_id'=>$selectedCountry['id']];
 
-            $addressFields = array_merge($requestFields,$extraFields);
-            $address = $user->addresses()->create($addressFields);
-        } else {
-            $address  = $user->addresses()->first();
-        }
+//            $addressFields = array_merge($requestFields,$extraFields);
+//            $address = $user->addresses()->create($addressFields);
+//        } else {
+//            $address  = $user->addresses()->first();
+//        }
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
@@ -131,7 +132,6 @@ class CheckoutController extends Controller
 
         $productInfo = collect();
 
-
         // save order details
         foreach ($cart->items as $product) {
 
@@ -150,7 +150,6 @@ class CheckoutController extends Controller
             $productInfo->push([
                 'Quantity' => $product->quantity,
                 'CurrencyCode' => $selectedCountry['country_code'],
-//                'TotalPrice' => $product->total,
                 'TotalPrice' => $cart->coupon ?  $product->total - ($product->total * $cart->coupon->percentage) / 100 : $product->total,
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
