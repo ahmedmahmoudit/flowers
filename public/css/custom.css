@@ -1,134 +1,143 @@
 body {
-  /*font-family: "avenirnext-regular", sans-serif;*/
-  letter-spacing:0px
+    /*font-family: "avenirnext-regular", sans-serif;*/
+    letter-spacing: 0px
 }
 
 .red {
-  color: red;
+    color: red;
 }
 
 .label {
-  color: #575757;
-  font-size: 14px;
-  font-weight: 100;
-  padding: 0;
-  margin: 0;
-  font-family: "Arial", sans-serif;
+    color: #575757;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    font-family: "Arial", sans-serif;
 }
 
 .c-product-badge {
 }
 
 .c-shop-cart-page-1 > .c-cart-buttons > button {
-  display: inline-block;
+    display: inline-block;
 }
 
 .banner {
-  background-color: #f1f1f1;
-  border-bottom: 1px solid #eaeaea;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #eaeaea;
 }
 
 .white-bg {
-  background-color: #ffffff !important;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  border: none !important;
+    background-color: #ffffff !important;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border: none !important;
 }
+
 .site-title {
-  font-size: 2em;
-  font-weight: 500;
-  vertical-align: middle;
+    font-size: 2em;
+    font-weight: 500;
+    vertical-align: middle;
 }
+
 /* Slider Revolution
 ---------------------------------- */
 .slider-banner-container {
-  width: 100%;
-  position: relative;
-  padding: 0;
+    width: 100%;
+    position: relative;
+    padding: 0;
 }
 
 .slider-banner, .slider-banner-2, .slider-banner-3, .slider-banner-fullscreen {
-  width: 100%;
-  position: relative;
+    width: 100%;
+    position: relative;
 }
 
 .slider-banner > ul,
 .slider-banner-2 > ul,
 .slider-banner-3 > ul,
 .slider-banner-fullscreen > ul {
-  display: none;
+    display: none;
 }
 
 .m-top-20 {
-  margin-top:20px;
+    margin-top: 20px;
 }
 
 .optionGroup {
 
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .optionChild {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
 select * {
-  background-color:#F00;
-  color:#FFF;
+    background-color: #F00;
+    color: #FFF;
 }
 
 select *.optionChild {
-  background-color:#FFF;
-  color:#000;
-  padding-left: 15px;
+    background-color: #FFF;
+    color: #000;
+    padding-left: 15px;
 }
 
 .c-content-tab-2.c-opt-1 > .nav li.active > .c-arrow:before {
-  border-bottom-color: #FAF5F8;
+    border-bottom-color: #FAF5F8;
 }
 
 .c-content-tab-2.c-opt-1 > .c-tab-content {
-  background-color: #f7f7f7;
+    background-color: #f7f7f7;
 }
 
 .equal {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
 }
 
-@media (min-width: 768px) {
-  .row.equal {
-    display: flex;
-    flex-wrap: wrap;
-  }
+@media (min-width: 992px) {
+    .row.equal {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .c-layout-header .c-brand {
+        margin-bottom: -5px;
+    }
 }
+@media (max-width: 991px) {
+    .c-layout-header .c-brand {
+        margin-bottom: 0;
+    }
+}
+
 .red {
-  color:red
+    color: red
 }
 
 .c-desktop-logo {
-  /*width: 221px;*/
-  width: 192px;
-  /*height: 111px;*/
-  height: 94px;
-  margin-top: -38px;
-  padding: 0;
+    width: 221px;
+    height: 111px;
+    margin-top: -50px
 }
 
 .c-mobile-logo {
-  width: 122px;
-  height: 60px;
-  margin-top: -20px;
-  padding: 0;
+    width: 122px;
+    height: 60px;
+    margin-top: -20px;
+    padding: 0;
 }
+
 .c-desktop-logo-inverse {
-  width: 122px;
-  height: 60px;
-  margin-top: -20px;
-  padding: 0;
+    width: 122px;
+    height: 60px;
+    margin-top: -20px;
+    padding: 0;
 }
 
 .c-layout-header .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link {
-  letter-spacing: 0px;
+    letter-spacing: 0;
 }

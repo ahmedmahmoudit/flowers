@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Area;
 use App\Category;
 use App\Core\Cart\Cart;
@@ -77,7 +76,7 @@ class ProductsController extends Controller
             })->with(['stores'])
             ->find($selectedArea['id']);
 
-        $areaStores = $area->stores->pluck('id');
+        $areaStores = $area ? $area->stores->pluck('id') : [];
 
         $parentCategories = $this->categoryModel->with('children.products')->where('parent_id',0)->get();
 
@@ -156,7 +155,7 @@ class ProductsController extends Controller
                 return $q->where('is_approved',1);
             })->with(['stores'])->find($selectedArea['id']);
 
-        $areaStores = $area->stores->pluck('id');
+        $areaStores = $area ? $area->stores->pluck('id') : [];
 
         $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
 
@@ -247,7 +246,7 @@ class ProductsController extends Controller
             })
             ->with(['stores'])->find($selectedArea['id']);
 
-        $areaStores = $area->stores->pluck('id');
+        $areaStores = $area ? $area->stores->pluck('id') : [];
 
         $category = $this->categoryModel
             ->with('children')
@@ -328,7 +327,8 @@ class ProductsController extends Controller
             })
             ->with(['stores'])->find($selectedArea['id']);
 
-        $areaStores = $area->stores->pluck('id');
+        $areaStores = $area ? $area->stores->pluck('id') : [];
+
         $cartItems = $this->cart->getItems();
 
         if(Cache::has('stores')) {

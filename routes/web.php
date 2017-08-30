@@ -147,54 +147,59 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
     Route::post('orders/{order}/cancelled', ['as' => 'orders.cancelled', 'uses' => 'OrdersController@orderCancelled']);
 });
 
-//Auth::logout();
 /***************************************************************************************************
  * Front End ROUTES
  ***************************************************************************************************/
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('products', 'ProductsController@index')->name('products.index');
-    Route::get('products/top', 'ProductsController@bestSellers')->name('products.top');
-    Route::get('product/{id}/{name}', 'ProductsController@show')->name('product.show');
-    Route::post('product/{id}/favorite', 'ProductsController@favorite')->name('product.favorite');
-    Route::get('category/{category}', 'ProductsController@getProductsForCategory')->name('category.index');
-    Route::get('category/{category}/all', 'ProductsController@getAllProductsForCategory')->name('category.show');
-    Route::get('products/search', 'ProductsController@searchProducts')->name('search');
-    Route::post('country/set', 'LocaleController@setCountry')->name('country.set');
-    Route::get('country/{id}/areas', 'LocaleController@getCountryAreas')->name('country.areas');
-    Route::get('stores', 'StoresController@index')->name('stores.index');
-    Route::get('stores/{id}/{slug}', 'StoresController@show')->name('stores.show');
-    Route::get('store/rate/{token}', 'StoresController@userRate')->name('store.rate');
-    Route::post('stores/rate', 'StoresController@saveUserRate')->name('stores.rate');
     Route::post('area/set', 'LocaleController@setArea')->name('area.set');
-    Route::get('locale/{locale}/set', 'LocaleController@setLocale')->name('locale.set');
-    Route::post('cart/add', 'CartController@addItem')->name('cart.item.add');
-    Route::get('cart/{id}/remove', 'CartController@removeItem')->name('cart.item.remove');
-    Route::post('cart/update', 'CartController@update')->name('cart.update');
-    Route::get('cart', 'CartController@index')->name('cart.index');
-    Route::get('cart/checkout', 'CheckoutController@index')->name('checkout');
-    Route::post('cart/checkout', 'CheckoutController@postCheckout')->name('checkout');
-    Route::post('cart/coupon/apply', 'CouponsController@applyCoupon')->name('coupon.apply');
     Route::get('area/select', 'LocaleController@selectArea')->name('area.select');
 
-    Route::get('profile', 'ProfileController@index')->name('profile');
-    Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
-    Route::get('profile/orders', 'ProfileController@getOrders')->name('profile.orders');
-    Route::get('profile/orders/{id}/detail', 'ProfileController@getOrderDetail')->name('profile.orders.show');
-    Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
-    Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
-
-    Route::get('payment/process', 'PaymentsController@processPayment');
+    Route::post('country/set', 'LocaleController@setCountry')->name('country.set');
+    Route::get('country/{id}/areas', 'LocaleController@getCountryAreas')->name('country.areas');
+    Route::get('locale/{locale}/set', 'LocaleController@setLocale')->name('locale.set');
 
     Route::get('page/{type}', 'PagesController@getPage')->name('page');
     Route::get('contact', 'PagesController@getContact')->name('contact');
     Route::post('contact', 'PagesController@postContact')->name('contact.post');
     Route::post('newsletter/subscribe', 'PagesController@postNewsletterSubscription')->name('newsletter.subscribe');
-    Route::get('home', 'HomeController@index')->name('home');
     Route::get('register/store', 'Auth\RegisterController@getStoreRegistrationForm')->name('register.store');
-    Route::get('/', 'HomeController@index')->name('home');
 
-//    Route::get('/register/select-type','Auth\RegisterController@selectRegistrationType')->name('register.select.type');
+    Route::group(['middleware' => ['area']], function () {
+
+        Route::get('products', 'ProductsController@index')->name('products.index');
+        Route::get('products/top', 'ProductsController@bestSellers')->name('products.top');
+        Route::get('product/{id}/{name}', 'ProductsController@show')->name('product.show');
+        Route::post('product/{id}/favorite', 'ProductsController@favorite')->name('product.favorite');
+        Route::get('category/{category}', 'ProductsController@getProductsForCategory')->name('category.index');
+        Route::get('category/{category}/all', 'ProductsController@getAllProductsForCategory')->name('category.show');
+        Route::get('products/search', 'ProductsController@searchProducts')->name('search');
+        Route::get('stores', 'StoresController@index')->name('stores.index');
+        Route::get('stores/{id}/{slug}', 'StoresController@show')->name('stores.show');
+        Route::get('store/rate/{token}', 'StoresController@userRate')->name('store.rate');
+        Route::post('stores/rate', 'StoresController@saveUserRate')->name('stores.rate');
+
+        Route::post('cart/add', 'CartController@addItem')->name('cart.item.add');
+        Route::get('cart/{id}/remove', 'CartController@removeItem')->name('cart.item.remove');
+        Route::post('cart/update', 'CartController@update')->name('cart.update');
+        Route::get('cart', 'CartController@index')->name('cart.index');
+        Route::get('cart/checkout', 'CheckoutController@index')->name('checkout');
+        Route::post('cart/checkout', 'CheckoutController@postCheckout')->name('checkout');
+        Route::post('cart/coupon/apply', 'CouponsController@applyCoupon')->name('coupon.apply');
+
+        Route::get('profile', 'ProfileController@index')->name('profile');
+        Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
+        Route::get('profile/orders', 'ProfileController@getOrders')->name('profile.orders');
+        Route::get('profile/orders/{id}/detail', 'ProfileController@getOrderDetail')->name('profile.orders.show');
+        Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
+        Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
+
+        Route::get('payment/process', 'PaymentsController@processPayment');
+
+        Route::get('home', 'HomeController@index')->name('home');
+        Route::get('/', 'HomeController@index')->name('home');
+
+    });
 
     Auth::routes();
 });

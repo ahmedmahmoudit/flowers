@@ -172,7 +172,7 @@ class CouponsController extends Controller
                 return redirect()->back()->with('error',__('Coupon has expired'));
             }
 
-            $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+            $products = $this->productModel->has('detail','store')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
 
             $cart = $this->cart->make($products);
 

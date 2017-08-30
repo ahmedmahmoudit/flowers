@@ -51,6 +51,7 @@
     </div>
     <div class="c-navbar">
         <div class="container">
+
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-right">
                     <a href="{{ route('home') }}" class="c-logo">

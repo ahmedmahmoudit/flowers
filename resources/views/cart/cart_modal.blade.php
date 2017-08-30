@@ -1,4 +1,4 @@
-<div class="c-cart-menu">
+<div class="c-cart-menu" style="{{ app()->getLocale() == 'ar' ? 'right:0' : 'left:0' }}">
     <div class="c-cart-menu-title">
         <p class="c-cart-menu-float-l c-font-sbold">{{ $cart->items->count() }} {{ __('Items') }}</p>
         <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ $cart->grandTotal . ' ' . $selectedCountry['currency_'.$locale] }}</p>
