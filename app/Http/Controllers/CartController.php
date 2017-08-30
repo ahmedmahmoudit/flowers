@@ -112,12 +112,23 @@ class CartController extends Controller
             ->with(['detail', 'store'])->active()->find($request->product_id);
 
         if ($product) {
+            $today = Carbon::now()->toDateString();
             $deliveryDate = Carbon::parse($request->delivery_date)->toDateString();
             $storeMinimumDeliveryDate = $product->store->minimum_delivery_days;
             $minimumDeliveryDate = Carbon::now()->addDays($storeMinimumDeliveryDate)->toDateString();
 
             if($deliveryDate < $minimumDeliveryDate) {
                 return redirect()->back()->with('error',__('Cannot deliver before'). ' '.$minimumDeliveryDate)->withInput();
+            }
+
+            if($deliveryDate === $today) {
+
+                $leastDeliveryTime = Carbon::createFromFormat('ga',$request->delivery_time)->subHours(2)->format('ga');
+                $timeNow = Carbon::now()->format('ga');
+
+                if($timeNow > $leastDeliveryTime) {
+                    return redirect()->back()->with('error',__('Please choose a different time for delivery'))->withInput();
+                }
             }
 
             if ($product->detail->in_stock) {
@@ -130,7 +141,7 @@ class CartController extends Controller
                 );
                 return redirect()->route('home');
             } else {
-                return redirect()->back()->with('error', __('Product is Out of Stock'))->withInput();
+                return redirect()->back()->with('error', __('Product is out of stock'))->withInput();
             }
 
         } else {

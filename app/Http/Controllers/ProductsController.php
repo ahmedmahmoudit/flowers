@@ -430,7 +430,7 @@ class ProductsController extends Controller
     {
         $product = $this->productModel->with('userLikes')->find($id);
         $cartItems = $this->cart->getItems();
-        $deliveryTimes = $this->productModel->deliveryTimes[app()->getLocale()];
+        $deliveryTimes = $this->productModel->deliveryTimes;
         $selectedTime = null;
 
 //        dd($cartItems->toArray());

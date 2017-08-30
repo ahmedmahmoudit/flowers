@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
+
 class Product extends BaseModel
 {
     use SoftDeletes;
+
 
     /**
      * The attributes that should be mutated to dates.
@@ -19,14 +21,17 @@ class Product extends BaseModel
      */
     protected $dates = ['deleted_at'];
 
-    protected $localeStrings = ['name','slug'];
+    protected $localeStrings = ['name', 'slug'];
 
     protected $guarded = ['id'];
 
-    public $deliveryTimes = [
-        'en' =>['2pm'=>'morning 9am-2pm','6pm'=>'afternoon 2pm-6pm','10pm'=>'evening 6pm-10pm'],
-        'ar' =>['2pm'=>'morning 9am-2pm','6pm'=>'afternoon 2pm-6pm','10pm'=>'evening 6pm-10pm']
-    ];
+    public $deliveryTimes = [];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->deliveryTimes = ['2pm' => __('morning 9am-2pm'), '6pm' => __('afternoon 2pm-6pm'), '10pm' => __('evening 6pm-10pm')];
+    }
 
     /**
      * Get the store that belongs to product.
@@ -73,12 +78,11 @@ class Product extends BaseModel
         return $this->hasOne(ProductDetail::class);
     }
 
-    public function scopeChildrenCategoryProducts($query,$ids)
+    public function scopeChildrenCategoryProducts($query, $ids)
     {
-        return $query->join('category_product', function($join) use ($ids) {
-            $join->on('category_product.product_id','=','products.id' )
-                ->whereIn('category_product.category_id',$ids)
-//                ->where('articles.published',1)
+        return $query->join('category_product', function ($join) use ($ids) {
+            $join->on('category_product.product_id', '=', 'products.id')
+                ->whereIn('category_product.category_id', $ids)//                ->where('articles.published',1)
             ;
         });
     }
@@ -90,14 +94,13 @@ class Product extends BaseModel
 
     public function scopeActive($query)
     {
-        return $query->where('active',1);
+        return $query->where('active', 1);
     }
 
     public function scopeApproved($query)
     {
-        return $query->leftJoin('stores','products.store_id','stores.id')
-            ->where('products.id',$this->id)
-            ->where('stores.is_approved',1)
-            ;
+        return $query->leftJoin('stores', 'products.store_id', 'stores.id')
+            ->where('products.id', $this->id)
+            ->where('stores.is_approved', 1);
     }
 }

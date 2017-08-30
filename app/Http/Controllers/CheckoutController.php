@@ -62,7 +62,7 @@ class CheckoutController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
         $selectedArea = Cache::get('selectedArea');
 
-        $products = $this->productModel->has('detail','store')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
+        $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
 
         return view('cart.checkout',compact('cart','user','hasAddress','selectedCountry','selectedArea','shippingAddress','authenticated'));
