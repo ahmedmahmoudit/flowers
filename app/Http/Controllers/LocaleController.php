@@ -59,7 +59,6 @@ class LocaleController extends Controller
         if(in_array($locale,['en','ar'])) {
             session()->put('locale', $locale);
         }
-        Cache::forget('selectedArea');
 
         return redirect()->back();
     }
@@ -69,6 +68,7 @@ class LocaleController extends Controller
         $selectedCountry = Cache::get('selectedCountry');
         $selectedArea = Cache::get('selectedArea');
         $areas = $selectedCountry['areas'];
+
         return view('locale.select_area',compact('areas','selectedArea'));
     }
 

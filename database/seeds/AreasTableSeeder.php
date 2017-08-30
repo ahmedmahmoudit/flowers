@@ -14,650 +14,374 @@ class AreasTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('areas')->truncate();
 
-        // kuwait Areas
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Kuwait City',
-            'name_ar'       => 'الكويت',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "عباسية", "name_en" => "abbasiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "عبدالله المبارك غرب جليب", "name_en" => "abdullah-al-mubarak---west-jleeb",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "عبدالله السالم", "name_en" => "abdullah-al-salem",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "أبرق خيطان", "name_en" => "abraq-khaithan",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "أبو فطيرة", "name_en" => "abu-ftaira",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ابوحليفة", "name_en" => "abu-halifa",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "أبو الحصانية", "name_en" => "abu-hasaniya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العديلية", "name_en" => "adailiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العدان", "name_en" => "adan",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المطار", "name_en" => "airport",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الجليعة  والزور وصولة", "name_en" => "al-julayah---az-zour-sulah",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المسايل", "name_en" => "al-masayel",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "النعيم", "name_en" => "al-naeem",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الأحمدي", "name_en" => "al-ahmadi",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "البدع", "name_en" => "al-bedae",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => " على صباح السالم - ام الهيمان", "name_en" => "ali-sabah-al-salem---umm-al-hayman",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "القرين", "name_en" => "al-qurain",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "القصور", "name_en" => "al-qusour",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "أمغرة الصناعية", "name_en" => "amgarah-industrial",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الأندلس", "name_en" => "andalous",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العارضية", "name_en" => "ardhiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "عارضية الصناعية", "name_en" => "ardiya-small-industrial",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "عارضية مخازن", "name_en" => "ardiya-storage-zone",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "أشبيليا", "name_en" => "ashbeliah",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "بيان", "name_en" => "bayan",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "بنيد القار", "name_en" => "bneid-al-qar",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "شريط الساحلي ب", "name_en" => "coast-strip-b",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الدعية", "name_en" => "daiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الدسمة", "name_en" => "dasma",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "دسمان", "name_en" => "dasman",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الظهر", "name_en" => "dhaher",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ضجيج", "name_en" => "dhajeej",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الدوحة", "name_en" => "doha",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "شرق الاحمدي", "name_en" => "east-al-ahmadi",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العقيلة", "name_en" => "egaila",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "منطقة المعارض جنوب خيطان", "name_en" => "south-khaithan"
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "فهد الاحمد", "name_en" => "fahad-al-ahmed",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الفحيحيل", "name_en" => "fahaheel",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الفيحاء", "name_en" => "faiha",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الفروانية", "name_en" => "farwaniya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الفردوس", "name_en" => "ferdous",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الفنطاس", "name_en" => "fintas",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "فنيطيس", "name_en" => "fnaitess",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "غرناطة", "name_en" => "ghornata",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "هدية", "name_en" => "hadiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "حولي", "name_en" => "hawally",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "حطين", "name_en" => "hitteen",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "جابر الأحمد", "name_en" => "jaber-al-ahmed",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "جابر العلي", "name_en" => "jaber-al-ali",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الجابرية", "name_en" => "jabriya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الجهراء", "name_en" => "jahra",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "جليب شيوخ", "name_en" => "jleeb-al-shiyoukh",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "كبد", "name_en" => "kabd",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "كيفان", "name_en" => "kaifan",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Dasmān',
-            'name_ar'       => 'دسمان',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الخيران", "name_en" => "khairan",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "خيطان", "name_en" => "khaitan",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الخالدية", "name_en" => "khaldiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مدينة الكويت", "name_en" => "kuwait-city",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مقوع", "name_en" => "magwa",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المهبولة", "name_en" => "mahboula",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ميدان حولي", "name_en" => "maidan-hawally",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المنقف", "name_en" => "mangaf",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المنصورية", "name_en" => "mansouriya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المسيلة", "name_en" => "messila",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ميناء عبدالله", "name_en" => "mina-abdullah",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ميناء الاحمدي", "name_en" => "mina-al-ahmadi",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "المرقاب", "name_en" => "mirqab",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مشرف", "name_en" => "mishrif",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مبارك العبدالله غرب مشرف", "name_en" => "mubarak-al-abdullah---west-mishref",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مبارك الكبير", "name_en" => "mubarak-al-kabir",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "معسكرات المباركية", "name_en" => "mubarakiya-camps",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "النهضة", "name_en" => "nahda",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "النسيم", "name_en" => "nasseem",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "النويصب", "name_en" => "nuwaiseeb",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "النزهة", "name_en" => "nuzha",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العمرية", "name_en" => "omariya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "العيون", "name_en" => "oyoun",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "القادسية", "name_en" => "qadsiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "قيروان جنوب الدوحة", "name_en" => "qairawan-south-doha",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "قصر", "name_en" => "qasr",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "القبلة", "name_en" => "qibla",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sharq',
-            'name_ar'       => 'شرق',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "قرطبة", "name_en" => "qortuba",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الرابية", "name_en" => "rabiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الري", "name_en" => "rai",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الروضة", "name_en" => "rawda",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الرقعي", "name_en" => "reggai",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الرحاب", "name_en" => "rehab",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الرقة", "name_en" => "riqqa",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mirgāb',
-            'name_ar'       => 'المرقاب',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الرميثية", "name_en" => "rumaithiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "سعد العبد الله", "name_en" => "saad-al-abdullah",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مدينة صباح الأحمد البحرية", "name_en" => "sabah-al-ahmad-marine-city",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صباح الأحمد السكنية", "name_en" => "sabah-al-ahmad-residential",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Jibla',
-            'name_ar'       => 'جبلة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صباح الناصر", "name_en" => "sabah-al-nasser",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صباح السالم", "name_en" => "sabah-al-salem",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الصباحية", "name_en" => "sabahiya",
+        ]);
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صبحان الصناعية", "name_en" => "sabhan-industrial",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Dasma',
-            'name_ar'       => 'الدسمة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "السلام", "name_en" => "salam",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Da\'iya',
-            'name_ar'       => 'الدعية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الصالحية", "name_en" => "salhiya",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Salhiya',
-            'name_ar'       => 'الصالحية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "السالمية", "name_en" => "salmiya",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sawābir',
-            'name_ar'       => 'الصوابر',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "سلوى", "name_en" => "salwa",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Bneid il-Gār',
-            'name_ar'       => 'بنيد القار',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الشعب", "name_en" => "shaab",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Kaifan',
-            'name_ar'       => 'كيفان',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الشامية", "name_en" => "shamiya",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mansūriya',
-            'name_ar'       => 'المنصورية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الشرق", "name_en" => "sharq",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Abdullah as-Salim suburb',
-            'name_ar'       => 'ضاحية عبد الله السالم',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مطار الشيخ سعد العبدالله", "name_en" => "sheikh-saad-al-abdullah-airport",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Nuzha',
-            'name_ar'       => 'النزهة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "ميناء الشعيبة", "name_en" => "shuaiba-port",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Faiha\'',
-            'name_ar'       => 'الفيحاء',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الشهداء", "name_en" => "shuhada",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Shamiya',
-            'name_ar'       => 'الشامية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الشويخ", "name_en" => "shuwaikh",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Rawda',
-            'name_ar'       => 'الروضة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الصديق", "name_en" => "siddiq",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Khaldiya',
-            'name_ar'       => 'الخالدية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "جنوب الوسطي", "name_en" => "south-wista",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Qadsiya',
-            'name_ar'       => 'القادسية',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الصليبخات", "name_en" => "sulaibikhat",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Qurtuba',
-            'name_ar'       => 'قرطبة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صليبية", "name_en" => "sulaibiya",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Surra',
-            'name_ar'       => 'السرة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صليبية الصناعيه 1", "name_en" => "sulaibiya-indutrial-1",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Yarmūk',
-            'name_ar'       => 'اليرموك',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صليبية الصناعيه 2", "name_en" => "sulaibiya-indutrial-2",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Shuwaikh',
-            'name_ar'       => 'الشويخ',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "صليبية السكنية", "name_en" => "sulaibiya-residential",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Rai',
-            'name_ar'       => 'الري',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "السرة", "name_en" => "surra",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Ghirnata',
-            'name_ar'       => 'غرناطة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "تيماء", "name_en" => "taima",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sulaibikhat',
-            'name_ar'       => 'الصليبخات',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "مزارع الوفرة", "name_en" => "wafra-farms",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Doha',
-            'name_ar'       => 'الدوحة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الوفرة السكنية", "name_en" => "wafra-residential",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Nahdha',
-            'name_ar'       => 'النهضة',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الواحة", "name_en" => "waha",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Jabir al-Ahmad City',
-            'name_ar'       => 'مدينة جابر الأحمد',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "غرب ابو فطيرة الحرفية", "name_en" => "west-abu-fetera-small-indust",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Qairawān',
-            'name_ar'       => 'القيروان',
-            'group_name_en' => 'Capital Governorate',
-            'group_name_ar' => 'العاصمة‎‎',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "وسطي", "name_en" => "wista",
         ]);
-
-//        Hawally Governate
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Hawally',
-            'name_ar'       => 'حولي',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "اليرموك", "name_en" => "yarmouk",
         ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Rumaithiya',
-            'name_ar'       => 'الرميثية',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Jabriya',
-            'name_ar'       => 'الجابرية',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Salmiya',
-            'name_ar'       => 'السالمية',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mishrif',
-            'name_ar'       => 'مشرف',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sha\'ab	',
-            'name_ar'       => 'الشعب',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Bayān',
-            'name_ar'       => 'بيان',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Bi\'di\'	',
-            'name_ar'       => 'البدع',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Nigra	',
-            'name_ar'       => 'النقرة',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Salwa',
-            'name_ar'       => 'سلوى',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Maidan Hawalli',
-            'name_ar'       => 'ميدان حولي',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mubarak aj-Jabir suburb',
-            'name_ar'       => 'ضاحية مبارك الجابر',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'South Surra',
-            'name_ar'       => 'جنوب السرة',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Hittin',
-            'name_ar'       => 'حطين',
-            'group_name_en' => 'Hawalli Governorate',
-            'group_name_ar' => 'حولي',
-        ]);
-
-//        Mubarak al-Kabeer Governorate
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mubarak al-Kabeer',
-            'name_ar'       => 'مبارك الكبير',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Adān',
-            'name_ar'       => 'العدان',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Qurain',
-            'name_ar'       => 'القرين',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Qusūr',
-            'name_ar'       => 'القصور',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sabah as-Salim suburb',
-            'name_ar'       => 'ضاحية صباح السالم',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Misīla',
-            'name_ar'       => 'المسيلة',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Abu \'Fteira',
-            'name_ar'       => 'أبو فطيرة',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sabhān',
-            'name_ar'       => 'صبحان',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Fintās',
-            'name_ar'       => 'الفنطاس',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Funaitīs',
-            'name_ar'       => 'الفنيطيس',
-            'group_name_en' => 'Mubarak al-Kabeer Governorate',
-            'group_name_ar' => 'مبارك الكبير',
-        ]);
-
-//        Ahmadi Governorate
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Ahmadi',
-            'name_ar'       => 'الأحمدي',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Aqila',
-            'name_ar'       => 'العقيلة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Zuhar',
-            'name_ar'       => 'الظهر',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Miqwa\'',
-            'name_ar'       => 'المقوع',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mahbula',
-            'name_ar'       => 'المهبولة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Rigga',
-            'name_ar'       => 'الرقة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Hadiya',
-            'name_ar'       => 'هدية',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Abu Hulaifa',
-            'name_ar'       => 'أبو حليفة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sabahiya',
-            'name_ar'       => 'الصباحية',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Mangaf',
-            'name_ar'       => 'المنقف',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Fahaheel',
-            'name_ar'       => 'الفحيحيل',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Wafra',
-            'name_ar'       => 'الوفرة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Zoor',
-            'name_ar'       => 'الزور',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Khairan',
-            'name_ar'       => 'الخيران',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Abdullah Port',
-            'name_ar'       => 'ميناء عبد الله',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Agricultural Wafra',
-            'name_ar'       => 'الوفرة الزراعية',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Bneidar',
-            'name_ar'       => 'بنيدر',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Jilei\'a',
-            'name_ar'       => 'الجليعة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Jabir al-Ali Suburb',
-            'name_ar'       => 'ضاحية جابر العلي',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Fahd al-Ahmad Suburb',
-            'name_ar'       => 'ضاحية فهد الأحمد',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Shu\'aiba',
-            'name_ar'       => 'الشعيبة',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sabah al-Ahmad City',
-            'name_ar'       => 'مدينة صباح الأحمد',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Nuwaiseeb',
-            'name_ar'       => 'النويصيب',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Khairan City',
-            'name_ar'       => 'مدينة الخيران',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Ali as-Salim suburb',
-            'name_ar'       => 'ضاحية علي صباح السالم',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
-        ]);
-
-        DB::table('areas')->insert([
-            'country_id'    => '1',
-            'name_en'       => 'Sabah al-Ahmad Nautical City',
-            'name_ar'       => 'مدينة صباح الأحمد البحرية',
-            'group_name_en' => 'Ahmadi Governorate',
-            'group_name_ar' => 'الأحمدي',
+        DB::table('areas')->insert([
+            'country_id' => '1', "name_ar" => "الزهراء", "name_en" => "zahra",
         ]);
 
 //        BAHRIN COUNTRY
@@ -983,473 +707,473 @@ class AreasTableSeeder extends Seeder
 
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Nizwa',
-            'name_ar' => 'نزوى‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Nizwa',
+            'name_ar'       => 'نزوى‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Samail',
-            'name_ar' => 'سمائل‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Samail',
+            'name_ar'       => 'سمائل‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Bahla',
-            'name_ar' => 'بهلا‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Bahla',
+            'name_ar'       => 'بهلا‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Adam',
-            'name_ar' => 'آدم‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Adam',
+            'name_ar'       => 'آدم‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Hamra',
-            'name_ar' => 'الحمراء‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al Hamra',
+            'name_ar'       => 'الحمراء‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Bidbid',
-            'name_ar' => 'بدبد‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Bidbid',
+            'name_ar'       => 'بدبد‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Manah',
-            'name_ar' => 'منح‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Manah',
+            'name_ar'       => 'منح‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Izki',
-            'name_ar' => 'إزكي‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Izki',
+            'name_ar'       => 'إزكي‎‎',
             'group_name_en' => 'Ad Dakhiliyah Governorate',
             'group_name_ar' => 'محافظة الداخلية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Sohar',
-            'name_ar' => 'صُحار‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Sohar',
+            'name_ar'       => 'صُحار‎‎',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Shinas',
-            'name_ar' => 'شناص',
+            'country_id'    => '3',
+            'name_en'       => 'Shinas',
+            'name_ar'       => 'شناص',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Liwa',
-            'name_ar' => 'ليوه',
+            'country_id'    => '3',
+            'name_en'       => 'Liwa',
+            'name_ar'       => 'ليوه',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Saham',
-            'name_ar' => 'صحم‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Saham',
+            'name_ar'       => 'صحم‎‎',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al-Khaburah',
-            'name_ar' => 'الخابورة‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al-Khaburah',
+            'name_ar'       => 'الخابورة‎‎',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Suwaiq',
-            'name_ar' => 'السويق‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al Suwaiq',
+            'name_ar'       => 'السويق‎‎',
             'group_name_en' => 'Al Batinah North Governorate',
             'group_name_ar' => 'محافظة شمال الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Rustaq',
-            'name_ar' => 'الرستاق‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Rustaq',
+            'name_ar'       => 'الرستاق‎‎',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Awabi',
-            'name_ar' => 'القوابي‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al Awabi',
+            'name_ar'       => 'القوابي‎‎',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Nakhal',
-            'name_ar' => 'نخل‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Nakhal',
+            'name_ar'       => 'نخل‎‎',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Wadi al Maawil',
-            'name_ar' => 'وادي الموايل',
+            'country_id'    => '3',
+            'name_en'       => 'Wadi al Maawil',
+            'name_ar'       => 'وادي الموايل',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Barka',
-            'name_ar' => 'بركاء‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Barka',
+            'name_ar'       => 'بركاء‎‎',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al-Musannah',
-            'name_ar' => 'المصنعة‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al-Musannah',
+            'name_ar'       => 'المصنعة‎‎',
             'group_name_en' => 'Al Batinah South Governorate',
             'group_name_ar' => 'محافظة جنوب الباطنة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Haima',
-            'name_ar' => 'هيماء',
+            'country_id'    => '3',
+            'name_en'       => 'Haima',
+            'name_ar'       => 'هيماء',
             'group_name_en' => 'Al Wusta',
             'group_name_ar' => 'الوسطى‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Duqm',
-            'name_ar' => 'الدقم‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Duqm',
+            'name_ar'       => 'الدقم‎‎',
             'group_name_en' => 'Al Wusta',
             'group_name_ar' => 'الوسطى‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Mahout',
-            'name_ar' => 'ماهوت',
+            'country_id'    => '3',
+            'name_en'       => 'Mahout',
+            'name_ar'       => 'ماهوت',
             'group_name_en' => 'Al Wusta',
             'group_name_ar' => 'الوسطى‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Jazer',
-            'name_ar' => 'الجزر',
+            'country_id'    => '3',
+            'name_en'       => 'Al Jazer',
+            'name_ar'       => 'الجزر',
             'group_name_en' => 'Al Wusta',
             'group_name_ar' => 'الوسطى‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Ibra',
-            'name_ar' => 'ابراء‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Ibra',
+            'name_ar'       => 'ابراء‎‎',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Mudhaibi',
-            'name_ar' => 'مودهابي',
+            'country_id'    => '3',
+            'name_en'       => 'Mudhaibi',
+            'name_ar'       => 'مودهابي',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Bidiya',
-            'name_ar' => 'بيضيا',
+            'country_id'    => '3',
+            'name_en'       => 'Bidiya',
+            'name_ar'       => 'بيضيا',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Kabil',
-            'name_ar' => 'قابل',
+            'country_id'    => '3',
+            'name_en'       => 'Al Kabil',
+            'name_ar'       => 'قابل',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Wadi Bani Khalid',
-            'name_ar' => 'وادي باني خالد',
+            'country_id'    => '3',
+            'name_en'       => 'Wadi Bani Khalid',
+            'name_ar'       => 'وادي باني خالد',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Dima W’attayeen',
-            'name_ar' => 'ديمه واطين',
+            'country_id'    => '3',
+            'name_en'       => 'Dima W’attayeen',
+            'name_ar'       => 'ديمه واطين',
             'group_name_en' => 'Ash Sharqiyah North Governorate',
             'group_name_ar' => 'محافظة شمال الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Sur',
-            'name_ar' => 'صور‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Sur',
+            'name_ar'       => 'صور‎‎',
             'group_name_en' => 'Ash Sharqiyah South Governorate',
             'group_name_ar' => 'محافظة جنوب الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Kamil & Al Wafi',
-            'name_ar' => 'Al Kamil & Al Wafi',
+            'country_id'    => '3',
+            'name_en'       => 'Al Kamil & Al Wafi',
+            'name_ar'       => 'Al Kamil & Al Wafi',
             'group_name_en' => 'Ash Sharqiyah South Governorate',
             'group_name_ar' => 'محافظة جنوب الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Jalan Bani Bu Hassan',
-            'name_ar' => 'جعلان بني بو حسن‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Jalan Bani Bu Hassan',
+            'name_ar'       => 'جعلان بني بو حسن‎‎',
             'group_name_en' => 'Ash Sharqiyah South Governorate',
             'group_name_ar' => 'محافظة جنوب الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Jalan Bani Bu Ali',
-            'name_ar' => 'Jalan Bani Bu Ali',
+            'country_id'    => '3',
+            'name_en'       => 'Jalan Bani Bu Ali',
+            'name_ar'       => 'Jalan Bani Bu Ali',
             'group_name_en' => 'Ash Sharqiyah South Governorate',
             'group_name_ar' => 'محافظة جنوب الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Masirah',
-            'name_ar' => 'مصيرة‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Masirah',
+            'name_ar'       => 'مصيرة‎‎',
             'group_name_en' => 'Ash Sharqiyah South Governorate',
             'group_name_ar' => 'محافظة جنوب الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Ibri',
-            'name_ar' => 'عبري‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Ibri',
+            'name_ar'       => 'عبري‎‎',
             'group_name_en' => 'Ad Dhahirah Governorate',
             'group_name_ar' => 'محافظة الظاهرة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Yanqul',
-            'name_ar' => 'Yanqul',
+            'country_id'    => '3',
+            'name_en'       => 'Yanqul',
+            'name_ar'       => 'Yanqul',
             'group_name_en' => 'Ad Dhahirah Governorate',
             'group_name_ar' => 'محافظة الظاهرة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Dhank',
-            'name_ar' => 'Dhank',
+            'country_id'    => '3',
+            'name_en'       => 'Dhank',
+            'name_ar'       => 'Dhank',
             'group_name_en' => 'Ad Dhahirah Governorate',
             'group_name_ar' => 'محافظة الظاهرة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Amarat',
-            'name_ar' => 'العامرات‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al Amarat',
+            'name_ar'       => 'العامرات‎‎',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Bawshar',
-            'name_ar' => 'بوشر‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Bawshar',
+            'name_ar'       => 'بوشر‎‎',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Muscat',
-            'name_ar' => 'مسقط‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Muscat',
+            'name_ar'       => 'مسقط‎‎',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Muttrah',
-            'name_ar' => 'مطرح‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Muttrah',
+            'name_ar'       => 'مطرح‎‎',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Qurayyat',
-            'name_ar' => 'Qurayyat',
+            'country_id'    => '3',
+            'name_en'       => 'Qurayyat',
+            'name_ar'       => 'Qurayyat',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Seeb',
-            'name_ar' => 'السيب‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Seeb',
+            'name_ar'       => 'السيب‎‎',
             'group_name_en' => 'Muscat',
             'group_name_ar' => 'مسقط',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Khasab',
-            'name_ar' => 'خصب‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Khasab',
+            'name_ar'       => 'خصب‎‎',
             'group_name_en' => 'Musandam Governorate',
             'group_name_ar' => 'محافظة مسندم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Bukha',
-            'name_ar' => 'Bukha',
+            'country_id'    => '3',
+            'name_en'       => 'Bukha',
+            'name_ar'       => 'Bukha',
             'group_name_en' => 'Musandam Governorate',
             'group_name_ar' => 'محافظة مسندم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Dibba Al-Baya',
-            'name_ar' => 'دبا البيعة‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Dibba Al-Baya',
+            'name_ar'       => 'دبا البيعة‎‎',
             'group_name_en' => 'Musandam Governorate',
             'group_name_ar' => 'محافظة مسندم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Madha',
-            'name_ar' => 'مدحاء‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Madha',
+            'name_ar'       => 'مدحاء‎‎',
             'group_name_en' => 'Musandam Governorate',
             'group_name_ar' => 'محافظة مسندم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al-Mazyona',
-            'name_ar' => 'المزيونة',
+            'country_id'    => '3',
+            'name_en'       => 'Al-Mazyona',
+            'name_ar'       => 'المزيونة',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Dhalkut',
-            'name_ar' => 'ضلكوت',
+            'country_id'    => '3',
+            'name_en'       => 'Dhalkut',
+            'name_ar'       => 'ضلكوت',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Mirbat',
-            'name_ar' => 'مرباط',
+            'country_id'    => '3',
+            'name_en'       => 'Mirbat',
+            'name_ar'       => 'مرباط',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Muqshin',
-            'name_ar' => 'مقشن',
+            'country_id'    => '3',
+            'name_en'       => 'Muqshin',
+            'name_ar'       => 'مقشن',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Rakhyut',
-            'name_ar' => 'رخيوت',
+            'country_id'    => '3',
+            'name_en'       => 'Rakhyut',
+            'name_ar'       => 'رخيوت',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Sadah',
-            'name_ar' => 'سدح',
+            'country_id'    => '3',
+            'name_en'       => 'Sadah',
+            'name_ar'       => 'سدح',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Salalah',
-            'name_ar' => 'صلالة',
+            'country_id'    => '3',
+            'name_en'       => 'Salalah',
+            'name_ar'       => 'صلالة',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Shalim and the Hallaniyat Islands',
-            'name_ar' => 'شليم وجزر الحلانيات',
+            'country_id'    => '3',
+            'name_en'       => 'Shalim and the Hallaniyat Islands',
+            'name_ar'       => 'شليم وجزر الحلانيات',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Taqah',
-            'name_ar' => 'طاقة',
+            'country_id'    => '3',
+            'name_en'       => 'Taqah',
+            'name_ar'       => 'طاقة',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Thumrait',
-            'name_ar' => 'ثمريت',
+            'country_id'    => '3',
+            'name_en'       => 'Thumrait',
+            'name_ar'       => 'ثمريت',
             'group_name_en' => 'Dhofar Governorate',
             'group_name_ar' => 'محافظة ظفار‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '3',
-            'name_en' => 'Al Buraimi',
-            'name_ar' => 'البريمي‎‎',
+            'country_id'    => '3',
+            'name_en'       => 'Al Buraimi',
+            'name_ar'       => 'البريمي‎‎',
             'group_name_en' => 'Al Buraimi',
             'group_name_ar' => 'البريمي‎‎',
         ]);
@@ -1457,945 +1181,945 @@ class AreasTableSeeder extends Seeder
 
 //        Saudi Arabia COUNTRY
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Bahah',
-            'name_ar' => 'الباحة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Bahah',
+            'name_ar'       => 'الباحة‎‎',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Aqiq',
-            'name_ar' => 'العقيق',
+            'country_id'    => '4',
+            'name_en'       => 'Al Aqiq',
+            'name_ar'       => 'العقيق',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Karra',
-            'name_ar' => 'الكرة',
+            'country_id'    => '4',
+            'name_en'       => 'Al Karra',
+            'name_ar'       => 'الكرة',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Mandaq',
-            'name_ar' => 'المندق',
+            'country_id'    => '4',
+            'name_en'       => 'Al Mandaq',
+            'name_ar'       => 'المندق',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Makhwah',
-            'name_ar' => 'المخوة',
+            'country_id'    => '4',
+            'name_en'       => 'Al Makhwah',
+            'name_ar'       => 'المخوة',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Baljurashi',
-            'name_ar' => 'بلجرشي‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Baljurashi',
+            'name_ar'       => 'بلجرشي‎‎',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Qilwah',
-            'name_ar' => 'قلوه',
+            'country_id'    => '4',
+            'name_en'       => 'Qilwah',
+            'name_ar'       => 'قلوه',
             'group_name_en' => 'E Al-Bahah Region',
             'group_name_ar' => 'الباحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Arar',
-            'name_ar' => 'عرعر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Arar',
+            'name_ar'       => 'عرعر‎‎',
             'group_name_en' => 'Northern Borders Region',
             'group_name_ar' => 'منطقة الحدود الشمالية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Rafha',
-            'name_ar' => 'رفحاء‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Rafha',
+            'name_ar'       => 'رفحاء‎‎',
             'group_name_en' => 'Northern Borders Region',
             'group_name_ar' => 'منطقة الحدود الشمالية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Turaif',
-            'name_ar' => 'طريف‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Turaif',
+            'name_ar'       => 'طريف‎‎',
             'group_name_en' => 'Northern Borders Region',
             'group_name_ar' => 'منطقة الحدود الشمالية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Haql',
-            'name_ar' => 'حقل',
+            'country_id'    => '4',
+            'name_en'       => 'Haql',
+            'name_ar'       => 'حقل',
             'group_name_en' => 'Al Jawf Region',
             'group_name_ar' => 'الجوف‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Dumat al-Jundal',
-            'name_ar' => 'دومة الجندل‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Dumat al-Jundal',
+            'name_ar'       => 'دومة الجندل‎‎',
             'group_name_en' => 'Al Jawf Region',
             'group_name_ar' => 'الجوف‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Qurayyat',
-            'name_ar' => 'القريات‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Qurayyat',
+            'name_ar'       => 'القريات‎‎',
             'group_name_en' => 'Al Jawf Region',
             'group_name_ar' => 'الجوف‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Sakakah',
-            'name_ar' => 'سكاكا‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Sakakah',
+            'name_ar'       => 'سكاكا‎‎',
             'group_name_en' => 'Al Jawf Region',
             'group_name_ar' => 'الجوف‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Medina',
-            'name_ar' => 'المدينة المنورة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Medina',
+            'name_ar'       => 'المدينة المنورة‎‎',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Henakiyah',
-            'name_ar' => 'الحناكية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Henakiyah',
+            'name_ar'       => 'الحناكية',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Ola',
-            'name_ar' => 'العلا',
+            'country_id'    => '4',
+            'name_en'       => 'Al Ola',
+            'name_ar'       => 'العلا',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Badr',
-            'name_ar' => 'بَـدْر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Badr',
+            'name_ar'       => 'بَـدْر‎‎',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Khaybar',
-            'name_ar' => 'خيبر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Khaybar',
+            'name_ar'       => 'خيبر‎‎',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Mahd adh-Dhahab',
-            'name_ar' => 'مَـهـد الـذّهـب‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Mahd adh-Dhahab',
+            'name_ar'       => 'مَـهـد الـذّهـب‎‎',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Yanbu\' al Bahr',
-            'name_ar' => 'ينبع البحر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Yanbu\' al Bahr',
+            'name_ar'       => 'ينبع البحر‎‎',
             'group_name_en' => 'Madinah Region',
             'group_name_ar' => 'المدينة المنورة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Badayea',
-            'name_ar' => 'البادية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Badayea',
+            'name_ar'       => 'البادية',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Bukayriyah',
-            'name_ar' => 'البكيرية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Bukayriyah',
+            'name_ar'       => 'البكيرية',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Mithnab',
-            'name_ar' => 'آل المذنب',
+            'country_id'    => '4',
+            'name_en'       => 'Al Mithnab',
+            'name_ar'       => 'آل المذنب',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Nabhaniyah',
-            'name_ar' => 'النبهانية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Nabhaniyah',
+            'name_ar'       => 'النبهانية',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ar Rass',
-            'name_ar' => 'الرس‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Ar Rass',
+            'name_ar'       => 'الرس‎‎',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Shimasiyah',
-            'name_ar' => 'الشماسية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Shimasiyah',
+            'name_ar'       => 'الشماسية',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ayn Ibn Fuhayd',
-            'name_ar' => 'عين إبن فهيد',
+            'country_id'    => '4',
+            'name_en'       => 'Ayn Ibn Fuhayd',
+            'name_ar'       => 'عين إبن فهيد',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Buraidah',
-            'name_ar' => 'بريدة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Buraidah',
+            'name_ar'       => 'بريدة‎‎',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Riyadh Al Khabra',
-            'name_ar' => 'رياض أل خبر',
+            'country_id'    => '4',
+            'name_en'       => 'Riyadh Al Khabra',
+            'name_ar'       => 'رياض أل خبر',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Unaizah',
-            'name_ar' => 'عنيزة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Unaizah',
+            'name_ar'       => 'عنيزة‎‎',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Uyun AlJiwa',
-            'name_ar' => 'عيون الجواء‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Uyun AlJiwa',
+            'name_ar'       => 'عيون الجواء‎‎',
             'group_name_en' => 'Al-Qassim Region',
             'group_name_ar' => 'منطقة القصيم‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Afif',
-            'name_ar' => 'عفيف‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Afif',
+            'name_ar'       => 'عفيف‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Layla',
-            'name_ar' => 'لیلى',
+            'country_id'    => '4',
+            'name_en'       => 'Layla',
+            'name_ar'       => 'لیلى',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Diriyah',
-            'name_ar' => 'الدرعية‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Diriyah',
+            'name_ar'       => 'الدرعية‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Duwadimi',
-            'name_ar' => 'الدوادمي',
+            'country_id'    => '4',
+            'name_en'       => 'Al Duwadimi',
+            'name_ar'       => 'الدوادمي',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-Ghat',
-            'name_ar' => 'الغاط',
+            'country_id'    => '4',
+            'name_en'       => 'Al-Ghat',
+            'name_ar'       => 'الغاط',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-H̨arīq',
-            'name_ar' => 'الحريق‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al-H̨arīq',
+            'name_ar'       => 'الحريق‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-Kharj',
-            'name_ar' => 'الخرج‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al-Kharj',
+            'name_ar'       => 'الخرج‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Majma\'ah',
-            'name_ar' => 'المجمعة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Majma\'ah',
+            'name_ar'       => 'المجمعة‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-Muzahmiyya',
-            'name_ar' => 'المزاحمية‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al-Muzahmiyya',
+            'name_ar'       => 'المزاحمية‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Riyadh',
-            'name_ar' => 'الرياض‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Riyadh',
+            'name_ar'       => 'الرياض‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-Quway\'iyah',
-            'name_ar' => 'القويعية‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al-Quway\'iyah',
+            'name_ar'       => 'القويعية‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Sulayyil',
-            'name_ar' => 'السليل‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Sulayyil',
+            'name_ar'       => 'السليل‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Zulfi',
-            'name_ar' => 'الزلفي',
+            'country_id'    => '4',
+            'name_en'       => 'Al Zulfi',
+            'name_ar'       => 'الزلفي',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Dhurma',
-            'name_ar' => 'ضرما‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Dhurma',
+            'name_ar'       => 'ضرما‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Howtat Bani Tamim',
-            'name_ar' => 'حوطة بني تميم',
+            'country_id'    => '4',
+            'name_en'       => 'Howtat Bani Tamim',
+            'name_ar'       => 'حوطة بني تميم',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Huraymila',
-            'name_ar' => 'حريملا',
+            'country_id'    => '4',
+            'name_en'       => 'Huraymila',
+            'name_ar'       => 'حريملا',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Rumah',
-            'name_ar' => 'رماح',
+            'country_id'    => '4',
+            'name_en'       => 'Rumah',
+            'name_ar'       => 'رماح',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Shaqra',
-            'name_ar' => 'شقرا',
+            'country_id'    => '4',
+            'name_en'       => 'Shaqra',
+            'name_ar'       => 'شقرا',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Thadiq',
-            'name_ar' => 'ثادق‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Thadiq',
+            'name_ar'       => 'ثادق‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Wadi Al Dawasir',
-            'name_ar' => 'وادي الدواسر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Wadi Al Dawasir',
+            'name_ar'       => 'وادي الدواسر‎‎',
             'group_name_en' => 'Riyadh Region',
             'group_name_ar' => 'منطقة الرياض‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Abha',
-            'name_ar' => 'أبها‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Abha',
+            'name_ar'       => 'أبها‎‎',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ahad Rafidah',
-            'name_ar' => 'أهاد رفيدة',
+            'country_id'    => '4',
+            'name_en'       => 'Ahad Rafidah',
+            'name_ar'       => 'أهاد رفيدة',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Majaridah',
-            'name_ar' => 'المجريدة',
+            'country_id'    => '4',
+            'name_en'       => 'Al Majaridah',
+            'name_ar'       => 'المجريدة',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al-Namas',
-            'name_ar' => 'النماص‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al-Namas',
+            'name_ar'       => 'النماص‎‎',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Bareq',
-            'name_ar' => 'بارق‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Bareq',
+            'name_ar'       => 'بارق‎‎',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Bisha',
-            'name_ar' => 'بيشة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Bisha',
+            'name_ar'       => 'بيشة‎‎',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Dhahran Al Janub',
-            'name_ar' => 'الظهران الجنوب',
+            'country_id'    => '4',
+            'name_en'       => 'Dhahran Al Janub',
+            'name_ar'       => 'الظهران الجنوب',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Khamis Mushait',
-            'name_ar' => 'خميس مشيط‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Khamis Mushait',
+            'name_ar'       => 'خميس مشيط‎‎',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Muhayil',
-            'name_ar' => 'Muhayil',
+            'country_id'    => '4',
+            'name_en'       => 'Muhayil',
+            'name_ar'       => 'Muhayil',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Rojal',
-            'name_ar' => 'Rojal',
+            'country_id'    => '4',
+            'name_en'       => 'Rojal',
+            'name_ar'       => 'Rojal',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Sarat Abidah',
-            'name_ar' => 'سارة عبيدة',
+            'country_id'    => '4',
+            'name_en'       => 'Sarat Abidah',
+            'name_ar'       => 'سارة عبيدة',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Tathlith',
-            'name_ar' => 'Tathlith',
+            'country_id'    => '4',
+            'name_en'       => 'Tathlith',
+            'name_ar'       => 'Tathlith',
             'group_name_en' => 'Asir Region',
             'group_name_ar' => 'عسير‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Dammam',
-            'name_ar' => 'الدمام‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Dammam',
+            'name_ar'       => 'الدمام‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Ahsa',
-            'name_ar' => 'الأحساء‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Ahsa',
+            'name_ar'       => 'الأحساء‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ras Al Khafji',
-            'name_ar' => 'رأس الخفجي‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Ras Al Khafji',
+            'name_ar'       => 'رأس الخفجي‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Kharkhir',
-            'name_ar' => 'الخرخير',
+            'country_id'    => '4',
+            'name_en'       => 'Al Kharkhir',
+            'name_ar'       => 'الخرخير',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Khobar',
-            'name_ar' => 'الخبر‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Khobar',
+            'name_ar'       => 'الخبر‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Nairyah',
-            'name_ar' => 'النعيرية',
+            'country_id'    => '4',
+            'name_en'       => 'Al Nairyah',
+            'name_ar'       => 'النعيرية',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Qatif',
-            'name_ar' => 'القطيف‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Qatif',
+            'name_ar'       => 'القطيف‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Abqaiq',
-            'name_ar' => 'بقيق‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Abqaiq',
+            'name_ar'       => 'بقيق‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Hafar Al-Batin',
-            'name_ar' => 'حفر الباطن‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Hafar Al-Batin',
+            'name_ar'       => 'حفر الباطن‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Jubail',
-            'name_ar' => 'الجبيل‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Jubail',
+            'name_ar'       => 'الجبيل‎‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Qaryat al-Ulya',
-            'name_ar' => 'قرية العليا‎',
+            'country_id'    => '4',
+            'name_en'       => 'Qaryat al-Ulya',
+            'name_ar'       => 'قرية العليا‎',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ras Tanura',
-            'name_ar' => 'رأس تنورة',
+            'country_id'    => '4',
+            'name_en'       => 'Ras Tanura',
+            'name_ar'       => 'رأس تنورة',
             'group_name_en' => 'Eastern Region',
             'group_name_ar' => 'الشرقية‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Khazaiah',
-            'name_ar' => 'Al Khazaiah',
+            'country_id'    => '4',
+            'name_en'       => 'Al Khazaiah',
+            'name_ar'       => 'Al Khazaiah',
             'group_name_en' => 'Ha\'il Region',
             'group_name_ar' => 'حائل‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Shinan',
-            'name_ar' => 'الشنان',
+            'country_id'    => '4',
+            'name_en'       => 'Al Shinan',
+            'name_ar'       => 'الشنان',
             'group_name_en' => 'Ha\'il Region',
             'group_name_ar' => 'حائل‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Baqaa',
-            'name_ar' => 'البقعة',
+            'country_id'    => '4',
+            'name_en'       => 'Baqaa',
+            'name_ar'       => 'البقعة',
             'group_name_en' => 'Ha\'il Region',
             'group_name_ar' => 'حائل‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ha\'il',
-            'name_ar' => 'حائل‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Ha\'il',
+            'name_ar'       => 'حائل‎‎',
             'group_name_en' => 'Ha\'il Region',
             'group_name_ar' => 'حائل‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Abu `Arish',
-            'name_ar' => 'أبو العريش',
+            'country_id'    => '4',
+            'name_en'       => 'Abu `Arish',
+            'name_ar'       => 'أبو العريش',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ahad al Masarihah',
-            'name_ar' => 'أهاد المصريحة',
+            'country_id'    => '4',
+            'name_en'       => 'Ahad al Masarihah',
+            'name_ar'       => 'أهاد المصريحة',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Darb',
-            'name_ar' => 'الدرب',
+            'country_id'    => '4',
+            'name_en'       => 'Al Darb',
+            'name_ar'       => 'الدرب',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Dayer',
-            'name_ar' => 'الدير',
+            'country_id'    => '4',
+            'name_en'       => 'Al Dayer',
+            'name_ar'       => 'الدير',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Aridhah',
-            'name_ar' => 'العريضه',
+            'country_id'    => '4',
+            'name_en'       => 'Al Aridhah',
+            'name_ar'       => 'العريضه',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Edabi',
-            'name_ar' => 'الدابي',
+            'country_id'    => '4',
+            'name_en'       => 'Al Edabi',
+            'name_ar'       => 'الدابي',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Haridhah',
-            'name_ar' => 'الحريضة',
+            'country_id'    => '4',
+            'name_en'       => 'Al Haridhah',
+            'name_ar'       => 'الحريضة',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Reeth',
-            'name_ar' => 'الريث',
+            'country_id'    => '4',
+            'name_en'       => 'Al Reeth',
+            'name_ar'       => 'الريث',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Baish',
-            'name_ar' => 'بيش',
+            'country_id'    => '4',
+            'name_en'       => 'Baish',
+            'name_ar'       => 'بيش',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Damad',
-            'name_ar' => 'داماد',
+            'country_id'    => '4',
+            'name_en'       => 'Damad',
+            'name_ar'       => 'داماد',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Farasan',
-            'name_ar' => 'فرسان',
+            'country_id'    => '4',
+            'name_en'       => 'Farasan',
+            'name_ar'       => 'فرسان',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Jizan',
-            'name_ar' => 'جازان‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Jizan',
+            'name_ar'       => 'جازان‎‎',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Sabya',
-            'name_ar' => 'صبيا',
+            'country_id'    => '4',
+            'name_en'       => 'Sabya',
+            'name_ar'       => 'صبيا',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Samtah',
-            'name_ar' => 'صامطة',
+            'country_id'    => '4',
+            'name_en'       => 'Samtah',
+            'name_ar'       => 'صامطة',
             'group_name_en' => 'Jizan Region',
             'group_name_ar' => 'جيزان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Jumum',
-            'name_ar' => 'الجموم',
+            'country_id'    => '4',
+            'name_en'       => 'Al Jumum',
+            'name_ar'       => 'الجموم',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Kamil',
-            'name_ar' => 'الكامل',
+            'country_id'    => '4',
+            'name_en'       => 'Al Kamil',
+            'name_ar'       => 'الكامل',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Khurmah',
-            'name_ar' => 'الخرمه',
+            'country_id'    => '4',
+            'name_en'       => 'Al Khurmah',
+            'name_ar'       => 'الخرمه',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Lith',
-            'name_ar' => 'الليث‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Lith',
+            'name_ar'       => 'الليث‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Qunfudhah',
-            'name_ar' => 'القنفذة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Qunfudhah',
+            'name_ar'       => 'القنفذة‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ta\'if',
-            'name_ar' => 'الطائف‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Ta\'if',
+            'name_ar'       => 'الطائف‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Jeddah',
-            'name_ar' => 'جدة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Jeddah',
+            'name_ar'       => 'جدة‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Khulays',
-            'name_ar' => 'خليص',
+            'country_id'    => '4',
+            'name_en'       => 'Khulays',
+            'name_ar'       => 'خليص',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Mecca',
-            'name_ar' => 'مكة',
+            'country_id'    => '4',
+            'name_en'       => 'Mecca',
+            'name_ar'       => 'مكة',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Rabigh',
-            'name_ar' => 'رابغ‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Rabigh',
+            'name_ar'       => 'رابغ‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Ranyah',
-            'name_ar' => 'Ranyah',
+            'country_id'    => '4',
+            'name_en'       => 'Ranyah',
+            'name_ar'       => 'Ranyah',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Turubah',
-            'name_ar' => 'تربة‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Turubah',
+            'name_ar'       => 'تربة‎‎',
             'group_name_en' => 'Makkah Region',
             'group_name_ar' => 'مكة المكرمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Badr Al Janub',
-            'name_ar' => 'بدر الجنوب',
+            'country_id'    => '4',
+            'name_en'       => 'Badr Al Janub',
+            'name_ar'       => 'بدر الجنوب',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Hubuna',
-            'name_ar' => 'Hubuna',
+            'country_id'    => '4',
+            'name_en'       => 'Hubuna',
+            'name_ar'       => 'Hubuna',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Khubash',
-            'name_ar' => 'Khubash',
+            'country_id'    => '4',
+            'name_en'       => 'Khubash',
+            'name_ar'       => 'Khubash',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Najran',
-            'name_ar' => 'نجران‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Najran',
+            'name_ar'       => 'نجران‎‎',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Sharurah',
-            'name_ar' => 'شرورة',
+            'country_id'    => '4',
+            'name_en'       => 'Sharurah',
+            'name_ar'       => 'شرورة',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Thar',
-            'name_ar' => 'ثار',
+            'country_id'    => '4',
+            'name_en'       => 'Thar',
+            'name_ar'       => 'ثار',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Yadamah',
-            'name_ar' => 'يدمة',
+            'country_id'    => '4',
+            'name_en'       => 'Yadamah',
+            'name_ar'       => 'يدمة',
             'group_name_en' => 'Najran Region',
             'group_name_ar' => 'نجران‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Al Wajh',
-            'name_ar' => 'الوجه‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Al Wajh',
+            'name_ar'       => 'الوجه‎‎',
             'group_name_en' => 'Tabuk Region',
             'group_name_ar' => 'تبوك‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Duba',
-            'name_ar' => 'ضبا‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Duba',
+            'name_ar'       => 'ضبا‎‎',
             'group_name_en' => 'Tabuk Region',
             'group_name_ar' => 'تبوك‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Tabuk',
-            'name_ar' => 'تبوك‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Tabuk',
+            'name_ar'       => 'تبوك‎‎',
             'group_name_en' => 'Tabuk Region',
             'group_name_ar' => 'تبوك‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Tayma',
-            'name_ar' => 'تيماء‎‎',
+            'country_id'    => '4',
+            'name_en'       => 'Tayma',
+            'name_ar'       => 'تيماء‎‎',
             'group_name_en' => 'Tabuk Region',
             'group_name_ar' => 'تبوك‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '4',
-            'name_en' => 'Umluj',
-            'name_ar' => 'أملج',
+            'country_id'    => '4',
+            'name_en'       => 'Umluj',
+            'name_ar'       => 'أملج',
             'group_name_en' => 'Tabuk Region',
             'group_name_ar' => 'تبوك‎‎',
         ]);
@@ -2403,217 +2127,217 @@ class AreasTableSeeder extends Seeder
 
 //      QATAR
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Abu Dhalouf',
-            'name_ar' => 'أبو ظلوف‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Abu Dhalouf',
+            'name_ar'       => 'أبو ظلوف‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Ain Mohammed',
-            'name_ar' => 'عين محمد',
+            'country_id'    => '5',
+            'name_en'       => 'Ain Mohammed',
+            'name_ar'       => 'عين محمد',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Ain Sanan',
-            'name_ar' => 'عين سنان',
+            'country_id'    => '5',
+            'name_en'       => 'Ain Sanan',
+            'name_ar'       => 'عين سنان',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al `Arish',
-            'name_ar' => 'العريش‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al `Arish',
+            'name_ar'       => 'العريش‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al-Gamashiya',
-            'name_ar' => 'الغاشية',
+            'country_id'    => '5',
+            'name_en'       => 'Al-Gamashiya',
+            'name_ar'       => 'الغاشية',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Ghariyah',
-            'name_ar' => 'الغارية‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Ghariyah',
+            'name_ar'       => 'الغارية‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al-Judhe',
-            'name_ar' => 'Al-Judhe',
+            'country_id'    => '5',
+            'name_en'       => 'Al-Judhe',
+            'name_ar'       => 'Al-Judhe',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Khuwayr',
-            'name_ar' => 'الخوير‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Khuwayr',
+            'name_ar'       => 'الخوير‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Mafjar',
-            'name_ar' => 'المفجر‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Mafjar',
+            'name_ar'       => 'المفجر‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al-Mourouna',
-            'name_ar' => 'آل المارون',
+            'country_id'    => '5',
+            'name_en'       => 'Al-Mourouna',
+            'name_ar'       => 'آل المارون',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al-Naaman',
-            'name_ar' => 'النعمان',
+            'country_id'    => '5',
+            'name_en'       => 'Al-Naaman',
+            'name_ar'       => 'النعمان',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Madinat ash Shamal',
-            'name_ar' => 'الشمال‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Madinat ash Shamal',
+            'name_ar'       => 'الشمال‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Ar Ru\'ays',
-            'name_ar' => 'اَلرُّؤَيْس‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Ar Ru\'ays',
+            'name_ar'       => 'اَلرُّؤَيْس‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Freiha',
-            'name_ar' => 'فريحة‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Freiha',
+            'name_ar'       => 'فريحة‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Fuwayrit',
-            'name_ar' => 'فويرط‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Fuwayrit',
+            'name_ar'       => 'فويرط‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Jebel Jassassiyeh',
-            'name_ar' => 'جبل القصاصية',
+            'country_id'    => '5',
+            'name_en'       => 'Jebel Jassassiyeh',
+            'name_ar'       => 'جبل القصاصية',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Madinat Al Kaaban',
-            'name_ar' => 'مدينة الكعبان‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Madinat Al Kaaban',
+            'name_ar'       => 'مدينة الكعبان‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Umm Jassim',
-            'name_ar' => 'أم جاسم',
+            'country_id'    => '5',
+            'name_en'       => 'Umm Jassim',
+            'name_ar'       => 'أم جاسم',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Umm Al Maa',
-            'name_ar' => 'أم آل ما',
+            'country_id'    => '5',
+            'name_en'       => 'Umm Al Maa',
+            'name_ar'       => 'أم آل ما',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Zubarah',
-            'name_ar' => 'الزبارة‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Zubarah',
+            'name_ar'       => 'الزبارة‎‎',
             'group_name_en' => 'Al Shamal',
             'group_name_ar' => 'الشمال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Khor',
-            'name_ar' => 'الخور‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Khor',
+            'name_ar'       => 'الخور‎‎',
             'group_name_en' => 'Al Khor',
             'group_name_ar' => 'الخور‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Umm Salal',
-            'name_ar' => 'أم صلال‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Umm Salal',
+            'name_ar'       => 'أم صلال‎‎',
             'group_name_en' => 'Umm Salal',
             'group_name_ar' => 'أم صلال‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Daayen',
-            'name_ar' => 'الضعاين‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Daayen',
+            'name_ar'       => 'الضعاين‎‎',
             'group_name_en' => 'Al Daayen',
             'group_name_ar' => 'الضعاين‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Rayyan',
-            'name_ar' => 'الريان‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Rayyan',
+            'name_ar'       => 'الريان‎‎',
             'group_name_en' => 'Al Rayyan',
             'group_name_ar' => 'الريان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Doha',
-            'name_ar' => 'الدوحة‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Doha',
+            'name_ar'       => 'الدوحة‎‎',
             'group_name_en' => 'Doha',
             'group_name_ar' => 'الدوحة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al Wakrah',
-            'name_ar' => 'الوكرة‎‎',
+            'country_id'    => '5',
+            'name_en'       => 'Al Wakrah',
+            'name_ar'       => 'الوكرة‎‎',
             'group_name_en' => 'Al Wakrah',
             'group_name_ar' => 'الوكرة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '5',
-            'name_en' => 'Al-Shahaniya',
-            'name_ar' => 'الشحانية',
+            'country_id'    => '5',
+            'name_en'       => 'Al-Shahaniya',
+            'name_ar'       => 'الشحانية',
             'group_name_en' => 'Al-Shahaniya',
             'group_name_ar' => 'الشحانية',
         ]);
@@ -2621,65 +2345,65 @@ class AreasTableSeeder extends Seeder
 
 //      United Arab Emirates
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Dubai',
-            'name_ar' => 'دبي‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Dubai',
+            'name_ar'       => 'دبي‎‎',
             'group_name_en' => 'Dubai',
             'group_name_ar' => 'دبي‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Abu Dhabi',
-            'name_ar' => 'أبو ظبي‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Abu Dhabi',
+            'name_ar'       => 'أبو ظبي‎‎',
             'group_name_en' => 'Abu Dhabi',
             'group_name_ar' => 'أبو ظبي‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Sharjah',
-            'name_ar' => 'الشارقة‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Sharjah',
+            'name_ar'       => 'الشارقة‎‎',
             'group_name_en' => 'Sharjah',
             'group_name_ar' => 'الشارقة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Al Ain',
-            'name_ar' => 'العين‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Al Ain',
+            'name_ar'       => 'العين‎‎',
             'group_name_en' => 'Al Ain',
             'group_name_ar' => 'العين‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Ajman',
-            'name_ar' => 'عجمان‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Ajman',
+            'name_ar'       => 'عجمان‎‎',
             'group_name_en' => 'Ajman',
             'group_name_ar' => 'عجمان‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Ras al-Khaimah',
-            'name_ar' => 'رأس الخيمة‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Ras al-Khaimah',
+            'name_ar'       => 'رأس الخيمة‎‎',
             'group_name_en' => 'Ras al-Khaimah',
             'group_name_ar' => 'رأس الخيمة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Fujairah',
-            'name_ar' => 'الفجيرة‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Fujairah',
+            'name_ar'       => 'الفجيرة‎‎',
             'group_name_en' => 'Fujairah',
             'group_name_ar' => 'الفجيرة‎‎',
         ]);
 
         DB::table('areas')->insert([
-            'country_id' => '6',
-            'name_en' => 'Umm al-Quwain',
-            'name_ar' => 'أمّ القيوين‎‎',
+            'country_id'    => '6',
+            'name_en'       => 'Umm al-Quwain',
+            'name_ar'       => 'أمّ القيوين‎‎',
             'group_name_en' => 'Umm al-Quwain',
             'group_name_ar' => 'أمّ القيوين‎‎',
         ]);
