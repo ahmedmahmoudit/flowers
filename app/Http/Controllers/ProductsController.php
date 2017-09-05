@@ -15,6 +15,8 @@ use Cache;
 use DB;
 use Illuminate\Http\Request;
 
+
+
 class ProductsController extends Controller
 {
     /**
@@ -41,6 +43,8 @@ class ProductsController extends Controller
 
     protected $selectedPriceFrom = 50;
     protected $selectedPriceTo = 150;
+
+//    const $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
 
     /**
      * @param Product $productModel

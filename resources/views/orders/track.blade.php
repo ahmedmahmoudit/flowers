@@ -29,7 +29,7 @@
                         </li>
                         <li>
                             <h3>{{ __('Order Status') }}</h3>
-                            <p>{{ $order->order_status_value }}</p>
+                            <p style="font-size:19px" class="c-theme-font"><b>{{ $order->order_status_value }}</b></p>
                         </li>
                     </ul>
                 </div>

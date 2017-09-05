@@ -11,14 +11,14 @@
                 <tr>
                     <td class="content-cell"
                         style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 35px;">
-                        <h1 style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: right;">
+                        <h1 style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: left;">
                             {{ trans('general.thanks') }}, {{ $name }}
                         </h1>
                         {{--<p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: right;">--}}
                         {{--تمت عملية الدفع بنجاح--}}
                         {{--</p>--}}
 
-                        <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: right;">
+                        <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
                             We have received your order
                         </p>
 

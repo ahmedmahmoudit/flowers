@@ -39,7 +39,7 @@
                 </div>
                 <div class="c-theme-bg">
                     <p class="c-message c-center c-font-white c-font-20 c-font-sbold">
-                        <i class="fa fa-check"></i> {{ __('Thank You'). __('We have received your order') }}
+                        <i class="fa fa-check"></i> {{ __('Thank You'). ' ' . __('We have received your order') }}
                     </p>
                 </div>
                 <div class="row c-order-summary c-center">

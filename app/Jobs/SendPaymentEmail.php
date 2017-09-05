@@ -40,7 +40,7 @@ class SendPaymentEmail implements ShouldQueue
     {
         $this->mailer = $mailer;
         $this->sendCustomerCopy();
-//        $this->sendStoreCopy();
+        $this->sendStoreCopy();
     }
 
     private function sendCustomerCopy() {

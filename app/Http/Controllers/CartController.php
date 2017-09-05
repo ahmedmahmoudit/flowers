@@ -140,7 +140,7 @@ class CartController extends Controller
                         'delivery_time' => $request->delivery_time
                     ]
                 );
-                return redirect()->route('home');
+                return redirect()->route('cart.index');
             } else {
                 return redirect()->back()->with('error', __('Product is out of stock'))->withInput();
             }
