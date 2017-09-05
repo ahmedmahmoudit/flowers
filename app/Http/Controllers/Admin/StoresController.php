@@ -83,12 +83,14 @@ class StoresController extends Controller
         $attributes['image'] = $imageName;
         $attributes['slug_en'] = $attributes['name_en'];
         $attributes['slug_ar'] = $attributes['name_ar'];
-        $storeData = $this->store->create($attributes);
+        $store = $this->store->create($attributes);
 
         if(count($areas['areas']) > 0)
         {
-            $storeData->areas()->syncWithoutDetaching($areas['areas']);
+            $store->areas()->syncWithoutDetaching($areas['areas']);
         }
+
+        $this->updateSlug($store);
 
         return redirect('manager/stores');
     }
@@ -132,7 +134,12 @@ class StoresController extends Controller
     public function update($id, UpdateStoreRequest $request)
     {
         $attributes = $request->only(['country_id','name_en','name_ar','phone','email']);
+
+        $store = $this->store->getById($id);
+
         $this->store->update($id, $attributes);
+
+        $this->updateSlug($store);
 
         return redirect()->route('stores.index');
     }

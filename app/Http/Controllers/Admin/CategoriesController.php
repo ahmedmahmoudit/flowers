@@ -51,7 +51,10 @@ class CategoriesController extends Controller
         $category = $this->category->create($attributes);
 
         //clear cache
-        cache::flush();
+        Cache::flush();
+
+        $this->updateSlug($category);
+
         if ($category) {
             return redirect()->route('manager.categories.index')->with('success', 'successfully created');
         }
@@ -72,21 +75,20 @@ class CategoriesController extends Controller
         return view('backend.manager.category.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  UpdateCategoryRequest $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = $this->category->getById($id)->update([
-            'name_en' => $request->name_en,
-            'name_ar' => $request->name_ar,
+        $category = $this->category->getById($id);
+
+        $category->update([
+            'name_en'        => $request->name_en,
+            'name_ar'        => $request->name_ar,
             'description_en' => $request->description_en,
             'description_ar' => $request->description_ar
         ]);
+
+        Cache::flush();
+
+        $this->updateSlug($category);
 
         if ($category) {
             return redirect()->route('manager.categories.index')->with('success', 'category updated!!');
@@ -105,18 +107,15 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //check if category not assigned to any of products
-        if ($this->category->getById($id)->products->count() > 0)
-        {
+        if ($this->category->getById($id)->products->count() > 0) {
             return ['error' => 'Category Assigned to Product!!'];
         }
         //check if category has subcategories
-        if ($this->category->getById($id)->children->count() > 0)
-        {
+        if ($this->category->getById($id)->children->count() > 0) {
             return ['error' => 'Category Already has been Assigned To SubCategory!!'];
         }
 
-        if ($this->category->getById($id)->delete())
-        {
+        if ($this->category->getById($id)->delete()) {
             return url()->previous();
         }
 

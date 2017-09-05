@@ -86,7 +86,7 @@
                                 <h3 class="c-font-uppercase c-font-bold">{{ $product->name }}</h3>
                                 <p class="c-font-bold">{{ __('Item Code') }} : <span style="font-weight: normal"> {{ $product->sku  }}</span></p>
 
-                                <p class="hint"><a href="{{ route('stores.show',[$product->store->id,$product->store->slug]) }}">{{ $product->store->name }}</a></p>
+                                <p class="hint">{{ __('Store') }}: <a href="{{ route('stores.show',[$product->store->id,$product->store->slug]) }}">{{ $product->store->name }}</a></p>
                                 <div class="c-line-left"></div>
 
                             </div>

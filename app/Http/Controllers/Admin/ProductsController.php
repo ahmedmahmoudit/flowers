@@ -167,6 +167,8 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
+        $this->updateSlug($product);
+
         return redirect(Request::segment(1).'/products');
     }
 
@@ -270,6 +272,8 @@ class ProductsController extends Controller
 
             $product->productImages()->saveMany($savedImages);
         }
+
+        $this->updateSlug($product);
 
         return redirect(Request::segment(1).'/products');
     }
