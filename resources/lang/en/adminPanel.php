@@ -182,6 +182,8 @@ return array (
     'expiry_date' => 'Expiry Date',
     'quantity' => 'Quantity',
     'cm' => 'cm',
-    "country" => 'Country'
+    "country" => 'Country',
+"created" => 'Date Registered'
+
 
 );

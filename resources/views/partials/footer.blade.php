@@ -70,8 +70,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12 c-col">
-                    <p class="c-copyright c-font-grey">{{ date('Y') }} &copy;
-                        <span class="c-font-grey-3">IdeasOwners</span>
+                    <p class="c-copyright c-font-grey" >Vazzat.com {{ date('Y') }} &copy;  All Rights Reserved
+                        <br><span class="c-font-grey-3" style="padding-bottom: 30px">Developed by IdeasOwners</span>
                     </p>
                 </div>
             </div>

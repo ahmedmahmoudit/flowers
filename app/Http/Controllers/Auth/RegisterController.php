@@ -39,18 +39,24 @@ class RegisterController extends Controller
      * @var Store
      */
     private $storeModel;
+    /**
+     * @var User
+     */
+    private $userModel;
 
     /**
      * Create a new controller instance.
      *
      * @param Country $countryModel
      * @param Store $storeModel
+     * @param User $userModel
      */
-    public function __construct(Country $countryModel,Store $storeModel)
+    public function __construct(Country $countryModel,Store $storeModel,User $userModel)
     {
         $this->middleware('guest');
         $this->countryModel = $countryModel;
         $this->storeModel = $storeModel;
+        $this->userModel = $userModel;
     }
 
     public function showRegistrationForm()
@@ -100,10 +106,11 @@ class RegisterController extends Controller
             'role' => $data['role'] //@todo:confirm rules
         ];
 
-        $user = User::create($userData);
+        $user = $this->userModel->create($userData);
+
 
         if($data['role'] == 2) {
-            $this->storeModel->create([
+            $store = $this->storeModel->create([
                 'name_en' => $data['store_name_en'],
                 'name_ar' => $data['store_name_ar'],
                 'email' => $data['store_email'],
@@ -112,11 +119,13 @@ class RegisterController extends Controller
                 'end_week_day' => $data['end_week_day'],
                 'minimum_delivery_days' => $data['minimum_delivery_days'],
                 'instagram_username' => $data['instagram_username'],
-                'user_id' => $user->id,
                 'slug_en' => $data['store_name_en'],
                 'slug_ar' => $data['store_name_ar'],
                 'country_id' => $data['country_id'],
             ]);
+
+            $user->store_id = $store->id;
+            $user->save();
         }
 
         return $user;

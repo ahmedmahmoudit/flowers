@@ -29,7 +29,7 @@ class StoreRepository implements StoreRepositoryInterface
      */
     public function getAll()
     {
-        return $this->model->all();
+        return $this->model->latest()->get();
     }
 
     /**

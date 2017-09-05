@@ -182,7 +182,8 @@ return array(
     'expiry_date' => 'تاريخ الانتهاء',
     'quantity' => 'الكمية',
     "cm" => "سم",
-    "country" => 'دولة'
+    "country" => 'دولة',
+"created" => 'تاريخ التسجيل'
 //    "delivery_time_morning" => "asdasd",
 //    "delivery_time_afternoon" => "asdasd",
 //    "delivery_time_evening" => "asdasd"

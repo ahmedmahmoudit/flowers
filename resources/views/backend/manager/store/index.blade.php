@@ -27,6 +27,7 @@
                                 <th>{{__('adminPanel.country')}}</th>
                                 <th>{{__('adminPanel.phone')}}</th>
                                 <th>{{__('adminPanel.email')}}</th>
+                                <th>{{__('adminPanel.created')}}</th>
                                 <th>{{__('adminPanel.status')}}</th>
                                 <th>{{__('adminPanel.actions')}}</th>
                             </tr>
@@ -38,6 +39,7 @@
                                     <td>{{$store->country->name}}</td>
                                     <td>{{$store->phone}}</td>
                                     <td>{{$store->email}}</td>
+                                    <td>{{$store->created_at->format('d-m-Y')}}</td>
                                     <td>
                                         @if($store->is_approved == '1')
                                             <span class="label label-success">Active</span>
@@ -88,6 +90,7 @@
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
+                "order": [[ 4, "desc" ]],
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,

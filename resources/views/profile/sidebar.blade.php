@@ -11,7 +11,11 @@
             <li class="{{ $active === 'favorites' ? 'c-active' : '' }}">
                 <a href="{{ route('profile.favorites') }}">{{ __('Favorites') }}</a>
             </li>
-            @if($user->isManager() || $user->isStoreAdmin())
+            @if($user->isManager())
+                <li class="{{ $active === 'admin' ? 'c-active' : '' }}">
+                    <a href="{{ route('manager.dashboard') }}">{{ __('Admin Panel') }}</a>
+                </li>
+            @elseif($user->isStoreAdmin())
                 <li class="{{ $active === 'admin' ? 'c-active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}">{{ __('Admin Panel') }}</a>
                 </li>
