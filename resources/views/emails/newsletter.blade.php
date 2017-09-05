@@ -174,9 +174,10 @@
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class='contentEditable'
                                                                          style='text-align: left;font-weight: light; color:#555555;font-size:26;line-height: 39px;font-family: Helvetica Neue;'>
-                                                                        <h1 class='big'><a target='_blank'
-                                                                                           href="{{ app_path() }}"
-                                                                                           style='color:#444444'>{{ env('APP_URL') }}</a>
+                                                                        <h1 class='big'>
+                                                                            <a target='_blank'
+                                                                                           href="{{ url('/') }}"
+                                                                                           style='color:#444444'>{{ config('app.name') }}</a>
                                                                         </h1>
                                                                     </div>
                                                                 </div>
@@ -266,10 +267,8 @@
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class='contentEditable'
                                                                          style='text-align: center;color:#AAAAAA;'>
-                                                                        <p> {{ env('APP_URL') }} Teamwork <br/>
-                                                                            Kuwait, Sharq <br/>
-                                                                            123456 <br/>
-                                                                            <a href="{{ base_path() }}">Flowers</a>
+                                                                        <p> {{ env('APP_URL') }} <br/>
+                                                                            <a href="{{ route('/') }}">Vazzat.com</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
