@@ -40,7 +40,7 @@ class SendPaymentEmail implements ShouldQueue
     {
         $this->mailer = $mailer;
         $this->sendCustomerCopy();
-        $this->sendStoreCopy();
+//        $this->sendStoreCopy();
     }
 
     private function sendCustomerCopy() {
@@ -48,9 +48,11 @@ class SendPaymentEmail implements ShouldQueue
         $emailBody = [];
         $mailer = $this->mailer;
 
-        $mailer->view = 'emails.payment_success_customer';
-        $mailer->subject =  __('Payment receipt from Vazzat store') ;
-//        $mailer->toEmail = $this->order->email;
+
+        $mailer->view = app()->getLocale() === 'ar' ? 'emails.payment_success_customer_v1_ar' : 'emails.payment_success_customer_v1_en';
+
+        $mailer->subject =  trans('general.payment_mail_success_subject') ;
+//        $mailer->toEmail =  $this->order->email;
         $mailer->toEmail = 'z4ls@live.com';
         $mailer->toName = $this->order->firstname . ' ' .$this->order->lastname;
 
@@ -70,7 +72,9 @@ class SendPaymentEmail implements ShouldQueue
         $emailBody['house'] =  $this->order->house;
         $emailBody['email'] =  $this->order->email;
         $emailBody['country'] =  $this->order->country->name;
+        $emailBody['currency'] =  $this->order->country->currency_en;
         $emailBody['created_at'] =  $this->order->created_at->format('d-m-Y, h:i:s');
+        $emailBody['track_link'] =  route('order.track',$this->order->invoice_id);
 
         foreach ($this->order->orderDetails as $orderDetail) {
 
@@ -130,7 +134,7 @@ class SendPaymentEmail implements ShouldQueue
 
                 $emailBody['details'][] = $details;
 
-                $mailer->subject =  '#'.$orderDetail->id.' '.__('New Order at Vazzat Store') ;
+                $mailer->subject =  '#'.$orderDetail->id.' '.trans('general.new_order') ;
                 $mailer->toEmail =  'z4ls@live.com';
 //                $mailer->toEmail =  $store->email;
                 $mailer->toName = $store->name;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateOrderRequest;
+use App\Order;
 use App\Repositories\OrderRepositoryInterface;
 
 class OrdersController extends Controller
@@ -11,15 +12,21 @@ class OrdersController extends Controller
      * @var $order
      */
     private $order;
+    /**
+     * @var Order
+     */
+    private $orderModel;
 
     /**
      * OrderController constructor.
      *
      * @param OrderRepositoryInterface $order
+     * @param Order $orderModel
      */
-    public function __construct(OrderRepositoryInterface $order)
+    public function __construct(OrderRepositoryInterface $order,Order $orderModel)
     {
         $this->order = $order;
+        $this->orderModel = $orderModel;
     }
 
     /**
@@ -76,4 +83,13 @@ class OrdersController extends Controller
 
         return redirect()->route('orders.index');
     }
+
+    public function trackOrder($invoiceID)
+    {
+
+        $order = $this->orderModel->with('orderDetails')->where('invoice_id',$invoiceID)->first();
+
+        return view('orders.track',compact('order'));
+    }
+
 }

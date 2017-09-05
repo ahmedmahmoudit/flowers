@@ -190,7 +190,7 @@ class CheckoutController extends Controller
             return redirect()->back()->withInput()->with('error',__('Something went wrong during payment, try again'));
         }
 
-        $this->cart->flushCart();
+//        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
 

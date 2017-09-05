@@ -1,47 +1,18 @@
 @extends('layouts.master')
 
-@section('style')
-    @parent
-    <style>
-        @media print {
-            @page {
-                margin: 0;
-            }
-
-            body * {
-                visibility: hidden;
-            }
-
-            #content, #content * {
-                visibility: visible;
-            }
-
-            #content {
-                /*position: absolute;*/
-                /*left: 0;*/
-                /*top: 0;*/
-            }
-        }
-    </style>
-@endsection
-
 @section('content')
-    @component('partials.breadcrumb',['title' => __('Payment Success'), 'nav'=>true])
-        <li class="c-active">{{ __('Payment') }}</li>
+    @component('partials.breadcrumb',['title' => __('Order Detail'), 'nav'=>true])
+        <li class="c-active">{{ __('Order Detail') }}</li>
     @endcomponent
 
     <div id="content" class="c-content-box c-size-lg c-overflow-hide c-bg-white">
         <div class="container">
             <div class="c-shop-order-complete-1 c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
                 <div class="c-content-title-1">
-                    <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Order Received') }}</h3>
+                    <h3 class="c-center c-font-uppercase c-font-bold">{{ __('Order Detail') }}</h3>
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
-                <div class="c-theme-bg">
-                    <p class="c-message c-center c-font-white c-font-20 c-font-sbold">
-                        <i class="fa fa-check"></i> {{ __('Thank You'). __('We have received your order') }}
-                    </p>
-                </div>
+
                 <div class="row c-order-summary c-center">
                     <ul class="c-list-inline list-inline">
                         <li>
@@ -56,11 +27,15 @@
                             <h3>{{ __('Payment Method') }}</h3>
                             <p>{{ $order->payment_method }}</p>
                         </li>
+                        <li>
+                            <h3>{{ __('Order Status') }}</h3>
+                            <p>{{ $order->order_status_value }}</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="c-bank-details c-margin-t-30 c-margin-b-30">
                     <p class="c-margin-b-20">
-                        {{ __('Your Items are ready for Shipping. Please use your Order Number as the payment reference') }}
+{{--                        {{ __('Your Items are ready for Shipping. Please use your Order Number as the payment reference') }}--}}
                     </p>
                 </div>
                 <div class="c-order-details">
@@ -126,10 +101,7 @@
                                 </div>
                                 <div class="col-md-2 col-sm-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                    <p class="c-font-sbold c-font-18">{{ ($orderDetail->quantity * $orderDetail->product->detail->final_price) . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}
-                                        {{--@if($orderDetail->product->detail->is_sale)--}}
-                                        {{--&nbsp;<span class="c-font-line-through c-font-red">{{ ($orderDetail->quantity * $orderDetail->product->detail->price) . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>--}}
-                                        {{--@endif--}}
+                                    <p class="c-font-sbold c-font-18">{{ ($orderDetail->quantity * $orderDetail->product->detail->final_price) . ' ' . $order->country->currency_en }}
                                     </p>
 
                                 </div>
@@ -140,14 +112,14 @@
                     <div class="c-row-item c-row-total c-right">
                         <ul class="c-list list-unstyled">
                             <li>
-                                <h3 class="c-font-regular c-font-22">{{ __('Sub Total') }} : &nbsp;
+                                <h3 class="c-font-regular c-font-22">{{ __('Sub Total') }} :
                                     &nbsp;<span
-                                            class="c-font-line-through c-font-red">{{$order->net_amount . ' ' . $selectedCountry['currency_'.app()->getLocale()] }}</span>
+                                            class="c-font-line-through c-font-red">{{$order->net_amount . ' ' . $order->country->currency_en }}</span>
                                 </h3>
                             </li>
                             <li>
                                 <h3 class="c-font-regular c-font-22">{{ __('Grand Total') }} : &nbsp;
-                                    <span class="c-font-dark c-font-bold c-font-22">{{$order->sale_amount . ' ' . $selectedCountry['currency_'.app()->getLocale()]}}</span>
+                                    <span class="c-font-dark c-font-bold c-font-22">{{$order->sale_amount . ' ' . $order->country->currency_en }}</span>
                                 </h3>
                             </li>
                         </ul>
@@ -187,10 +159,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="text-right">
-                    <button onclick="window.print();" class="btn btn-print btn-group btn-default btn-sm"><i
-                                class="fa fa-print pr-10 pl-5"></i> {{ __('Print') }}</button>
                 </div>
 
             </div>

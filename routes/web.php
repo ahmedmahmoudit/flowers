@@ -154,6 +154,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('area/set', 'LocaleController@setArea')->name('area.set');
     Route::get('area/select', 'LocaleController@selectArea')->name('area.select');
+    Route::get('order/{invoceid}/track', 'OrdersController@trackOrder')->name('order.track');
 
     Route::post('country/set', 'LocaleController@setCountry')->name('country.set');
     Route::get('country/{id}/areas', 'LocaleController@getCountryAreas')->name('country.areas');

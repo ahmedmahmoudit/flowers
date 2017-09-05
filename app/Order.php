@@ -23,22 +23,22 @@ class Order extends BaseModel
         switch ($value)
         {
             case '-1':
-                return $this->attributes['order_status'] = 'Pending';
+                return $this->attributes['order_status'] = __('Pending');
                 break;
             case '1':
-                return $this->attributes['order_status'] = 'Pending';
+                return $this->attributes['order_status'] = __('Pending');
                 break;
             case '2':
-                return $this->attributes['order_status'] = 'Shipped';
+                return $this->attributes['order_status'] = __('Shipped');
                 break;
             case '3':
-                return $this->attributes['order_status'] = 'Completed';
+                return $this->attributes['order_status'] = __('Completed');
                 break;
             case '4':
-                return $this->attributes['order_status'] = 'Cancelled';
+                return $this->attributes['order_status'] = __('Cancelled');
                 break;
             default:
-                return $this->attributes['order_status'] = 'Un-known!';
+                return $this->attributes['order_status'] = 'Unknown';
         }
     }
 
@@ -90,5 +90,10 @@ class Order extends BaseModel
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function getOrderStatusValueAttribute()
+    {
+        return $this->orderStatusCast($this->order_status);
     }
 }
