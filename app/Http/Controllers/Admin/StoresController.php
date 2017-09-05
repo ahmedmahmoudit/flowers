@@ -68,16 +68,19 @@ class StoresController extends Controller
         $areas = $request->only(['areas']);
         $attributes = $request->only(['country_id','name_en','name_ar','phone','email', 'second_email']);
 
+        $imageName = null;
+
         if($imageUpload['image'])
         {
-            $imageName = str_random(15);
-            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
-            $attributes['image'] = $imageName.'.jpg';
+
+            $imageName = str_random(15).'.jpg';
+            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
+            $attributes['image'] = $imageName;
         }
 
         //manger create store
         $attributes['is_approved'] = '1';
-        $attributes['image'] = $imageName.'.jpg';
+        $attributes['image'] = $imageName;
         $attributes['slug_en'] = $attributes['name_en'];
         $attributes['slug_ar'] = $attributes['name_ar'];
         $storeData = $this->store->create($attributes);

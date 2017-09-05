@@ -22,7 +22,7 @@
                             <hr>
                             <div class="modal-footer c-no-border">
                                 <span class="c-text-account">{{ __("Dont Have An Account Yet ?") }}</span>
-                                <a href="{{ route('register') }}" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">{{ __('Signup') }}</a>
+                                <a href="{{ route('register') }}" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">{{ __('Sign up') }}</a>
                             </div>
                         </div>
                     </div>

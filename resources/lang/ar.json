@@ -127,7 +127,7 @@
   "Dashboard":" اللوحة الرئيسية",
   "Sign out":"تسجيل الخروج ",
   "Stores":"المحلات",
-  "Stores in ":"المحلات في",
+  "Stores in ":"المحلات في ",
   "Recent":"حديثاً  ",
   "Welcome To Store Rate":" مرحباً بكم في تقيم المحلات",
   "Take a moment to answer these questions":" يرجى التكرم بالإجابة على هذه الأسئلة ",
@@ -200,5 +200,6 @@
   "Pending" : "تم ارسال الطلب الي المحل",
   "Shipped" : "تم خروج الطلب من المحل",
   "Cancelled" : "الطلب ملغي",
-  "Completed" : "تم توصيل الطلب"
+  "Completed" : "تم توصيل الطلب",
+  "Latest Flowers" : "أحدث المنتجات"
 }

@@ -27,7 +27,7 @@ class CreateStoreRequest extends FormRequest
             'country_id'=> 'required',
             'name_en'   => 'required',
             'name_ar'   => 'required',
-            'second_email' => 'email',
+            'second_email' => 'nullable|email',
             'email'     => 'required|email'
         ];
     }

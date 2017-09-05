@@ -34,13 +34,13 @@
 
             <div class="c-foot">
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="c-content-title-1 c-title-md">
-                            <h3 class="c-font-uppercase c-font-bold">{{ __('About') }} <span class="c-theme-font">Vazzat</span></h3>
-                            <div class="c-line-left hide"></div>
-                        </div>
-                        <p class="c-text c-font-16 c-font-regular"></p>
-                    </div>
+                    {{--<div class="col-md-7">--}}
+                        {{--<div class="c-content-title-1 c-title-md">--}}
+                            {{--<h3 class="c-font-uppercase c-font-bold">{{ __('About') }} <span class="c-theme-font">Vazzat</span></h3>--}}
+                            {{--<div class="c-line-left hide"></div>--}}
+                        {{--</div>--}}
+                        {{--<p class="c-text c-font-16 c-font-regular"></p>--}}
+                    {{--</div>--}}
                     <div class="col-md-5">
 
                         <div class="c-content-title-1 c-title-md">

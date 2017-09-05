@@ -70,20 +70,20 @@
                     <button class="c-topbar-toggler" type="button">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
-                    <button class="c-search-toggler" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
+                    {{--<a class="" href="{{ route('search') }}">--}}
+                        {{--<i class="fa fa-search"></i>--}}
+                    {{--</a>--}}
                     <button class="c-cart-toggler" type="button">
                         <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">{{ $cart->items->count() }}</span>
                     </button>
                 </div>
 
-                <form class="c-quick-search" role="form" method="GET" action="{{ route('search') }}">
-                    {{ csrf_field() }}
-                    <input type="text" name="term" placeholder="Type to search..." value="{{ $searchTerm }}" class="form-control" autocomplete="off">
-                    <button type="submit" class="text-center c-font-uppercase btn btn-sm c-btn-green  c-btn-border-1x" style="{{ app()->getLocale() == 'en' ? 'position:absolute;top:35%;right:50px' : 'position:absolute;top:35%;left:50px' }}">{{ __('Search') }}</button>
-                    <span class="c-theme-link">&times;</span>
-                </form>
+                {{--<form class="c-quick-search" role="form" method="GET" action="{{ route('search') }}">--}}
+                    {{--{{ csrf_field() }}--}}
+                    {{--<input type="text" name="term" placeholder="Type to search..." value="{{ $searchTerm }}" class="form-control" autocomplete="off">--}}
+                    {{--<button type="submit" class="text-center c-font-uppercase btn btn-sm c-btn-green  c-btn-border-1x" style="{{ app()->getLocale() == 'en' ? 'position:absolute;top:35%;right:50px' : 'position:absolute;top:35%;left:50px' }}">{{ __('Search') }}</button>--}}
+                    {{--<span class="c-theme-link">&times;</span>--}}
+                {{--</form>--}}
 
                 <nav class="c-mega-menu c-pull-left c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                     <ul class="nav navbar-nav c-theme-nav">
@@ -121,9 +121,8 @@
                             <a href="{{ route('stores.index') }}" class="c-link dropdown-toggle">{{ __('Stores') }}</a>
                         </li>
 
-
                         <li class="c-search-toggler-wrapper">
-                            <a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search" style="font-size: 16px"></i></a>
+                            <a  href="{{ route('search') }}" class="c-btn-icon "><i class="fa fa-search" style="font-size: 16px"></i></a>
                         </li>
 
                         <li class="c-cart-toggler-wrapper">
