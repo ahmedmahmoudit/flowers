@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "intervention/image": "^2.3",
-        "izal/tap-payment-php": "0.0.1",
+        "izal/tap-payment-php": "0.0.2",
         "kryptonit3/counter": "^5.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",

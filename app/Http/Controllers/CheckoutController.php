@@ -84,8 +84,8 @@ class CheckoutController extends Controller
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'mobile' => 'required',
-                'block' => 'integer',
-                'street' => 'integer',
+                'block' => 'nullable|integer',
+                'street' => 'nullable|integer',
                 'recipient_firstname' => 'required',
                 'recipient_lastname' => 'required',
                 'recipient_mobile' => 'required',
@@ -179,6 +179,10 @@ class CheckoutController extends Controller
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 
+        if(app()->environment() === 'local') {
+            $billing->setPaymentURL(env('PAYMENT_URL'));
+        }
+
         try {
             $paymentRequest = $billing->requestPayment();
             $response = $paymentRequest->response->getRawResponse();
@@ -187,10 +191,11 @@ class CheckoutController extends Controller
             $order->save();
 
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->withInput()->with('error',__('Something went wrong during payment, try again'));
         }
 
-//        $this->cart->flushCart();
+        $this->cart->flushCart();
 
         return redirect()->away($paymentURL);
 
