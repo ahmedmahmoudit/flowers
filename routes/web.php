@@ -11,6 +11,19 @@
 |
 */
 
+Route::get('test',function() {
+
+//    return Mail::to('z4ls@live.com');
+
+    $data = ['name' =>"Virat Gandhi"];
+
+    Mail::send(['text'=>'mail'], $data, function($message) {
+        $message->to('z4ls@live.com', 'Tutorials Point')->subject
+        ('Laravel Basic Testing Mail');
+        $message->from('xyz@gmail.com','Virat Gandhi');
+    });
+    echo "Basic Email Sent. Check your inbox.";
+});
 
 Route::get('manager/login', function () {
     Auth::logout();
