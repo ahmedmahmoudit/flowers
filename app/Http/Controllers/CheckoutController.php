@@ -180,7 +180,7 @@ class CheckoutController extends Controller
         $billing->setMerchant($merchantInfo);
 
         if(app()->environment() === 'local') {
-            $billing->setPaymentURL(env('PAYMENT_URL'));
+            $billing->setPaymentURL(env('TEST_PAYMENT_URL'));
         }
 
         try {
