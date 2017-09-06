@@ -29,16 +29,14 @@
                                         <div class="form-group col-md-6">
                                             <label class="control-label">{{ __('First Name') }} <span
                                                         class="red">*</span></label>
-                                            {{--                                            <input name="firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="firstname" type="text" value="afzal"
+                                            <input name="firstname" type="text" value="{{ old('firstname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('First Name') }}">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="control-label">{{ __('Last Name') }} <span
                                                         class="red">*</span></label>
-                                            {{--                                            <input name="lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="lastname" type="text" value="um"
+                                            <input name="lastname" type="text" value="{{ old('lastname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('Last Name') }}">
                                         </div>
@@ -48,8 +46,7 @@
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label">{{ __('Email') }} <span
                                                                 class="red">*</span></label>
-                                                    {{--                                                    <input name="email" type="text" value="{{old('email')}}" class="form-control c-square c-theme" placeholder="{{ __('Email') }}">--}}
-                                                    <input name="email" type="text" value="z4ls@live.com"
+                                                    <input name="email" type="text" value="{{ old('email') }}"
                                                            class="form-control c-square c-theme"
                                                            placeholder="{{ __('Email') }}">
                                                 </div>
@@ -57,8 +54,7 @@
                                                 <div class="col-md-6">
                                                     <label class="control-label">{{ __('Mobile') }} <span
                                                                 class="red">*</span></label>
-                                                    {{--                                                    <input name="mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                                    <input name="mobile" type="tel" value="97978803"
+                                                    <input name="mobile" type="tel" value="{{ old('mobile') }}"
                                                            class="form-control c-square c-theme"
                                                            placeholder="{{ __('Mobile') }}">
                                                 </div>
@@ -79,7 +75,7 @@
                                             <label class="control-label">{{ __('First Name') }} <span
                                                         class="red">*</span></label>
                                             {{--<input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="recipient_firstname" type="text" value="faizal"
+                                            <input name="recipient_firstname" type="text" value="{{ old('recipient_firstname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('First Name') }}">
                                         </div>
@@ -87,7 +83,7 @@
                                             <label class="control-label">{{ __('Last Name') }} <span
                                                         class="red">*</span></label>
                                             {{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="recipient_lastname" type="text" value="um"
+                                            <input name="recipient_lastname" type="text" value="{{ old('recipient_lastname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('Last Name') }}">
                                         </div>
@@ -96,7 +92,7 @@
                                             <label class="control-label">{{ __('Mobile') }} <span
                                                         class="red">*</span></label>
                                             {{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                            <input name="recipient_mobile" type="tel" value="9999999"
+                                            <input name="recipient_mobile" type="tel" value="{{ old('recipient_mobile') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('Mobile') }}">
                                         </div>
@@ -106,7 +102,7 @@
                                                 <label class="control-label">{{ __('Card Notes') }}</label>
                                                 <textarea name="card_notes" class="form-control c-square c-theme"
                                                           rows="3"
-                                                          placeholder="{{ __('Special messages to be written on the card') }}"></textarea>
+                                                          placeholder="{{ __('Special messages to be written on the card') }}">{{ old('card_notes') }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -156,14 +152,14 @@
                                                     <div class="form-group col-md-4">
                                                         <label class="control-label">{{ __('Block') }}</label>
                                                         {{--                                                        <input name="block" type="text" value="{{old('block')}}" class="form-control c-square c-theme" placeholder="{{ __('Block') }}">--}}
-                                                        <input name="block" type="text" value="5"
+                                                        <input name="block" type="text" value="{{ old('block') }}"
                                                                class="form-control c-square c-theme"
                                                                placeholder="{{ __('Block') }}">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label class="control-label">{{ __('Street') }} </label>
                                                         {{--                                                        <input name="street" type="text" value="{{old('street')}}" class="form-control c-square c-theme" placeholder="{{ __('Street') }}">--}}
-                                                        <input name="street" type="text" value="4"
+                                                        <input name="street" type="text" value="{{ old('street') }}"
                                                                class="form-control c-square c-theme"
                                                                placeholder="{{ __('Street') }}">
                                                     </div>
@@ -183,7 +179,7 @@
                                                 <label class="control-label">{{ __('Order Notes') }}</label>
                                                 <textarea name="order_notes" class="form-control c-square c-theme"
                                                           rows="3"
-                                                          placeholder="{{ __('Note about your order, e.g. special notes for delivery.') }}"></textarea>
+                                                          placeholder="{{ __('Order Notes') }}">{{ old('order_notes') }}</textarea>
                                             </div>
                                         </div>
 

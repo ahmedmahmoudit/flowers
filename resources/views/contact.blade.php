@@ -23,15 +23,14 @@
                                         <div class="c-line-left"></div>
                                     </div>
                                         <div class="form-group">
-                                            <input type="text" value="afzal" name="name" placeholder="{{ __('Name') }}" class="form-control c-square c-theme input-lg">
+                                            <input type="text" value="{{ old('name') }}" name="name" placeholder="{{ __('Name') }}" class="form-control c-square c-theme input-lg">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" value="z4ls@live.com" name="email" placeholder="{{ __('Email') }}" class="form-control c-square c-theme input-lg">
+                                            <input type="text" value="{{ old('mobile') }}" name="email" placeholder="{{ __('Email') }}" class="form-control c-square c-theme input-lg">
                                         </div>
                                         <div class="form-group">
                                             <textarea rows="8" name="body" placeholder="{{ __('Comment') }}" class="form-control c-theme c-square input-lg">
-                                                test
-
+                                                {{ old('body') }}
                                             </textarea>
                                         </div>
 
@@ -44,33 +43,6 @@
 
                         </div><!-- ./col -->
 
-                        {{--<div class="col-sm-6 inner-left-sm border-left">--}}
-
-                        {{--<h2>No Problem Learning</h2>--}}
-                        {{--<h3>Marketing is Managed by Ideas Owners Co</h3>--}}
-                        {{--<ul class="contacts">--}}
-                        {{--<li>--}}
-                        {{--<p>--}}
-                        {{--<i class="fa fa-map-marker"></i>--}}
-                        {{--IdeasOwners Co.--}}
-                        {{--Kuwait - Sharq - Khaled ibn Al-waleed Street--}}
-                        {{--Sawaber6 Tower - Floor 3 - Office 6--}}
-                        {{--</p>--}}
-                        {{--</li>--}}
-                        {{--<li><i class="fa fa-phone"></i>+965 97123253</li>--}}
-                        {{--<li><i class="fa fa-envelope"></i><a href="info@ideasowners.com"> info@ideasowners.com</a></li>--}}
-                        {{--</ul><!-- /.contacts -->--}}
-
-                        {{--<div class="social-network">--}}
-                        {{--<h3>Social</h3>--}}
-                        {{--<h2>--}}
-                        {{--<a href="https://ideasowners.net/" target="_blank"><i class="fa fa-globe"></i></a>--}}
-                        {{--<a href="https://twitter.com/ideasowners" target="_blank"><i class="fa fa-twitter"></i></a>--}}
-                        {{--<a href="https://instagram.com/ideasowners" target="_blank"><i class="fa fa-instagram"></i></a>--}}
-                        {{--</h2>--}}
-                        {{--</div><!-- /.social-network -->--}}
-
-                        {{--</div><!-- /.col -->--}}
 
                     </div><!-- /.row -->
                 </div><!-- /.col -->

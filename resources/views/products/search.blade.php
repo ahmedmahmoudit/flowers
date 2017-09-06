@@ -37,9 +37,11 @@
                         <div style="padding-top:20px">
                             <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
                             <br>
-                            <span class="fa fa-instagram ">&nbsp;{{ __('Instagram Username') }}</span>&nbsp;&nbsp;
-                            |
-                            <span class="fa fa-twitter">&nbsp;{{ __('Twitter Username') }}</span>
+                            @if($store->instagram_username)
+                            <span class="fa fa-instagram ">&nbsp;{{$store->instagram_username}}</span>&nbsp;&nbsp;
+                            @endif
+                            {{--|--}}
+                            {{--<span class="fa fa-twitter">&nbsp;{{ __('Twitter Username') }}</span>--}}
                         </div>
                     @endif
                 </div>
