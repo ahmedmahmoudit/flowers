@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         'order_details',
         'users',
         'addresses',
-        'ads'
+        'ads',
     ];
 
     /**
@@ -44,27 +44,27 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SlidersTableSeeder::class);
 
-//        $this->call(CategoriesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
 
-//        $this->call(NewsLettersTableSeeder::class);
+        $this->call(NewsLettersTableSeeder::class);
 
-//        $this->call(StoresTableSeeder::class);
+        $this->call(StoresTableSeeder::class);
 
         $this->call(UsersTableSeeder::class);
 
         $this->call(AreasTableSeeder::class);
 
-//        $this->call(StoreAreasTableSeeder::class);
+        $this->call(StoreAreasTableSeeder::class);
 
-//        $this->call(CouponsTableSeeder::class);
+        $this->call(CouponsTableSeeder::class);
 
-//        $this->call(ProductsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
 
-//        $this->call(UserLikesTableSeeder::class);
+        $this->call(UserLikesTableSeeder::class);
 
-//        $this->call(ProductCategoriesTableSeeder::class);
+        $this->call(ProductCategoriesTableSeeder::class);
 
-//        $this->call(OrdersTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
 
         factory(\App\Ad::class,3)->create();
 
