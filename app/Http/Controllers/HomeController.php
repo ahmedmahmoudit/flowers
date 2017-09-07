@@ -52,7 +52,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliderImages = $this->sliderModel->orderBy('order', 'asc')->limit(5)->get();
-        $ads = $this->adModel->orderBy('order', 'asc')->limit(3)->get();
+        $ads = $this->adModel->latest()->limit(3)->get();
 
         $selectedArea = Cache::get('selectedArea');
 
