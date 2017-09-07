@@ -25,15 +25,15 @@
                             <tr>
                                 <th>{{__('adminPanel.ad_image')}}</th>
                                 <th>{{__('adminPanel.ad_link')}}</th>
-                                <th>{{__('adminPanel.ad_order')}}</th>
                                 <th>{{__('adminPanel.ad_actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($ads as $ad)
                                 <tr>
-                                    <td><a href="{{asset('uploads/ads/'.$ad->image)}}" target="_blank">{{$ad->image}}</a></td>
-                                    <td>{{$ad->order}}</td>
+                                    <td>
+                                        <img src="{{asset('uploads/ad/'.$ad->image)}}" style="height: 100px;width:100px" />
+                                    </td>
                                     <td>{{$ad->link}}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">

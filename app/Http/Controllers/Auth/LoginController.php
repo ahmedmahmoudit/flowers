@@ -42,7 +42,7 @@ class LoginController extends Controller
             //if Admin
 
             if(Auth::user()->isManager()){
-               return redirect()->intended('/')->with('success',__('Logged in'));
+                return redirect('manager/dashboard');
             }
 
             if(Auth::user()->isStoreAdmin()) {

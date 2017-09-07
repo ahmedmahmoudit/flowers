@@ -16,7 +16,6 @@ class CreateAdsTable extends Migration
             $table->increments('id');
             $table->string('image');
             $table->string('link')->nullable();
-            $table->tinyInteger('order')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

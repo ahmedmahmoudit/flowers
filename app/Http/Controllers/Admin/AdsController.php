@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdRequest;
 use App\Repositories\AdRepositoryInterface;
+use Intervention\Image\Facades\Image;
 
 class AdsController extends Controller
 {
@@ -53,9 +54,15 @@ class AdsController extends Controller
      */
     public function store(CreateAdRequest $request)
     {
-
-        $attributes = $request->only(['image','order','link']);
-        $this->ad->create($attributes);
+        $attributes = $request->only(['image','link']);
+        $ad = $this->ad->create($attributes);
+//
+//        if($request->has('image')) {
+//            $randomImageName = str_random(15).'.jpg';
+//            Image::make($request->image)->resize(250, 450)->encode('jpg')->save('uploads/products/'.$randomImageName);
+//            $ad->image = $randomImageName;
+//            $ad->save();
+//        }
 
         return redirect('manager/ads');
     }

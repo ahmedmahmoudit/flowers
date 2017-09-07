@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         //Manger User
         DB::table('users')->insert([
             'name' => 'manager',
-            'email' => 'manger@test.com',
+            'email' => 'manager@test.com',
             'password' => bcrypt('password'),
             'role' => '1', // manager
             'api_token' => str_random(60),

@@ -42,12 +42,10 @@ class AdRepository implements AdRepositoryInterface
      */
     public function create(array $attributes)
     {
-        $this->checkOrderExist($attributes['order']);
         $imageName = str_random(15);
-        Image::make($attributes['image'])->resize(350, 450)->encode('jpg')->save('uploads/ads/'.$imageName.'.jpg');
+        Image::make($attributes['image'])->resize(350, 450)->encode('jpg')->save('uploads/ad/'.$imageName.'.jpg');
 
         $data = [
-            'order' => $attributes['order'],
             'image' => $imageName.'.jpg',
             'link'  => $attributes['link']
         ];

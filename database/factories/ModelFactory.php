@@ -14,7 +14,6 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
@@ -25,7 +24,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Country::class, function (Faker\Generator $faker) {
-
     return [
         'country_code' => $faker->countryCode,
         'name_en' => $faker->name,
@@ -36,7 +34,6 @@ $factory->define(App\Country::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Store::class, function (Faker\Generator $faker) use ($factory) {
-
     return [
         'country_id' => \App\Country::all()->random()->id,
         'name_en' => $faker->name,
@@ -51,9 +48,7 @@ $factory->define(App\Store::class, function (Faker\Generator $faker) use ($facto
 });
 
 $factory->define(App\Slider::class, function (Faker\Generator $faker) {
-
     return [
-
         'image' => 'test.jpg',
         'order' => $faker->unique()->numberBetween(1, 5),
     ];
@@ -93,9 +88,7 @@ $factory->define(App\Coupon::class, function (Faker\Generator $faker) {
         'expiry_date' => new \Carbon\Carbon('+2 week'),
         'quantity_left' => rand(0,100)
     ];
-
 });
-
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) use ($factory) {
 
@@ -158,7 +151,6 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) use ($facto
 });
 
 $factory->define(App\OrderDetail::class, function (Faker\Generator $faker) use ($factory) {
-
     return [
         'order_id' => \App\Order::all()->random()->id,
         'product_id' => \App\Product::all()->random()->id,
@@ -166,7 +158,6 @@ $factory->define(App\OrderDetail::class, function (Faker\Generator $faker) use (
         'sale_price' => $faker->numberBetween(20, 50),
         'quantity' => $faker->numberBetween(50, 100),
     ];
-
 });
 
 $factory->define(App\Ad::class, function (Faker\Generator $faker) use ($factory) {
