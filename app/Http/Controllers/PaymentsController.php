@@ -67,4 +67,9 @@ class PaymentsController extends Controller
 
         return view('payment.success', compact('status', 'order', 'selectedCountry'));
     }
+
+    public function paymentFailed(Request $request)
+    {
+        dd($request->all());
+    }
 }

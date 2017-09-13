@@ -167,10 +167,12 @@ class CheckoutController extends Controller
         $gatewayInfo = ['Name' => 'ALL'];
 
         $merchantInfo = [
-            'ReturnURL' => env('PAYMENT_RETURN_URL'),
             'AutoReturn' => 'Y',
             'LangCode' => app()->getLocale() == 'en' ? 'EN' : 'AR',
             'ReferenceID' => uniqid(),
+            'ReturnURL' => route('payment.process'),
+            'ErrorURL' => route('payment.failure'),
+            'PostURL' => route('payment.failure')
         ];
 
         $billing = app()->make(Billing::class);
@@ -182,6 +184,8 @@ class CheckoutController extends Controller
         if(app()->environment() === 'local') {
             $billing->setPaymentURL(env('TEST_PAYMENT_URL'));
         }
+
+        dd($billing);
 
         try {
             $paymentRequest = $billing->requestPayment();
