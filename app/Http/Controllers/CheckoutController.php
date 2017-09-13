@@ -181,11 +181,11 @@ class CheckoutController extends Controller
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 
-        if(app()->environment() === 'local') {
+        if(app()->environment() === 'asd') {
             $billing->setPaymentURL(env('TEST_PAYMENT_URL'));
         }
 
-        dd($billing);
+//        dd($billing);
 
         try {
             $paymentRequest = $billing->requestPayment();

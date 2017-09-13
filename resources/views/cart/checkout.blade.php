@@ -29,7 +29,8 @@
                                         <div class="form-group col-md-6">
                                             <label class="control-label">{{ __('First Name') }} <span
                                                         class="red">*</span></label>
-                                            <input name="firstname" type="text" value="{{ old('firstname') }}"
+                                            <input name="firstname" type="text"
+                                                   value="{{ old('firstname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('First Name') }}">
                                         </div>
