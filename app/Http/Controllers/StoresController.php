@@ -49,12 +49,8 @@ class StoresController extends Controller
      */
     public function index(Request $request)
     {
-        $selectedArea = Cache::get('selectedArea');
         $selectedCountry = Cache::get('selectedCountry');
-        $stores = $this->storeModel->with('areas')->approved()->whereHas('areas',function($q) use ($selectedCountry) {
-            $q->where('areas.country_id',$selectedCountry['id']);
-        })->paginate(100);
-
+        $stores = $this->storeModel->with('areas')->where('country_id',$selectedCountry['id'])->approved()->paginate(100);
         $viewType = $request->has('type') && $request->type == 'list' ? 'list' : 'grid';
 
         return view('stores.index', ['stores' => $stores,'country'=>$selectedCountry,'viewType'=>$viewType]);

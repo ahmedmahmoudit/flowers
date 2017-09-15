@@ -81,8 +81,8 @@ class StoresController extends Controller
         //manger create store
         $attributes['is_approved'] = '1';
         $attributes['image'] = $imageName;
-        $attributes['slug_en'] = $attributes['name_en'];
-        $attributes['slug_ar'] = $attributes['name_ar'];
+//        $attributes['slug_en'] = $attributes['name_en'];
+//        $attributes['slug_ar'] = $attributes['name_ar'];
         $store = $this->store->create($attributes);
 
         if(count($areas['areas']) > 0)

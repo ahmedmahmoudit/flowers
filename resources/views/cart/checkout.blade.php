@@ -76,7 +76,8 @@
                                             <label class="control-label">{{ __('First Name') }} <span
                                                         class="red">*</span></label>
                                             {{--<input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="recipient_firstname" type="text" value="{{ old('recipient_firstname') }}"
+                                            <input name="recipient_firstname" type="text"
+                                                   value="{{ old('recipient_firstname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('First Name') }}">
                                         </div>
@@ -84,7 +85,8 @@
                                             <label class="control-label">{{ __('Last Name') }} <span
                                                         class="red">*</span></label>
                                             {{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="recipient_lastname" type="text" value="{{ old('recipient_lastname') }}"
+                                            <input name="recipient_lastname" type="text"
+                                                   value="{{ old('recipient_lastname') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('Last Name') }}">
                                         </div>
@@ -93,7 +95,8 @@
                                             <label class="control-label">{{ __('Mobile') }} <span
                                                         class="red">*</span></label>
                                             {{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                            <input name="recipient_mobile" type="tel" value="{{ old('recipient_mobile') }}"
+                                            <input name="recipient_mobile" type="tel"
+                                                   value="{{ old('recipient_mobile') }}"
                                                    class="form-control c-square c-theme"
                                                    placeholder="{{ __('Mobile') }}">
                                         </div>
@@ -223,30 +226,64 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="row">
+
+
+                                    <div class="row">
+
                                         <div class="col-md-12">
                                             <div class="c-radio-list">
                                                 <div class="c-radio">
-                                                    <input type="radio" id="radio3" class="c-radio" name="payment"
-                                                           checked="">
-                                                    <label for="radio3" class="c-font-bold c-font-20">
+                                                    {!! Form::radio('payment_method','KNET',true,['class'=>'c-radio','id'=>'radio1']) !!}
+                                                    <label for="radio1" class="c-font-bold c-font-20">
+                                                        <img src="/img/knet.png" class="payment-icon"
+                                                             style="width:50px"/>
                                                         <span class="inc"></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
-                                                        {{ __('Knet / Visa') }}
+                                                        {{ __('KNET') }}
                                                     </label>
-                                                    <div>
-                                                        <span class="list-inline">
-                                                            <img class="img-responsive"
-                                                                 width="150;height:60"
-                                                                 style="width: 150px;height:50px"
-                                                                 src="/img/payment-icon.png"/>
-                                                        </span>
-                                                    </div>
                                                 </div>
+                                                <div class="c-radio">
+                                                    {!! Form::radio('payment_method','VISA',true,['class'=>'c-radio','id'=>'radio2']) !!}
+
+                                                    <label for="radio2" class="c-font-bold c-font-20">
+                                                        <img src="/img/visa.png"
+                                                             class="payment-icon"/>
+                                                        <span class="inc"></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span>
+                                                        {{ __('VISA') }}
+                                                    </label>
+                                                </div>
+
                                             </div>
                                         </div>
-                                    </li>
+                                    </div>
+
+                                    {{--<li class="row">--}}
+                                        {{--<div class="col-md-12">--}}
+                                            {{--<div class="c-radio-list">--}}
+                                                {{--<div class="c-radio">--}}
+                                                    {{--<input type="radio" id="radio3" class="c-radio" name="payment"--}}
+                                                           {{--checked="">--}}
+                                                    {{--<label for="radio3" class="c-font-bold c-font-20">--}}
+                                                        {{--<span class="inc"></span>--}}
+                                                        {{--<span class="check"></span>--}}
+                                                        {{--<span class="box"></span>--}}
+                                                        {{--{{ __('Knet / Visa') }}--}}
+                                                    {{--</label>--}}
+                                                    {{--<div>--}}
+                                                        {{--<span class="list-inline">--}}
+                                                            {{--<img class="img-responsive"--}}
+                                                                 {{--width="150;height:60"--}}
+                                                                 {{--style="width: 150px;height:50px"--}}
+                                                                 {{--src="/img/payment-icon.png"/>--}}
+                                                        {{--</span>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</li>--}}
 
                                     <li class="row">
                                         <div class="form-group col-md-12" role="group">

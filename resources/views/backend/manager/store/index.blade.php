@@ -51,6 +51,7 @@
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <a href="{{ route('manager.stores.destroy', $store->id) }}" data-method="POST" data-laravel-method="delete" class="btn bg-red margin confirm-delete">Delete</a>
                                         <a href="{{ route('manager.stores.show', $store->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
+                                        <a href="{{ route('manager.stores.edit', $store->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">Edit</a>
                                         @if($store->is_approved == '1')
                                             <a href="{{ route('manager.stores.disable', $store->id) }}" data-method="POST" data-laravel-method="post" class="btn bg-red margin confirm-disable">Disable</a>
                                         @else

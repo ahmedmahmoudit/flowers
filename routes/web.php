@@ -13,12 +13,12 @@
 
 Route::get('test',function() {
 
-    Mail::to('z4ls@live.com')->queue(new \App\Mail\Test());
-//    Mail::send('emails.test', $data, function($message) {
-//        $message->to('z4ls@live.com', 'Tutorials Point')->subject
-//        ('Laravel Basic Testing Mail');
-//        $message->from('xyz@gmail.com','Virat Gandhi');
-//    });
+//    Mail::to('z4ls@live.com')->queue(new \App\Mail\Test());
+    Mail::send('emails.test', [], function($message) {
+        $message->to('z4ls@live.com', 'Tutorials Point')->subject
+        ('Laravel Basic Testing Mail');
+        $message->from('info@vazzat.com','Info@Vazzat.com');
+    });
     return "Basic Email Sent. Check your inbox.";
 });
 
@@ -146,6 +146,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
     Route::resource('coupons', 'CouponsController', ['except' => [
         'show', 'update', 'edit'
     ]]);
+
     Route::post('coupons/{coupon}/disable', ['as' => 'coupons.disable', 'uses' => 'CouponsController@disable']);
     Route::post('coupons/{coupon}/activate', ['as' => 'coupons.activate', 'uses' => 'CouponsController@activate']);
 

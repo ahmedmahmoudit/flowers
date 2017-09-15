@@ -189,6 +189,14 @@
                         <i class="fa fa-dashboard"></i> <span>{{__('adminPanel.dashboard')}}</span>
                     </a>
                 </li>
+
+                <li class="{{ (str_contains(Request::route()->getName(),'area') ? 'active' : '' ) }} treeview">
+                    <a href="{{route('admin.areas')}}">
+                        <i class="fa fa-globe"></i>
+                        {{__('adminPanel.areas')}}
+                    </a>
+                </li>
+
                 <li class="{{ (str_contains(Request::route()->getName(),'coupon') ? 'active' : '' ) }} treeview">
                     <a href="#">
                         <i class="fa fa-money"></i>

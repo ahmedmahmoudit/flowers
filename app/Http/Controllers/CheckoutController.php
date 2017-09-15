@@ -89,6 +89,7 @@ class CheckoutController extends Controller
                 'recipient_firstname' => 'required',
                 'recipient_lastname' => 'required',
                 'recipient_mobile' => 'required',
+                'payment_method' => 'required|in:VISA,KNET',
             ]);
 //            $requestFields = $request->only(['area_id','firstname','lastname','mobile','country_id','area_id','block','street']);
 //            $extraFields = ['country_id'=>$selectedCountry['id']];
@@ -127,6 +128,7 @@ class CheckoutController extends Controller
             'card_notes' => $request->card_notes,
         ]);
 
+
         $storesRelatedToOrder = $products->pluck('store_id')->unique();
         $order->stores()->attach($storesRelatedToOrder);
 
@@ -164,7 +166,7 @@ class CheckoutController extends Controller
             'Name' => $request->firstname . ' ' . $request->lastname
         ];
 
-        $gatewayInfo = ['Name' => 'ALL'];
+        $gatewayInfo = ['Name' => $request->payment_method];
 
         $merchantInfo = [
             'AutoReturn' => 'Y',
@@ -181,27 +183,27 @@ class CheckoutController extends Controller
         $billing->setGateway($gatewayInfo);
         $billing->setMerchant($merchantInfo);
 
-        if(app()->environment() === 'asd') {
+        if(app()->environment() === 'local') {
             $billing->setPaymentURL(env('TEST_PAYMENT_URL'));
         }
-
-//        dd($billing);
 
         try {
             $paymentRequest = $billing->requestPayment();
             $response = $paymentRequest->response->getRawResponse();
+
+            if(!$response->PaymentURL) {
+                return redirect()->route('checkout')->withInput()->with('error',$response->ResponseMessage);
+            }
+
             $paymentURL = $response->PaymentURL;
             $order->reference_code = $response->ReferenceID;
             $order->save();
 
+            return redirect()->away($paymentURL);
+
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->withInput()->with('error',__('Something went wrong during payment, try again'));
+            return redirect()->route('checkout')->withInput()->with('error',__('Something went wrong during payment, try again'));
         }
-
-        $this->cart->flushCart();
-
-        return redirect()->away($paymentURL);
 
     }
 

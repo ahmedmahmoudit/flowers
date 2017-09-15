@@ -48,7 +48,6 @@ class SendContactEmail implements ShouldQueue
      */
     public function handle(BaseMailer $mailer)
     {
-
         $email = $this->email;
         $fromName= $this->request->name;
         $fromEmail= $this->request->email;

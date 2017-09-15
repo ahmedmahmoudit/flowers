@@ -141,3 +141,8 @@ select *.optionChild {
 .c-layout-header .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link {
     letter-spacing: 0;
 }
+
+.payment-icon {
+    width: 100px;
+    height:32px;
+}

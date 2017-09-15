@@ -69,7 +69,7 @@
 
                                         <div class="tab-pane fade in active" id="c-tab2-opt1-2">
                                             <div class="c-tab-pane">
-                                                <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" >
+                                                <form class="c-form-register c-margin-t-20" method="post" action="{{ route('register') }}" enctype="multipart/form-data" >
                                                     <input type="hidden" value="2" name="role"/>
                                                     <div class="col-md-6 col-md-offset-3">
 
@@ -143,6 +143,12 @@
                                                             <label class="control-label">{{ __('Instagram Username') }} </label>
                                                             <input type="text" name="instagram_username" value="{{ old('instagram_username') }}" class="form-control c-square c-theme" placeholder="{{ __('Instagram Username') }}">
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">{{ __('Image') }} </label>
+                                                            <input type="file" name="image" class="form-control c-square c-theme" ">
+                                                        </div>
+
                                                         <div class="form-group c-margin-t-40">
                                                             <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">{{ __('Register') }}</button>
                                                         </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -86,7 +87,8 @@ class RegisterController extends Controller
             'start_week_day' => 'required_if:role,==,2',
             'end_week_day' => 'required_if:role,==,2',
             'minimum_delivery_days' => 'required_if:role,==,2',
-            'country_id' => 'required_if:role,==,2'
+            'country_id' => 'required_if:role,==,2',
+            'image' => 'image|required_if:role,==,2',
         ]);
     }
 
@@ -110,6 +112,9 @@ class RegisterController extends Controller
 
 
         if($data['role'] == 2) {
+
+            $imageName = str_random(15).'.jpg';
+
             $store = $this->storeModel->create([
                 'name_en' => $data['store_name_en'],
                 'name_ar' => $data['store_name_ar'],
@@ -119,11 +124,12 @@ class RegisterController extends Controller
                 'end_week_day' => $data['end_week_day'],
                 'minimum_delivery_days' => $data['minimum_delivery_days'],
                 'instagram_username' => $data['instagram_username'],
-                'slug_en' => $data['store_name_en'],
-                'slug_ar' => $data['store_name_ar'],
                 'country_id' => $data['country_id'],
+                'image' => $imageName
             ]);
 
+            $this->updateSlug($store);
+            Image::make($data['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
             $user->store_id = $store->id;
             $user->save();
         }

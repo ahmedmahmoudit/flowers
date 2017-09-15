@@ -42,7 +42,7 @@
                             <div class="cbp-item web-design logos " data-wow-delay="0.2s">
                                 <div class="cbp-caption">
                                     <a href="{{ route('search',['store'=>$store->slug]) }}">
-                                        <img src="{{ asset('uploads/products/'.$store->image) }}" class="img img-responsive" style="height: 340px">
+                                        <img src="{{ asset('uploads/stores/'.$store->image) }}" class="img img-responsive" style="height: 340px">
                                     </a>
                                 </div>
                                 <a href="{{ route('search',['store'=>$store->slug]) }}" class="cbp-l-grid-masonry-projects-title">
