@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Cart\Cart;
 use App\Country;
+use App\Jobs\SendPaymentEmail;
 use App\Order;
 use App\Product;
 use Auth;
@@ -126,6 +127,7 @@ class CheckoutController extends Controller
             'coupon_value' => $cart->coupon ?   ($cart->subTotal * $cart->coupon->percentage) / 100 : null,
             'order_notes' => $request->order_notes,
             'card_notes' => $request->card_notes,
+            'payment_method' => $request->payment_method
         ]);
 
 
@@ -206,5 +208,6 @@ class CheckoutController extends Controller
         }
 
     }
+
 
 }

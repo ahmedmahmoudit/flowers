@@ -14,6 +14,11 @@
 Route::get('test',function() {
 
 //    Mail::to('z4ls@live.com')->queue(new \App\Mail\Test());
+
+    $order = \App\Order::first();
+
+    dispatch(new \App\Jobs\SendPaymentEmail($order));
+    dd('a');
     Mail::send('emails.test', [], function($message) {
         $message->to('z4ls@live.com', 'Tutorials Point')->subject
         ('Laravel Basic Testing Mail');

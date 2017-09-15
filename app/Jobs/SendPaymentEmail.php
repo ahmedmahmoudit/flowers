@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class SendPaymentEmail implements ShouldQueue
+class SendPaymentEmail
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     /**
@@ -48,12 +48,10 @@ class SendPaymentEmail implements ShouldQueue
         $emailBody = [];
         $mailer = $this->mailer;
 
-
         $mailer->view = app()->getLocale() === 'ar' ? 'emails.payment_success_customer_v1_ar' : 'emails.payment_success_customer_v1_en';
 
         $mailer->subject =  trans('general.payment_mail_success_subject') ;
         $mailer->toEmail =  $this->order->email;
-//        $mailer->toEmail = 'z4ls@live.com';
         $mailer->toName = $this->order->firstname . ' ' .$this->order->lastname;
 
         $emailBody['id'] = $this->order->id;
@@ -135,7 +133,6 @@ class SendPaymentEmail implements ShouldQueue
                 $emailBody['details'][] = $details;
 
                 $mailer->subject =  '#'.$orderDetail->id.' '.trans('general.new_order') ;
-//                $mailer->toEmail =  'z4ls@live.com';
                 $mailer->toEmail =  $store->email;
                 $mailer->toName = $store->name;
                 $mailer->fire($emailBody);

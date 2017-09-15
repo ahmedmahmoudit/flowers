@@ -57,7 +57,6 @@ class PaymentsController extends Controller
             try {
                 $this->dispatch(new SendPaymentEmail($order));
             } catch (\Exception $e) {
-                dd($e->getMessage());
                 return redirect()->home()->with('error',__('Something went wrong during payment, try again'));
             }
 
@@ -70,6 +69,6 @@ class PaymentsController extends Controller
 
     public function paymentFailed(Request $request)
     {
-        dd($request->all());
+        return view('payment.failure');
     }
 }
