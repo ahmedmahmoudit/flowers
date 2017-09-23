@@ -30,11 +30,10 @@ class UpdateStoreSettingsRequest extends FormRequest
             'start_week_day'   => 'required',
             'end_week_day'   => 'required',
             'phone'   => 'required',
-            'name_ar'   => 'required',
             'delivery_time1' => 'required_without_all:delivery_time2,delivery_time3',
             'delivery_time2' => 'required_without_all:delivery_time1,delivery_time3',
             'delivery_time3' => 'required_without_all:delivery_time1,delivery_time2',
-            'second_email' => 'email',
+            'second_email' => 'nullable|email',
             'email'     => 'required|email'
         ];
     }

@@ -27,7 +27,7 @@ class UpdateStoreRequest extends FormRequest
             'country_id'=> 'required',
             'name_en'   => 'required',
             'name_ar'   => 'required',
-            'email'     => 'email'
+            'email'     => 'nullable|email'
         ];
     }
 }
