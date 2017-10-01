@@ -119,8 +119,9 @@ class StoresController extends Controller
     public function edit($id)
     {
         $store = $this->store->getById($id);
+        $countries = Country::all();
 
-        return view('manager.store.edit', compact('store'));
+        return view('backend.manager.store.edit', compact('store','countries'));
     }
 
     /**
@@ -133,15 +134,23 @@ class StoresController extends Controller
      */
     public function update($id, UpdateStoreRequest $request)
     {
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email']);
+        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','second_email']);
 
         $store = $this->store->getById($id);
+
+        if($request->hasFile('image'))
+        {
+            $imageName = str_random(15).'.jpg';
+            Image::make($request->file('image'))->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
+            $attributes['image'] = $imageName;
+        }
+
 
         $this->store->update($id, $attributes);
 
         $this->updateSlug($store);
 
-        return redirect()->route('stores.index');
+        return redirect()->back()->with('status','Success');
     }
 
     /**
