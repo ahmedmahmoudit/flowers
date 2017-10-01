@@ -120,6 +120,10 @@ class ProductsController extends Controller
         $attributes['slug_en'] = $attributes['name_en'];
         $attributes['slug_ar'] = $attributes['name_ar'];
         $attributes['verified'] = $storeVerification;
+
+        //@todo: as per the client request, disable all the products by default
+        $attributes['active'] = '0';
+
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);
@@ -215,6 +219,10 @@ class ProductsController extends Controller
         $images = $request->only(['images']);
 
         $attributes['store_id'] = $store_id;
+
+        //@todo: as per client request
+        $attributes['active'] = '0';
+
 
         $product = $this->product->getById($id);
         $this->product->update($id, $attributes);
