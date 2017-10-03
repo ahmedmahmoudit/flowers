@@ -6,7 +6,7 @@
         <li class="c-active"><a href="{{ route('stores.index') }}">{{ __('Stores') }}</a></li>
     @endcomponent
 
-    <div class="c-content-box c-size-md c-bg-grey">
+    <div class="c-content-box c-size-md c-bg-grey-1">
         <div class="container">
             <div class="c-content-title-1">
                 <h3 class="c-center c-font-uppercase c-font-bold ">{{ __('Stores in ') . $country['name_'.app()->getLocale()]  }}</h3>
