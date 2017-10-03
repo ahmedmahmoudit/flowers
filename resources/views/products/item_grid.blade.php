@@ -8,7 +8,6 @@
                     <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-14 c-font-bold">{{ __('Sale') }}</div>
                 @endif
 
-
                 <a href="{{ route('product.show',[$product->id,$product->slug]) }}">
                     <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
                          class="img img-responsive"
