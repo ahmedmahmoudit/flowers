@@ -29,6 +29,7 @@ class CreateStoreRequest extends FormRequest
             'name_ar'   => 'required',
             'email'     => 'required|email',
             'second_email' => 'nullable|email',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png|dimensions:min_width=400,min_height=400,max_width:3000,max_height:3000',
         ];
     }
 }

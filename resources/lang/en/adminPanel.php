@@ -48,7 +48,7 @@ return array (
   'order' => 'Order',
   'enter_ad_order' => 'Enter Ad Order',
   'file_input' => 'File Input',
-  'image_size_700x900' => 'Image Size 700x900',
+  'image_size_700x900' => 'Minimum Image Size 640x640',
   'save' => 'Save',
   'all_ads_title' => 'All Ads',
   'ad_image' => 'Image',

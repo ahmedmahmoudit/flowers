@@ -141,7 +141,7 @@ class StoresController extends Controller
         if($request->hasFile('image'))
         {
             $imageName = str_random(15).'.jpg';
-            Image::make($request->file('image'))->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
+            Image::make($request->file('image'))->fit(400)->encode('jpg')->save('uploads/stores/'.$imageName);
             $attributes['image'] = $imageName;
         }
 

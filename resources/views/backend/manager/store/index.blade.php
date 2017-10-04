@@ -23,6 +23,7 @@
                         <table id="sliderTable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>{{__('adminPanel.image')}}</th>
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.country')}}</th>
                                 <th>{{__('adminPanel.phone')}}</th>
@@ -35,6 +36,8 @@
                             <tbody>
                             @foreach($stores as $store)
                                 <tr>
+                                    <td><img src="{{asset('uploads/stores/'.$store->image)}}"
+                                             style="width: 100px;"/></td>
                                     <td>{{$store->name}}</td>
                                     <td>{{$store->country->name}}</td>
                                     <td>{{$store->phone}}</td>

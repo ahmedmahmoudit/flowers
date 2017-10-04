@@ -28,7 +28,7 @@ class UpdateStoreRequest extends FormRequest
             'name_en'   => 'required',
             'name_ar'   => 'required',
             'email'     => 'nullable|email',
-            'image' => 'nullable|image'
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png|dimensions:min_width=400,min_height=400,max_width:3000,max_height:3000',
         ];
     }
 }

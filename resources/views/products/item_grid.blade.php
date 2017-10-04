@@ -11,7 +11,6 @@
                 <a href="{{ route('product.show',[$product->id,$product->slug]) }}">
                     <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
                          class="img img-responsive"
-                         style="width:100%;height: auto"
                     />
                 </a>
 
