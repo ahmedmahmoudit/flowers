@@ -127,7 +127,15 @@ class ProductsController extends Controller
         $product = $this->product->create($attributes);
         //save main image
         $imageName = str_random(15);
-        Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+
+//        Image::make($mainImage['main_image'])
+//            ->resize(700, 900)->encode('jpg')
+//            ->save('uploads/products/'.$imageName.'.jpg');
+
+        Image::make($mainImage['main_image'])
+            ->fit(600)
+            ->encode('jpg')
+            ->save('uploads/products/'.$imageName.'.jpg');
 //        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
 //        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
         $attributesDetails['main_image'] = $imageName.'.jpg';
@@ -154,13 +162,19 @@ class ProductsController extends Controller
             $product->categories()->syncWithoutDetaching($categories['categories']);
         }
 
-        if($request->has('images'))
+        if($request->images)
         {
             $savedImages = [];
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
+//                Image::make($image)
+//                    ->resize(700, 900)
+//                    ->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
+                Image::make($image)
+                    ->fit(600)
+                    ->encode('jpg')
+                    ->save('uploads/products/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);
@@ -254,7 +268,8 @@ class ProductsController extends Controller
         if($mainImage['main_image'])
         {
             $imageName = str_random(15);
-            Image::make($mainImage['main_image'])->resize(700, 900)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+
+            Image::make($mainImage['main_image'])->fit(600)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
             $attributesDetails['main_image'] = $imageName.'.jpg';
             $details['main_image'] = $attributesDetails['main_image'];
         }
@@ -264,13 +279,17 @@ class ProductsController extends Controller
         $product->categories()->sync($categoryParent['parent_id']);
         $product->categories()->syncWithoutDetaching($categories['categories']);
 
-        if($request->has('images'))
+        if($request->images)
         {
             $savedImages = array();
             foreach ($images['images'] as $image)
             {
                 $randomImageName = str_random(15);
-                Image::make($image)->resize(700, 900)->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
+                Image::make($image)
+                    ->fit(600)
+                    ->encode('jpg')
+                    ->save('uploads/products/'.$randomImageName.'.jpg');
+
                 $savedImage = new ProductImage([
                     'image' => $randomImageName.'.jpg'
                 ]);

@@ -15,7 +15,7 @@ class StoreAdminOnly
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->isStoreAdmin()) {
+        if ($request->user()->isStoreAdmin() || $request->user()->isManager()) {
 
             return $next($request);
 

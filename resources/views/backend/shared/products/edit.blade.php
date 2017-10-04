@@ -25,7 +25,8 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="exampleInputSku">{{__('adminPanel.product_id_sku')}}</label>
-                                <input type="text" name="sku" class="form-control" id="exampleInputSku" value="{{$product->sku or old('sku')}}" disabled>
+                                <input type="text" name="sku" class="form-control" id="exampleInputSku"
+                                       value="{{$product->sku or old('sku')}}" disabled>
                                 <p class="help-block"></p>
                             </div>
                             @if(Auth::user()->isManager())
@@ -35,11 +36,13 @@
                                         <select class="form-control" name="store" value="{{old('store')}}">
                                             @foreach($stores as $store)
                                                 @if($product->store_id == $store->id)
-                                                    <option value="{{$store->id}}" selected> {{$store->name_en}} </option>
+                                                    <option value="{{$store->id}}"
+                                                            selected> {{$store->name_en}} </option>
                                                 @endif
 
                                                 @if(old('store') == $store->id)
-                                                    <option value="{{$store->id}}" selected> {{$store->name_en}} </option>
+                                                    <option value="{{$store->id}}"
+                                                            selected> {{$store->name_en}} </option>
                                                 @endif
 
                                                 <option value="{{$store->id}}"> {{$store->name_en}} </option>
@@ -51,7 +54,8 @@
                             @else
                                 <div class="col-xs-6">
                                     <label>{{__('adminPanel.product_status')}}</label>
-                                    <select class="form-control" name="active" value="{{$product->active or old('active')}}">
+                                    <select class="form-control" name="active"
+                                            value="{{$product->active or old('active')}}">
                                         <option value="1">Active</option>
                                         <option value="0">Disabled</option>
                                     </select>
@@ -63,12 +67,16 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputNameEn">{{__('adminPanel.english_name')}}</label>
-                                <input type="text" name="name_en" class="form-control" id="inputNameEn" placeholder="{{__('adminPanel.enter_english_name')}}" value="{{$product->name_en or old('name_en')}}">
+                                <input type="text" name="name_en" class="form-control" id="inputNameEn"
+                                       placeholder="{{__('adminPanel.enter_english_name')}}"
+                                       value="{{$product->name_en or old('name_en')}}">
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputNameAr">{{__('adminPanel.arabic_name')}}</label>
-                                <input type="text" name="name_ar" class="form-control" id="inputNameAr" placeholder="{{__('adminPanel.enter_arabic_name')}}" value="{{$product->name_ar or old('name_ar')}}">
+                                <input type="text" name="name_ar" class="form-control" id="inputNameAr"
+                                       placeholder="{{__('adminPanel.enter_arabic_name')}}"
+                                       value="{{$product->name_ar or old('name_ar')}}">
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -76,12 +84,16 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputHeight">{{__('adminPanel.height')}} ({{__('adminPanel.cm')}})</label>
-                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{$product->detail->height or old('height')}}" required>
+                                <input type="text" name="height" class="form-control" id="inputHeight"
+                                       placeholder="Enter Height" value="{{$product->detail->height or old('height')}}"
+                                       required>
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputWidth">{{__('adminPanel.width')}} ({{__('adminPanel.cm')}})</label>
-                                <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{$product->detail->width or old('width')}}" required>
+                                <input type="text" name="width" class="form-control" id="inputWidth"
+                                       placeholder="Enter Width" value="{{$product->detail->width or old('width')}}"
+                                       required>
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -91,7 +103,8 @@
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <label>{{__('adminPanel.product_status')}}</label>
-                                    <select class="form-control" name="active" value="{{$product->active or old('active')}}">
+                                    <select class="form-control" name="active"
+                                            value="{{$product->active or old('active')}}">
                                         <option value="1">Active</option>
                                         <option value="0">Disabled</option>
                                     </select>
@@ -112,7 +125,8 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputPrice">{{__('adminPanel.price')}}</label>
-                                <input type="text" name="price" class="form-control" id="inputPrice" placeholder="Enter Price" value="{{$product->detail->price or old('price')}}">
+                                <input type="text" name="price" class="form-control" id="inputPrice"
+                                       placeholder="Enter Price" value="{{$product->detail->price or old('price')}}">
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6"></div>
@@ -123,17 +137,21 @@
                                 <div class="checkbox">
                                     <label>
                                         @if($product->detail->is_sale || old('is_sale'))
-                                            <input type="checkbox" id="is-sale" value="1" name="is_sale" value="{{old('is_sale')}}" checked="true">
+                                            <input type="checkbox" id="is-sale" value="1" name="is_sale"
+                                                   value="{{old('is_sale')}}" checked="true">
                                         @else
-                                            <input type="checkbox" id="is-sale" value="1" name="is_sale" value="{{old('is_sale')}}">
+                                            <input type="checkbox" id="is-sale" value="1" name="is_sale"
+                                                   value="{{old('is_sale')}}">
                                         @endif
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.for_sale')}}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.for_sale')}}
                                     </label>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputSalePrice">{{__('adminPanel.sale_price')}}</label>
-                                <input type="text" name="sale_price" class="form-control for-sale" id="inputSalePrice" placeholder="Enter Sale Price" value="{{$product->detail->sale_price or old('sale_price')}}" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
+                                <input type="text" name="sale_price" class="form-control for-sale" id="inputSalePrice"
+                                       placeholder="Enter Sale Price"
+                                       value="{{$product->detail->sale_price or old('sale_price')}}" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -145,7 +163,10 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right for-sale" name="start_sale_date" value="{{$product->detail->start_sale_date != null ? $product->detail->start_sale_date->format('d-m-Y') : old('start_sale_date')}}" id="inputStartDate" placeholder="Select Start Date" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
+                                    <input type="text" class="form-control pull-right for-sale" name="start_sale_date"
+                                           value="{{$product->detail->start_sale_date != null ? $product->detail->start_sale_date->format('d-m-Y') : old('start_sale_date')}}"
+                                           id="inputStartDate"
+                                           placeholder="Select Start Date" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
                                 </div>
                                 <p class="help-block"></p>
                             </div>
@@ -156,7 +177,10 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right for-sale" name="end_sale_date" value="{{$product->detail->end_sale_date != null ? $product->detail->end_sale_date->format('d-m-Y') : old('end_sale_date')}}" id="inputEndDate" placeholder="Select End Date" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
+                                    <input type="text" class="form-control pull-right for-sale" name="end_sale_date"
+                                           value="{{$product->detail->end_sale_date != null ? $product->detail->end_sale_date->format('d-m-Y') : old('end_sale_date')}}"
+                                           id="inputEndDate"
+                                           placeholder="Select End Date" {{$product->detail->is_sale == '1' ? '' : 'disabled'}}>
                                 </div>
                                 <p class="help-block"></p>
                             </div>
@@ -165,25 +189,34 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputDescriptionEn">{{__('adminPanel.english_description')}}</label>
-                                <input type="text" name="description_en" value="{{$product->detail->description_en or old('description_en')}}" class="form-control" id="inputDescriptionEn" placeholder="Enter English Description">
+                                <input type="text" name="description_en"
+                                       value="{{$product->detail->description_en or old('description_en')}}"
+                                       class="form-control" id="inputDescriptionEn"
+                                       placeholder="Enter English Description">
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputDescriptionAr">{{__('adminPanel.arabic_description')}}</label>
-                                <input type="text" name="description_ar" value="{{$product->detail->description_ar or old('description_ar')}}" class="form-control" id="inputDescriptionAr" placeholder="Enter Arabic Description">
+                                <input type="text" name="description_ar"
+                                       value="{{$product->detail->description_ar or old('description_ar')}}"
+                                       class="form-control" id="inputDescriptionAr"
+                                       placeholder="Enter Arabic Description">
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputQty">{{__('adminPanel.qty')}}</label>
-                                <input type="text" name="qty" value="{{$product->detail->quantity or old('qty')}}" class="form-control" id="inputQty" placeholder="Enter Quantity">
+                                <input type="text" name="qty" value="{{$product->detail->quantity or old('qty')}}"
+                                       class="form-control" id="inputQty" placeholder="Enter Quantity">
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputMainImage">{{__('adminPanel.main_image')}}</label>
                                 <input type="file" name="main_image" id="inputMainImage">
-                                <div style="padding-top:10px"><img width="100px" src="{{asset('uploads/products/'.$product->detail->main_image)}}"></div>
+                                <div style="padding-top:10px"><img width="100px"
+                                                                   src="{{asset('uploads/products/'.$product->detail->main_image)}}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -238,20 +271,20 @@
                             <span class="help-block">* at least one category must be choosen</span>
                         </div>
                         {{--<div class="form-group">--}}
-                            {{--@foreach ($categories->chunk(3) as $array)--}}
-                                {{--@foreach($array as $category)--}}
-                                    {{--<div class="col-lg-4">--}}
-                                        {{--<ul class="list-unstyled">--}}
-                                            {{--<li>--}}
-                                                {{--<label>--}}
-                                                    {{--{!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}--}}
-                                                    {{--{{ $category->name }}--}}
-                                                {{--</label>--}}
-                                            {{--</li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--@endforeach--}}
-                            {{--@endforeach--}}
+                        {{--@foreach ($categories->chunk(3) as $array)--}}
+                        {{--@foreach($array as $category)--}}
+                        {{--<div class="col-lg-4">--}}
+                        {{--<ul class="list-unstyled">--}}
+                        {{--<li>--}}
+                        {{--<label>--}}
+                        {{--{!! Form::checkbox('categories[]',$category->id,(in_array($category->id,$categoriesList,true)) ? true : false) !!}--}}
+                        {{--{{ $category->name }}--}}
+                        {{--</label>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--</div>--}}
+                        {{--@endforeach--}}
+                        {{--@endforeach--}}
                         {{--</div>--}}
                     </div>
                     <!-- /.box-body -->
@@ -298,8 +331,15 @@
                                     @foreach($product->productImages as $image)
                                         <tr>
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
-                                            <td><a href="{{asset('uploads/products/'.$image->image)}}"> {{$image->image}} </a></td>
-                                            <td><a href="{{ route('manager.products.image.destroy', $image->id) }}" data-method="POST" data-laravel-method="delete" class="btn btn-danger btn-xs margin confirm-delete">Delete</a></td>
+                                            <td>
+                                                <a href="{{asset('uploads/products/'.$image->image)}}">
+                                                    <img src="{{asset('uploads/products/'.$image->image)}}"
+                                                         style="width: 100px;"/>
+                                                </a>
+                                            </td>
+                                            <td><a href="{{ route('admin.products.image.destroy', $image->id) }}"
+                                                   data-method="POST" data-laravel-method="delete"
+                                                   class="btn btn-danger btn-xs margin confirm-delete">Delete</a></td>
                                         </tr>
                                     @endforeach
                                 </table>
@@ -328,35 +368,37 @@
     <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 
     <script>
-        $(function () {
+      $(function () {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $(window).bind("load", function() {
-                if ($('#is-sale').is(':checked')) {
-                    $('.for-sale').removeAttr('disabled');
-                }
-            });
-
-            $('#is-sale').on('click', function(){
-                $('.for-sale').prop('disabled', function(i, v) { return !v; });
-            });
-
-            $('#inputStartDate').datepicker({
-                autoclose: true,
-                format: 'dd-mm-yyyy',
-                startDate: '0d'
-            });
-
-            $('#inputEndDate').datepicker({
-                autoclose: true,
-                format: 'dd-mm-yyyy',
-                startDate: '+1d'
-            });
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
         });
+
+        $(window).bind("load", function () {
+          if ($('#is-sale').is(':checked')) {
+            $('.for-sale').removeAttr('disabled');
+          }
+        });
+
+        $('#is-sale').on('click', function () {
+          $('.for-sale').prop('disabled', function (i, v) {
+            return !v;
+          });
+        });
+
+        $('#inputStartDate').datepicker({
+          autoclose: true,
+          format: 'dd-mm-yyyy',
+          startDate: '0d'
+        });
+
+        $('#inputEndDate').datepicker({
+          autoclose: true,
+          format: 'dd-mm-yyyy',
+          startDate: '+1d'
+        });
+      });
     </script>
 @endsection

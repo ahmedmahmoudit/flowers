@@ -47,7 +47,12 @@
                                     @endif
 
                                     @if(isset($product->detail->main_image))
-                                        <td><img width="75" src="{{ asset('uploads/products/'.$product->detail->main_image) }}"></td>
+                                        <td>
+                                            <a href="{{asset('uploads/products/'.$product->detail->main_image)}}">
+                                                <img src="{{asset('uploads/products/'.$product->detail->main_image)}}"
+                                                     style="width: 100px;"/>
+                                            </a>
+                                        </td>
                                     @else
                                         <td>No Main Image</td>
                                     @endif
@@ -56,7 +61,8 @@
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price or 'No Price'}}</td>
                                     <td>{{$product->detail->weight or 'No Price'}}</td>
-                                    <td>{{$product->detail->height or 'No Height'}} / {{$product->detail->width or 'No Width'}}</td>
+                                    <td>{{$product->detail->height or 'No Height'}}
+                                        / {{$product->detail->width or 'No Width'}}</td>
                                     <td>{{$product->detail->quantity or 'No Price'}}</td>
                                     <td>{{Counter::show('product', $product->id) }}</td>
                                     <td>{{$product->userLikes->count()}}</td>
@@ -97,24 +103,24 @@
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $('#products-table').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "columnDefs": [
-                    { "orderable": false, "targets": -1 }
-                ]
-            });
+      $(function () {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
         });
+
+        $('#products-table').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "columnDefs": [
+            {"orderable": false, "targets": -1}
+          ]
+        });
+      });
     </script>
 @endsection
