@@ -133,7 +133,7 @@ class ProductsController extends Controller
 //            ->save('uploads/products/'.$imageName.'.jpg');
 
         Image::make($mainImage['main_image'])
-            ->fit(600)
+            ->fit(640)
             ->encode('jpg')
             ->save('uploads/products/'.$imageName.'.jpg');
 //        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
@@ -269,7 +269,7 @@ class ProductsController extends Controller
         {
             $imageName = str_random(15);
 
-            Image::make($mainImage['main_image'])->fit(600)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
+            Image::make($mainImage['main_image'])->fit(640)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
             $attributesDetails['main_image'] = $imageName.'.jpg';
             $details['main_image'] = $attributesDetails['main_image'];
         }
