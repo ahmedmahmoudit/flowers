@@ -24,14 +24,14 @@ class UsersTableSeeder extends Seeder
         ]);
 
 //        //Admin User
-//        DB::table('users')->insert([
-//            'name' => 'admin',
-//            'email' => 'admin@test.com',
-//            'password' => bcrypt('password'),
-//            'role' => '2', // manager
-//            'api_token' => str_random(60),
-//            'store_id' => \App\Store::all()->random()->id
-//        ]);
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('password'),
+            'role' => '2', // manager
+            'api_token' => str_random(60),
+            'store_id' => \App\Store::all()->random()->id
+        ]);
 //
 //        factory(App\User::class, 1)->create([
 //            'role' => '3',

@@ -63,12 +63,13 @@
                     <div class="col-md-6">
                         <div class="c-product-gallery">
                             <div class="c-product-gallery-content">
-
                                 @if($product->productImages->count())
                                     @foreach($product->productImages as $image)
                                         <div class="c-zoom">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
-                                                 class="img img-responsive">
+                                                 class="img img-responsive"
+                                                style="width: 100%;height:auto"
+                                            >
                                         </div>
                                     @endforeach
                                 @else
