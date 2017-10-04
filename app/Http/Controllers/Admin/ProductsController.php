@@ -172,7 +172,7 @@ class ProductsController extends Controller
 //                    ->resize(700, 900)
 //                    ->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
                 Image::make($image)
-                    ->fit(600)
+                    ->fit(640)
                     ->encode('jpg')
                     ->save('uploads/products/'.$randomImageName.'.jpg');
                 $savedImage = new ProductImage([
@@ -286,7 +286,7 @@ class ProductsController extends Controller
             {
                 $randomImageName = str_random(15);
                 Image::make($image)
-                    ->fit(600)
+                    ->fit(640)
                     ->encode('jpg')
                     ->save('uploads/products/'.$randomImageName.'.jpg');
 
