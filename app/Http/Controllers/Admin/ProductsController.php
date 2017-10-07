@@ -81,7 +81,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-
+        $stores = $this->store->getAll();
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = [];
 
@@ -95,7 +95,7 @@ class ProductsController extends Controller
             }
         }
 
-        return view('backend.shared.products.create', compact('categories', 'categoriesList'));
+        return view('backend.shared.products.create', compact('stores','categories', 'categoriesList'));
     }
 
     /**
