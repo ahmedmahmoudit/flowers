@@ -50,7 +50,7 @@ class StoresController extends Controller
     public function index(Request $request)
     {
         $selectedCountry = Cache::get('selectedCountry');
-        $stores = $this->storeModel->with('areas')->where('country_id',$selectedCountry['id'])->approved()->paginate(100);
+        $stores = $this->storeModel->with('areas')->active()->approved()->where('country_id',$selectedCountry['id'])->paginate(100);
         $viewType = $request->has('type') && $request->type == 'list' ? 'list' : 'grid';
 
         return view('stores.index', ['stores' => $stores,'country'=>$selectedCountry,'viewType'=>$viewType]);
@@ -59,6 +59,9 @@ class StoresController extends Controller
     public function show($id,$slug)
     {
         $store = $this->storeModel->find($id);
+        if(!$store->active) {
+            return redirect()->home()->with('error','Store not active');
+        }
         return view('stores.view',compact('store'));
     }
 

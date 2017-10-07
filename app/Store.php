@@ -76,4 +76,9 @@ class Store extends BaseModel
     {
         return $query->where('is_approved',1);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active',1);
+    }
 }
