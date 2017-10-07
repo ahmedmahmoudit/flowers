@@ -219,6 +219,25 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <div class="checkbox">
+                                    <input type="hidden" name="natural" value="0" />
+                                    <label>
+                                        @if($product->natural || old('natural'))
+                                            <input type="checkbox"  value="1" name="natural"
+                                                   value="{{old('natural')}}" checked="true">
+                                        @else
+                                            <input type="checkbox"  value="1" name="natural"
+                                                   value="{{old('natural')}}">
+                                        @endif
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.natural')}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.box-body -->
                 </div>

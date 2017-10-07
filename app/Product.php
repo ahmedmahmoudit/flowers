@@ -32,7 +32,7 @@ class Product extends BaseModel
      */
     public function store()
     {
-        return $this->belongsTo('App\Store');
+        return $this->belongsTo('App\Store')->where('active',1);
     }
 
     /**

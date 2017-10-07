@@ -266,6 +266,7 @@ class StoresController extends Controller
 
     public function settingsUpdate(UpdateStoreSettingsRequest $request)
     {
+
         $imageUpload = $request->only(['image']);
         $delivery = $request->only([
             'delivery_time1',
@@ -281,13 +282,14 @@ class StoresController extends Controller
             'instagram_username',
             'minimum_delivery_days',
             'start_week_day',
-            'end_week_day'
+            'end_week_day',
+            'active'
         ]);
 
         if($imageUpload['image'])
         {
             $imageName = str_random(15);
-            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
+            Image::make($imageUpload['image'])->fit(400,400)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
             $attributes['image'] = $imageName.'.jpg';
         }
 

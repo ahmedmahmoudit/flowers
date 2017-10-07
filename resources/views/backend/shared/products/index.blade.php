@@ -30,7 +30,6 @@
                                 <th>{{__('adminPanel.sku')}}</th>
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.price')}}</th>
-                                <th>{{__('adminPanel.weight')}}</th>
                                 <th>{{__('adminPanel.width_and_height')}}</th>
                                 <th>{{__('adminPanel.qty')}}</th>
                                 <th>{{__('adminPanel.views')}}</th>
@@ -59,10 +58,9 @@
 
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name_en}}</td>
-                                    <td>{{$product->detail->price or 'No Price'}}</td>
-                                    <td>{{$product->detail->weight or 'No Price'}}</td>
-                                    <td>{{$product->detail->height or 'No Height'}}
-                                        / {{$product->detail->width or 'No Width'}}</td>
+                                    <td>{{$product->detail->price  or 'No Price'}}</td>
+                                    <td>{{$product->detail->height  or '-'}}
+                                        x {{$product->detail->width or '-'}} cm</td>
                                     <td>{{$product->detail->quantity or 'No Price'}}</td>
                                     <td>{{Counter::show('product', $product->id) }}</td>
                                     <td>{{$product->userLikes->count()}}</td>

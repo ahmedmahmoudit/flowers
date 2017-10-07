@@ -81,6 +81,7 @@ class SendPaymentEmail
                 $details = [];
                 $details['product_name'] = $orderDetail->product->name;
                 $details['store_name'] = $orderDetail->product->store->name;
+                $details['store_phone'] = $orderDetail->product->store->phone;
                 $details['sale_price'] = $orderDetail->sale_price;
                 $details['quantity'] = $orderDetail->quantity;
                 $details['delivery_date'] = $orderDetail->delivery_date;

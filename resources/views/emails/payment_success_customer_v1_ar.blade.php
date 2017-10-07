@@ -45,6 +45,9 @@
                                             محل
                                         </th>
                                         <th style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;">
+                                            رقم المحل
+                                        </th>
+                                        <th style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;">
                                             منتج
                                         </th>
                                     @endforeach
@@ -73,6 +76,9 @@
 
                                         <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0;text-align: center">
                                             {{$detail['store_name']}}
+                                        </td>
+                                        <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0;text-align: center">
+                                            {{$detail['store_phone']}}
                                         </td>
                                         <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0;text-align: center">
                                             {{$detail['product_name']}}

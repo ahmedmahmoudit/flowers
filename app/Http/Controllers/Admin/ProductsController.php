@@ -81,11 +81,21 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $stores = $this->store->getAll();
+
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = [];
 
-        return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList'));
+        $user = Auth::user();
+        if($user->isStoreAdmin()) {
+
+            $store = $user->store;
+
+            if(!$store->areas->count()) {
+                return redirect()->action('Admin\StoresController@showAreas')->with('error','Please Specify the Delivery Areas Your Store Covers');
+            }
+        }
+
+        return view('backend.shared.products.create', compact('categories', 'categoriesList'));
     }
 
     /**
@@ -109,7 +119,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
             $storeVerification = Auth::user()->store->verified;
         }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active']);
+        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active','natural']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
@@ -225,7 +235,7 @@ class ProductsController extends Controller
         {
             $store_id = Auth::user()->store->id;
         }
-        $attributes = $request->only(['name_en', 'name_ar', 'active']);
+        $attributes = $request->only(['name_en', 'name_ar', 'active','natural']);
         $attributesDetails = $request->only(['price','height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);

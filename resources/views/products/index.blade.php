@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="c-content-title-3 c-border-red c-right">
+                        <div class="c-content-title-3 c-border-pink c-right">
                             <h3 class="c-right c-font-uppercase">
                                 <a href="{{ route('category.show',$category->slug) }}" class="c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
                             </h3>

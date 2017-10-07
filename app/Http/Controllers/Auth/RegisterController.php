@@ -129,7 +129,7 @@ class RegisterController extends Controller
             ]);
 
             $this->updateSlug($store);
-            Image::make($data['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
+            Image::make($data['image'])->fit(400,400)->encode('jpg')->save('uploads/stores/'.$imageName);
             $user->store_id = $store->id;
             $user->save();
         }

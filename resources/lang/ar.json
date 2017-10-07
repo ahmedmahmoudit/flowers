@@ -67,7 +67,7 @@
   "Select Delivery Area":" إختر منطقة التوصيل ",
   "Select Area":" إختر المنطقة ",
   "About Us":"نبذة عنا ",
-  "Contact Us":" إتصل بنا ",
+  "Contact Us":" تواصل معنا ",
   "Privacy Policy":"سياسة الخصوصية",
   "Terms & Conditions":" الشروط والأحكام ",
   "Delivery":"التوصيل ",
@@ -201,5 +201,10 @@
   "Shipped" : "تم خروج الطلب من المحل",
   "Cancelled" : "الطلب ملغي",
   "Completed" : "تم توصيل الطلب",
-  "Latest Flowers" : "أحدث المنتجات"
+  "Latest Flowers" : "أحدث المنتجات",
+  "cm" : "سم",
+  "Invalid Invoice Number" : "رقم الفاتورة غير صحيح",
+  "Invoice Number":"رقم الفاتورة",
+  "Track" : "تابع",
+  "Track Your Order" : "تابع طلبك"
 }

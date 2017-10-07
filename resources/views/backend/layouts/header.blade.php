@@ -19,7 +19,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <span >{{ app()->getLocale() === 'en' ? 'EN' : 'ع' }}</span>
+                        <span >{{ app()->getLocale() === 'en' ? 'ع' : 'EN' }}</span>
                     </a>
                     <ul class="dropdown-menu">
 

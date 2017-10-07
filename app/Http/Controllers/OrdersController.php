@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Order;
 use App\Repositories\OrderRepositoryInterface;
+use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
@@ -84,10 +85,20 @@ class OrdersController extends Controller
         return redirect()->route('orders.index');
     }
 
-    public function trackOrder($invoiceID)
+    public function trackOrder(Request $request)
     {
 
+        $this->validate($request,[
+           'invoice_id' => 'required'
+        ]);
+
+        $invoiceID = $request->invoice_id;
+
         $order = $this->orderModel->with('orderDetails')->where('invoice_id',$invoiceID)->first();
+
+        if(!$order) {
+            return redirect()->route('home')->with('warning',__('Invalid Invoice Number'));
+        }
 
         return view('orders.track',compact('order'));
     }

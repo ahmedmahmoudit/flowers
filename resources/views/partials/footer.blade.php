@@ -22,7 +22,7 @@
                             <div class="c-line-left hide"></div>
                         </div>
                         <p class="c-address c-font-16">
-                            <i class="fa fa-mail-forward"></i>&nbsp;<span class="c-theme-color">info@vazzat.com</span>
+                            <i class="fa {{ app()->getLocale() == 'en' ? 'fa-envelope-o' : 'fa-envelope-o' }}"></i>&nbsp;<span class="c-theme-color">info@vazzat.com</span>
                             <br>
                             <i class="fa fa-instagram"></i>&nbsp;<span class="c-theme-color">@vazzat</span>
                         </p>
@@ -41,7 +41,25 @@
                         {{--</div>--}}
                         {{--<p class="c-text c-font-16 c-font-regular"></p>--}}
                     {{--</div>--}}
-                    <div class="col-md-5">
+                    <div class="col-md-6">
+
+                        <div class="c-content-title-1 c-title-md">
+                            <h3 class="c-font-uppercase c-font-bold">{{ __('Track Your Order') }}</h3>
+                            <div class="c-line-left hide"></div>
+                        </div>
+
+                        <div class="c-line-left hide"></div>
+                        <form action="{{route('order.track')}}" method="POST">
+                            {!! csrf_field() !!}
+                            <div class="input-group input-group-lg c-square">
+                                <input type="text" name="invoice_id" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Invoice Number') }}"/>
+                                <span class="input-group-btn">
+					            	<button type="submit" class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Track') }}</button>
+					        	</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
 
                         <div class="c-content-title-1 c-title-md">
                             <h3 class="c-font-uppercase c-font-bold">{{ __('Subscribe to Newsletter') }}</h3>
@@ -66,12 +84,12 @@
 
     </div>
 
-    <div class="c-postfooter c-bg-dark-2">
+    <div class="c-postfooter c-bg-dark-2" >
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12 c-col">
-                    <p class="c-copyright c-font-grey" >Vazzat.com {{ date('Y') }} &copy;  All Rights Reserved
-                        <br><span class="c-font-grey-3" style="padding-bottom: 30px">Developed by IdeasOwners</span>
+                <div class="col-md-6 col-sm-12 c-col" >
+                    <p class="c-copyright c-font-grey" >Vazzat.com {{ date('Y') }} &copy;
+                        <br><span class="c-font-grey-3" >Developed by IdeasOwners</span>
                     </p>
                 </div>
             </div>

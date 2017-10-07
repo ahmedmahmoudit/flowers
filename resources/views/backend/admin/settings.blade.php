@@ -2,8 +2,6 @@
 @section('title', __('adminPanel.settings'))
 @section('styles')
     @parent
-
-
 @endsection
 
 @section('content')
@@ -172,6 +170,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+
+
+                            <div class="col-xs-6">
+                                <label class="col-md-3 control-label"> {{__('adminPanel.active')}}:
+                                    <span class="required" style="color: red;"> * </span>
+                                </label>
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <input type="hidden" name="active" value="0" />
+                                        <label>
+                                            @if($store->active || old('active'))
+                                                <input type="checkbox"  value="1" name="active"
+                                                       value="{{old('active')}}" checked="true">
+                                            @else
+                                                <input type="checkbox"  value="1" name="active"
+                                                       value="{{old('active')}}">
+                                            @endif
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.active')}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-3 col-lg-push-1 pull-right">
                                 {{ Form::submit('submit',['class'=>'btn btn-outline btn-circle btn-primary ']) }}

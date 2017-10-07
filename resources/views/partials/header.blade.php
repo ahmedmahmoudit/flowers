@@ -106,7 +106,9 @@
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="{{ route('category.show',$childCategory->slug) }}">
+                                                    <a href="{{ route('category.show',$childCategory->slug) }}"
+                                                       style=" {{ app()->getLocale() == 'ar' ? 'font-size:16px': '' }}"
+                                                    >
                                                         {{ $childCategory->name }}
                                                     </a>
                                                 </li>

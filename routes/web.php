@@ -1,30 +1,7 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('test',function() {
 
-//    Mail::to('z4ls@live.com')->queue(new \App\Mail\Test());
-
-    $order = \App\Order::first();
-
-    dispatch(new \App\Jobs\SendPaymentEmail($order));
-    dd('a');
-    Mail::send('emails.test', [], function($message) {
-        $message->to('z4ls@live.com', 'Tutorials Point')->subject
-        ('Laravel Basic Testing Mail');
-        $message->from('info@vazzat.com','Info@Vazzat.com');
-    });
-    return "Basic Email Sent. Check your inbox.";
 });
 
 Route::get('manager/login', function () {
@@ -161,6 +138,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
     Route::post('orders/{order}/shipped', ['as' => 'orders.shipped', 'uses' => 'OrdersController@orderShipped']);
     Route::post('orders/{order}/completed', ['as' => 'orders.completed', 'uses' => 'OrdersController@orderCompleted']);
     Route::post('orders/{order}/cancelled', ['as' => 'orders.cancelled', 'uses' => 'OrdersController@orderCancelled']);
+
+//    Route::get('settings', ['as' => 'settings', 'uses' => 'StoreSettingsController@index']);
 });
 
 /***************************************************************************************************
@@ -170,7 +149,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('area/set', 'LocaleController@setArea')->name('area.set');
     Route::get('area/select', 'LocaleController@selectArea')->name('area.select');
-    Route::get('order/{invoceid}/track', 'OrdersController@trackOrder')->name('order.track');
+    Route::post('order/track', 'OrdersController@trackOrder')->name('order.track');
 
     Route::post('country/set', 'LocaleController@setCountry')->name('country.set');
     Route::get('country/{id}/areas', 'LocaleController@getCountryAreas')->name('country.areas');
@@ -213,8 +192,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('profile/orders/{id}/detail', 'ProfileController@getOrderDetail')->name('profile.orders.show');
         Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
         Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
-
-
 
         Route::get('home', 'HomeController@index')->name('home');
         Route::get('/', 'HomeController@index')->name('home');

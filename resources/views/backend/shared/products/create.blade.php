@@ -176,6 +176,18 @@
                                 <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="hidden" value="0" name="natural" />
+                                        <input type="checkbox"  value="1" name="natural" value="{{old('natural')}}">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('adminPanel.natural')}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>

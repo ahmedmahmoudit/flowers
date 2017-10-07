@@ -137,8 +137,8 @@
 
 
                             {{--                            <p class="c-product-meta-label c-font-bold">{{ __('Weight'). ' :  ' . $product->detail->weight }}</p>--}}
-                            <p class="c-product-meta-label c-font-bold">{{ __('width'). ' :  ' .  $product->detail->width }}</p>
-                            <p class="c-product-meta-label c-font-bold">{{ __('height'). ' :  ' . $product->detail->height  }}</p>
+                            <p class="c-product-meta-label c-font-bold">{{ __('height'). ' :  ' . $product->detail->height . __('cm') }}</p>
+                            <p class="c-product-meta-label c-font-bold">{{ __('width'). ' :  ' .  $product->detail->width . __('cm') }} </p>
 
                             <div class="row c-product-variant">
                                 <div class="col-sm-12 col-xs-12">

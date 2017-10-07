@@ -228,6 +228,13 @@
                         <i class="fa fa-shopping-cart"></i> <span>{{__('adminPanel.orders')}}</span>
                     </a>
                 </li>
+
+
+                <li>
+                    <a href="{{ route('admin.settings') }}">
+                        <i class="fa fa-cog"></i> <span>{{__('adminPanel.settings')}}</span>
+                    </a>
+                </li>
             @endif
         </ul>
     </section>
