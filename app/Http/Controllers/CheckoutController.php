@@ -158,6 +158,7 @@ class CheckoutController extends Controller
                 'UnitDesc' => $product->sku,
                 'UnitName' => $product->name,
                 'UnitPrice' => $product->detail->final_price,
+                'VndID' => $product->store->vendor_id
             ]);
 
         }

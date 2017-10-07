@@ -134,7 +134,7 @@ class StoresController extends Controller
      */
     public function update($id, UpdateStoreRequest $request)
     {
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','second_email']);
+        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','second_email','vendor_id']);
 
         $store = $this->store->getById($id);
 

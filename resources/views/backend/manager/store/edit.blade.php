@@ -75,6 +75,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-xs-6">
+                                <label for="examplePhone">Vendor ID</label>
+                                {!! Form::text('vendor_id',null,['placeholder'=>'Vendor ID','class'=>'form-control']) !!}
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="col-xs-6"></div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <div class="form-group">
