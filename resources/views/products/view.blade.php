@@ -63,41 +63,36 @@
                     <div class="col-md-6">
                         <div class="c-product-gallery">
                             <div class="c-product-gallery-content">
+                                <div class="c-zoom">
+                                    <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
+                                         class="img img-responsive">
+                                </div>
                                 @if($product->productImages->count())
                                     @foreach($product->productImages as $image)
                                         <div class="c-zoom">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
                                                  class="img img-responsive"
-                                                style="width: 100%;height:auto"
+                                                 style="width: 100%;height:auto"
                                             >
                                         </div>
                                     @endforeach
-                                @else
-                                    <div class="c-zoom">
-                                        <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
-                                             class="img img-responsive">
-                                    </div>
                                 @endif
                             </div>
 
                             <div class="row c-product-gallery-thumbnail">
 
+                                <div class="col-xs-3 c-product-thumb img img-responsive">
+                                    <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
+                                         class="img img-responsive">
+                                </div>
                                 @if($product->productImages->count())
-
                                     @foreach($product->productImages as $image)
                                         <div class="col-xs-3 c-product-thumb img img-responsive">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
                                                  class="img img-responsive">
                                         </div>
                                     @endforeach
-
-                                @else
-                                    <div class="col-xs-3 c-product-thumb img img-responsive">
-                                        <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
-                                             class="img img-responsive">
-                                    </div>
                                 @endif
-
                             </div>
 
                         </div>

@@ -274,7 +274,6 @@ class ProductsController extends Controller
             $details['end_sale_date'] = $endDate->format('Y-m-d');
         }
 
-
         if($mainImage['main_image'])
         {
             $imageName = str_random(15);
