@@ -127,7 +127,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <input type="file" name="image" id="inputMainImage" style="font-size: larger;">
-                                    <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                                    <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                                     @if($store->image)
                                         <div style="float: right;padding-right: 50%;"><img width="100" src="{{asset('uploads/stores/'.$store->image)}}"></div>
                                     @endif

@@ -173,7 +173,7 @@
                             <div class="col-xs-6">
                                 <label for="inputMainImage">{{__('adminPanel.main_image')}}</label>
                                 <input type="file" name="main_image" id="inputMainImage" style="font-size: larger;">
-                                <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                                <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                             </div>
                         </div>
 
@@ -269,22 +269,22 @@
                         <div class="form-group">
                             <label for="exampleInputFile">{{__('adminPanel.file_input')}}</label>
                             <input type="file" name="images[]" id="exampleInputFile">
-                            <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                            <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">{{__('adminPanel.file_input')}}</label>
                             <input type="file" name="images[]" id="exampleInputFile">
-                            <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                            <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">{{__('adminPanel.file_input')}}</label>
                             <input type="file" name="images[]" id="exampleInputFile">
-                            <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                            <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">{{__('adminPanel.file_input')}}</label>
                             <input type="file" name="images[]" id="exampleInputFile">
-                            <p class="help-block">{{ trans('adminPanel.image_size_700x900') }}</p>
+                            <p class="help-block">{{ trans('adminPanel.image_size_640x640') }}</p>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">{{__('adminPanel.file_input')}}</label>

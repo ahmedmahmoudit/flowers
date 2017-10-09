@@ -78,6 +78,7 @@ return array(
     'height_and_width'          => 'الطول / العرض',
     'image'                     => 'الصورة',
     'image_size_700x900'        => '700x900',
+    'image_size_640x640'        => '640x640',
     'instagram'                 => 'انستقرام',
     'is_limited'                => 'الكمية المتوفرة',
     'likes'                     => 'إعجاب',
