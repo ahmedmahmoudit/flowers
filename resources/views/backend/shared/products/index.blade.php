@@ -60,7 +60,8 @@
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price  or 'No Price'}}</td>
                                     <td>{{$product->detail->height  or '-'}}
-                                        x {{$product->detail->width or '-'}} cm</td>
+                                        x {{$product->detail->width or '-'}} cm
+                                    </td>
                                     <td>{{$product->detail->quantity or 'No Price'}}</td>
                                     <td>{{Counter::show('product', $product->id) }}</td>
                                     <td>{{$product->userLikes->count()}}</td>
@@ -109,6 +110,7 @@
         });
 
         $('#products-table').DataTable({
+          "scrollX": true,
           "paging": true,
           "lengthChange": false,
           "searching": true,

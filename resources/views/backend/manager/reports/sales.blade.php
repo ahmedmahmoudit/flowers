@@ -113,6 +113,7 @@
             });
 
             $('#products-table').DataTable({
+              "scrollX": true,
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
