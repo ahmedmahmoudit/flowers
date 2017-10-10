@@ -327,6 +327,7 @@ class ProductsController extends Controller
             ->whereHas('stores',function($q){
                 return $q->where('is_approved',1);
             })
+            ->has('detail')
             ->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
