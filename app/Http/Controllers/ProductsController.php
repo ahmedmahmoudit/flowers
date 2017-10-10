@@ -327,7 +327,6 @@ class ProductsController extends Controller
             ->whereHas('stores',function($q){
                 return $q->where('is_approved',1);
             })
-            ->has('detail')
             ->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
@@ -436,7 +435,6 @@ class ProductsController extends Controller
         $deliveryTimes = $this->productModel->deliveryTimes;
         $selectedTime = null;
 
-//        dd($cartItems->toArray());
         return view('products.view',compact('product','cartItems','deliveryTimes','selectedTime'));
     }
 
