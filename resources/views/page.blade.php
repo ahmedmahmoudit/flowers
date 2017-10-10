@@ -11,7 +11,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="c-content">
                     <p style="font-family: serif;text-align: center">
-                        {{ $page->body }}
+                        {!!  $page->body !!}
                     </p>
                 </div>
             </div>
