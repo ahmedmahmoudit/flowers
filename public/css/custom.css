@@ -108,10 +108,18 @@ select *.optionChild {
         margin-bottom: -5px;
     }
 }
+
+@media (max-width: 768px) {
+    .btn-full-mobile {
+        width:100%;
+    }
+}
+
 @media (max-width: 991px) {
     .c-layout-header .c-brand {
         margin-bottom: 0;
     }
+
 }
 
 .red {
@@ -154,3 +162,4 @@ select *.optionChild {
 .c-border-pink {
     border-color: #b95890 !important;
 }
+

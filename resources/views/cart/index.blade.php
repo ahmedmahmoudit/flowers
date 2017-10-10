@@ -211,8 +211,8 @@
                         </div>
 
                         <div class="c-cart-buttons">
-                            <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">{{ __('Update Cart') }}</button>
-                            <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">{{ __('Checkout') }}</a>
+                            <button type="submit" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l btn-full-mobile" style="margin-bottom:20px">{{ __('Update Cart') }}</button>
+                            <a href="{{ route('checkout') }}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r" style="margin-bottom:20px">{{ __('Checkout') }}</a>
                         </div>
                     </div>
                 </form>

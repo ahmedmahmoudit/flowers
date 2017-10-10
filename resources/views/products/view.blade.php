@@ -72,7 +72,6 @@
                                         <div class="c-zoom">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
                                                  class="img img-responsive"
-                                                 style="width: 100%;height:auto"
                                             >
                                         </div>
                                     @endforeach
