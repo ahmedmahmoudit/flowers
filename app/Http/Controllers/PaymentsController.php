@@ -47,6 +47,7 @@ class PaymentsController extends Controller
 
         if ($order->captured_status != 1) {
             $order->captured_status = 1;
+            $order->order_status = 2;
             if ($order->coupon) {
                 $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
                 $order->coupon->save();
