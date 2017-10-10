@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderStatusUpdate;
 use App\Mail\StoreRateMail;
+use App\Order;
 use App\Repositories\OrderRepositoryInterface;
 use App\StoreRate;
 use Illuminate\Support\Facades\Auth;
@@ -18,15 +19,21 @@ class OrdersController extends Controller
      * @var $order
      */
     private $order;
+    /**
+     * @var Order
+     */
+    private $orderModel;
 
     /**
      * OrderController constructor.
      *
      * @param OrderRepositoryInterface $order
+     * @param Order $orderModel
      */
-    public function __construct(OrderRepositoryInterface $order)
+    public function __construct(OrderRepositoryInterface $order, Order $orderModel)
     {
         $this->order = $order;
+        $this->orderModel = $orderModel;
     }
 
     /**
@@ -57,12 +64,20 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $order = $this->order->getById($id);
-        if(!Auth::user()->isManager())
-        {
-            $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
-            $statusOfThisPart = $store->pivot->order_status;
+        $order = $this->orderModel->with(['coupon','orderDetails.product','user'])->find($id);
+
+        $statusOfThisPart = '';
+        $user = Auth::user();
+        if($user->isStoreAdmin()) {
+            $store = $user->store;
+            $statusOfThisPart = $store->order_status;
         }
+//        if(!Auth::user()->isStoreAdmin())
+//        {
+//            $store  = Auth::user()->store;
+//            $statusOfThisPart = $store->pivot->order_status;
+//        }
+
 
         return view('backend.shared.orders.show', compact('order', 'statusOfThisPart'));
     }
