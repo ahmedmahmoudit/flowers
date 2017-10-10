@@ -65,6 +65,7 @@ class PaymentsController extends Controller
 //
 //        }
 
+        dd('end');
         return view('payment.success', compact('status', 'order', 'selectedCountry'));
     }
 
