@@ -115,59 +115,59 @@
             </div>
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{__('adminPanel.order_items')}}</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="products-table" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>{{__('adminPanel.sku')}}</th>
-                                <th>{{__('adminPanel.name')}}</th>
-                                <th>{{__('adminPanel.price')}}</th>
-                                <th>{{__('adminPanel.height_and_width')}}</th>
-                                <th>{{__('adminPanel.qty')}}</th>
-                                <th>{{__('adminPanel.total')}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if(Auth::user()->isStoreAdmin())
-                                @foreach($order->orderDetails as $item)
-                                    @if($item->product->store->id == Auth::user()->store_id)
-                                        <tr>
-                                            <td>{{$item->product->sku}}</td>
-                                            <td>{{$item->product->name_en}}</td>
-                                            <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                            <td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>
-                                            <td>{{$item->quantity}}</td>
-                                            <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            @else
-                                @foreach($order->orderDetails as $item)
-                                    <tr>
-                                        <td>{{$item->product->sku}}</td>
-                                        <td>{{$item->product->name_en}}</td>
-                                        <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                        <td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>
-                                        <td>{{$item->quantity}}</td>
-                                        <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
+        {{--<div class="row">--}}
+            {{--<div class="col-xs-12">--}}
+                {{--<div class="box box-primary">--}}
+                    {{--<div class="box-header with-border">--}}
+                        {{--<h3 class="box-title">{{__('adminPanel.order_items')}}</h3>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.box-header -->--}}
+                    {{--<div class="box-body">--}}
+                        {{--<table id="products-table" class="table table-bordered table-striped">--}}
+                            {{--<thead>--}}
+                            {{--<tr>--}}
+                                {{--<th>{{__('adminPanel.sku')}}</th>--}}
+                                {{--<th>{{__('adminPanel.name')}}</th>--}}
+                                {{--<th>{{__('adminPanel.price')}}</th>--}}
+                                {{--<th>{{__('adminPanel.height_and_width')}}</th>--}}
+                                {{--<th>{{__('adminPanel.qty')}}</th>--}}
+                                {{--<th>{{__('adminPanel.total')}}</th>--}}
+                            {{--</tr>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
+                            {{--@if(Auth::user()->isStoreAdmin())--}}
+                                {{--@foreach($order->orderDetails as $item)--}}
+                                    {{--@if($item->product->store->id == Auth::user()->store_id)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$item->product->sku}}</td>--}}
+                                            {{--<td>{{$item->product->name_en}}</td>--}}
+                                            {{--<td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
+                                            {{--<td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>--}}
+                                            {{--<td>{{$item->quantity}}</td>--}}
+                                            {{--<td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endif--}}
+                                {{--@endforeach--}}
+                            {{--@else--}}
+                                {{--@foreach($order->orderDetails as $item)--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{{$item->product->sku}}</td>--}}
+                                        {{--<td>{{$item->product->name_en}}</td>--}}
+                                        {{--<td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
+                                        {{--<td>{{$item->product->detail->height or 'No Height'}} / {{$item->product->detail->width or 'No Width'}}</td>--}}
+                                        {{--<td>{{$item->quantity}}</td>--}}
+                                        {{--<td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
+                            {{--@endif--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.box-body -->--}}
+                {{--</div>--}}
+                {{--<!-- /.box -->--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <!-- /.row -->
 
     </section>
