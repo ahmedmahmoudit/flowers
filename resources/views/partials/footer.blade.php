@@ -52,7 +52,7 @@
                         <form action="{{route('order.track')}}" method="POST">
                             {!! csrf_field() !!}
                             <div class="input-group input-group-lg c-square">
-                                <input type="text" name="invoice_id" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Invoice Number') }}"/>
+                                <input type="text" name="ref" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Invoice Number') }}"/>
                                 <span class="input-group-btn">
 					            	<button type="submit" class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Track') }}</button>
 					        	</span>
