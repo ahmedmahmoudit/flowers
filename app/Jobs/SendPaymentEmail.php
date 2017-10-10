@@ -40,7 +40,7 @@ class SendPaymentEmail
     {
         $this->mailer = $mailer;
         $this->sendCustomerCopy();
-        $this->sendStoreCopy();
+//        $this->sendStoreCopy();
     }
 
     private function sendCustomerCopy() {
