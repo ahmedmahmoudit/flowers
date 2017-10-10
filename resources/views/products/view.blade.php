@@ -67,7 +67,7 @@
                                     <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
                                          class="img img-responsive">
                                 </div>
-                                @if($product->productImages->count())
+                                @if($product->productImages && $product->productImages->count())
                                     @foreach($product->productImages as $image)
                                         <div class="c-zoom">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
@@ -85,7 +85,7 @@
                                     <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
                                          class="img img-responsive">
                                 </div>
-                                @if($product->productImages->count())
+                                @if($product->productImages && $product->productImages->count())
                                     @foreach($product->productImages as $image)
                                         <div class="col-xs-3 c-product-thumb img img-responsive">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
@@ -150,7 +150,7 @@
 
                                             <button type="submit"
                                                     class="btn  c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover  c-btn-product">
-                                                @if(auth()->check() && $product->userLikes->contains('id',auth()->id()))
+                                                @if(auth()->check() && $product->userLikes && $product->userLikes->contains('id',auth()->id()))
                                                     <i class="fa fa-heart" style="color: red;font-size: 2.0em"></i>
                                                 @else
                                                     <i class="fa fa-heart-o" style="color: red;font-size: 2.0em"></i>
