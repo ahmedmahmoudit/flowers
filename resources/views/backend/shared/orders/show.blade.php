@@ -171,8 +171,8 @@
                                             <td>{{$item->product->sku}}</td>
                                             <td>{{$item->product->name_en}}</td>
                                             <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                            <td>{{$item->product->detail->height or 'No Height'}}
-                                                / {{$item->product->detail->width or 'No Width'}}</td>
+                                            {{--<td>{{$item->product->detail->height or 'No Height'}}--}}
+                                                {{--/ {{$item->product->detail->width or 'No Width'}}</td>--}}
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                         </tr>
