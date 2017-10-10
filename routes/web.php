@@ -1,7 +1,6 @@
 <?php
 
 Route::get('test',function() {
-
 });
 
 Route::get('manager/login', function () {
