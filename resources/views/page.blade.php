@@ -2,8 +2,8 @@
 
 @section('content')
 
-    @component('partials.breadcrumb',['title' => __('About Us'), 'nav'=>true])
-        <li class="c-active">{{ __('About Us') }}</li>
+    @component('partials.breadcrumb',['title' => $page->title, 'nav'=>true])
+        <li class="c-active">{{ $page->title }}</li>
     @endcomponent
 
     <div class="c-content-box c-size-md c-bg-white">
