@@ -214,8 +214,10 @@
                             <div class="col-xs-6">
                                 <label for="inputMainImage">{{__('adminPanel.main_image')}}</label>
                                 <input type="file" name="main_image" id="inputMainImage">
-                                <div style="padding-top:10px"><img width="100px"
-                                                                   src="{{asset('uploads/products/'.$product->detail->main_image)}}">
+                                <div style="padding-top:10px">
+                                    <a href="{{asset('uploads/products/'.$product->detail->main_image)}}">
+                                        <img width="100px" src="{{asset('uploads/products/'.$product->detail->main_image)}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
