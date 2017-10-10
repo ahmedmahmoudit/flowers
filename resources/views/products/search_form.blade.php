@@ -21,7 +21,7 @@
 
         <li>
             <label class="control-label c-font-uppercase c-font-bold">{{ __('Price') }}</label>
-            <p class="price-display">Price: {{$priceRangeFrom}} - {{$priceRangeTo}}</p>
+            <p class="price-display">{{ __('Price') }}: {{$priceRangeFrom}} - {{$priceRangeTo}}</p>
             <div class="c-price-range-slider c-theme-1 input-group">
                 <input type="hidden" name="pricefrom" id="pricefrom" value="{{ $priceRangeFrom }}" />
                 <input type="hidden" name="priceto" id="priceto" value="{{ $priceRangeTo }}" />

@@ -163,6 +163,7 @@
   "Store Name Arabic" : "إسم المحل بالعربي",
   "Store Email" : "إيميل المحل",
   "Store Phone" : "رقم هاتف المحل",
+  "Phone" : "رقم هاتف",
   "Store Country" : "الدولة",
   "Start Week Day" : "أول يوم عمل في الاسبوع ",
   "End Week Day" : "آخر يوم عمل في الاسبوع ",
@@ -207,5 +208,6 @@
   "Invoice Number":"رقم الفاتورة",
   "Track" : "تابع",
   "Track Your Order" : "تابع طلبك",
-  "Natural" : "طبيعي"
+  "Natural" : "طبيعي",
+  "All Category" : "كل فئات"
 }

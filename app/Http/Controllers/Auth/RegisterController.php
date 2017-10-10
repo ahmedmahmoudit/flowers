@@ -86,7 +86,7 @@ class RegisterController extends Controller
             'store_phone' => 'required_if:role,==,2',
             'start_week_day' => 'required_if:role,==,2',
             'end_week_day' => 'required_if:role,==,2',
-            'minimum_delivery_days' => 'required_if:role,==,2',
+            'minimum_delivery_days' => 'required_if:role,==,2|numeric',
             'country_id' => 'required_if:role,==,2',
             'image' => 'image|required_if:role,==,2',
         ]);
