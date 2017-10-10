@@ -55,6 +55,38 @@
 
             @include('backend.layouts.scripts')
 
+            <script>
+              tinymce.init({
+                selector: "textarea.editor_ar",
+                directionality : 'rtl',
+                plugins: [
+                  "advlist autolink  link image lists charmap print preview hr anchor pagebreak spellchecker",
+                  "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                  "save table emoticons template textcolor jbimages directionality powerpaste lineheight",
+                ],
+                toolbar: "insertfile undo redo | sizeselect | bold italic | fontselect | fontsizeselect |  alignleft aligncenter alignright alignjustify | lineheightselect | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor | ltr rtl ",
+                relative_urls: false,
+                lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt",
+                fontsize_formats: "8px 10px 12px 14px 16px 18px 20px 22px 24px 36px 72px",
+                content_css : "/css/admin/tinymce-custom.css",
+
+              });
+
+              tinymce.init({
+                selector: "textarea.editor_en",
+//        fixed_toolbar_container: '#mytoolbar',
+                plugins: [
+                  "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                  "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                  "save table emoticons template textcolor jbimages directionality powerpaste lineheight",
+                ],
+                toolbar: "insertfile undo redo | sizeselect | bold italic | fontsizeselect | fontselect |  alignleft aligncenter alignright alignjustify | lineheightselect | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor | ltr rtl ",
+                relative_urls: false,
+                lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt",
+                fontsize_formats: "8px 10px 12px 14px 16px 18px 20px 22px 24px 36px 72px",
+                content_css : "/css/admin/tinymce-custom.css",
+              });
+            </script>
         @show
     </body>
 </html>

@@ -32,14 +32,14 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputBodyEn">{{__('adminPanel.english_body')}}</label>
-                                    {!! Form::textarea('body_en', (isset($termsData) ? $termsData->body_en : old('body_en')) ,['class' => 'form-control','rows' => 20, 'cols' => 100,'required']) !!}
+                                    {!! Form::textarea('body_en', (isset($termsData) ? $termsData->body_en : old('body_en')) ,['class' => 'form-control','rows editor_en' => 20, 'cols' => 100,'required']) !!}
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputBodyAr">{{__('adminPanel.arabic_body')}}</label>
-                                    {!! Form::textarea('body_ar', (isset($termsData) ? $termsData->body_ar : old('body_ar')) ,['class' => 'form-control','rows' => 20, 'cols' => 100,'required']) !!}
+                                    {!! Form::textarea('body_ar', (isset($termsData) ? $termsData->body_ar : old('body_ar')) ,['class' => 'form-control editor_ar','rows' => 20, 'cols' => 100,'required']) !!}
                                     <p class="help-block"></p>
                                 </div>
                             </div>
