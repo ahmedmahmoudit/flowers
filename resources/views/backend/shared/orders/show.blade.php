@@ -137,7 +137,7 @@
                             <tbody>
                             @if(!Auth::user()->isManager())
                                 @foreach($order->orderDetails as $item)
-                                    @if($item->product->store->id == Auth::user()->store->id)
+                                    @if($item->product->store->id == Auth::user()->store_id)
                                         <tr>
                                             <td>{{$item->product->sku}}</td>
                                             <td>{{$item->product->name_en}}</td>

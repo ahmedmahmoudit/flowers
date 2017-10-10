@@ -47,7 +47,6 @@ class PaymentsController extends Controller
 
         if ($order->captured_status != 1) {
             $order->captured_status = 1;
-            $order->order_status = 2;
             if ($order->coupon) {
                 $order->coupon->quantity_left = $order->coupon->quantity_left - 1;
                 $order->coupon->save();
@@ -58,11 +57,8 @@ class PaymentsController extends Controller
             try {
                 $this->dispatch(new SendPaymentEmail($order));
             } catch (\Exception $e) {
-//                return redirect()->home()->with('success',__('Something went wrong during payment, try again'));
             }
-//
             $this->cart->flushCart();
-//
         }
 
         return view('payment.success', compact('status', 'order', 'selectedCountry'));
@@ -72,4 +68,5 @@ class PaymentsController extends Controller
     {
         return view('payment.failure');
     }
+
 }
