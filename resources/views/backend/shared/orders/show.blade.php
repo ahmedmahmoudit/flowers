@@ -166,17 +166,17 @@
                                 @endif
                             @else
                                 @if($order->orderDetails && $order->orderDetails->count() )
-                                    @foreach($order->orderDetails as $item)
-                                        <tr>
-                                            <td>{{$item->product->sku}}</td>
-                                            <td>{{$item->product->name_en}}</td>
-                                            <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                    {{--@foreach($order->orderDetails as $item)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$item->product->sku}}</td>--}}
+                                            {{--<td>{{$item->product->name_en}}</td>--}}
+                                            {{--<td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
                                             {{--<td>{{$item->product->detail->height or 'No Height'}}--}}
                                                 {{--/ {{$item->product->detail->width or 'No Width'}}</td>--}}
-                                            <td>{{$item->quantity}}</td>
-                                            <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                        </tr>
-                                    @endforeach
+                                            {{--<td>{{$item->quantity}}</td>--}}
+                                            {{--<td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
                                 @endif
                             @endif
                             </tbody>
