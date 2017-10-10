@@ -34,13 +34,7 @@
 
             <div class="c-foot">
                 <div class="row">
-                    {{--<div class="col-md-7">--}}
-                        {{--<div class="c-content-title-1 c-title-md">--}}
-                            {{--<h3 class="c-font-uppercase c-font-bold">{{ __('About') }} <span class="c-theme-font">Vazzat</span></h3>--}}
-                            {{--<div class="c-line-left hide"></div>--}}
-                        {{--</div>--}}
-                        {{--<p class="c-text c-font-16 c-font-regular"></p>--}}
-                    {{--</div>--}}
+
                     <div class="col-md-6">
 
                         <div class="c-content-title-1 c-title-md">
@@ -51,12 +45,14 @@
                         <div class="c-line-left hide"></div>
                         <form action="{{route('order.track')}}" method="POST">
                             {!! csrf_field() !!}
+
                             <div class="input-group input-group-lg c-square">
-                                <input type="text" name="ref" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Invoice Number') }}"/>
+                                <input type="text" class="form-control c-square c-font-grey-3 c-border-grey c-theme placeholder-grey" placeholder="{{ __('Invoice Number') }}"/>
                                 <span class="input-group-btn">
 					            	<button type="submit" class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Track') }}</button>
 					        	</span>
                             </div>
+
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -70,7 +66,7 @@
                         <form action="{{route('newsletter.subscribe')}}" method="POST">
                             {!! csrf_field() !!}
                             <div class="input-group input-group-lg c-square">
-                                <input type="text" name="email" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="{{ __('Email') }}"/>
+                                <input type="text" name="email" class="form-control c-square c-font-grey-3 c-border-grey c-theme placeholder-grey" placeholder="{{ __('Email') }}"/>
                                 <span class="input-group-btn">
 					            	<button type="submit" class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">{{ __('Subscribe') }}</button>
 					        	</span>
