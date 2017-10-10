@@ -114,6 +114,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'store_name_en' => __('Store Name English'),
+        'store_name_ar' => __('Store Name Arabic'),
+        'minimum_delivery_days' => __('Minimum Delivery Days'),
+        'image' => __('Image'),
+        'store_email' => __('Email'),
+        'store_phone' => __('Phone'),
+    ],
 
 ];
