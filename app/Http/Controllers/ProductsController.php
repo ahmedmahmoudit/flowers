@@ -39,8 +39,8 @@ class ProductsController extends Controller
     private $storeModel;
 
 
-    protected $selectedPriceFrom = 50;
-    protected $selectedPriceTo = 150;
+    protected $selectedPriceFrom = 10;
+    protected $selectedPriceTo = 50;
 
 //    const $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
 
