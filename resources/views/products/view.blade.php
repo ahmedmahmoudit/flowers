@@ -80,13 +80,13 @@
 
                             <div class="row c-product-gallery-thumbnail">
 
-                                <div class="col-xs-3 c-product-thumb img img-responsive">
+                                <div class="col-xs-3 img img-responsive">
                                     <img src="{{ asset('uploads/products/'.$product->detail->main_image) }}"
                                          class="img img-responsive">
                                 </div>
                                 @if($product->productImages && $product->productImages->count())
                                     @foreach($product->productImages as $image)
-                                        <div class="col-xs-3 c-product-thumb img img-responsive">
+                                        <div class="col-xs-3 img img-responsive">
                                             <img src="{{ asset('uploads/products/'.$image->image) }}"
                                                  class="img img-responsive">
                                         </div>
