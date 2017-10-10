@@ -39,8 +39,8 @@ class SendPaymentEmail
     public function handle(BaseMailer $mailer)
     {
         $this->mailer = $mailer;
-        $this->sendCustomerCopy();
-//        $this->sendStoreCopy();
+//        $this->sendCustomerCopy();
+        $this->sendStoreCopy();
     }
 
     private function sendCustomerCopy() {
