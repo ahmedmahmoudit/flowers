@@ -255,7 +255,7 @@
                                                                             <a class="btn c-btn btn-lg c-font-bold c-font-white btn-warning c-btn-square c-font-uppercase select-time "
                                                                                data-time="{{$key}}"
                                                                                data-value="{{$time}}"
-                                                                               style="margin-bottom: 10px"
+                                                                               style="margin-bottom:10px"
                                                                             @if(old('delivery_time') == $key ? 'active' : '') @endif
                                                                             >{{ $time }}</a>
                                                                         @endforeach

@@ -97,4 +97,13 @@ class Product extends BaseModel
             ->where('products.id', $this->id)
             ->where('stores.is_approved', 1);
     }
+
+    public function getDeliveryTimes()
+    {
+         $deliveryTimes = ['2pm' => __('morning 9am-2pm'), '6pm' => __('afternoon 2pm-6pm'), '10pm' => __('evening 6pm-10pm')];
+
+         return $deliveryTimes;
+
+    }
+
 }

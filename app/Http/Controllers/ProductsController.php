@@ -42,7 +42,7 @@ class ProductsController extends Controller
     protected $selectedPriceFrom = 10;
     protected $selectedPriceTo = 50;
 
-//    const $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
+//    public $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
 
     /**
      * @param Product $productModel
@@ -432,7 +432,7 @@ class ProductsController extends Controller
     {
         $product = $this->productModel->with('userLikes')->find($id);
         $cartItems = $this->cart->getItems();
-        $deliveryTimes = $this->productModel->deliveryTimes;
+        $deliveryTimes = $this->productModel->getDeliveryTimes();
         $selectedTime = null;
 
         return view('products.view',compact('product','cartItems','deliveryTimes','selectedTime'));
