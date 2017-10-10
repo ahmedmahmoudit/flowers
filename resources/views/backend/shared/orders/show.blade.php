@@ -135,7 +135,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!Auth::user()->isManager())
+                            @if(Auth::user()->isStoreAdmin())
                                 @foreach($order->orderDetails as $item)
                                     @if($item->product->store->id == Auth::user()->store_id)
                                         <tr>
