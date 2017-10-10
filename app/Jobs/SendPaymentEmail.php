@@ -72,7 +72,7 @@ class SendPaymentEmail
         $emailBody['country'] =  $this->order->country->name;
         $emailBody['currency'] =  $this->order->country->currency_en;
         $emailBody['created_at'] =  $this->order->created_at->format('d-m-Y, h:i:s');
-        $emailBody['track_link'] =  route('order.track',$this->order->invoice_id);
+        $emailBody['track_link'] =  route('order.track',['ref'=>$this->order->invoice_id]);
 
         foreach ($this->order->orderDetails as $orderDetail) {
 

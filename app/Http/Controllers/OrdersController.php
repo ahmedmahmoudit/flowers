@@ -89,10 +89,10 @@ class OrdersController extends Controller
     {
 
         $this->validate($request,[
-           'invoice_id' => 'required'
+           'ref' => 'required'
         ]);
 
-        $invoiceID = $request->invoice_id;
+        $invoiceID = $request->ref;
 
         $order = $this->orderModel->with('orderDetails')->where('invoice_id',$invoiceID)->first();
 
