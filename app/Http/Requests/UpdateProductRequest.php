@@ -26,6 +26,7 @@ class UpdateProductRequest extends FormRequest
     public function rules(Request $request)
     {
         $validationRules = [
+            'sku'               => 'required|unique:products,sku,',
             'name_ar'           => 'required',
             'name_en'           => 'required',
             'height'            => 'required',

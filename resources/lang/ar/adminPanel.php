@@ -51,6 +51,7 @@ return array(
     'daily_statistics'          => 'الإحصائيات اليومية',
     'dashboard'                 => 'لوحة التحكم',
     'delivery_date'             => 'تاريخ التسليم',
+    'delivery_time'             => 'وقت التسليم',
     'delivery_policy'           => 'سياسة التسليم',
     'description'               => 'وصف',
     'due_date'                  => 'تاريخ الاستحقاق',

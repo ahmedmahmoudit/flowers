@@ -145,6 +145,7 @@ return array(
     'all_orders'                => 'All Orders',
     'address'                   => 'Address',
     'delivery_date'             => 'Delivery Date',
+    'delivery_time'             => 'Delivery Time',
     'payment_method'            => 'Payment Method',
     'order_status'              => 'Order Status',
     'net_amount'                => 'Net Amount',

@@ -121,6 +121,8 @@ return [
         'image' => __('Image'),
         'store_email' => __('Email'),
         'store_phone' => __('Phone'),
+        'start_sale_date.before' => 'Start Date Must be before End Date!',
+        'end_sale_date.after'  => 'End Date Must be after Start Date!',
     ],
 
 ];

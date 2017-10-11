@@ -53,12 +53,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isStoreAdmin())
-        {
+        if (Auth::user()->isStoreAdmin()) {
             $products = $this->product->getByStore();
-        }
-        else
-        {
+        } else {
             $products = $this->product->getAll();
         }
 
@@ -70,7 +67,7 @@ class ProductsController extends Controller
 
         $product = $this->productModel->find($id);
 
-        return view('products.view' ,compact('product'));
+        return view('products.view', compact('product'));
 
     }
 
@@ -86,16 +83,16 @@ class ProductsController extends Controller
         $categoriesList = [];
 
         $user = Auth::user();
-        if($user->isStoreAdmin()) {
+        if ($user->isStoreAdmin()) {
 
             $store = $user->store;
 
-            if(!$store->areas->count()) {
-                return redirect()->action('Admin\StoresController@showAreas')->with('error','Please Specify the Delivery Areas Your Store Covers');
+            if (!$store->areas->count()) {
+                return redirect()->action('Admin\StoresController@showAreas')->with('error', 'Please Specify the Delivery Areas Your Store Covers');
             }
         }
 
-        return view('backend.shared.products.create', compact('stores','categories', 'categoriesList'));
+        return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList'));
     }
 
     /**
@@ -107,20 +104,17 @@ class ProductsController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        if(Auth::user()->isManager())
-        {
+        if (Auth::user()->isManager()) {
             $store = $request->only(['store']);
             $store_id = $store['store'];
             $storeDb = Store::find($store_id);
             $storeVerification = $storeDb->verified;
-        }
-        else
-        {
+        } else {
             $store_id = Auth::user()->store->id;
             $storeVerification = Auth::user()->store->verified;
         }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active','natural']);
-        $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active', 'natural']);
+        $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -145,38 +139,35 @@ class ProductsController extends Controller
         Image::make($mainImage['main_image'])
             ->fit(640)
             ->encode('jpg')
-            ->save('uploads/products/'.$imageName.'.jpg');
+            ->save('uploads/products/' . $imageName . '.jpg');
 //        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
 //        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
-        $attributesDetails['main_image'] = $imageName.'.jpg';
+        $attributesDetails['main_image'] = $imageName . '.jpg';
 
         $details = new ProductDetail([
-            'price' => $attributesDetails['price'],
-            'height' => $attributesDetails['height'],
-            'width' => $attributesDetails['width'],
-            'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
-            'sale_price' => $attributesDetails['sale_price'],
+            'price'           => $attributesDetails['price'],
+            'height'          => $attributesDetails['height'],
+            'width'           => $attributesDetails['width'],
+            'is_sale'         => isset($attributesDetails['is_sale']) ? '1' : '0',
+            'sale_price'      => $attributesDetails['sale_price'],
             'start_sale_date' => $attributesDetails['start_sale_date'],
-            'end_sale_date' => $attributesDetails['end_sale_date'],
-            'quantity' => $attributesDetails['qty'],
-            'description_en' => $attributesDetails['description_en'],
-            'description_ar' => $attributesDetails['description_ar'],
-            'main_image' => $attributesDetails['main_image'],
+            'end_sale_date'   => $attributesDetails['end_sale_date'],
+            'quantity'        => $attributesDetails['qty'],
+            'description_en'  => $attributesDetails['description_en'],
+            'description_ar'  => $attributesDetails['description_ar'],
+            'main_image'      => $attributesDetails['main_image'],
         ]);
 
         $product->detail()->save($details);
 
-        if(count($categories['categories']) > 0)
-        {
+        if (count($categories['categories']) > 0) {
             $product->categories()->sync($categoryParent['parent_id']);
             $product->categories()->syncWithoutDetaching($categories['categories']);
         }
 
-        if($request->images)
-        {
+        if ($request->images) {
             $savedImages = [];
-            foreach ($images['images'] as $image)
-            {
+            foreach ($images['images'] as $image) {
                 $randomImageName = str_random(15);
 //                Image::make($image)
 //                    ->resize(700, 900)
@@ -184,9 +175,9 @@ class ProductsController extends Controller
                 Image::make($image)
                     ->fit(640)
                     ->encode('jpg')
-                    ->save('uploads/products/'.$randomImageName.'.jpg');
+                    ->save('uploads/products/' . $randomImageName . '.jpg');
                 $savedImage = new ProductImage([
-                    'image' => $randomImageName.'.jpg'
+                    'image' => $randomImageName . '.jpg'
                 ]);
 
                 $savedImages[] = $savedImage;
@@ -197,12 +188,12 @@ class ProductsController extends Controller
 
         $this->updateSlug($product);
 
-        return redirect(Request::segment(1).'/products');
+        return redirect(Request::segment(1) . '/products');
     }
 
     /**
      * Edit product
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -213,30 +204,51 @@ class ProductsController extends Controller
         $stores = $this->store->getAll();
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
-        return view('backend.shared.products.edit', compact('product','stores', 'categories', 'categoriesList'));
+        return view('backend.shared.products.edit', compact('product', 'stores', 'categories', 'categoriesList'));
     }
 
     /**
      * Update a product
      *
      * @var integer $id
-     * @var UpdateProductRequest $request
-     *
+     * @param \Illuminate\Http\Request $request
      * @return mixed
      */
-    public function update($id, UpdateProductRequest $request)
+    public function update($id, \Illuminate\Http\Request $request)
     {
-        if(Auth::user()->isManager())
-        {
+        $validationRules =  [
+            'name_ar'         => 'required',
+            'name_en'         => 'required',
+            'height'          => 'required',
+            'width'           => 'required',
+            'active'          => 'required',
+            'price'           => 'required|numeric',
+            'description_en'  => 'required',
+            'description_ar'  => 'required',
+            'main_image'      => 'image|mimes:jpg,jpeg,png|dimensions:min_width=640,min_height=640,max_width:3000,max_height:3000',
+            'qty'             => 'required|numeric',
+            'images.*'        => 'image|mimes:jpg,jpeg,png|dimensions:min_width=640,min_height=640,max_width:3000,max_height:3000',
+            'sale_price'      => 'required_with:is_sale',
+            'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
+            'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
+        ];
+
+
+        if (Auth::user()->isManager()) {
+            $validationRules['store'] = 'required';
+        }
+
+        $this->validate($request,$validationRules);
+
+        if (Auth::user()->isManager()) {
             $store = $request->only(['store']);
             $store_id = $store['store'];
-        }
-        else
-        {
+        } else {
             $store_id = Auth::user()->store->id;
         }
-        $attributes = $request->only(['name_en', 'name_ar', 'active','natural']);
-        $attributesDetails = $request->only(['price','height', 'width', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'qty', 'description_en', 'description_ar']);
+
+        $attributes = $request->only(['name_en', 'name_ar', 'active', 'natural']);
+        $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -247,39 +259,35 @@ class ProductsController extends Controller
         //@todo: as per client request
         $attributes['active'] = '0';
 
-
         $product = $this->product->getById($id);
         $this->product->update($id, $attributes);
 
         $details = [
-            'price' => $attributesDetails['price'],
-            'height' => $attributesDetails['height'],
-            'width' => $attributesDetails['width'],
-            'is_sale' => isset($attributesDetails['is_sale']) ? '1' : '0',
-            'sale_price' => $attributesDetails['sale_price'],
-            'quantity' => $attributesDetails['qty'],
+            'price'          => $attributesDetails['price'],
+            'height'         => $attributesDetails['height'],
+            'width'          => $attributesDetails['width'],
+            'is_sale'        => isset($attributesDetails['is_sale']) ? '1' : '0',
+            'sale_price'     => $attributesDetails['sale_price'],
+            'quantity'       => $attributesDetails['qty'],
             'description_en' => $attributesDetails['description_en'],
             'description_ar' => $attributesDetails['description_ar'],
         ];
 
-        if($attributesDetails['start_sale_date'])
-        {
+        if ($attributesDetails['start_sale_date']) {
             $startDate = Carbon::createFromFormat('d-m-Y', $attributesDetails['start_sale_date']);
             $details['start_sale_date'] = $startDate->format('Y-m-d');
         }
 
-        if($attributesDetails['end_sale_date'])
-        {
+        if ($attributesDetails['end_sale_date']) {
             $endDate = Carbon::createFromFormat('d-m-Y', $attributesDetails['end_sale_date']);
             $details['end_sale_date'] = $endDate->format('Y-m-d');
         }
 
-        if($mainImage['main_image'])
-        {
+        if ($mainImage['main_image']) {
             $imageName = str_random(15);
 
-            Image::make($mainImage['main_image'])->fit(640)->encode('jpg')->save('uploads/products/'.$imageName.'.jpg');
-            $attributesDetails['main_image'] = $imageName.'.jpg';
+            Image::make($mainImage['main_image'])->fit(640)->encode('jpg')->save('uploads/products/' . $imageName . '.jpg');
+            $attributesDetails['main_image'] = $imageName . '.jpg';
             $details['main_image'] = $attributesDetails['main_image'];
         }
 
@@ -288,19 +296,17 @@ class ProductsController extends Controller
         $product->categories()->sync($categoryParent['parent_id']);
         $product->categories()->syncWithoutDetaching($categories['categories']);
 
-        if($request->images)
-        {
+        if ($request->images) {
             $savedImages = array();
-            foreach ($images['images'] as $image)
-            {
+            foreach ($images['images'] as $image) {
                 $randomImageName = str_random(15);
                 Image::make($image)
                     ->fit(640)
                     ->encode('jpg')
-                    ->save('uploads/products/'.$randomImageName.'.jpg');
+                    ->save('uploads/products/' . $randomImageName . '.jpg');
 
                 $savedImage = new ProductImage([
-                    'image' => $randomImageName.'.jpg'
+                    'image' => $randomImageName . '.jpg'
                 ]);
 
                 $savedImages[] = $savedImage;
@@ -311,7 +317,7 @@ class ProductsController extends Controller
 
         $this->updateSlug($product);
 
-        return redirect(Request::segment(1).'/products');
+        return redirect(Request::segment(1) . '/products');
     }
 
     /**

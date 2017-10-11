@@ -142,8 +142,9 @@
                                 <th>{{__('adminPanel.sku')}}</th>
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.price')}}</th>
-                                <th>{{__('adminPanel.height_and_width')}}</th>
                                 <th>{{__('adminPanel.qty')}}</th>
+                                <th>{{__('adminPanel.delivery_date')}}</th>
+                                <th>{{__('adminPanel.delivery_time')}}</th>
                                 <th>{{__('adminPanel.total')}}</th>
                             </tr>
                             </thead>
@@ -153,12 +154,15 @@
                                     @if($item->product)
                                         @if($item->product->store->id == Auth::user()->store->id)
                                             <tr>
-                                                <td>{{$item->product->sku}}</td>
+                                                <td>
+                                                    {{ route(Request::segment(1).'.orders.completed', $order->id) }}
+                                                    {{$item->product->sku}}
+                                                </td>
                                                 <td>{{$item->product->name_en}}</td>
                                                 <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                                <td>{{$item->product->detail->height or 'No Height'}}
-                                                    / {{$item->product->detail->width or 'No Width'}}</td>
                                                 <td>{{$item->quantity}}</td>
+                                                <td>{{$item->delivery_date}}</td>
+                                                <td>{{$item->delivery_time}}</td>
                                                 <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                             </tr>
                                         @endif
@@ -171,9 +175,9 @@
                                             <td>{{$item->product->sku}}</td>
                                             <td>{{$item->product->name_en}}</td>
                                             <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                            <td>{{$item->product->detail->height or 'No Height'}}
-                                                / {{$item->product->detail->width or 'No Width'}}</td>
                                             <td>{{$item->quantity}}</td>
+                                            <td>{{$item->delivery_date}}</td>
+                                            <td>{{$item->delivery_time}}</td>
                                             <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                         </tr>
                                     @endif
