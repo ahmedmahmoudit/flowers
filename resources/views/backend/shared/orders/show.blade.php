@@ -80,11 +80,7 @@
 
                             <div class="col-xs-6">
                                 <label>{{__('adminPanel.delivery_date')}}</label>
-                                @if($order->delivery_date)
-                                    <p>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</p>
-                                @else
-                                    <p>{{$order->delivery_time}}</p>
-                                @endif
+                                    <p>{{$order->delivery_date ? $order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time : ''}}</p>
                                 <p class="help-block"></p>
                             </div>
                         </div>

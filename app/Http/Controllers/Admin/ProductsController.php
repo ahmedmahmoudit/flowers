@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Product;
 use App\ProductDetail;
 use App\ProductImage;
 use App\Repositories\CategoryRepository;
@@ -33,17 +34,23 @@ class ProductsController extends Controller
      * @var $category
      */
     private $category;
+    /**
+     * @var Product
+     */
+    private $productModel;
 
     /**
      * @param ProductRepositoryInterface $product
      * @param StoreRepositoryInterface $store
      * @param CategoryRepository $category
+     * @param Product $productModel
      */
-    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store, CategoryRepository $category)
+    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store, CategoryRepository $category,Product $productModel)
     {
         $this->product = $product;
         $this->store = $store;
         $this->category = $category;
+        $this->productModel = $productModel;
     }
 
     /**
@@ -53,10 +60,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
+
         if (Auth::user()->isStoreAdmin()) {
-            $products = $this->product->getByStore();
+            // get all payment success order for store
+            $store = Auth::user()->store;
+            $products = $this->productModel->whereIn('store_id',$store->id)->latest()->get();
         } else {
-            $products = $this->product->getAll();
+            $products = $this->productModel->latest()->get();
         }
 
         return view('backend.shared.products.index', compact('products'));
@@ -217,6 +227,7 @@ class ProductsController extends Controller
     public function update($id, \Illuminate\Http\Request $request)
     {
         $validationRules =  [
+            'sku'             => 'unique:products,sku,' . $id,
             'name_ar'         => 'required',
             'name_en'         => 'required',
             'height'          => 'required',
