@@ -33,7 +33,7 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    @if($store)
+                    @if(isset($store))
                         <div style="padding-top:20px">
                             <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
                             <br>
@@ -45,8 +45,6 @@
                         </div>
                     @endif
                 </div>
-
-
 
                 <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
                     @foreach(request()->all() as $key => $value)
@@ -94,7 +92,7 @@
                             </div>
                         </div>
                         <div class="c-content-box c-size-sm c-bg-white text-center">
-                            {{ $products->appends(request()->except('page'))->links('partials.pagination') }}
+                            {{ $products->appends(request()->except('pagex'))->links('partials.pagination') }}
                         </div>
                     @else
                         <div class="c-shop-cart-page-1 c-center c-padding-10">

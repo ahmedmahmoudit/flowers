@@ -52,10 +52,10 @@ class ProductsController extends Controller
      * @param Store $storeModel
      * @internal param Category $category
      */
-    public function __construct(Product $productModel,Area $areaModel, Category $categoryModel, Cart $cart,Store $storeModel)
+    public function __construct(Product $productModel, Area $areaModel, Category $categoryModel, Cart $cart, Store $storeModel)
     {
         $this->middleware('auth')->only('favorite');
-        $this->middleware('area')->only(['index','getProductsForCategory','getAllProductsForCategory','searchProducts']);
+        $this->middleware('area')->only(['index', 'getProductsForCategory', 'getAllProductsForCategory', 'searchProducts']);
         $this->productModel = $productModel;
         $this->areaModel = $areaModel;
         $this->categoryModel = $categoryModel;
@@ -73,23 +73,23 @@ class ProductsController extends Controller
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel
-            ->whereHas('stores',function($q){
-                return $q->where('is_approved',1);
+            ->whereHas('stores', function ($q) {
+                return $q->where('is_approved', 1);
             })->with(['stores'])
             ->find($selectedArea['id']);
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
 
-        $parentCategories = $this->categoryModel->with('children.products')->where('parent_id',0)->get();
+        $parentCategories = $this->categoryModel->with('children.products')->where('parent_id', 0)->get();
 
-        $parentCategories->map(function($parentCategory) use ($areaStores) {
+        $parentCategories->map(function ($parentCategory) use ($areaStores) {
             $childCategories = $parentCategory->children->pluck('id')->toArray();
             $parentCategory->products =
                 $this->productModel
                     ->has('detail')
-                    ->with(['detail','store','userLikes'])
+                    ->with(['detail', 'store', 'userLikes'])
                     ->active()
-                    ->whereIn('store_id',$areaStores)
+                    ->whereIn('store_id', $areaStores)
                     ->childrenCategoryProducts($childCategories)
                     ->select('products.*')
                     ->limit(4)
@@ -98,30 +98,30 @@ class ProductsController extends Controller
 
         $cartItems = $this->cart->getItems();
 
-        return view('products.index', compact('parentCategories','cartItems'));
+        return view('products.index', compact('parentCategories', 'cartItems'));
     }
 
     public function bestSellers(Request $request)
     {
         //@todo : replace with the best selling products
 
-        $bestSellers  = $this->productModel
+        $bestSellers = $this->productModel
             ->active()
             ->has('detail')
-            ->whereHas('store',function($q){
-                return $q->where('is_approved',1);
+            ->whereHas('store', function ($q) {
+                return $q->where('is_approved', 1);
             })
-            ->with(['detail','store','userLikes']);
+            ->with(['detail', 'store', 'userLikes']);
 
-        if($request->sort) {
+        if ($request->sort) {
             switch ($request->sort) {
                 case 'price-l-h':
-                    $bestSellers->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','ASC');
+                    $bestSellers->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy('sale_price', 'ASC');
                     break;
                 case 'price-h-l':
-                    $bestSellers->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','DESC');
+                    $bestSellers->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy('sale_price', 'DESC');
                     break;
                 default:
                     break;
@@ -136,9 +136,8 @@ class ProductsController extends Controller
 
         $sort = $request->sort;
 
-        return view('products.top',compact('bestSellers','cartItems','sort'));
+        return view('products.top', compact('bestSellers', 'cartItems', 'sort'));
     }
-
 
 
     /**
@@ -153,25 +152,25 @@ class ProductsController extends Controller
         $selectedArea = Cache::get('selectedArea');
 
         $area = $this->areaModel
-            ->whereHas('stores',function($q){
-                return $q->where('is_approved',1);
+            ->whereHas('stores', function ($q) {
+                return $q->where('is_approved', 1);
             })->with(['stores'])->find($selectedArea['id']);
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
 
-        $category = $this->categoryModel->with('children')->where('slug_en',$categorySlug)->orWhere('slug_ar',$categorySlug)->first();
+        $category = $this->categoryModel->with('children')->where('slug_en', $categorySlug)->orWhere('slug_ar', $categorySlug)->first();
 
         $isParent = false;
 
-        if($category->parent_id === 0) {
+        if ($category->parent_id === 0) {
             $isParent = true;
-            $category->children->map(function($childCategory) use ($areaStores) {
+            $category->children->map(function ($childCategory) use ($areaStores) {
                 $childCategory->products =
                     $this->productModel
                         ->has('detail')
-                        ->with(['detail','store','userLikes'])
+                        ->with(['detail', 'store', 'userLikes'])
                         ->active()
-                        ->whereIn('store_id',$areaStores)
+                        ->whereIn('store_id', $areaStores)
                         ->childrenCategoryProducts([$childCategory->id])
                         ->select('products.*')
                         ->limit(4)
@@ -180,16 +179,16 @@ class ProductsController extends Controller
         } else {
             $category->products = $this->productModel
                 ->has('detail')
-                ->with(['detail','store','userLikes'])
+                ->with(['detail', 'store', 'userLikes'])
                 ->active()
-                ->whereIn('store_id',$areaStores)
+                ->whereIn('store_id', $areaStores)
                 ->childrenCategoryProducts([$category->id])
                 ->select('products.*')
                 ->limit(4)
                 ->get();
         }
 
-        return view('products.category.index', compact('category','cartItems', 'isParent'));
+        return view('products.category.index', compact('category', 'cartItems', 'isParent'));
 
     }
 
@@ -199,7 +198,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Show All Items
      * Show All Items
      */
-    public function getAllProductsForCategory(Request $request,$categorySlug)
+    public function getAllProductsForCategory(Request $request, $categorySlug)
     {
         $searchTerm = $request->has('term') ? $request->get('term') : '';
         $selectedCategory = $categorySlug;
@@ -210,41 +209,39 @@ class ProductsController extends Controller
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
 //        $priceRangeMin = 1;
 
-        $priceRangeMin  = DB::table('product_details')
+        $priceRangeMin = DB::table('product_details')
             ->select(DB::raw('Min(sale_price) as minprice'))
             ->get()
             ->first()
-            ->minprice
-        ; // @todo: refactor query
+            ->minprice; // @todo: refactor query
 
 
-        $priceRangeMax  = DB::table('product_details')
+        $priceRangeMax = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
             ->first()
-            ->maxprice
-        ;
+            ->maxprice;
 
 
         $sort = $request->sort;
 
         $selectCountryID = \Cache::get('selectedCountryID');
 
-        if(Cache::has('stores')) {
+        if (Cache::has('stores')) {
             $stores = Cache::get('stores');
         } else {
             $stores = $this->storeModel
-                ->where('country_id',$selectCountryID)
-                ->where('is_approved',1)
+                ->where('country_id', $selectCountryID)
+                ->where('is_approved', 1)
                 ->get();
-            Cache::put('stores',$stores,60*24);
+            Cache::put('stores', $stores, 60 * 24);
         }
 
         $selectedStore = $request->has('store') ? $request->get('store') : '';
 
         $area = $this->areaModel
-            ->whereHas('stores',function($q){
-                return $q->where('is_approved',1);
+            ->whereHas('stores', function ($q) {
+                return $q->where('is_approved', 1);
             })
             ->with(['stores'])->find($selectedArea['id']);
 
@@ -252,12 +249,12 @@ class ProductsController extends Controller
 
         $category = $this->categoryModel
             ->with('children')
-            ->where('slug_en',$categorySlug)
-            ->orWhere('slug_ar',$categorySlug)->first();
+            ->where('slug_en', $categorySlug)
+            ->orWhere('slug_ar', $categorySlug)->first();
 
         $childCategories = [$category->id];
 
-        if($category->parent_id === 0 ) {
+        if ($category->parent_id === 0) {
             $childCategories = $category->children->pluck('id')->toArray();
         }
 
@@ -267,22 +264,21 @@ class ProductsController extends Controller
         $products =
             $this->productModel
                 ->has('detail')
-                ->with(['detail','store','userLikes'])
+                ->with(['detail', 'store', 'userLikes'])
                 ->active()
-                ->whereIn('store_id',$areaStores)
+                ->whereIn('store_id', $areaStores)
                 ->childrenCategoryProducts($childCategories)
-                ->select('products.*')
-        ;
+                ->select('products.*');
 
-        if($request->sort) {
+        if ($request->sort) {
             switch ($request->sort) {
                 case 'price-l-h':
-                    $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','ASC');
+                    $products->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy('sale_price', 'ASC');
                     break;
                 case 'price-h-l':
-                    $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','DESC');
+                    $products->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy('sale_price', 'DESC');
                     break;
                 default:
                     break;
@@ -291,7 +287,7 @@ class ProductsController extends Controller
 
         $category->products = $products->paginate(30);
 
-        return view('products.category.view', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeTo','priceRangeFrom','priceRangeMax','priceRangeMin','sort'));
+        return view('products.category.view', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeTo', 'priceRangeFrom', 'priceRangeMax', 'priceRangeMin', 'sort'));
 
     }
 
@@ -304,86 +300,95 @@ class ProductsController extends Controller
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-//        $priceRangeMin = 1;
-        $priceRangeMin  = DB::table('product_details')
+
+        $priceRangeMin = DB::table('product_details')
             ->select(DB::raw('Min(sale_price) as minprice'))
             ->get()
             ->first()
-            ->minprice
-        ; // @todo: refactor query
-        $priceRangeMax  = DB::table('product_details')
+            ->minprice; // @todo: refactor query
+
+
+        if (!$priceRangeMin) {
+            $priceRangeMin = DB::table('product_details')
+                ->select(DB::raw('Min(price) as minprice'))
+                ->get()
+                ->first()
+                ->minprice; // @todo: refactor query
+        }
+
+        $priceRangeMax = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
             ->first()
-            ->maxprice
-        ; // @todo: refactor query
+            ->maxprice; // @todo: refactor query
 
         $parentCategories = Cache::get('parentCategories');
-        $selectCountryID = \Cache::get('selectedCountryID');
+        $selectCountryID = Cache::get('selectedCountryID');
         $selectedArea = Cache::get('selectedArea');
         $sort = $request->sort;
 
         $area = $this->areaModel
-            ->whereHas('stores',function($q){
-                return $q->where('is_approved',1);
+            ->whereHas('stores', function ($q) {
+                return $q->where('is_approved', 1);
             })
-            ->with(['stores'])->find($selectedArea['id']);
+            ->with(['stores'])
+            ->find($selectedArea['id']);
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
 
         $cartItems = $this->cart->getItems();
 
-        if(Cache::has('stores')) {
+        if (Cache::has('stores')) {
             $stores = Cache::get('stores');
         } else {
-            $stores = $this->storeModel->where('country_id',$selectCountryID)->where('is_approved',1)->get();
-            Cache::put('stores',$stores,60*24);
+            $stores = $this->storeModel->where('country_id', $selectCountryID)->approved()->get();
+            Cache::put('stores', $stores, 60 * 24);
         }
 
         $products = $this->productModel
             ->has('detail')
-            ->with(['detail','store','userLikes'])
+            ->with(['detail', 'store', 'userLikes'])
             ->active()
-            ->whereIn('store_id',$areaStores);
+            ->whereIn('store_id', $areaStores);
 
-        if($onSale) {
-            $products = $products->whereHas('detail',function($q) use ($onSale)  {
-                $q->where('is_sale','1');
+        if ($onSale) {
+            $products = $products->whereHas('detail', function ($q) use ($onSale) {
+                $q->where('is_sale', '1');
             });
         }
 
-        if($selectedCategory) {
+        if ($selectedCategory) {
 
             $category = $this->categoryModel
                 ->with('children')
-                ->where('slug_en',$selectedCategory)
-                ->orWhere('slug_ar',$selectedCategory)
+                ->where('slug_en', $selectedCategory)
+                ->orWhere('slug_ar', $selectedCategory)
                 ->first();
             $childCategories = [$category->id];
 
-            if($category->parent_id === 0 ) {
+            if ($category->parent_id === 0) {
                 $childCategories = $category->children->pluck('id')->toArray();
             }
 
             $products = $products->childrenCategoryProducts($childCategories)->select('products.*');
         }
 
-        if($searchTerm) {
+        if ($searchTerm) {
             $products = $products
-                ->where('name_en','like','%'.$searchTerm.'%')
-                ->orWhere('name_ar','like','%'.$searchTerm.'%')
-                ->orWhere('sku','=',$searchTerm);
+                ->where('name_en', 'like', '%' . $searchTerm . '%')
+                ->orWhere('name_ar', 'like', '%' . $searchTerm . '%')
+                ->orWhere('sku', '=', $searchTerm);
         }
 
-        if($selectedStore) {
+        if ($selectedStore) {
             $store = $this->storeModel
-                ->where('is_approved',1)
-                ->where(function($q) use($selectedStore){
-                    $q->where('slug_en',$selectedStore)->orWhere('slug_ar',$selectedStore);
+                ->where('is_approved', 1)
+                ->where(function ($q) use ($selectedStore) {
+                    $q->where('slug_en', $selectedStore)->orWhere('slug_ar', $selectedStore);
                 })->first();
-            if($store) {
+            if ($store) {
                 $products = $products
-                    ->where('store_id',$store->id);
+                    ->where('store_id', $store->id);
             } else {
                 $store = null;
             }
@@ -391,41 +396,38 @@ class ProductsController extends Controller
             $store = null;
         }
 
-//        if($priceRangeTo >= $this->selectedPriceTo) {
-//            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom)  {
-//                $q
-//                    ->where('price','>=',$priceRangeFrom)
-//                    ->where('sale_price','>=',$priceRangeFrom)
-//                ;
-//            });
-//        } else {
-            $products = $products->whereHas('detail',function($q) use ($priceRangeFrom,$priceRangeTo)  {
+        if ($onSale) {
+            $products = $products->whereHas('detail', function ($q) use ($priceRangeFrom, $priceRangeTo) {
                 $q
-                    ->where(function($q) use($priceRangeFrom,$priceRangeTo){
-                        $q->whereBetween('price', [$priceRangeFrom, $priceRangeTo])
-                        ->orWhereBetween('sale_price', [$priceRangeFrom, $priceRangeTo]);
-                });
+                    ->where(function ($q) use ($priceRangeFrom, $priceRangeTo) {
+                        $q->whereBetween('sale_price', [$priceRangeFrom, $priceRangeTo]);
+                    });
             });
-//        }
-
-        if($request->sort) {
-            switch ($request->sort) {
-                case 'price-l-h':
-                    $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','ASC');
-                    break;
-                case 'price-h-l':
-                    $products->join('product_details','products.id','=','product_details.product_id')
-                        ->orderBy('sale_price','DESC');
-                    break;
-                default:
-                    break;
-            }
+        } else {
+            $products = $products->whereHas('detail', function ($q) use ($priceRangeFrom, $priceRangeTo) {
+                $q
+                    ->where(function ($q) use ($priceRangeFrom, $priceRangeTo) {
+                        $q
+                            ->whereBetween('price', [$priceRangeFrom, $priceRangeTo])
+                            ->orWhereBetween('sale_price', [$priceRangeFrom, $priceRangeTo])
+                        ;
+                    });
+            });
         }
 
-        $products =  $products->paginate(30);
+        if ($request->sort) {
 
-        return view('products.search', compact('category','cartItems','parentCategories','searchTerm','selectedCategory','stores','selectedStore','priceRangeFrom','priceRangeTo','priceRangeMin','priceRangeMax','products','sort','store','onSale'));
+            $priceCol = $onSale ? 'product_details.sale_price' : 'product_details.price';
+            $sortOrder = $request->sort == 'price-l-h' ? 'ASC' : 'DESC';
+
+            $products->join('product_details', 'products.id', '=', 'product_details.product_id')
+                ->orderBy($priceCol, $sortOrder);
+
+        }
+
+        $products = $products->paginate(99);
+
+        return view('products.search', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeFrom', 'priceRangeTo', 'priceRangeMin', 'priceRangeMax', 'products', 'sort', 'store', 'onSale'));
     }
 
     public function show(\Request $request, $id, $name)
@@ -435,7 +437,7 @@ class ProductsController extends Controller
         $deliveryTimes = $this->productModel->getDeliveryTimes();
         $selectedTime = null;
 
-        return view('products.view',compact('product','cartItems','deliveryTimes','selectedTime'));
+        return view('products.view', compact('product', 'cartItems', 'deliveryTimes', 'selectedTime'));
     }
 
     /**
@@ -457,21 +459,21 @@ class ProductsController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
+        $attributes = $request->only(['store_id', 'sku', 'name_en', 'name_ar']);
+        $attributesDetails = $request->only(['price', 'weight', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'quantity', 'description_en', 'description_ar', 'main_image']);
         $product = $this->productModel->create($attributes);
 
         $details = new ProductDetail([
-            'price' => $attributesDetails['price'],
-            'weight' => $attributesDetails['weight'],
-            'is_sale' => $attributesDetails['is_sale'],
-            'sale_price' => $attributesDetails['sale_price'],
+            'price'           => $attributesDetails['price'],
+            'weight'          => $attributesDetails['weight'],
+            'is_sale'         => $attributesDetails['is_sale'],
+            'sale_price'      => $attributesDetails['sale_price'],
             'start_sale_date' => $attributesDetails['start_sale_date'],
-            'end_sale_date' => $attributesDetails['end_sale_date'],
-            'quantity' => $attributesDetails['quantity'],
-            'description_en' => $attributesDetails['description_en'],
-            'description_ar' => $attributesDetails['description_ar'],
-            'main_image' => $attributesDetails['main_image'],
+            'end_sale_date'   => $attributesDetails['end_sale_date'],
+            'quantity'        => $attributesDetails['quantity'],
+            'description_en'  => $attributesDetails['description_en'],
+            'description_ar'  => $attributesDetails['description_ar'],
+            'main_image'      => $attributesDetails['main_image'],
         ]);
 
         $product->detail()->save($details);
@@ -481,7 +483,7 @@ class ProductsController extends Controller
 
     /**
      * Edit product
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -503,21 +505,21 @@ class ProductsController extends Controller
      */
     public function update($id, UpdateProductRequest $request)
     {
-        $attributes = $request->only(['store_id','sku', 'name_en', 'name_ar']);
-        $attributesDetails = $request->only(['price','weight', 'is_sale', 'sale_price', 'start_sale_date','end_sale_date', 'quantity', 'description_en', 'description_ar','main_image']);
+        $attributes = $request->only(['store_id', 'sku', 'name_en', 'name_ar']);
+        $attributesDetails = $request->only(['price', 'weight', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'quantity', 'description_en', 'description_ar', 'main_image']);
         $product = $this->productModel->update($id, $attributes);
 
         $details = new ProductDetail([
-            'price' => $attributesDetails['price'],
-            'weight' => $attributesDetails['weight'],
-            'is_sale' => $attributesDetails['is_sale'],
-            'sale_price' => $attributesDetails['sale_price'],
+            'price'           => $attributesDetails['price'],
+            'weight'          => $attributesDetails['weight'],
+            'is_sale'         => $attributesDetails['is_sale'],
+            'sale_price'      => $attributesDetails['sale_price'],
             'start_sale_date' => $attributesDetails['start_sale_date'],
-            'end_sale_date' => $attributesDetails['end_sale_date'],
-            'quantity' => $attributesDetails['quantity'],
-            'description_en' => $attributesDetails['description_en'],
-            'description_ar' => $attributesDetails['description_ar'],
-            'main_image' => $attributesDetails['main_image'],
+            'end_sale_date'   => $attributesDetails['end_sale_date'],
+            'quantity'        => $attributesDetails['quantity'],
+            'description_en'  => $attributesDetails['description_en'],
+            'description_ar'  => $attributesDetails['description_ar'],
+            'main_image'      => $attributesDetails['main_image'],
         ]);
 
         $product->detail()->save($details);
@@ -567,11 +569,11 @@ class ProductsController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function favorite(Request $request,$id)
+    public function favorite(Request $request, $id)
     {
         $user = Auth::user();
         $product = $this->productModel->find($id);
-        if($product->userLikes->contains('id',$user->id)){
+        if ($product->userLikes->contains('id', $user->id)) {
             $product->userLikes()->detach($user->id);
         } else {
             $product->userLikes()->attach($user->id);

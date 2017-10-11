@@ -59,7 +59,7 @@ class ProductDetail extends BaseModel
     public function getFinalPriceWithCurrency()
     {
         $productCountry = $this->getProductCountry();
-        return  $this->final_price .' '. $productCountry['currency_'.app()->getLocale()];
+        return  $this->price .' '. $productCountry['currency_'.app()->getLocale()];
     }
 
     /**
