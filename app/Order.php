@@ -55,7 +55,7 @@ class Order extends BaseModel
      */
     public function orderDetails()
     {
-        return $this->hasMany('App\OrderDetail');
+        return $this->hasMany('App\OrderDetail','order_id','id');
     }
 
     // just get any one order detail, to show as excerpt in order details page
