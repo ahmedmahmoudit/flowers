@@ -60,11 +60,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-
         if (Auth::user()->isStoreAdmin()) {
             // get all payment success order for store
             $store = Auth::user()->store;
-            $products = $this->productModel->whereIn('store_id',$store->id)->latest()->get();
+            $products = $this->productModel->where('store_id',$store->id)->latest()->get();
         } else {
             $products = $this->productModel->latest()->get();
         }

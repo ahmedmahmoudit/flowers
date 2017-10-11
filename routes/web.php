@@ -11,7 +11,7 @@ Route::get('manager/login', function () {
 
 Route::get('admin/login', function () {
     Auth::logout();
-    Auth::loginUsingId(2);
+    Auth::loginUsingId(15);
     return redirect('admin/dashboard');
 });
 

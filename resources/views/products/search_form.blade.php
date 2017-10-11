@@ -45,17 +45,34 @@
             </div>
 
         </li>
-        <li>
-            <div class="c-checkbox has-success">
-                <input type="checkbox" id="checkbox-same-day" class="c-check" name="same-day-delivery"
-                        {{ isset($onSale) && $onSale == 'on' ? 'checked' : '' }}
-                >
-                {{--<label for="checkbox-same-day" style="color: black;font-weight: bold">--}}
+
+        {{--<li>--}}
+            {{--<div class="c-checkbox has-success">--}}
+                {{--<input type="checkbox" id="checkbox1-77" class="c-check" name="same_day_delivery"--}}
+                        {{--{{ isset($sameDayDelivery) && $sameDayDelivery == 'on' ? 'checked' : '' }}--}}
+                {{-->--}}
+
+                {{--<label for="checkbox1-88" style="color: black;font-weight: bold">--}}
                     {{--<span></span>--}}
                     {{--<span class="check" value="1"></span>--}}
                     {{--<span class="box" value="0"></span>--}}
-                    {{--{{ __('SAME DAY DELIVERY') }}--}}
+                    {{--{{ __('Same Day Delivery') }}--}}
                 {{--</label>--}}
+            {{--</div>--}}
+
+        {{--</li>--}}
+
+        <li>
+            <div class="c-checkbox has-success">
+                <input type="checkbox" id="checkbox-same-day" class="c-check" name="same_day_delivery"
+                        {{ isset($sameDayDelivery) && $sameDayDelivery == 'on' ? 'checked' : '' }}
+                >
+                <label for="checkbox-same-day" style="color: black;font-weight: bold">
+                    <span></span>
+                    <span class="check" value="1"></span>
+                    <span class="box" value="0"></span>
+                    {{ __('Same Day Delivery') }}
+                </label>
             </div>
 
         </li>

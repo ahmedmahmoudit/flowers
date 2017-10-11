@@ -297,6 +297,7 @@ class ProductsController extends Controller
         $selectedCategory = $request->has('category') ? $request->get('category') : false;
         $selectedStore = $request->has('store') ? $request->get('store') : '';
         $onSale = $request->has('sale');
+        $sameDayDelivery = $request->has('same_day_delivery');
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
@@ -354,6 +355,12 @@ class ProductsController extends Controller
         if ($onSale) {
             $products = $products->whereHas('detail', function ($q) use ($onSale) {
                 $q->where('is_sale', '1');
+            });
+        }
+
+        if ($sameDayDelivery) {
+            $products = $products->whereHas('store', function ($q) use ($sameDayDelivery) {
+                $q->where('minimum_delivery_days', '0');
             });
         }
 
@@ -427,7 +434,7 @@ class ProductsController extends Controller
 
         $products = $products->paginate(99);
 
-        return view('products.search', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeFrom', 'priceRangeTo', 'priceRangeMin', 'priceRangeMax', 'products', 'sort', 'store', 'onSale'));
+        return view('products.search', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeFrom', 'priceRangeTo', 'priceRangeMin', 'priceRangeMax', 'products', 'sort', 'store', 'onSale','sameDayDelivery'));
     }
 
     public function show(\Request $request, $id, $name)

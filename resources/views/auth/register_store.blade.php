@@ -110,6 +110,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label">{{ __('Minimum Delivery Days') }} <span class="red">*</span></label>
                                                             <input type="text" name="minimum_delivery_days" value="{{ old('minimum_delivery_days') }}" class="form-control c-square c-theme" placeholder="{{ __('ex: 1') }}">
+                                                            <span style="font-size:10px">0 for same day delivery</span>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class=" control-label"> {{ __('Start Week Day') }}
