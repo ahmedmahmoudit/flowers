@@ -43,48 +43,33 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isStoreAdmin())
-        {
-            $orders = $this->order->getByStore();
-        }
-        else
-        {
-            $orders = $this->order->getAll();
+        if (Auth::user()->isStoreAdmin()) {
+            // get all payment success order for store
+            $store = Auth::user()->store;
+            $orders = $store->orders()->captured()->latest()->get();
+        } else {
+            $orders = $this->orderModel->captured()->latest()->get();
         }
 
         return view('backend.shared.orders.index', ['orders' => $orders]);
     }
 
-    /**
-     * Show Order
-    #
-     * @var integer $id
-     *
-     * @return mixed
-     */
     public function show($id)
     {
-        $order = $this->orderModel->with(['coupon','orderDetails.product','user'])->find($id);
+        $order = $this->orderModel->with(['coupon', 'orderDetails.product', 'user'])->find($id);
 
-        $statusOfThisPart = '';
-        $user = Auth::user();
-        if($user->isStoreAdmin()) {
-            $store = $user->store;
-            $statusOfThisPart = $store->order_status;
+        if(!Auth::user()->isManager())
+        {
+            $store  = $order->stores()->where('store_id', Auth::user()->store->id)->first();
+
+            $statusOfThisPart = $store->pivot->order_status;
         }
-//        if(!Auth::user()->isStoreAdmin())
-//        {
-//            $store  = Auth::user()->store;
-//            $statusOfThisPart = $store->pivot->order_status;
-//        }
-
 
         return view('backend.shared.orders.show', compact('order', 'statusOfThisPart'));
     }
-
     /**
      *  Order Shipped
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -93,11 +78,9 @@ class OrdersController extends Controller
     {
         $order = $this->order->getById($id);
         $userEmail = $order->order_email ? $order->order_email : $order->user->email;
-        if($order->stores->count() > 1)
-        {
+        if ($order->stores->count() > 1) {
             $pendingOrderStores = $order->stores->filter(function ($order) {
-                if($order->pivot->order_status == '-1')
-                {
+                if ($order->pivot->order_status == '-1') {
                     return $order;
                 }
             })->count();
@@ -105,8 +88,7 @@ class OrdersController extends Controller
             $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : 'Last Part of ';
 
             $order->stores->filter(function ($order) {
-                if($order->pivot->store_id == Auth::user()->store->id)
-                {
+                if ($order->pivot->store_id == Auth::user()->store->id) {
                     $order->pivot->order_status = '2';
                     $order->pivot->save();
                 }
@@ -115,9 +97,7 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
 
             Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Shipped', $isLastPart));
-        }
-        else
-        {
+        } else {
             $storeOrderStatus = $order->stores->first();
             $storeOrderStatus->pivot->order_status = '2';
             $storeOrderStatus->pivot->save();
@@ -130,12 +110,12 @@ class OrdersController extends Controller
 
         }
 
-        return route(Request::segment(1).'.orders.show', $order->id);
+        return route(Request::segment(1) . '.orders.show', $order->id);
     }
 
     /**
      *  Order Completed
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -144,11 +124,9 @@ class OrdersController extends Controller
     {
         $order = $this->order->getById($id);
         $userEmail = $order->order_email ? $order->order_email : $order->user->email;
-        if($order->stores->count() > 1)
-        {
+        if ($order->stores->count() > 1) {
             $pendingOrderStores = $order->stores->filter(function ($order) {
-                if($order->pivot->order_status != '3' || $order->pivot->order_status !='4')
-                {
+                if ($order->pivot->order_status != '3' || $order->pivot->order_status != '4') {
                     return $order;
                 }
             })->count();
@@ -156,8 +134,7 @@ class OrdersController extends Controller
             $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : 'Last Part of ';
 
             $order->stores->filter(function ($order) {
-                if($order->pivot->store_id == Auth::user()->store->id)
-                {
+                if ($order->pivot->store_id == Auth::user()->store->id) {
                     $order->pivot->order_status = '3';
                     $order->pivot->save();
                 }
@@ -166,9 +143,7 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
 
             Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Completed', $isLastPart));
-        }
-        else
-        {
+        } else {
             $storeOrderStatus = $order->stores->first();
             $storeOrderStatus->pivot->order_status = '3';
             $storeOrderStatus->pivot->save();
@@ -182,28 +157,26 @@ class OrdersController extends Controller
         }
 
         //create store rate record to make user send feedback about store
-        do
-        {
+        do {
             $token = sha1(time());
             $checkUnique = StoreRate::where('token', $token)->first();
-        }
-        while(!empty($checkUnique));
+        } while (!empty($checkUnique));
 
         StoreRate::create([
-            'user_id' => $order->user_id,
+            'user_id'  => $order->user_id,
             'store_id' => Auth::user()->store->id,
-            'token' => $token,
+            'token'    => $token,
         ]);
 
         Mail::to($userEmail)->queue(new StoreRateMail($order->user->name, Auth::user()->store->name, $token));
 
 
-        return route(Request::segment(1).'.orders.show', $order->id);
+        return route(Request::segment(1) . '.orders.show', $order->id);
     }
 
     /**
      *  Order Cancelled
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -212,11 +185,9 @@ class OrdersController extends Controller
     {
         $order = $this->order->getById($id);
         $userEmail = $order->order_email ? $order->order_email : $order->user->email;
-        if($order->stores->count() > 1)
-        {
+        if ($order->stores->count() > 1) {
             $pendingOrderStores = $order->stores->filter(function ($order) {
-                if($order->pivot->order_status != '3' || $order->pivot->order_status !='4')
-                {
+                if ($order->pivot->order_status != '3' || $order->pivot->order_status != '4') {
                     return $order;
                 }
             })->count();
@@ -224,8 +195,7 @@ class OrdersController extends Controller
             $isLastPart = $pendingOrderStores > 1 ? 'Part of ' : '';
 
             $order->stores->filter(function ($order) {
-                if($order->pivot->store_id == Auth::user()->store->id)
-                {
+                if ($order->pivot->store_id == Auth::user()->store->id) {
                     $order->pivot->order_status = '4';
                     $order->pivot->save();
                 }
@@ -234,9 +204,7 @@ class OrdersController extends Controller
             $order = $this->order->getById($id);
 
             Mail::to($userEmail)->queue(new OrderStatusUpdate($order, 'Cancelled', $isLastPart));
-        }
-        else
-        {
+        } else {
             $storeOrderStatus = $order->stores->first();
             $storeOrderStatus->pivot->order_status = '4';
             $storeOrderStatus->pivot->save();
@@ -249,7 +217,7 @@ class OrdersController extends Controller
 
         }
 
-        return route(Request::segment(1).'.orders.show', $order->id);
+        return route(Request::segment(1) . '.orders.show', $order->id);
     }
 
     /**

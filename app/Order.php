@@ -96,4 +96,10 @@ class Order extends BaseModel
     {
         return $this->orderStatusCast($this->order_status);
     }
+
+    public function scopeCaptured($q)
+    {
+        return $q->where('captured_status',1);
+    }
+
 }

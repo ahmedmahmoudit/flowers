@@ -69,7 +69,7 @@ class Store extends BaseModel
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order')->withPivot('order_status');
+        return $this->belongsToMany('App\Order','order_store')->withPivot('order_status');
     }
 
     public function scopeApproved($query)

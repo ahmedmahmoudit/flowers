@@ -24,35 +24,35 @@
                                 update!</b>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                            {{--@if($order->order_status >= '2' || $statusOfThisPart >= '2')--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-green margin confirm-ship" disabled>Shipped</a>--}}
-                            {{--@else--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-green margin confirm-ship">Shipped</a>--}}
-                            {{--@endif--}}
+                            @if($order->order_status >= '2' || $statusOfThisPart >= '2')
+                                <a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-green margin confirm-ship" disabled>Shipped</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.shipped', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-green margin confirm-ship">Shipped</a>
+                            @endif
 
-                            {{--@if($order->order_status >= '3' || $statusOfThisPart >= '3')--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-orange margin confirm-complete" disabled>Completed</a>--}}
-                            {{--@else--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-orange margin confirm-complete">Completed</a>--}}
-                            {{--@endif--}}
+                            @if($order->order_status >= '3' || $statusOfThisPart >= '3')
+                                <a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-orange margin confirm-complete" disabled>Completed</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.completed', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-orange margin confirm-complete">Completed</a>
+                            @endif
 
-                            {{--@if($order->order_status >= '3' || $statusOfThisPart >= '3')--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-red margin confirm-cancel" disabled>Cancel</a>--}}
-                            {{--@else--}}
-                                {{--<a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}"--}}
-                                   {{--data-method="POST" data-laravel-method="post"--}}
-                                   {{--class="btn bg-red margin confirm-cancel">Cancel</a>--}}
-                            {{--@endif--}}
+                            @if($order->order_status >= '3' || $statusOfThisPart >= '3')
+                                <a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-red margin confirm-cancel" disabled>Cancel</a>
+                            @else
+                                <a href="{{ route(Request::segment(1).'.orders.cancelled', $order->id) }}"
+                                   data-method="POST" data-laravel-method="post"
+                                   class="btn bg-red margin confirm-cancel">Cancel</a>
+                            @endif
 
                         </div>
                 @endif
@@ -149,9 +149,9 @@
                             </thead>
                             <tbody>
                             @if(Auth::user()->isStoreAdmin())
-                                @if($order->orderDetails && $order->orderDetails->count() )
-                                    @foreach($order->orderDetails as $item)
-                                        @if($item->product->store->id == Auth::user()->store_id)
+                                @foreach($order->orderDetails as $item)
+                                    @if($item->product)
+                                        @if($item->product->store->id == Auth::user()->store->id)
                                             <tr>
                                                 <td>{{$item->product->sku}}</td>
                                                 <td>{{$item->product->name_en}}</td>
@@ -162,21 +162,22 @@
                                                 <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                             </tr>
                                         @endif
-                                    @endforeach
-                                @endif
+                                    @endif
+                                @endforeach
                             @else
-                                @if($order->orderDetails && $order->orderDetails->count() )
-                                    @foreach($order->orderDetails as $item)
+                                @foreach($order->orderDetails as $item)
+                                    @if($item->product)
                                         <tr>
-                                            <td>{{$item->product ? $item->product->sku : ''}}</td>
-                                            <td>{{$item->product ? $item->product->name_en: ''}}</td>
+                                            <td>{{$item->product->sku}}</td>
+                                            <td>{{$item->product->name_en}}</td>
                                             <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                             <td>{{$item->product->detail->height or 'No Height'}}
-                                             <td> {{$item->product->detail->width or 'No Width'}}</td>
+                                                / {{$item->product->detail->width or 'No Width'}}</td>
+                                            <td>{{$item->quantity}}</td>
                                             <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                         </tr>
-                                    @endforeach
-                                @endif
+                                    @endif
+                                @endforeach
                             @endif
                             </tbody>
                         </table>
@@ -206,7 +207,6 @@
           }
         });
         $('#products-table').DataTable({
-          "scrollX": true,
           "paging": true,
           "lengthChange": false,
           "searching": true,
