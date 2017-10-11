@@ -142,16 +142,10 @@ class ProductsController extends Controller
         //save main image
         $imageName = str_random(15);
 
-//        Image::make($mainImage['main_image'])
-//            ->resize(700, 900)->encode('jpg')
-//            ->save('uploads/products/'.$imageName.'.jpg');
-
         Image::make($mainImage['main_image'])
             ->fit(640)
             ->encode('jpg')
             ->save('uploads/products/' . $imageName . '.jpg');
-//        Image::make($mainImage['main_image'])->resize(555, 715)->encode('jpg')->save('uploads/products/large/'.$imageName.'.jpg');
-//        Image::make($mainImage['main_image'])->resize(136, 175)->encode('jpg')->save('uploads/products/thumb/'.$imageName.'.jpg');
         $attributesDetails['main_image'] = $imageName . '.jpg';
 
         $details = new ProductDetail([
@@ -179,9 +173,6 @@ class ProductsController extends Controller
             $savedImages = [];
             foreach ($images['images'] as $image) {
                 $randomImageName = str_random(15);
-//                Image::make($image)
-//                    ->resize(700, 900)
-//                    ->encode('jpg')->save('uploads/products/'.$randomImageName.'.jpg');
                 Image::make($image)
                     ->fit(640)
                     ->encode('jpg')
