@@ -147,7 +147,7 @@
 
                                                         <div class="form-group">
                                                             <label class="control-label">{{ __('Image') }} </label>
-                                                            <input type="file" name="image" class="form-control c-square c-theme" ">
+                                                            <input type="file" name="image" class="form-control c-square c-theme">
                                                         </div>
 
                                                         <div class="form-group c-margin-t-40">
