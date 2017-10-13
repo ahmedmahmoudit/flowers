@@ -2,7 +2,7 @@
  Core script to handle the entire theme and core functions
  **/
 
-var App = function() {
+var App = function () {
 
   // IE mode
   var isRTL = false;
@@ -13,7 +13,7 @@ var App = function() {
   var resizeHandlers = [];
 
   // initializes main settings
-  var handleInit = function() {
+  var handleInit = function () {
     isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
     isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
     isIE = navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1;
@@ -32,7 +32,7 @@ var App = function() {
   };
 
   // runs callback functions set by Jango.addResponsiveHandler().
-  var _runResizeHandlers = function() {
+  var _runResizeHandlers = function () {
     // reinitialize other subscribed elements
     for (var i = 0; i < resizeHandlers.length; i++) {
       var each = resizeHandlers[i];
@@ -41,15 +41,15 @@ var App = function() {
   };
 
   // handle group element heights
-  var handleHeight = function() {
-    $('[data-auto-height]').each(function() {
+  var handleHeight = function () {
+    $('[data-auto-height]').each(function () {
       var parent = $(this);
       var items = $('[data-height]', parent);
       var height = 0;
       var mode = parent.attr('data-mode');
       var offset = parseInt(parent.attr('data-offset') ? parent.attr('data-offset') : 0);
 
-      items.each(function() {
+      items.each(function () {
         if ($(this).attr('data-height') == "height") {
           $(this).css('height', '');
         } else {
@@ -64,7 +64,7 @@ var App = function() {
 
       height = height + offset;
 
-      items.each(function() {
+      items.each(function () {
         if ($(this).attr('data-height') == "height") {
           $(this).css('height', height);
         } else {
@@ -72,29 +72,29 @@ var App = function() {
         }
       });
 
-      if(parent.attr('data-related')) {
+      if (parent.attr('data-related')) {
         $(parent.attr('data-related')).css('height', parent.height());
       }
     });
   }
 
   // handle the layout reinitialization on window resize
-  var handleOnResize = function() {
+  var handleOnResize = function () {
     var resize;
-    $(window).resize(function() {
+    $(window).resize(function () {
       if (resize) {
         clearTimeout(resize);
       }
-      resize = setTimeout(function() {
+      resize = setTimeout(function () {
         _runResizeHandlers();
       }, 50); // wait 50ms until window resize finishes.
     });
   };
 
   // Handles custom checkboxes & radios using jQuery Uniform plugin
-  var handleCheckboxRadios = function() {
+  var handleCheckboxRadios = function () {
     // Material design ckeckbox and radio effects
-    $('body').on('click', '.c-checkbox > label, .c-radio > label', function() {
+    $('body').on('click', '.c-checkbox > label, .c-radio > label', function () {
       var the = $(this);
       // find the first span which is our circle/bubble
       var el = $(this).children('span:first-child');
@@ -114,19 +114,19 @@ var App = function() {
   };
 
   // Handles Bootstrap Accordions.
-  var handleAccordions = function() {
-    $('body').on('shown.bs.collapse', '.accordion.scrollable', function(e) {
+  var handleAccordions = function () {
+    $('body').on('shown.bs.collapse', '.accordion.scrollable', function (e) {
       Jango.scrollTo($(e.target));
     });
   };
 
 
   // Handles Bootstrap Tabs.
-  var handleTabs = function() {
+  var handleTabs = function () {
     //activate tab if tab id provided in the URL
     if (encodeURI(location.hash)) {
       var tabid = encodeURI(location.hash.substr(1));
-      $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function() {
+      $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function () {
         var tabid = $(this).attr("id");
         $('a[href="#' + tabid + '"]').click();
       });
@@ -135,9 +135,9 @@ var App = function() {
   };
 
   // Handles Bootstrap Modals.
-  var handleModals = function() {
+  var handleModals = function () {
     // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class.
-    $('body').on('hide.bs.modal', function() {
+    $('body').on('hide.bs.modal', function () {
       if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') === false) {
         $('html').addClass('modal-open');
       } else if ($('.modal:visible').size() <= 1) {
@@ -146,60 +146,60 @@ var App = function() {
     });
 
     // fix page scrollbars issue
-    $('body').on('show.bs.modal', '.modal', function() {
+    $('body').on('show.bs.modal', '.modal', function () {
       if ($(this).hasClass("modal-scroll")) {
         $('body').addClass("modal-open-noscroll");
       }
     });
 
     // fix page scrollbars issue
-    $('body').on('hide.bs.modal', '.modal', function() {
+    $('body').on('hide.bs.modal', '.modal', function () {
       $('body').removeClass("modal-open-noscroll");
     });
 
     // remove ajax content and remove cache on modal closed
-    $('body').on('hidden.bs.modal', '.modal:not(.modal-cached)', function() {
+    $('body').on('hidden.bs.modal', '.modal:not(.modal-cached)', function () {
       $(this).removeData('bs.modal');
     });
   };
 
   // Handles Bootstrap Tooltips.
-  var handleTooltips = function() {
+  var handleTooltips = function () {
     // global tooltips
     $('.tooltips').tooltip();
   };
 
   // Handles Bootstrap Dropdowns
-  var handleDropdowns = function() {
+  var handleDropdowns = function () {
     /*
      Hold dropdown on click
      */
-    $('body').on('click', '.dropdown-menu.hold-on-click', function(e) {
+    $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
       e.stopPropagation();
     });
   };
 
-  var handleAlerts = function() {
-    $('body').on('click', '[data-close="alert"]', function(e) {
+  var handleAlerts = function () {
+    $('body').on('click', '[data-close="alert"]', function (e) {
       $(this).parent('.alert').hide();
       $(this).closest('.note').hide();
       e.preventDefault();
     });
 
-    $('body').on('click', '[data-close="note"]', function(e) {
+    $('body').on('click', '[data-close="note"]', function (e) {
       $(this).closest('.note').hide();
       e.preventDefault();
     });
 
-    $('body').on('click', '[data-remove="note"]', function(e) {
+    $('body').on('click', '[data-remove="note"]', function (e) {
       $(this).closest('.note').remove();
       e.preventDefault();
     });
   };
 
   // Handle Hower Dropdowns
-  var handleDropdownHover = function() {
-    $('[data-hover="dropdown"]').not('.hover-initialized').each(function() {
+  var handleDropdownHover = function () {
+    $('[data-hover="dropdown"]').not('.hover-initialized').each(function () {
       $(this).dropdownHover();
       $(this).addClass('hover-initialized');
     });
@@ -210,12 +210,12 @@ var App = function() {
   // last popep popover
   var lastPopedPopover;
 
-  var handlePopovers = function() {
+  var handlePopovers = function () {
     $('.popovers').popover();
 
     // close last displayed popover
 
-    $(document).on('click.bs.popover.data-api', function(e) {
+    $(document).on('click.bs.popover.data-api', function (e) {
       if (lastPopedPopover) {
         lastPopedPopover.popover('hide');
       }
@@ -223,24 +223,24 @@ var App = function() {
   };
 
   // Fix input placeholder issue for IE9 and IE10
-  var handleFixInputPlaceholderForIE = function() {
+  var handleFixInputPlaceholderForIE = function () {
     //fix html5 placeholder attribute for ie9 & ie10
     if (isIE9 || isIE10) {
       // this is html5 placeholder fix for inputs, inputs with placeholder-no-fix class will be skipped(e.g: we need this for password fields)
-      $('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function() {
+      $('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function () {
         var input = $(this);
 
         if (input.val() === '' && input.attr("placeholder") !== '') {
           input.addClass("placeholder").val(input.attr('placeholder'));
         }
 
-        input.focus(function() {
+        input.focus(function () {
           if (input.val() == input.attr('placeholder')) {
             input.val('');
           }
         });
 
-        input.blur(function() {
+        input.blur(function () {
           if (input.val() === '' || input.val() == input.attr('placeholder')) {
             input.val(input.attr('placeholder'));
           }
@@ -249,27 +249,40 @@ var App = function() {
     }
   };
 
-  var changeCountry = function(e) {
-    $( "#select_country").change(function(e) {
+  var changeCountry = function (e) {
+    $("#select_country").change(function (e) {
       var selectedCountry = $('#select_country').val();
       var $select = $("#area");
-      $.ajax({url: "/country/"+selectedCountry+"/areas",success: function(result) {
-        $select.find('option').remove();
-        result.data.forEach(function(country){
-          $('<option>').val(country.id).text(country.name).appendTo($select);
-        });
-      }});
+      $.ajax({
+        url: "/country/" + selectedCountry + "/areas", success: function (result) {
+          $select.find('option').remove();
+          result.data.forEach(function (country) {
+            $('<option>').val(country.id).text(country.name).appendTo($select);
+          });
+        }
+      });
     });
   };
 
-  var changeArea = function() {
-    $( ".select_area" ).change(function() {
+  var changeArea = function () {
+
+    // var area = $('#area').val();
+    // var token = $('#token').val();
+    // $.post("/area/set",
+    //   {
+    //     area: area,
+    //     _token: token
+    //   },
+    //   function (data, status) {
+    //   });
+    //
+    $(".select_area").change(function () {
       $('form.set-area-form').submit();
     });
   };
 
-  var sort = function() {
-    $( ".sort" ).change(function() {
+  var sort = function () {
+    $(".sort").change(function () {
       $('form#sort-form').submit();
     });
   };
@@ -280,7 +293,7 @@ var App = function() {
   return {
 
     //main function to initiate the theme
-    init: function() {
+    init: function () {
       //IMPORTANT!!!: Do not modify the core handlers call order.
 
       //Core handlers
@@ -314,22 +327,22 @@ var App = function() {
     // },
 
     //public function to remember last opened popover that needs to be closed on click
-    setLastPopedPopover: function(el) {
+    setLastPopedPopover: function (el) {
       lastPopedPopover = el;
     },
 
     //public function to add callback a function which will be called on window resize
-    addResizeHandler: function(func) {
+    addResizeHandler: function (func) {
       resizeHandlers.push(func);
     },
 
     //public functon to call _runresizeHandlers
-    runResizeHandlers: function() {
+    runResizeHandlers: function () {
       _runResizeHandlers();
     },
 
     // wrJangoer function to scroll(focus) to an element
-    scrollTo: function(el, offeset) {
+    scrollTo: function (el, offeset) {
       var pos = (el && el.size() > 0) ? el.offset().top : 0;
 
       if (el) {
@@ -345,18 +358,18 @@ var App = function() {
     },
 
     // function to scroll to the top
-    scrollTop: function() {
+    scrollTop: function () {
       Jango.scrollTo();
     },
 
 
     //public function to initialize the fancybox plugin
-    initFancybox: function() {
+    initFancybox: function () {
       handleFancybox();
     },
 
     //public helper function to get actual input value(used in IE9 and IE8 due to placeholder attribute not supported)
-    getActualVal: function(el) {
+    getActualVal: function (el) {
       el = $(el);
       if (el.val() === el.attr("placeholder")) {
         return "";
@@ -365,7 +378,7 @@ var App = function() {
     },
 
     //public function to get a paremeter by name from URL
-    getURLParameter: function(paramName) {
+    getURLParameter: function (paramName) {
       var searchString = window.location.search.substring(1),
         i, val, params = searchString.split("&");
 
@@ -379,7 +392,7 @@ var App = function() {
     },
 
     // check for device touch support
-    isTouchDevice: function() {
+    isTouchDevice: function () {
       try {
         document.createEvent("TouchEvent");
         return true;
@@ -389,7 +402,7 @@ var App = function() {
     },
 
     // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
-    getViewPort: function() {
+    getViewPort: function () {
       var e = window,
         a = 'inner';
       if (!('innerWidth' in window)) {
@@ -404,27 +417,27 @@ var App = function() {
     },
 
     // generate unique ID
-    getUniqueID: function(prefix) {
+    getUniqueID: function (prefix) {
       return 'prefix_' + Math.floor(Math.random() * (new Date()).getTime());
     },
 
     // check IE9 mode
-    isIE: function() {
+    isIE: function () {
       return isIE;
     },
 
     // check IE9 mode
-    isIE9: function() {
+    isIE9: function () {
       return isIE9;
     },
 
     // check IE9 mode
-    isIE10: function() {
+    isIE10: function () {
       return isIE10;
     },
 
     // responsive breakpoints
-    getBreakpoint: function(size) {
+    getBreakpoint: function (size) {
       // bootstrap responsive breakpoints
       var sizes = {
         'xs': 480, // extra small

@@ -146,7 +146,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
  ***************************************************************************************************/
 Route::group(['middleware' => ['web']], function () {
 
-    Route::post('area/set', 'LocaleController@setArea')->name('area.set');
+    Route::any('area/set', 'LocaleController@setArea')->name('area.set');
     Route::get('area/select', 'LocaleController@selectArea')->name('area.select');
     Route::post('order/track', 'OrdersController@trackOrder')->name('order.track');
 

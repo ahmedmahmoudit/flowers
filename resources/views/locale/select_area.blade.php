@@ -8,19 +8,19 @@
             </div>
             <div class="row">
 
-                {!! Form::open(['route' => 'area.set', 'method' => 'post', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
+                {!! Form::open(['route' => 'area.set', 'method' => 'GET', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
 
                 <div class="form-group">
                     <label for="inputPassword3" class="col-md-4 control-label">{{ __('Area') }}</label>
                     <div class="col-md-6">
-                        <select class="form-control c-square c-theme select_area" name="area">
+                        <select class="form-control  c-square c-theme select_area" name="area">
                             <option value="">{{__('Select Area')}}</option>
                             @foreach($areas as $area)
                                 <option value="{{ $area['id'] }}"
                                         @if($selectedArea && $selectedArea['id'] === $area['id'])
                                         selected
                                         @endif
-                                >{{ $area['name_'.app()->getLocale()] }} - {{ $area['id'] }}</option>
+                                >{{ $area['name_'.app()->getLocale()] }}</option>
                             @endforeach
                         </select>
                     </div>

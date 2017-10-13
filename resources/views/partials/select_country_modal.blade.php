@@ -29,7 +29,7 @@
 
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => 'area.set', 'method' => 'post', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
+                    {!! Form::open(['route' => 'area.set', 'method' => 'GET', 'class'=>'form-horizontal set-area-form','name'=>'set-area-form']) !!}
 
                     <div class="form-group">
                         <label for="inputPassword3" class="col-md-4 control-label">{{ __('Area') }}</label>
