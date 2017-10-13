@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-md-4 control-label">{{ __('Area') }}</label>
                     <div class="col-md-6">
-                        <select class="form-control  c-square c-theme select_area" name="area">
+                        <select class="form-control c-square c-theme select_area" name="area">
                             <option value="">{{__('Select Area')}}</option>
                             @foreach($areas as $area)
                                 <option value="{{ $area['id'] }}"
