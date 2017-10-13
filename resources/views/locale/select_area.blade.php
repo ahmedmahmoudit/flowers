@@ -20,7 +20,7 @@
                                         @if($selectedArea && $selectedArea['id'] === $area['id'])
                                         selected
                                         @endif
-                                >{{ $area['name_'.app()->getLocale()] }}</option>
+                                >{{ $area['name_'.app()->getLocale()] }} - {{ $area['id'] }}</option>
                             @endforeach
                         </select>
                     </div>
