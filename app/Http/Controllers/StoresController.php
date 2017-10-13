@@ -49,7 +49,7 @@ class StoresController extends Controller
      */
     public function index(Request $request)
     {
-        $selectedCountry = Cache::get('selectedCountry');
+        $selectedCountry = session()->get('selectedCountry');
         $stores = $this->storeModel->with('areas')->active()->approved()->where('country_id',$selectedCountry['id'])->paginate(100);
         $viewType = $request->has('type') && $request->type == 'list' ? 'list' : 'grid';
 

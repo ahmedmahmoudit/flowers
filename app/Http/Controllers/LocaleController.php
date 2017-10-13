@@ -39,8 +39,8 @@ class LocaleController extends Controller
     public function setCountry(Request $request)
     {
         $country = $this->countryModel->find($request->country)->toArray();
-        Cache::put('selectedCountry',$country, 60 * 24);
-        Cache::forget('selectedArea');
+        session()->put('selectedCountry',$country, 60 * 24);
+        session()->forget('selectedArea');
         $this->cart->flushCart();
         return redirect()->intended('/');
     }
@@ -49,7 +49,7 @@ class LocaleController extends Controller
     {
         if($request->area) {
             $area = $this->areaModel->find($request->area)->toArray();
-            Cache::put('selectedArea',$area, 60 * 24);
+            session()->put('selectedArea',$area, 60 * 24);
         }
         return redirect()->intended('/');
     }
@@ -65,8 +65,8 @@ class LocaleController extends Controller
 
     public function selectArea()
     {
-        $selectedCountry = Cache::get('selectedCountry');
-        $selectedArea = Cache::get('selectedArea');
+        $selectedCountry = session()->get('selectedCountry');
+        $selectedArea = session()->get('selectedArea');
         $areas = $selectedCountry['areas'];
 
         return view('locale.select_area',compact('areas','selectedArea'));
@@ -75,8 +75,8 @@ class LocaleController extends Controller
     public function getCountryAreas($countryID)
     {
         $country = $this->countryModel->find($countryID);
-        Cache::put('selectedCountry',$country->toArray(), 60 * 24);
-        Cache::forget('selectedArea');
+        session()->put('selectedCountry',$country->toArray(), 60 * 24);
+        session()->forget('selectedArea');
         $this->cart->flushCart();
 
         $data = $country->areas->map(function($c){

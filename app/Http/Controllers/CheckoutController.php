@@ -60,8 +60,8 @@ class CheckoutController extends Controller
                 $hasAddress = true;
             }
         }
-        $selectedCountry = Cache::get('selectedCountry');
-        $selectedArea = Cache::get('selectedArea');
+        $selectedCountry = session()->get('selectedCountry');
+        $selectedArea = session()->get('selectedArea');
 
         $products = $this->productModel->has('detail')->with(['detail','store'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
         if($user) {
             $user->load('addresses');
         }
-        $selectedCountry = Cache::get('selectedCountry');
+        $selectedCountry = session()->get('selectedCountry');
 
 
 //        if(!$user->addresses->count()) {

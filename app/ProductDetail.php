@@ -67,7 +67,7 @@ class ProductDetail extends BaseModel
      */
     public function getProductCountry(): array
     {
-        $country = Cache::get('selectedCountry');
+        $country = session()->get('selectedCountry');
         return $country;
     }
 //    public function getProductCountry(): array

@@ -41,7 +41,7 @@ class PaymentsController extends Controller
             return view('payments.failure', compact('status'));
         }
 
-        $selectedCountry = Cache::get('selectedCountry');
+        $selectedCountry = session()->get('selectedCountry');
         $status = 'success';
         $order = $this->orderModel->with('orderDetails')->where('reference_code', $request->ref)->first();
 

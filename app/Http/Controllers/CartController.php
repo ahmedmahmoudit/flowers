@@ -34,7 +34,7 @@ class CartController extends Controller
     {
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id',$this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
-        $selectedCountry = \Cache::get('selectedCountry');
+        $selectedCountry = \session()->get('selectedCountry');
 
         return view('cart.index',compact('cart','selectedCountry'));
     }

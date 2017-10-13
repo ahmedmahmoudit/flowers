@@ -8,9 +8,8 @@ class Area
 {
     public function handle($request, Closure $next)
     {
-        if (!cache()->has('selectedArea') || !cache()->get('selectedArea')) {
+        if (!session()->has('selectedArea') || !session()->get('selectedArea')) {
             return redirect()->route('area.select');
-//            app()->setLocale(session()->get('locale'));
         }
         return $next($request);
     }

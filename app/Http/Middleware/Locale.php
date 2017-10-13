@@ -19,14 +19,14 @@ class Locale
             Cache::put('countries',$countries,60 * 24);
         }
 
-        if(!Cache::has('selectedCountry')) {
+        if(!session()->has('selectedCountry')) {
             $country = Country::where('name_en','kuwait')->first()->toArray();
-            Cache::put('selectedCountry',$country,60 * 24);
-            Cache::put('selectedCountryID',$country['id'],60 * 24);
+            session()->put('selectedCountry',$country,60 * 24);
+            session()->put('selectedCountryID',$country['id'],60 * 24);
         }
 
-        if(!Cache::has('selectedArea')) {
-            Cache::put('selectedArea',false, 60 * 24);
+        if(!session()->has('selectedArea')) {
+            session()->put('selectedArea',false, 60 * 24);
         }
 
         return $next($request);

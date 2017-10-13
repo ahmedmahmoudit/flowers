@@ -31,8 +31,8 @@ class ProfileController extends Controller
      */
     public function __construct(User $userModel,Order $orderModel, Cart $cart)
     {
-        $this->userModel = $userModel;
         $this->middleware('auth');
+        $this->userModel = $userModel;
         $this->orderModel = $orderModel;
         $this->cart = $cart;
     }

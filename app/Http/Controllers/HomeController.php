@@ -54,7 +54,7 @@ class HomeController extends Controller
         $sliderImages = $this->sliderModel->orderBy('order', 'asc')->limit(5)->get();
         $ads = $this->adModel->latest()->limit(3)->get();
 
-        $selectedArea = Cache::get('selectedArea');
+        $selectedArea = session()->get('selectedArea');
 
         $area = $this->areaModel
             ->whereHas('stores', function ($q) {

@@ -51,8 +51,8 @@ class Header
         $request = request();
 
         $countries = Cache::get('countries');
-        $selectedCountry = Cache::get('selectedCountry');
-        $selectedArea = Cache::get('selectedArea');
+        $selectedCountry = session()->get('selectedCountry');
+        $selectedArea = session()->get('selectedArea');
         $areas = $selectedCountry['areas'];
 
         if(!Cache::has('parentCategories')) {

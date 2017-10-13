@@ -70,7 +70,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $selectedArea = Cache::get('selectedArea');
+        $selectedArea = session()->get('selectedArea');
 
         $area = $this->areaModel
             ->whereHas('stores', function ($q) {
@@ -149,7 +149,7 @@ class ProductsController extends Controller
     {
         $cartItems = $this->cart->getItems();
 
-        $selectedArea = Cache::get('selectedArea');
+        $selectedArea = session()->get('selectedArea');
 
         $area = $this->areaModel
             ->whereHas('stores', function ($q) {
@@ -203,7 +203,7 @@ class ProductsController extends Controller
         $searchTerm = $request->has('term') ? $request->get('term') : '';
         $selectedCategory = $categorySlug;
         $cartItems = $this->cart->getItems();
-        $selectedArea = Cache::get('selectedArea');
+        $selectedArea = session()->get('selectedArea');
 
         $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
         $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
@@ -325,7 +325,7 @@ class ProductsController extends Controller
 
         $parentCategories = Cache::get('parentCategories');
         $selectCountryID = Cache::get('selectedCountryID');
-        $selectedArea = Cache::get('selectedArea');
+        $selectedArea = session()->get('selectedArea');
         $sort = $request->sort;
 
         $area = $this->areaModel
