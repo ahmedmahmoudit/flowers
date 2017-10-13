@@ -47,6 +47,7 @@ class LocaleController extends Controller
 
     public function setArea(Request $request)
     {
+        dd($request->all());
         dd($request->area);
         if($request->area) {
             $area = $this->areaModel->find($request->area)->toArray();
