@@ -32,6 +32,7 @@
                                 @if(Auth::user()->isManager())
                                     <th>{{__('adminPanel.net_amount')}}</th>
                                 @endif
+                                <th>{{__('adminPanel.date')}}</th>
                                 <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
@@ -51,6 +52,7 @@
                                     @if(Auth::user()->isManager())
                                         <td>{{$order->net_amount}}</td>
                                     @endif
+                                    <td>{{ $order->created_at->format('d-m-Y - ga') }}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <a href="{{ route(Request::segment(1).'.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>

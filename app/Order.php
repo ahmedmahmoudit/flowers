@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,6 +101,30 @@ class Order extends BaseModel
     public function scopeCaptured($q)
     {
         return $q->where('captured_status',1);
+    }
+
+
+    public function scopeDaily($query)
+    {
+        return $query
+            ->where('captured_status',1)
+            ->where('created_at', '>=', Carbon::today()->toDateString())
+            ->where('created_at', '<', Carbon::tomorrow()->toDateString());
+    }
+
+    public function scopeMonthly($query)
+    {
+        return $query
+            ->where('captured_status',1)
+            ->where('created_at', '>=', Carbon::now()->startOfMonth()->toDateString())
+            ->where('created_at', '<', Carbon::now()->endOfMonth()->toDateString());
+    }
+
+    public function scopeYearly($query)
+    {
+        return $query
+            ->where('captured_status',1)
+            ->whereYear('created_at', date('Y'));
     }
 
 }
