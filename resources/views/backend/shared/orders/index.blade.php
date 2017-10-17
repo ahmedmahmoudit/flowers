@@ -55,7 +55,9 @@
                                     <td>{{ $order->created_at->format('d-m-Y - ga') }}</td>
                                     <td>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route(Request::segment(1).'.orders.show', $order->id) }}" data-method="GET" data-laravel-method="get" class="btn bg-blue margin">View</a>
+                                        <a href="{{ route(Request::segment(1).'.orders.show', $order->id) }}"
+                                           data-method="GET" data-laravel-method="get"
+                                           class="btn bg-blue margin">View</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -80,24 +82,24 @@
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#sliderTable').DataTable({
-              "scrollX": true,
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "columnDefs": [
-                    { "orderable": false, "targets": -1 }
-                ]
-            });
+      $(function () {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
         });
+        $('#sliderTable').DataTable({
+          "scrollX": true,
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "columnDefs": [
+            {"orderable": false, "targets": -1}
+          ]
+        });
+      });
     </script>
 @endsection

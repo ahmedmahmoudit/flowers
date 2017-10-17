@@ -136,6 +136,9 @@
                             <thead>
                             <tr>
                                 <th>{{__('adminPanel.sku')}}</th>
+                                @if(Auth::user()->isManager())
+                                    <th>{{__('adminPanel.store')}}</th>
+                                @endif
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.price')}}</th>
                                 <th>{{__('adminPanel.qty')}}</th>
@@ -169,6 +172,7 @@
                                     @if($item->product)
                                         <tr>
                                             <td>{{$item->product->sku}}</td>
+                                            <td>{{$item->product->store->name}}</td>
                                             <td>{{$item->product->name_en}}</td>
                                             <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                             <td>{{$item->quantity}}</td>
