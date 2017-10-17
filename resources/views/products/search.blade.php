@@ -60,23 +60,23 @@
                                 <label class="control-label c-font-uppercase c-font-bold
 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}
                                         ">{{ __('Category') }}</label>
-                                <select name="category" class="form-control sort c-square c-theme input-lg">
-                                    <option value="">{{ __('All Category') }}</option>
-                                    @foreach($parentCategories as $parentCategory)
-                                        <option value="{{ $parentCategory->slug }}"
-                                                @if($selectedCategory === $parentCategory->slug)
-                                                selected
-                                                @endif
-                                        >{{$parentCategory->name}}</option>
-                                        @foreach($parentCategory->children as $childCategory)
-                                            <option value="{{ $childCategory->slug }}"
-                                                    @if($selectedCategory === $childCategory->slug)
-                                                    selected
-                                                    @endif
-                                            >{{$childCategory->name}}</option>
-                                        @endforeach
-                                    @endforeach
-                                </select>
+                                {{--<select name="category" class="form-control sort c-square c-theme input-lg">--}}
+                                    {{--<option value="">{{ __('All Category') }}</option>--}}
+                                    {{--@foreach($parentCategories as $parentCategory)--}}
+                                        {{--<option value="{{ $parentCategory->slug }}"--}}
+                                                {{--@if($selectedCategory === $parentCategory->slug)--}}
+                                                {{--selected--}}
+                                                {{--@endif--}}
+                                        {{-->{{$parentCategory->name}}</option>--}}
+                                        {{--@foreach($parentCategory->children as $childCategory)--}}
+                                            {{--<option value="{{ $childCategory->slug }}"--}}
+                                                    {{--@if($selectedCategory === $childCategory->slug)--}}
+                                                    {{--selected--}}
+                                                    {{--@endif--}}
+                                            {{-->{{$childCategory->name}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
                             </div>
                         </div>
                 </form>

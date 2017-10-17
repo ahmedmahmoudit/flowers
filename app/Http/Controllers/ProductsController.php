@@ -298,8 +298,6 @@ class ProductsController extends Controller
         $onSale = $request->has('sale');
         $sameDayDelivery = $request->has('same_day_delivery');
 
-
-
         $priceRangeMin = DB::table('product_details')
             ->select(DB::raw('Min(sale_price) as minprice'))
             ->get()
