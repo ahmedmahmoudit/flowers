@@ -104,7 +104,7 @@
                                             style="font-weight: normal"> {{ $product->sku  }}</span></p>
 
                                 <p class="hint">{{ __('Store') }}: <a
-                                            href="{{ route('stores.show',[$product->store->id,$product->store->slug]) }}">{{ $product->store->name }}</a>
+                                            href="{{route('search',['store'=>$product->store->slug])}}">{{ $product->store->name }}</a>
                                 </p>
                                 <div class="c-line-left"></div>
 
