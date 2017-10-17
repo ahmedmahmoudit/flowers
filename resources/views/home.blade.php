@@ -13,6 +13,16 @@
         onHoverStop: "off",
         touchenabled: "on"
       });
+
+      $(document).ready(function(){
+
+        var showPopup = '{{ empty(session()->get('selectedArea')) ? true : false }}';
+
+        if(showPopup) {
+            $('#select-country-form').modal('show');
+        }
+      });
+
     </script>
 @endsection
 

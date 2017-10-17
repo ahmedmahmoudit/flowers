@@ -1,9 +1,11 @@
-<div class="modal fade c-content-select-country" id="select-country-form" role="dialog">
+<div class="modal fade c-content-select-country" id="select-country-form" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content c-square">
+            @if(!isset($hideCloseButton))
             <div class="modal-header c-no-border">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
+            @endif
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold text-center ">{{ __('Where Do You Want To Send Your Gift?') }}</h3>
                 <div class="c-body m-top-20">

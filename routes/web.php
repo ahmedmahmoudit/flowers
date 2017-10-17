@@ -163,6 +163,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('payment/process', 'PaymentsController@processPayment')->name('payment.process');
     Route::get('payment/failure', 'PaymentsController@paymentFailed')->name('payment.failure');
 
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+
     Route::group(['middleware' => ['area']], function () {
 
         Route::get('products', 'ProductsController@index')->name('products.index');
@@ -192,8 +195,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
         Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
 
-        Route::get('home', 'HomeController@index')->name('home');
-        Route::get('/', 'HomeController@index')->name('home');
 
     });
 

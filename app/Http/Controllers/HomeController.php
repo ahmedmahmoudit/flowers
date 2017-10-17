@@ -86,6 +86,12 @@ class HomeController extends Controller
 
         $cartItems = $this->cart->getItems();
 
-        return view('home', compact('bestSellers', 'cartItems', 'sliderImages', 'ads', 'products'));
+        $showAreaPopup = 'false';
+
+        if(!session()->has('selectedArea')) {
+            $showAreaPopup = 'false';
+        }
+
+        return view('home', compact('bestSellers', 'cartItems', 'sliderImages', 'ads', 'products','showAreaPopup'));
     }
 }
