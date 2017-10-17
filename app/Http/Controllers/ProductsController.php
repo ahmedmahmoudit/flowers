@@ -222,7 +222,6 @@ class ProductsController extends Controller
             ->first()
             ->maxprice;
 
-
         $sort = $request->sort;
 
         $selectCountryID = \Cache::get('selectedCountryID');
@@ -299,8 +298,7 @@ class ProductsController extends Controller
         $onSale = $request->has('sale');
         $sameDayDelivery = $request->has('same_day_delivery');
 
-        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
-        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
+
 
         $priceRangeMin = DB::table('product_details')
             ->select(DB::raw('Min(sale_price) as minprice'))
@@ -323,8 +321,11 @@ class ProductsController extends Controller
             ->first()
             ->maxprice; // @todo: refactor query
 
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $priceRangeMin;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $priceRangeMax;
+
         $parentCategories = Cache::get('parentCategories');
-        $selectCountryID = Cache::get('selectedCountryID');
+        $selectCountryID = session()->get('selectedCountryID');
         $selectedArea = session()->get('selectedArea');
         $sort = $request->sort;
 
@@ -339,11 +340,11 @@ class ProductsController extends Controller
 
         $cartItems = $this->cart->getItems();
 
-        if (Cache::has('stores')) {
-            $stores = Cache::get('stores');
+        if (session()->has('stores')) {
+            $stores = session()->get('stores');
         } else {
-            $stores = $this->storeModel->where('country_id', $selectCountryID)->approved()->get();
-            Cache::put('stores', $stores, 60 * 24);
+            $stores = $this->storeModel->where('country_id', $selectCountryID)->active()->approved()->get();
+            session()->put('stores', $stores, 60 * 24);
         }
 
         $products = $this->productModel
