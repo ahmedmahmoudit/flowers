@@ -4,7 +4,6 @@
 @section('styles')
     @parent
 
-    <!-- datatables -->
     <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
 @endsection
 
@@ -66,7 +65,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <label>{{__('adminPanel.email')}}</label>
-                                <p>{{$order->order_email or 'No Email'}}</p>
+                                <p>{{$order->email or 'No Email'}}</p>
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -74,15 +73,26 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label>{{__('adminPanel.address')}}</label>
-                                <p>{{$order->order_address or 'No Address'}}</p>
+                                <p>
+                                    {{$order->area ? $order->area->name . ', ' : '' }}
+                                    @if($order->block)
+                                        {{ __('Block') . ' ' . $order->block . ', '}}
+                                    @endif
+                                    @if($order->street)
+                                        {{ __('Street') . ' ' . $order->street . ' '}}
+                                    @endif
+                                    @if($order->house)
+                                        {{ __('House') . ' ' . $order->house . ' '}}
+                                    @endif
+                                </p>
                                 <p class="help-block"></p>
                             </div>
 
-                            <div class="col-xs-6">
-                                <label>{{__('adminPanel.delivery_date')}}</label>
-                                    <p>{{$order->delivery_date ? $order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time : ''}}</p>
-                                <p class="help-block"></p>
-                            </div>
+                            {{--<div class="col-xs-6">--}}
+                            {{--<label>{{__('adminPanel.delivery_date')}}</label>--}}
+                            {{--<p>{{$order->delivery_date ? $order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time : ''}}</p>--}}
+                            {{--<p class="help-block"></p>--}}
+                            {{--</div>--}}
                         </div>
 
                         <div class="form-group">
@@ -102,11 +112,12 @@
                             @if(Auth::user()->isManager())
                                 <div class="col-xs-6">
                                     <label>{{__('adminPanel.net_amount')}}</label>
-                                    @if($order->coupon_id)
-                                        <p>{{$order->net_amount - $order->coupon->value($order->net_amount,$order->coupon->percentage)}}</p>
-                                    @else
-                                        <p>{{$order->net_amount}}</p>
-                                    @endif
+                                    {{--@if($order->coupon_id)--}}
+                                    {{--<p>{{$order->net_amount - $order->coupon->value($order->net_amount,$order->coupon->percentage)}}</p>--}}
+                                    {{--@else--}}
+                                    {{--<p>{{$order->net_amount}}</p>--}}
+                                    {{--@endif--}}
+                                    <p>{{ $order->getPriceWithCurrency() }}</p>
                                     <p class="help-block"></p>
                                 </div>
                             @endif
@@ -115,6 +126,12 @@
                                 <label>{{__('adminPanel.coupon')}}</label>
                                 <p>{{$order->coupon_id ? $order->coupon->code.' | Value: '.$order->coupon->value($order->net_amount,$order->coupon->percentage) : 'No Coupon'}}</p>
                                 <p class="help-block"></p>
+                            </div>
+
+
+                            <div class="col-xs-6">
+                                <label>{{ __('Order Date')}}</label>
+                                <p>{{ $order->created_at->format('d-m-Y - ga') }}</p>
                             </div>
                         </div>
                     </div>
@@ -174,11 +191,11 @@
                                             <td>{{$item->product->sku}}</td>
                                             <td>{{$item->product->store->name}}</td>
                                             <td>{{$item->product->name_en}}</td>
-                                            <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
-                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->getPriceWithCurrency()}}</td>
+                                            <td>{{$item->quantity }}</td>
                                             <td>{{$item->delivery_date}}</td>
                                             <td>{{$item->delivery_time}}</td>
-                                            <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
+                                            <td>{{$item->quantity * $item->sale_price }} {{ $item->getProductCurrency() }}</td>
                                         </tr>
                                     @endif
                                 @endforeach

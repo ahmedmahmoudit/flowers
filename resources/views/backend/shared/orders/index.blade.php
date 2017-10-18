@@ -25,14 +25,12 @@
                             <tr>
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.email')}}</th>
-                                <th>{{__('adminPanel.address')}}</th>
-                                <th>{{__('adminPanel.delivery_date')}}</th>
                                 <th>{{__('adminPanel.payment_method')}}</th>
                                 <th>{{__('adminPanel.order_status')}}</th>
                                 @if(Auth::user()->isManager())
                                     <th>{{__('adminPanel.net_amount')}}</th>
                                 @endif
-                                <th>{{__('adminPanel.date')}}</th>
+                                <th>{{__('Order Date')}}</th>
                                 <th>{{__('adminPanel.actions')}}</th>
                             </tr>
                             </thead>
@@ -40,17 +38,11 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$order->user->name or 'No Name'}}</td>
-                                    <td>{{$order->order_email}}</td>
-                                    <td>{{$order->order_address}}</td>
-                                    @if($order->delivery_date)
-                                        <td>{{$order->delivery_date->format('d-m-Y') . ' ' . $order->delivery_time}}</td>
-                                    @else
-                                        <td>{{$order->delivery_time}}</td>
-                                    @endif
+                                    <td>{{$order->email}}</td>
                                     <td>{{$order->payment_method}}</td>
                                     <td>{{$order->orderStatusCast($order->order_status)}}</td>
                                     @if(Auth::user()->isManager())
-                                        <td>{{$order->net_amount}}</td>
+                                        <td>{{$order->getPriceWithCurrency()}}</td>
                                     @endif
                                     <td>{{ $order->created_at->format('d-m-Y - ga') }}</td>
                                     <td>

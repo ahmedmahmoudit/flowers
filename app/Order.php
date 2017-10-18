@@ -103,6 +103,13 @@ class Order extends BaseModel
         return $q->where('captured_status',1);
     }
 
+    public function getSalePriceWithCurrency()
+    {
+        $productCountry = $this->getProductCountry();
+        $price = $this->sale_price;
+        return  $price.' '. $productCountry['currency_'.app()->getLocale()];
+    }
+
 
     public function scopeDaily($query)
     {
@@ -125,6 +132,14 @@ class Order extends BaseModel
         return $query
             ->where('captured_status',1)
             ->whereYear('created_at', date('Y'));
+    }
+
+    public function getPriceWithCurrency()
+    {
+        $productCountry = $this->country;
+        $price = $this->sale_amount . ' '.$productCountry->currency_en;
+        return $price;
+//        return  $price.' '. $productCountry['currency_'.app()->getLocale()];
     }
 
 }

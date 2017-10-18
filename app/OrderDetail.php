@@ -29,4 +29,18 @@ class OrderDetail extends BaseModel
     {
         return $this->belongsTo('App\Product','product_id');
     }
+
+    public function getPriceWithCurrency()
+    {
+        $currency = $this->getProductCurrency();
+        $price = $this->sale_price . ' '.$currency;
+        return $price;
+    }
+
+    public function getProductCurrency()
+    {
+        $productCountry = $this->order->country;
+        $productCountry->currency_en;
+        return $productCountry->currency_en;
+    }
 }
