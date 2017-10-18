@@ -9,11 +9,11 @@
                             Please take a moment to rate {{$store}} store!
                         </td>
                     </tr>
-                    <tr>
-                        <td class="free-text">
-                            Please <a href="{{URL('store/rate/'.$token)}}" target="_blank">Click Here</a> to rate {{$store}} store.
-                        </td>
-                    </tr>
+                    {{--<tr>--}}
+                        {{--<td class="free-text">--}}
+                            {{--Please <a href="{{URL('store/rate/'.$token)}}" target="_blank">Click Here</a> to rate {{$store}} store.--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
 
                     <tr>
                         <td class="button">
