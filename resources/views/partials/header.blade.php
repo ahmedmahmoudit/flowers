@@ -73,6 +73,11 @@
                     {{--<a class="" href="{{ route('search') }}">--}}
                         {{--<i class="fa fa-search"></i>--}}
                     {{--</a>--}}
+                    {{--<button class="c-cart-toggler" type="button">--}}
+                        {{--<i class="fa fa-search"></i> <span class="c-theme-bg"></span>--}}
+                    {{--</button>--}}
+                    <a href="{{ route('search') }}" class="c-search-toggler c-btn-icon "><i class="fa fa-search" style="font-size: 16px"></i></a>
+
                     <button class="c-cart-toggler" type="button">
                         <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">{{ $cart->items->count() }}</span>
                     </button>
@@ -124,7 +129,7 @@
                         </li>
 
                         <li class="c-search-toggler-wrapper">
-                            <a  href="{{ route('search') }}" class="c-btn-icon "><i class="fa fa-search" style="font-size: 16px"></i></a>
+                            <a href="{{ route('search') }}" class="c-btn-icon "><i class="fa fa-search" style="font-size: 16px"></i></a>
                         </li>
 
                         <li class="c-cart-toggler-wrapper">

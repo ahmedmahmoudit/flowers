@@ -1,4 +1,4 @@
-<div class="col-md-3 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}">
+<div class="col-md-3 col-xs-6 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}">
     <div class="form-group">
         <label class="control-label c-font-uppercase c-font-bold
 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}

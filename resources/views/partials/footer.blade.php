@@ -35,7 +35,7 @@
             <div class="c-foot">
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="padding-bottom: 20px">
 
                         <div class="c-content-title-1 c-title-md">
                             <h3 class="c-font-uppercase c-font-bold">{{ __('Track Your Order') }}</h3>
@@ -55,7 +55,7 @@
 
                         </form>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="padding-bottom: 20px">
 
                         <div class="c-content-title-1 c-title-md">
                             <h3 class="c-font-uppercase c-font-bold">{{ __('Subscribe to Newsletter') }}</h3>

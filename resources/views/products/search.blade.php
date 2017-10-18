@@ -3,12 +3,12 @@
 @section('script')
     @parent
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         var mySlider = $('.c-price-slider').slider();
-        mySlider.on('slideStop',function(q){
-          $('.price-display').html('Price: '+q.value[0]+' - '+q.value[1]+' ');
-          $('#pricefrom').attr('value',q.value[0]);
-          $('#priceto').attr('value',q.value[1]);
+        mySlider.on('slideStop', function (q) {
+          $('.price-display').html('Price: ' + q.value[0] + ' - ' + q.value[1] + ' ');
+          $('#pricefrom').attr('value', q.value[0]);
+          $('#priceto').attr('value', q.value[1]);
         });
       });
     </script>
@@ -32,7 +32,7 @@
         <div class="c-layout-sidebar-content">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-6 col-xs-12">
                     @if(isset($store))
                         <div style="padding-top:20px">
                             <span class="c-font-30 c-theme-font"> {{$store->name}}</span>
@@ -46,39 +46,40 @@
                     @endif
                 </div>
 
-                <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form" id="sort-form">
+                <form class="c-shop-advanced-search-1" method="get" action="{{ route('search' ) }}" name="sort-form"
+                      id="sort-form">
                     @foreach(request()->all() as $key => $value)
                         @if($key != 'sort')
-                            <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}"/>
                         @endif
                     @endforeach
 
                     @include('products.sort_button')
 
-                        <div class="col-md-3 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}">
-                            <div class="form-group">
-                                <label class="control-label c-font-uppercase c-font-bold
+                    <div class="col-md-3 col-xs-6 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}">
+                        <div class="form-group">
+                            <label class="control-label c-font-uppercase c-font-bold
 {{ app()->getLocale() == 'en' ? 'pull-right' : 'pull-left' }}
-                                        ">{{ __('Category') }}</label>
-                                <select name="category" class="form-control sort c-square c-theme input-lg">
-                                    <option value="">{{ __('All Category') }}</option>
-                                    @foreach($parentCategories as $parentCategory)
-                                        <option value="{{ $parentCategory->slug }}"
-                                                @if($selectedCategory === $parentCategory->slug)
+                                    ">{{ __('Category') }}</label>
+                            <select name="category" class="form-control sort c-square c-theme input-lg">
+                                <option value="">{{ __('All Category') }}</option>
+                                @foreach($parentCategories as $parentCategory)
+                                    <option value="{{ $parentCategory->slug }}"
+                                            @if($selectedCategory === $parentCategory->slug)
+                                            selected
+                                            @endif
+                                    >{{$parentCategory->name}}</option>
+                                    @foreach($parentCategory->children as $childCategory)
+                                        <option value="{{ $childCategory->slug }}"
+                                                @if($selectedCategory === $childCategory->slug)
                                                 selected
                                                 @endif
-                                        >{{$parentCategory->name}}</option>
-                                        @foreach($parentCategory->children as $childCategory)
-                                            <option value="{{ $childCategory->slug }}"
-                                                    @if($selectedCategory === $childCategory->slug)
-                                                    selected
-                                                    @endif
-                                            >{{$childCategory->name}}</option>
-                                        @endforeach
+                                        >{{$childCategory->name}}</option>
                                     @endforeach
-                                </select>
-                            </div>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
                 </form>
 
             </div>

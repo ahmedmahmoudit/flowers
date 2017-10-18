@@ -147,26 +147,26 @@ var LayoutQuickSearch = function () {
 		//main function to initiate the module
 		init: function () {
 			// desktop mode
-			$('.c-layout-header').on('click', '.c-mega-menu .c-search-toggler', function (e) {
-				e.preventDefault();
-
-				$('body').addClass('c-layout-quick-search-shown');
-
-				if (App.isIE() === false) {
-					$('.c-quick-search > .form-control').focus();
-				}
-			});
+			// $('.c-layout-header').on('click', '.c-mega-menu .c-search-toggler', function (e) {
+			// 	e.preventDefault();
+      //
+			// 	$('body').addClass('c-layout-quick-search-shown');
+      //
+			// 	if (App.isIE() === false) {
+			// 		$('.c-quick-search > .form-control').focus();
+			// 	}
+			// });
 
 			// mobile mode
-			$('.c-layout-header').on('click', '.c-brand .c-search-toggler', function (e) {
-				e.preventDefault();
-
-				$('body').addClass('c-layout-quick-search-shown');
-
-				if (App.isIE() === false) {
-					$('.c-quick-search > .form-control').focus();
-				}
-			});
+			// $('.c-layout-header').on('click', '.c-brand .c-search-toggler', function (e) {
+			// 	e.preventDefault();
+      //
+			// 	$('body').addClass('c-layout-quick-search-shown');
+      //
+			// 	if (App.isIE() === false) {
+			// 		$('.c-quick-search > .form-control').focus();
+			// 	}
+			// });
 
 			// handle close icon for mobile and desktop
 			$('.c-quick-search').on('click', '> span', function (e) {
@@ -452,10 +452,10 @@ var ContentOwlcarousel = function () {
 			var itemsTabletSmall;
 			var itemsMobile;
 
-			var rtl_mode = (parent.data('rtl')) ? parent.data('rtl') : false ; 
-			var items_loop = (parent.data('loop')) ? parent.data('loop') : true ; 
-			var items_nav_dots = (parent.attr('data-navigation-dots')) ? parent.data('navigation-dots') : true ; 
-			var items_nav_label = (parent.attr('data-navigation-label')) ? parent.data('navigation-label') : false ; 
+			var rtl_mode = (parent.data('rtl')) ? parent.data('rtl') : false ;
+			var items_loop = (parent.data('loop')) ? parent.data('loop') : true ;
+			var items_nav_dots = (parent.attr('data-navigation-dots')) ? parent.data('navigation-dots') : true ;
+			var items_nav_label = (parent.attr('data-navigation-label')) ? parent.data('navigation-label') : false ;
 
 			if (parent.data("single-item") == true) {
 				items = 1;
@@ -716,7 +716,7 @@ function isScrolledIntoView(elem)
 }
 // END : SCROLL TO VIEW FUNCTION
 
-// BEGIN : PROGRESS BAR 
+// BEGIN : PROGRESS BAR
 var LayoutProgressBar = function ($) {
 
     return {
@@ -736,7 +736,7 @@ var LayoutProgressBar = function ($) {
 				if(progress_data == 'Semicircle') { progress_data = 'SemiCircle'; }
 
 				// grab options
-				var bar_color = $(this).css('border-top-color'); // color	
+				var bar_color = $(this).css('border-top-color'); // color
 				var this_animation = $(this).data('animation'); // animation type : linear, easeIn, easeOut, easeInOut, bounce
 				var stroke_width = $(this).data('stroke-width'); // stroke width
 				var bar_duration = $(this).data('duration'); // duration
@@ -746,14 +746,14 @@ var LayoutProgressBar = function ($) {
 				var font_color = $(this).css('color'); // progress font color
 
 				// set default data if options is null / undefinded
-				if (bar_color == 'rgb(92, 104, 115)'){ bar_color = '#32c5d2'; } // set default color 
+				if (bar_color == 'rgb(92, 104, 115)'){ bar_color = '#32c5d2'; } // set default color
 				if (trail_color == ''){ trail_color = '#5c6873'; }
 				if (trail_width == ''){ trail_width = '0'; }
 				if (bar_progress == ""){ bar_progress = '1'; }
 				if (stroke_width == ""){ stroke_width = '3'; }
 				if (this_animation == ""){ this_animation = 'easeInOut'; }
 				if (bar_duration == ""){ bar_duration = '1500'; }
-	         
+
 
 	         	// set progress bar
 	         	var bar = new ProgressBar[progress_data](this_bar, {
@@ -763,10 +763,10 @@ var LayoutProgressBar = function ($) {
 		            color: bar_color,
 		            trailWidth: trail_width,
 		            trailColor: trail_color,
-		            svgStyle: null,		            
+		            svgStyle: null,
 	            	step: function (state, bar) {
 						bar.setText(Math.round(bar.value() * 100) + '%');
-					},									   
+					},
 					text: {
 						style: {
 							color: font_color,
@@ -779,7 +779,7 @@ var LayoutProgressBar = function ($) {
 			    if (check_scroll == true){
 		        	bar.animate(bar_progress);  // Number from 0.0 to 1.0
 		        }
-		        
+
 	         	// start progress bar animation upon scroll view
 		        $(window).scroll(function (event) {
 				    var check_scroll = isScrolledIntoView(this_bar); // check if progress bar is in view - return true / false
@@ -787,13 +787,13 @@ var LayoutProgressBar = function ($) {
 			        	bar.animate(bar_progress);  // Number from 0.0 to 1.0
 			        }
 				});
-				
+
 
         	});
 
-        	
-         
-           
+
+
+
         }
     }
 }(jQuery);
@@ -901,7 +901,7 @@ var ContentTyped = function () {
 				cursorChar: cursorChar,
 			});
 		});
-		
+
 	};
 
 	return {
@@ -946,16 +946,16 @@ $(document).ready(function () {
 	// init layout handlers
 	LayoutBrand.init();
 	LayoutHeaderCart.init();
-	LayoutMegaMenu.init();
-	LayoutSidebarMenu.init();
-	LayoutQuickSearch.init();
+	// LayoutMegaMenu.init();
+	// LayoutSidebarMenu.init();
+	// LayoutQuickSearch.init();
 	LayoutCartMenu.init();
-	LayoutQuickSidebar.init();
+	// LayoutQuickSidebar.init();
 	LayoutGo2Top.init();
-	LayoutOnepageNav.init();
-	LayoutThemeSettings.init();
-	LayoutProgressBar.init();
-	LayoutCookies.init();
+	// LayoutOnepageNav.init();
+	// LayoutThemeSettings.init();
+	// LayoutProgressBar.init();
+	// LayoutCookies.init();
 	LayoutSmoothScroll.init();
 	LayoutHeader.init();
 

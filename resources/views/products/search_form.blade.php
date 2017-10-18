@@ -7,7 +7,7 @@
 
         <li>
             <label class="control-label c-font-uppercase c-font-bold">{{ __('Store') }}</label>
-            <select name="store" class="form-control c-square c-theme">
+            <select name="store" class="form-control c-square c-theme input-lg">
                 <option value="">{{ __('All Stores') }}</option>
                 @foreach($stores as $store)
                     <option value="{{ $store->slug }}"
@@ -19,7 +19,7 @@
             </select>
         </li>
 
-        <li>
+        <li >
             <label class="control-label c-font-uppercase c-font-bold">{{ __('Price') }}</label>
             <p class="price-display">{{ __('Price') }}: {{$priceRangeFrom}} - {{$priceRangeTo}}</p>
             <div class="c-price-range-slider c-theme-1 input-group">
@@ -30,7 +30,7 @@
 
         </li>
 
-        <li>
+        <li class="col-md-12 col-xs-6">
             <div class="c-checkbox has-success">
                 <input type="checkbox" id="checkbox1-77" class="c-check" name="sale"
                         {{ isset($onSale) && $onSale == 'on' ? 'checked' : '' }}
@@ -43,26 +43,9 @@
                     {{ __('On Sale') }}
                 </label>
             </div>
-
         </li>
 
-        {{--<li>--}}
-            {{--<div class="c-checkbox has-success">--}}
-                {{--<input type="checkbox" id="checkbox1-77" class="c-check" name="same_day_delivery"--}}
-                        {{--{{ isset($sameDayDelivery) && $sameDayDelivery == 'on' ? 'checked' : '' }}--}}
-                {{-->--}}
-
-                {{--<label for="checkbox1-88" style="color: black;font-weight: bold">--}}
-                    {{--<span></span>--}}
-                    {{--<span class="check" value="1"></span>--}}
-                    {{--<span class="box" value="0"></span>--}}
-                    {{--{{ __('Same Day Delivery') }}--}}
-                {{--</label>--}}
-            {{--</div>--}}
-
-        {{--</li>--}}
-
-        <li>
+        <li class="col-md-12 col-xs-6">
             <div class="c-checkbox has-success">
                 <input type="checkbox" id="checkbox-same-day" class="c-check" name="same_day_delivery"
                         {{ isset($sameDayDelivery) && $sameDayDelivery == 'on' ? 'checked' : '' }}
