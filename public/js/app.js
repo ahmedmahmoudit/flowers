@@ -1,6 +1,3 @@
-/**
- Core script to handle the entire theme and core functions
- **/
 
 var App = function () {
 
@@ -76,7 +73,7 @@ var App = function () {
         $(parent.attr('data-related')).css('height', parent.height());
       }
     });
-  }
+  };
 
   // handle the layout reinitialization on window resize
   var handleOnResize = function () {
@@ -120,19 +117,6 @@ var App = function () {
     });
   };
 
-
-  // Handles Bootstrap Tabs.
-  var handleTabs = function () {
-    //activate tab if tab id provided in the URL
-    if (encodeURI(location.hash)) {
-      var tabid = encodeURI(location.hash.substr(1));
-      $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function () {
-        var tabid = $(this).attr("id");
-        $('a[href="#' + tabid + '"]').click();
-      });
-      $('a[href="#' + tabid + '"]').click();
-    }
-  };
 
   // Handles Bootstrap Modals.
   var handleModals = function () {
@@ -265,17 +249,6 @@ var App = function () {
   };
 
   var changeArea = function () {
-
-    // var area = $('#area').val();
-    // var token = $('#token').val();
-    // $.post("/area/set",
-    //   {
-    //     area: area,
-    //     _token: token
-    //   },
-    //   function (data, status) {
-    //   });
-    //
     $(".select_area").change(function () {
       $('form.set-area-form').submit();
     });
@@ -286,8 +259,6 @@ var App = function () {
       $('form#sort-form').submit();
     });
   };
-
-
   //* END:CORE HANDLERS *//
 
   return {
@@ -304,7 +275,6 @@ var App = function () {
       handleOnResize(); // set and handle responsive
 
       //UI Component handlers
-      //handleAnimate(); // handle animate
       handleCheckboxRadios() // handle checkbox & radios
       handleAlerts(); //handle closabled alerts
       handleDropdowns(); // handle dropdowns
@@ -320,11 +290,6 @@ var App = function () {
       changeArea();
       sort();
     },
-
-    // changeLogo: function(filename) {
-    //   var path = '../assets/jango/img/layout/logos/' + filename + '.png';
-    //   $('.c-brand img.c-desktop-logo').attr('src', path);
-    // },
 
     //public function to remember last opened popover that needs to be closed on click
     setLastPopedPopover: function (el) {
