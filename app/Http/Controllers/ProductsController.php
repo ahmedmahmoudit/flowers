@@ -367,9 +367,11 @@ class ProductsController extends Controller
 
             $category = $this->categoryModel
                 ->with('children')
-                ->where('slug_en', $selectedCategory)
-                ->orWhere('slug_ar', $selectedCategory)
-                ->first();
+                ->find($selectedCategory)
+//                ->where('slug_en', $selectedCategory)
+//                ->orWhere('slug_ar', $selectedCategory)
+//                ->first()
+            ;
             $childCategories = [$category->id];
 
             if ($category->parent_id === 0) {
