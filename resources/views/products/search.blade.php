@@ -74,7 +74,7 @@
                                                 @if($selectedCategory === $childCategory->id)
                                                 selected
                                                 @endif
-                                        >{{$childCategory->name}}</option>
+                                        >&nbsp;&nbsp; - {{$childCategory->name}}</option>
                                     @endforeach
                                 @endforeach
                             </select>

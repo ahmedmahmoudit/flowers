@@ -39,7 +39,7 @@ class LocaleController extends Controller
     public function setCountry(Request $request)
     {
         $country = $this->countryModel->find($request->country)->toArray();
-        session()->put('selectedCountry',$country, 60 * 24);
+        session()->put('selectedCountry', $country, 60 * 24);
         session()->forget('selectedArea');
         $this->cart->flushCart();
         return redirect()->intended('/');
@@ -47,17 +47,22 @@ class LocaleController extends Controller
 
     public function setArea(Request $request)
     {
-        if($request->area) {
+        if ($request->area) {
             $area = $this->areaModel->find($request->area)->toArray();
-            session()->put('selectedArea',$area, 60 * 24);
+            session()->put('selectedArea', $area, 60 * 24);
         }
         return redirect()->intended('/');
     }
 
     public function setLocale($locale)
     {
-        if(in_array($locale,['en','ar'])) {
-            session()->put('locale', $locale);
+        if (in_array($locale, ['en', 'ar'])) {
+
+            if (app()->getLocale() !== $locale) {
+                session()->put('locale', $locale);
+                Cache::forget('countries');
+                session()->forget('selectedCountry');
+            }
         }
 
         return redirect()->back();
@@ -69,21 +74,21 @@ class LocaleController extends Controller
         $selectedArea = session()->get('selectedArea');
         $areas = $selectedCountry['areas'];
 
-        return view('locale.select_area',compact('areas','selectedArea'));
+        return view('locale.select_area', compact('areas', 'selectedArea'));
     }
 
     public function getCountryAreas($countryID)
     {
         $country = $this->countryModel->find($countryID);
-        session()->put('selectedCountry',$country->toArray(), 60 * 24);
+        session()->put('selectedCountry', $country->toArray(), 60 * 24);
         session()->forget('selectedArea');
         $this->cart->flushCart();
 
-        $data = $country->areas->map(function($c){
-            return ['id'=>$c->id, 'name' => $c->{'name_'.app()->getLocale()}];
+        $data = $country->areas->map(function ($c) {
+            return ['id' => $c->id, 'name' => $c->{'name_' . app()->getLocale()}];
         });
 
-        return response()->json(['data'=>$data]);
+        return response()->json(['data' => $data]);
     }
 
 }

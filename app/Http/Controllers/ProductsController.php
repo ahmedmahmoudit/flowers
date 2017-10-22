@@ -101,6 +101,7 @@ class ProductsController extends Controller
         return view('products.index', compact('parentCategories', 'cartItems'));
     }
 
+
     public function bestSellers(Request $request)
     {
         //@todo : replace with the best selling products
@@ -349,7 +350,9 @@ class ProductsController extends Controller
             ->has('detail')
             ->with(['detail', 'store', 'userLikes'])
             ->active()
-            ->whereIn('store_id', $areaStores);
+            ->whereIn('store_id', $areaStores)
+            ->latest()
+        ;
 
         if ($onSale) {
             $products = $products->whereHas('detail', function ($q) use ($onSale) {
@@ -368,9 +371,6 @@ class ProductsController extends Controller
             $category = $this->categoryModel
                 ->with('children')
                 ->find($selectedCategory)
-//                ->where('slug_en', $selectedCategory)
-//                ->orWhere('slug_ar', $selectedCategory)
-//                ->first()
             ;
             $childCategories = [$category->id];
 
@@ -434,6 +434,7 @@ class ProductsController extends Controller
         }
 
         $products = $products->paginate(99);
+
 
         return view('products.search', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeFrom', 'priceRangeTo', 'priceRangeMin', 'priceRangeMax', 'products', 'sort', 'store', 'onSale','sameDayDelivery'));
     }

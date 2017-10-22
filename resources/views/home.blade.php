@@ -66,7 +66,7 @@
 
             <div class="c-content-title-1" style="padding-top:20px">
                 <h3 class="c-center c-font-uppercase c-font-bold">
-                    <a href="{{ route('products.index') }}"
+                    <a href="{{ route('search') }}"
                        class="text-center c-font-uppercase btn btn-lg c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
                 </h3>
             </div>

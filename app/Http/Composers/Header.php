@@ -47,9 +47,7 @@ class Header
 
     public function compose(View $view)
     {
-
         $request = request();
-
         $countries = Cache::get('countries');
         $selectedCountry = session()->get('selectedCountry');
         $selectedArea = session()->get('selectedArea');
