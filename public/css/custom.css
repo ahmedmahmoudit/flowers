@@ -185,3 +185,9 @@ select *.optionChild {
 .c-radio label > .check {
     background: black;
 }
+
+.c-checkbox label > .check {
+    border: 3px solid black;
+    border-top:none;
+    border-left:none;
+}

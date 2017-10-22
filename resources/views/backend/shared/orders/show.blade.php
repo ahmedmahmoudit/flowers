@@ -3,7 +3,6 @@
 
 @section('styles')
     @parent
-
     <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
 @endsection
 
@@ -74,15 +73,17 @@
                             <div class="col-xs-6">
                                 <label>{{__('adminPanel.address')}}</label>
                                 <p>
-                                    {{$order->area ? $order->area->name . ', ' : '' }}
-                                    @if($order->block)
-                                        {{ __('Block') . ' ' . $order->block . ', '}}
-                                    @endif
-                                    @if($order->street)
-                                        {{ __('Street') . ' ' . $order->street . ' '}}
-                                    @endif
-                                    @if($order->house)
-                                        {{ __('House') . ' ' . $order->house . ' '}}
+                                    @if($order->address)
+                                        {{$order->address->area ? $order->address->area->name . ', ' : '' }}
+                                        @if($order->address->block)
+                                            {{ __('Block') . ' ' . $order->address->block . ', '}}
+                                        @endif
+                                        @if($order->address->street)
+                                            {{ __('Street') . ' ' . $order->address->street . ' '}}
+                                        @endif
+                                        @if($order->address->house)
+                                            {{ __('House') . ' ' . $order->address->house . ' '}}
+                                        @endif
                                     @endif
                                 </p>
                                 <p class="help-block"></p>

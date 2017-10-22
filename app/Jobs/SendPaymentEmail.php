@@ -64,10 +64,21 @@ class SendPaymentEmail
         $emailBody['order_date'] = $this->order->created_at->format('d-m-Y');
         $emailBody['order_notes'] = $this->order->order_notes;
         $emailBody['card_notes'] = $this->order->card_notes;
-        $emailBody['area'] =  $this->order->area ? $this->order->area->name : '';
-        $emailBody['block'] =  $this->order->block;
-        $emailBody['street'] =  $this->order->street;
-        $emailBody['house'] =  $this->order->house;
+
+
+        if($address = $this->order->address) {
+            $emailBody['area'] =  $address->area ? $address->area->name : '-';
+            $emailBody['block'] =  $address->block ? $address->block : '';
+            $emailBody['street'] =  $address->street ? $address->street : '';
+            $emailBody['house'] =  $address->house ? $address->house : '';
+        } else {
+            $emailBody['area'] =  '';
+            $emailBody['block'] =  '';
+            $emailBody['street'] = '';
+            $emailBody['house'] =  '';
+        }
+
+
         $emailBody['email'] =  $this->order->email;
         $emailBody['country'] =  $this->order->country->name;
         $emailBody['currency'] =  $this->order->country->currency_en;
@@ -108,10 +119,17 @@ class SendPaymentEmail
         $emailBody['order_date'] = $this->order->created_at->format('d-m-Y');
         $emailBody['order_notes'] = $this->order->order_notes;
         $emailBody['card_notes'] = $this->order->card_notes;
-        $emailBody['area'] =  $this->order->area ? $this->order->area->name : '';
-        $emailBody['block'] =  $this->order->block;
-        $emailBody['street'] =  $this->order->street;
-        $emailBody['house'] =  $this->order->house;
+        if($address = $this->order->address) {
+            $emailBody['area'] =  $address->area ? $address->area->name : '-';
+            $emailBody['block'] =  $address->block ? $address->block : '';
+            $emailBody['street'] =  $address->street ? $address->street : '';
+            $emailBody['house'] =  $address->house ? $address->house : '';
+        } else {
+            $emailBody['area'] =  '';
+            $emailBody['block'] =  '';
+            $emailBody['street'] = '';
+            $emailBody['house'] =  '';
+        }
         $emailBody['email'] =  $this->order->email;
         $emailBody['country'] =  $this->order->country->name;
         $emailBody['created_at'] =  $this->order->created_at->format('d-m-Y, h:i:s');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\Category;
 use App\Core\Cart\Cart;
+use App\DeliveryTime;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
@@ -41,6 +42,10 @@ class ProductsController extends Controller
 
     protected $selectedPriceFrom = 10;
     protected $selectedPriceTo = 50;
+    /**
+     * @var DeliveryTime
+     */
+    private $deliveryTimeModel;
 
 //    public $deliveryTimes = ['2pm' => 'morning 9am-2pm', '6pm' => 'afternoon 2pm-6pm', '10pm' => 'evening 6pm-10pm'];
 
@@ -50,9 +55,10 @@ class ProductsController extends Controller
      * @param Category $categoryModel
      * @param Cart $cart
      * @param Store $storeModel
+     * @param DeliveryTime $deliveryTimeModel
      * @internal param Category $category
      */
-    public function __construct(Product $productModel, Area $areaModel, Category $categoryModel, Cart $cart, Store $storeModel)
+    public function __construct(Product $productModel, Area $areaModel, Category $categoryModel, Cart $cart, Store $storeModel, DeliveryTime $deliveryTimeModel)
     {
         $this->middleware('auth')->only('favorite');
         $this->middleware('area')->only(['index', 'getProductsForCategory', 'getAllProductsForCategory', 'searchProducts']);
@@ -61,6 +67,7 @@ class ProductsController extends Controller
         $this->categoryModel = $categoryModel;
         $this->cart = $cart;
         $this->storeModel = $storeModel;
+        $this->deliveryTimeModel = $deliveryTimeModel;
     }
 
     /**
@@ -444,6 +451,11 @@ class ProductsController extends Controller
         $product = $this->productModel->with('userLikes','delivery_times')->find($id);
         $cartItems = $this->cart->getItems();
         $deliveryTimes = $product->delivery_times;
+
+        if(!$deliveryTimes->count()) {
+            $deliveryTimes = $this->deliveryTimeModel->get();
+        }
+
         $selectedTime = null;
 
         return view('products.view', compact('product', 'cartItems', 'deliveryTimes', 'selectedTime'));

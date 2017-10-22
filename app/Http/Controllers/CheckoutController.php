@@ -98,8 +98,8 @@ class CheckoutController extends Controller
             'payment_method'      => 'required|in:VISA,KNET',
         ]);
 
-
-        if($request->has('new_address')) {
+//        dd($request->new_address);
+        if($request->new_address) {
             $requestFields = $request->only(['country_id', 'area_id', 'block', 'street','house']);
             $extraFields = ['country_id' => $selectedCountry['id']];
 
@@ -108,9 +108,6 @@ class CheckoutController extends Controller
         } else {
             $address = $this->addressModel->find($request->address_id);
         }
-
-        dd($address);
-
 
         $products = $this->productModel->has('detail')->with(['detail'])->whereIn('id', $this->cart->getItems()->pluck('id')->toArray())->get();
         $cart = $this->cart->make($products);
@@ -123,6 +120,7 @@ class CheckoutController extends Controller
             'order_status'        => 1, // pending order
             'captured_status'     => 0,
             'invoice_id'          => strtolower(str_random(7)),
+            'country_id' => $selectedCountry['id'],
             'firstname'           => $request->firstname,
             'lastname'            => $request->lastname,
             'mobile'              => $request->mobile,
