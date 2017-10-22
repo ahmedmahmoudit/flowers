@@ -177,9 +177,7 @@ class CartController extends Controller
 
     public function applyCoupon(Request $request)
     {
-
         return redirect()->back()->with('success',__('Coupon Applied'));
-
     }
 
 }

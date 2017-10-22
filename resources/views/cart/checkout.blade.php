@@ -116,22 +116,58 @@
 
                             <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Shipping Address') }}</h3>
 
-                            {{--@if($hasAddress)--}}
-                            {{--{{ $shippingAddress->firstname . ' ' . $shippingAddress->lastname }}, <br>--}}
-                            {{--{{ __('Block') . ' ' . $shippingAddress->block }},--}}
-                            {{--{{ __('Street') . ' ' . $shippingAddress->street }},--}}
-                            {{--@if($shippingAddress->house)--}}
-                            {{--{{ __('House') . ' ' . $shippingAddress->house }},--}}
-                            {{--@endif--}}
-                            {{--<br>--}}
-                            {{--{{ $shippingAddress->area->name }},--}}
-                            {{--{{ $shippingAddress->country->name }}--}}
-                            {{--<br>--}}
-                            {{--{{ $shippingAddress->mobile }}--}}
-                            {{--@if($shippingAddress->phone)--}}
-                            {{--, {{ $shippingAddress->phone }},--}}
-                            {{--@endif--}}
-                            {{--@else--}}
+                            @if($user && $user->addresses->count())
+                                @foreach( $user->addresses as $address)
+                                    <div>
+
+                                        <label>
+
+                                            <div class="form-group">
+                                                <input type="radio" value="{{ $address->id }}"
+                                                       {{ old('address_id') ? $address->id == old('address_id') ? 'checked' : '' : $loop->first ? 'checked' :''  }}
+                                                       name="address_id">
+                                                <label>{{ $address->area->name }}</label>
+
+                                                <br>
+                                                {{ __('Block') . ' ' . $address->block }},
+                                                {{ __('Street') . ' ' . $address->street }},
+                                                @if($address->house)
+                                                    {{ __('House') . ' ' . $address->house }},
+                                                @endif
+                                                <br>
+                                                {{ $address->area->name }},
+                                                {{ $address->country->name }}
+                                                <br>
+                                                {{ $address->mobile }}
+                                                @if($address->phone)
+                                                    , {{ $address->phone }}
+                                                @endif
+
+                                            </div>
+                                        </label>
+
+                                    </div>
+
+                                @endforeach
+                            @endif
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class="c-checkbox-inline">
+                                        <div class="c-checkbox c-toggle-hide" data-object-selector="c-shipping-address" data-animation-speed="600">
+                                            <input type="checkbox" id="checkbox6-444" name="new_address" class="c-check">
+                                            <label for="checkbox6-444">
+                                                <span class="inc"></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                Ship to different address?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="c-shipping-address">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -192,7 +228,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--@endif--}}
                         </div>
                         <!-- END: ADDRESS FORM -->
                         <!-- BEGIN: ORDER FORM -->
@@ -263,28 +298,28 @@
                                     </div>
 
                                     {{--<li class="row">--}}
-                                        {{--<div class="col-md-12">--}}
-                                            {{--<div class="c-radio-list">--}}
-                                                {{--<div class="c-radio">--}}
-                                                    {{--<input type="radio" id="radio3" class="c-radio" name="payment"--}}
-                                                           {{--checked="">--}}
-                                                    {{--<label for="radio3" class="c-font-bold c-font-20">--}}
-                                                        {{--<span class="inc"></span>--}}
-                                                        {{--<span class="check"></span>--}}
-                                                        {{--<span class="box"></span>--}}
-                                                        {{--{{ __('Knet / Visa') }}--}}
-                                                    {{--</label>--}}
-                                                    {{--<div>--}}
-                                                        {{--<span class="list-inline">--}}
-                                                            {{--<img class="img-responsive"--}}
-                                                                 {{--width="150;height:60"--}}
-                                                                 {{--style="width: 150px;height:50px"--}}
-                                                                 {{--src="/img/payment-icon.png"/>--}}
-                                                        {{--</span>--}}
-                                                    {{--</div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
+                                    {{--<div class="col-md-12">--}}
+                                    {{--<div class="c-radio-list">--}}
+                                    {{--<div class="c-radio">--}}
+                                    {{--<input type="radio" id="radio3" class="c-radio" name="payment"--}}
+                                    {{--checked="">--}}
+                                    {{--<label for="radio3" class="c-font-bold c-font-20">--}}
+                                    {{--<span class="inc"></span>--}}
+                                    {{--<span class="check"></span>--}}
+                                    {{--<span class="box"></span>--}}
+                                    {{--{{ __('Knet / Visa') }}--}}
+                                    {{--</label>--}}
+                                    {{--<div>--}}
+                                    {{--<span class="list-inline">--}}
+                                    {{--<img class="img-responsive"--}}
+                                    {{--width="150;height:60"--}}
+                                    {{--style="width: 150px;height:50px"--}}
+                                    {{--src="/img/payment-icon.png"/>--}}
+                                    {{--</span>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
                                     {{--</li>--}}
 
                                     <li class="row">

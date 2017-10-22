@@ -171,7 +171,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::group(['middleware' => ['area']], function () {
-
         Route::get('products', 'ProductsController@index')->name('products.index');
         Route::get('products/top', 'ProductsController@bestSellers')->name('products.top');
         Route::get('product/{id}/{name}', 'ProductsController@show')->name('product.show');
@@ -198,8 +197,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('profile/orders/{id}/detail', 'ProfileController@getOrderDetail')->name('profile.orders.show');
         Route::get('profile/favorites', 'ProfileController@getFavorites')->name('profile.favorites');
         Route::get('logout', 'ProfileController@getLogout')->name('profile.logout');
-
-
     });
 
     Auth::routes();
