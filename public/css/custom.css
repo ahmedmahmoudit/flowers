@@ -175,3 +175,13 @@ select *.optionChild {
 :-moz-placeholder { /* Firefox 18- */
     color: grey;
 }
+
+
+
+.c-radio label > .box {
+    border: 3px solid black;
+}
+
+.c-radio label > .check {
+    background: black;
+}

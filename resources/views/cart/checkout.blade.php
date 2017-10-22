@@ -244,7 +244,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="c-radio">
-                                                    {!! Form::radio('payment_method','VISA',true,['class'=>'c-radio','id'=>'radio2']) !!}
+                                                    {!! Form::radio('payment_method','VISA',false,['class'=>'c-radio','id'=>'radio2']) !!}
 
                                                     <label for="radio2" class="c-font-bold c-font-20">
                                                         <img src="/img/visa.png"

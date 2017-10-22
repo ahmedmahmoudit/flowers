@@ -26,7 +26,7 @@
                     @foreach($stores as $store)
                         <li class="col-md-4 c-bg-before-red">
                             <a class="" href="{{route('search',['store'=>$store->slug])}}">
-                                {{ $store->name }}
+                                {{ strtoupper($store->name) }}
                             </a>
                         </li>
                     @endforeach
@@ -46,7 +46,7 @@
                                     </a>
                                 </div>
                                 <a href="{{ route('search',['store'=>$store->slug]) }}" class="cbp-l-grid-masonry-projects-title">
-                                    {{ $store->name }}
+                                    {{ strtoupper($store->name) }}
                                 </a>
                             </div>
                         @endforeach
