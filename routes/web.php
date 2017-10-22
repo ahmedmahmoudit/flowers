@@ -1,6 +1,10 @@
 <?php
 
 Route::get('test',function() {
+    $del= new \App\DeliveryTime();
+    $del->create(['code'=>'2pm','name_en'=>'morning 9am-2pm','name_ar'=>'من ٩:٠٠ صباحاً إلى ٢:٠٠ مساءاً']);
+    $del->create(['code'=>'6pm','name_en'=>'afternoon 2pm-6pm','name_ar'=>'من ٢:٠٠ مساءاً إلى ٦:٠٠ مساءاً']);
+    $del->create(['code'=>'10pm','name_en'=>'evening 6pm-10pm','name_ar'=>'من ٦:٠٠ مساءاً إلى ١٠:٠٠ مساءاً']);
 });
 
 Route::get('manager/login', function () {

@@ -37,7 +37,8 @@ class CreateProductRequest extends FormRequest
             'description_ar'    => 'required',
             'main_image'        => 'image|mimes:jpg,jpeg,png|dimensions:min_width=640,min_height=640,max_width:3000,max_height:3000',
             'qty'               => 'required|numeric',
-            'images.*' => 'image|mimes:jpg,jpeg,png|dimensions:min_width=640,min_height=640,max_width:3000,max_height:3000'
+            'images.*' => 'image|mimes:jpg,jpeg,png|dimensions:min_width=640,min_height=640,max_width:3000,max_height:3000',
+            'delivery_times' => 'nullable|array'
         ];
 
         if($request->has('is_sale'))

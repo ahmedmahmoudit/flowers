@@ -85,7 +85,7 @@ class SendPaymentEmail
                 $details['sale_price'] = $orderDetail->sale_price;
                 $details['quantity'] = $orderDetail->quantity;
                 $details['delivery_date'] = $orderDetail->delivery_date;
-                $details['delivery_time'] = $orderDetail->delivery_time;
+                $details['delivery_time'] = $orderDetail->deliveryDate ? $orderDetail->deliveryDate->name : '' ;
                 $emailBody['details'][] = $details;
             }
         }
@@ -129,7 +129,7 @@ class SendPaymentEmail
                 $details['sale_price'] = $orderDetail->sale_price;
                 $details['quantity'] = $orderDetail->quantity;
                 $details['delivery_date'] = $orderDetail->delivery_date;
-                $details['delivery_time'] = $orderDetail->delivery_time;
+                $details['delivery_time'] = $orderDetail->deliveryDate ? $orderDetail->deliveryDate->name : '' ;
 
                 $emailBody['details'][] = $details;
 

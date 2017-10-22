@@ -178,7 +178,7 @@
                                                 <td>{{($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                                 <td>{{$item->quantity}}</td>
                                                 <td>{{$item->delivery_date}}</td>
-                                                <td>{{$item->delivery_time}}</td>
+                                                <td>{{$item->deliveryTime ? $item->deliveryTime->name : ''}}</td>
                                                 <td>{{$item->quantity * ($item->sale_price ? $item->sale_price : $item->price)}}</td>
                                             </tr>
                                         @endif
@@ -194,7 +194,7 @@
                                             <td>{{$item->getPriceWithCurrency()}}</td>
                                             <td>{{$item->quantity }}</td>
                                             <td>{{$item->delivery_date}}</td>
-                                            <td>{{$item->delivery_time}}</td>
+                                            <td>{{$item->deliveryTime ? $item->deliveryTime->name : ''}}</td>
                                             <td>{{$item->quantity * $item->sale_price }} {{ $item->getProductCurrency() }}</td>
                                         </tr>
                                     @endif

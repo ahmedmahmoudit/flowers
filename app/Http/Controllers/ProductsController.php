@@ -441,9 +441,9 @@ class ProductsController extends Controller
 
     public function show(\Request $request, $id, $name)
     {
-        $product = $this->productModel->with('userLikes')->find($id);
+        $product = $this->productModel->with('userLikes','delivery_times')->find($id);
         $cartItems = $this->cart->getItems();
-        $deliveryTimes = $this->productModel->getDeliveryTimes();
+        $deliveryTimes = $product->delivery_times;
         $selectedTime = null;
 
         return view('products.view', compact('product', 'cartItems', 'deliveryTimes', 'selectedTime'));

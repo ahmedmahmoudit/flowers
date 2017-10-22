@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OrderDetail extends BaseModel
+class OrderDetail extends Product
 {
     use SoftDeletes;
     protected $guarded = ['id'];
@@ -42,5 +42,16 @@ class OrderDetail extends BaseModel
         $productCountry = $this->order->country;
         $productCountry->currency_en;
         return $productCountry->currency_en;
+    }
+
+    public function getDeliveryTime()
+    {
+        $deliveryTimes = $this->deliveryTimes;
+        return $deliveryTimes[$this->delivery_time];
+    }
+
+    public function deliveryTime()
+    {
+        return $this->belongsTo(DeliveryTime::class,'delivery_time','id');
     }
 }

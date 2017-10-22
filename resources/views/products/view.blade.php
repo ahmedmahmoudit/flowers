@@ -225,7 +225,11 @@
                                                     >
                                                         <span style="padding:0;margin:0">
                                                             @if(old('delivery_time'))
-                                                                <span style="color:#32c5d2 ">{{ $deliveryTimes[old('delivery_time')] }}</span>
+                                                                @foreach($deliveryTimes as $time)
+                                                                    @if($time->id == old('delivery_time'))
+                                                                        <span style="color:#32c5d2 ">{{ $time->name}}</span>
+                                                                    @endif
+                                                                @endforeach
                                                             @else
                                                                 <span class="red">
                                                                     {{ __('Select Delivery Time') }}
@@ -251,13 +255,13 @@
                                                                            value="{{ old('delivery_time') }}"
                                                                            name="delivery_time"/>
                                                                     <div style="margin: 0 auto">
-                                                                        @foreach($deliveryTimes as $key => $time)
+                                                                        @foreach($deliveryTimes as $time)
                                                                             <a class="btn c-btn btn-lg c-font-bold c-font-white btn-warning c-btn-square c-font-uppercase select-time "
-                                                                               data-time="{{$key}}"
-                                                                               data-value="{{$time}}"
+                                                                               data-time="{{$time->id}}"
+                                                                               data-value="{{$time->name}}"
                                                                                style="margin-bottom:10px"
-                                                                            @if(old('delivery_time') == $key ? 'active' : '') @endif
-                                                                            >{{ $time }}</a>
+                                                                            @if(old('delivery_time') == $time->id ? 'active' : '') @endif
+                                                                            >{{ $time->name }}</a>
                                                                         @endforeach
                                                                     </div>
                                                                 </div>

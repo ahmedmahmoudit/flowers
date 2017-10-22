@@ -179,6 +179,24 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
+                                <label>
+                                    Delivery Times
+                                </label>
+                                <ul class="list-unstyled" style="padding-top: 10px;">
+                                    @foreach($deliveryTimes as $time)
+                                        <li>
+                                            <label>
+                                                {!! Form::checkbox('delivery_times[]',$time->id) !!}
+                                                {{ $time->name_en }}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
                                 <div class="checkbox">
                                     <label>
                                         <input type="hidden" value="0" name="natural" />

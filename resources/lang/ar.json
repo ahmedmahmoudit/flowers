@@ -211,5 +211,6 @@
   "Natural" : "طبيعي",
   "All Category" : "كل فئات",
   "Same Day Delivery" : "توصيل نفس اليوم",
-  "Order Date" : "تاريخ الطلب"
+  "Order Date" : "تاريخ الطلب",
+  "If you want the order to be delivered at specific time, please mentioned the time in the notes section above" : "يرجى ذكر الوقت المحدد في خانة الملاحظات إذا  تريد تسليم الطلب في وقت محدد"
 }

@@ -7,10 +7,11 @@
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold">{{ __('Password Recovery') }}</h3>
                 <p>{{ __('To recover your password please fill in your email address') }}</p>
-                <form>
+                <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
+                    {!! csrf_field() !!}
                     <div class="form-group">
                         <label for="forget-email" class="hide">{{ __('Email') }}</label>
-                        <input type="email" class="form-control input-lg c-square" id="forget-email" placeholder="{{ __('Email') }}">
+                        <input type="email" name="email" class="form-control input-lg c-square" id="forget-email" placeholder="{{ __('Email') }}">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">{{ __('Submit') }}</button>

@@ -187,6 +187,8 @@
                                             </div>
                                         </div>
 
+
+                                        <h5>{{ __('If you want the order to be delivered at specific time, please mentioned the time in the notes section above') }}</h5>
                                     </div>
                                 </div>
                             </div>

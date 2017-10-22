@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DeliveryTime;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -38,19 +39,25 @@ class ProductsController extends Controller
      * @var Product
      */
     private $productModel;
+    /**
+     * @var DeliveryTime
+     */
+    private $deliveryTimeModel;
 
     /**
      * @param ProductRepositoryInterface $product
      * @param StoreRepositoryInterface $store
      * @param CategoryRepository $category
      * @param Product $productModel
+     * @param DeliveryTime $deliveryTimeModel
      */
-    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store, CategoryRepository $category,Product $productModel)
+    public function __construct(ProductRepositoryInterface $product, StoreRepositoryInterface $store, CategoryRepository $category, Product $productModel, DeliveryTime $deliveryTimeModel)
     {
         $this->product = $product;
         $this->store = $store;
         $this->category = $category;
         $this->productModel = $productModel;
+        $this->deliveryTimeModel = $deliveryTimeModel;
     }
 
     /**
@@ -63,7 +70,7 @@ class ProductsController extends Controller
         if (Auth::user()->isStoreAdmin()) {
             // get all payment success order for store
             $store = Auth::user()->store;
-            $products = $this->productModel->where('store_id',$store->id)->latest()->get();
+            $products = $this->productModel->where('store_id', $store->id)->latest()->get();
         } else {
             $products = $this->productModel->latest()->get();
         }
@@ -90,6 +97,7 @@ class ProductsController extends Controller
         $stores = $this->store->getAll();
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = [];
+        $deliveryTimes = $this->deliveryTimeModel->get();
 
         $user = Auth::user();
         if ($user->isStoreAdmin()) {
@@ -101,7 +109,7 @@ class ProductsController extends Controller
             }
         }
 
-        return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList'));
+        return view('backend.shared.products.create', compact('stores', 'categories', 'categoriesList', 'deliveryTimes'));
     }
 
     /**
@@ -186,6 +194,10 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
+        if ($request->delivery_times) {
+            $product->delivery_times()->sync($request->delivery_times);
+        }
+
         $this->updateSlug($product);
 
         return redirect(Request::segment(1) . '/products');
@@ -204,7 +216,10 @@ class ProductsController extends Controller
         $stores = $this->store->getAll();
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
-        return view('backend.shared.products.edit', compact('product', 'stores', 'categories', 'categoriesList'));
+        $deliveryTimes = $this->deliveryTimeModel->get();
+        $productDeliveryTimes = $product->delivery_times->pluck('id')->toArray();
+
+        return view('backend.shared.products.edit', compact('product', 'stores', 'categories', 'categoriesList', 'deliveryTimes', 'productDeliveryTimes'));
     }
 
     /**
@@ -216,7 +231,7 @@ class ProductsController extends Controller
      */
     public function update($id, \Illuminate\Http\Request $request)
     {
-        $validationRules =  [
+        $validationRules = [
             'sku'             => 'unique:products,sku,' . $id,
             'name_ar'         => 'required',
             'name_en'         => 'required',
@@ -232,6 +247,7 @@ class ProductsController extends Controller
             'sale_price'      => 'required_with:is_sale',
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
+            'delivery_times'  => 'nullable|array'
         ];
 
 
@@ -239,7 +255,7 @@ class ProductsController extends Controller
             $validationRules['store'] = 'required';
         }
 
-        $this->validate($request,$validationRules);
+        $this->validate($request, $validationRules);
 
         if (Auth::user()->isManager()) {
             $store = $request->only(['store']);
@@ -258,7 +274,7 @@ class ProductsController extends Controller
         $attributes['store_id'] = $store_id;
 
         //@todo: as per client request
-        $attributes['active'] = '0';
+        $attributes['active'] = $request->active;
 
         $product = $this->product->getById($id);
         $this->product->update($id, $attributes);
@@ -315,6 +331,12 @@ class ProductsController extends Controller
 
             $product->productImages()->saveMany($savedImages);
         }
+
+//        if ($request->delivery_times) {
+//            foreach ($request->delivery_times as $time) {
+            $product->delivery_times()->sync($request->delivery_times);
+//            }
+//        }
 
         $this->updateSlug($product);
 

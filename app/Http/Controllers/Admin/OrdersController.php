@@ -56,7 +56,7 @@ class OrdersController extends Controller
 
     public function show($id)
     {
-        $order = $this->orderModel->with(['coupon', 'orderDetails.product', 'user'])->find($id);
+        $order = $this->orderModel->with(['coupon', 'orderDetails.product','orderDetails.deliveryTime', 'user'])->find($id);
 
         if(!Auth::user()->isManager())
         {

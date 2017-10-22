@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\DeliveryTime;
 use App\Http\Requests;
 use App\Core\Cart\Cart;
 use App\Product;
@@ -16,12 +17,24 @@ class CartController extends Controller
     private $cart;
     private $productModel;
     private $countryModel;
+    /**
+     * @var DeliveryTime
+     */
+    private $deliveryTimeModel;
 
-    public function __construct(Cart $cart, Product $productModel,Country $countryModel)
+    /**
+     * CartController constructor.
+     * @param Cart $cart
+     * @param Product $productModel
+     * @param Country $countryModel
+     * @param DeliveryTime $deliveryTimeModel
+     */
+    public function __construct(Cart $cart, Product $productModel, Country $countryModel, DeliveryTime $deliveryTimeModel)
     {
         $this->cart = $cart;
         $this->productModel = $productModel;
         $this->countryModel = $countryModel;
+        $this->deliveryTimeModel = $deliveryTimeModel;
     }
 
     /**
@@ -106,9 +119,12 @@ class CartController extends Controller
         ]);
 
         $product = $this->productModel
+            ->active()
             ->has('detail')
             ->whereHas('store', function ($q) {
-//                $q->where('is_approved', 1);
+                $q
+                    ->active()
+                    ->where('is_approved', 1);
             })
             ->with(['detail', 'store'])->active()->find($request->product_id);
 
@@ -124,12 +140,16 @@ class CartController extends Controller
 
             if($deliveryDate === $today) {
 
-                $leastDeliveryTime = Carbon::createFromFormat('ga',$request->delivery_time)->subHours(2)->format('ga');
-                $timeNow = Carbon::now()->format('ga');
+                $deliveryTime = $this->deliveryTimeModel->find($request->delivery_time);
+
+                $leastDeliveryTime = Carbon::createFromFormat('ga',$deliveryTime->code)->subHours(2)->format('G:i');
+
+                $timeNow = Carbon::now()->format('G:i');
 
                 if($timeNow > $leastDeliveryTime) {
                     return redirect()->back()->with('error',__('Please choose a different time for delivery'))->withInput();
                 }
+
             }
 
             if ($product->detail->in_stock) {
