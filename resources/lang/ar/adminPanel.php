@@ -110,7 +110,7 @@ return array(
     'price'                     => 'السعر',
     'privacy_policy'            => 'سياسة الخصوصية',
     'product_id_sku'            => 'كود المنتج',
-    'product_status'            => 'تفاصيل المنتج',
+    'product_status'            => 'حالة المنتج',
     'products'                  => 'منتجات',
     'profile'                   => 'الملف الشخصي',
     'qty'                       => 'كمية',

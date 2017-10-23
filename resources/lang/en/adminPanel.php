@@ -158,7 +158,7 @@ return array(
     'add_product_title'         => 'Add Product',
     'product_id_sku'            => 'Product ID (Code)',
     'select_store'              => 'Select Store',
-    'product_status'            => 'Product Details',
+    'product_status'            => 'Product Status',
     'height'                    => 'Height',
     'width'                     => 'Width',
     'add_product_details_title' => 'Add Product Details',
