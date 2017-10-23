@@ -43,6 +43,106 @@
 
                             <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Your Information') }}</h3>
 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">{{ __('First Name') }} <span
+                                                        class="red">*</span></label>
+                                            <input name="firstname" type="text"
+                                                   value="{{ old('firstname') }}"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('First Name') }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">{{ __('Last Name') }} <span
+                                                        class="red">*</span></label>
+                                            <input name="lastname" type="text" value="{{ old('lastname') }}"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Last Name') }}">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label">{{ __('Email') }} <span
+                                                                class="red">*</span></label>
+                                                    <input name="email" type="text" value="{{ old('email') }}"
+                                                           class="form-control c-square c-theme"
+                                                           placeholder="{{ __('Email') }}">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="control-label">{{ __('Mobile') }} <span
+                                                                class="red">*</span></label>
+                                                    <input name="mobile" type="tel" value="{{ old('mobile') }}"
+                                                           class="form-control c-square c-theme"
+                                                           placeholder="{{ __('Mobile') }}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Recipient Information') }}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label class="control-label">{{ __('First Name') }} <span
+                                                        class="red">*</span></label>
+                                            <input name="recipient_firstname" type="text" value="{{old('firstname')}}"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('First Name') }}">
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{ __('Last Name') }} <span
+                                                        class="red">*</span></label>
+                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Last Name') }}">
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{ __('Mobile') }} <span
+                                                        class="red">*</span></label>
+                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}"
+                                                   class="form-control c-square c-theme"
+                                                   placeholder="{{ __('Mobile') }}">
+
+                                        </div>
+
+                                        <div style="padding-top:10px">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">{{ __('Card Notes') }}</label>
+                                                <textarea name="card_notes" class="form-control c-square c-theme"
+                                                          rows="3"
+                                                          placeholder="{{ __('Special messages to be written on the card') }}">{{ old('card_notes') }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-top:10px">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label">{{ __('Order Notes') }}</label>
+                                    <textarea name="order_notes" class="form-control c-square c-theme"
+                                              rows="3"
+                                              placeholder="{{ __('Order Notes') }}">{{ old('order_notes') }}</textarea>
+                                </div>
+                            </div>
+
+
+                            <h5>{{ __('If you want the order to be delivered at specific time, please mentioned the time in the notes section above') }}</h5>
+
                             {{--<div class="row">--}}
                             {{--<div class="col-md-12">--}}
                             {{--<div class="row">--}}
@@ -51,14 +151,14 @@
                             {{--<label class="control-label">{{ __('First Name') }} <span--}}
                             {{--class="red">*</span></label>--}}
                             {{--<input name="firstname" type="text"--}}
-                            {{--value="{{ old('firstname') }}"--}}
+                            {{--value="afzal"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('First Name') }}">--}}
                             {{--</div>--}}
                             {{--<div class="col-md-6">--}}
                             {{--<label class="control-label">{{ __('Last Name') }} <span--}}
                             {{--class="red">*</span></label>--}}
-                            {{--<input name="lastname" type="text" value="{{ old('lastname') }}"--}}
+                            {{--<input name="lastname" type="text" value="um"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('Last Name') }}">--}}
                             {{--</div>--}}
@@ -68,7 +168,7 @@
                             {{--<div class="form-group col-md-6">--}}
                             {{--<label class="control-label">{{ __('Email') }} <span--}}
                             {{--class="red">*</span></label>--}}
-                            {{--<input name="email" type="text" value="{{ old('email') }}"--}}
+                            {{--<input name="email" type="text" value="z4ls@live.com"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('Email') }}">--}}
                             {{--</div>--}}
@@ -76,7 +176,7 @@
                             {{--<div class="col-md-6">--}}
                             {{--<label class="control-label">{{ __('Mobile') }} <span--}}
                             {{--class="red">*</span></label>--}}
-                            {{--<input name="mobile" type="tel" value="{{ old('mobile') }}"--}}
+                            {{--<input name="mobile" type="tel" value="99999999"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('Mobile') }}">--}}
                             {{--</div>--}}
@@ -98,7 +198,7 @@
                             {{--class="red">*</span></label>--}}
                             {{--<input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
                             {{--<input name="recipient_firstname" type="text"--}}
-                            {{--value="{{ old('recipient_firstname') }}"--}}
+                            {{--value="asdasd"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('First Name') }}">--}}
                             {{--</div>--}}
@@ -107,7 +207,7 @@
                             {{--class="red">*</span></label>--}}
                             {{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
                             {{--<input name="recipient_lastname" type="text"--}}
-                            {{--value="{{ old('recipient_lastname') }}"--}}
+                            {{--value="sssss"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('Last Name') }}">--}}
                             {{--</div>--}}
@@ -117,7 +217,7 @@
                             {{--class="red">*</span></label>--}}
                             {{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
                             {{--<input name="recipient_mobile" type="tel"--}}
-                            {{--value="{{ old('recipient_mobile') }}"--}}
+                            {{--value="4444444"--}}
                             {{--class="form-control c-square c-theme"--}}
                             {{--placeholder="{{ __('Mobile') }}">--}}
                             {{--</div>--}}
@@ -134,109 +234,6 @@
                             {{--</div>--}}
                             {{--</div>--}}
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-                                            <label class="control-label">{{ __('First Name') }} <span
-                                                        class="red">*</span></label>
-                                            <input name="firstname" type="text"
-                                                   value="afzal"
-                                                   class="form-control c-square c-theme"
-                                                   placeholder="{{ __('First Name') }}">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="control-label">{{ __('Last Name') }} <span
-                                                        class="red">*</span></label>
-                                            <input name="lastname" type="text" value="um"
-                                                   class="form-control c-square c-theme"
-                                                   placeholder="{{ __('Last Name') }}">
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label">{{ __('Email') }} <span
-                                                                class="red">*</span></label>
-                                                    <input name="email" type="text" value="z4ls@live.com"
-                                                           class="form-control c-square c-theme"
-                                                           placeholder="{{ __('Email') }}">
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label class="control-label">{{ __('Mobile') }} <span
-                                                                class="red">*</span></label>
-                                                    <input name="mobile" type="tel" value="99999999"
-                                                           class="form-control c-square c-theme"
-                                                           placeholder="{{ __('Mobile') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-
-                            <h3 class="c-font-bold c-font-uppercase c-font-24">{{ __('Recipient Information') }}</h3>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-
-                                        <div class="form-group col-md-4">
-                                            <label class="control-label">{{ __('First Name') }} <span
-                                                        class="red">*</span></label>
-                                            {{--<input name="recipient_firstname" type="text" value="{{old('firstname')}}" class="form-control c-square c-theme" placeholder="{{ __('First Name') }}">--}}
-                                            <input name="recipient_firstname" type="text"
-                                                   value="asdasd"
-                                                   class="form-control c-square c-theme"
-                                                   placeholder="{{ __('First Name') }}">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label">{{ __('Last Name') }} <span
-                                                        class="red">*</span></label>
-                                            {{--                                            <input name="recipient_lastname" type="text" value="{{old('lastname')}}" class="form-control c-square c-theme" placeholder="{{ __('Last Name') }}">--}}
-                                            <input name="recipient_lastname" type="text"
-                                                   value="sssss"
-                                                   class="form-control c-square c-theme"
-                                                   placeholder="{{ __('Last Name') }}">
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label class="control-label">{{ __('Mobile') }} <span
-                                                        class="red">*</span></label>
-                                            {{--                                            <input name="recipient_mobile" type="tel" value="{{old('mobile')}}" class="form-control c-square c-theme" placeholder="{{ __('Mobile') }}">--}}
-                                            <input name="recipient_mobile" type="tel"
-                                                   value="4444444"
-                                                   class="form-control c-square c-theme"
-                                                   placeholder="{{ __('Mobile') }}">
-                                        </div>
-
-                                        <div style="padding-top:10px">
-                                            <div class="form-group col-md-12">
-                                                <label class="control-label">{{ __('Card Notes') }}</label>
-                                                <textarea name="card_notes" class="form-control c-square c-theme"
-                                                          rows="3"
-                                                          placeholder="{{ __('Special messages to be written on the card') }}">{{ old('card_notes') }}</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row" style="padding-top:10px">
-                                <div class="form-group col-md-12">
-                                    <label class="control-label">{{ __('Order Notes') }}</label>
-                                    <textarea name="order_notes" class="form-control c-square c-theme"
-                                              rows="3"
-                                              placeholder="{{ __('Order Notes') }}">{{ old('order_notes') }}</textarea>
-                                </div>
-                            </div>
-
-
-                            <h5>{{ __('If you want the order to be delivered at specific time, please mentioned the time in the notes section above') }}</h5>
 
                             <hr>
 
