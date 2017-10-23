@@ -27,6 +27,7 @@
                                     <th>{{__('adminPanel.store')}}</th>
                                 @endif
                                 <th>{{__('adminPanel.main_image')}}</th>
+                                <th>{{__('adminPanel.category')}}</th>
                                 <th>{{__('adminPanel.sku')}}</th>
                                 <th>{{__('adminPanel.name')}}</th>
                                 <th>{{__('adminPanel.price')}}</th>
@@ -56,6 +57,7 @@
                                         <td>No Main Image</td>
                                     @endif
 
+                                        <td>{{ implode(', ',$product->categories->pluck('name_'.app()->getLocale())->toArray()) }}</td>
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name_en}}</td>
                                     <td>{{$product->detail->price  or 'No Price'}}</td>

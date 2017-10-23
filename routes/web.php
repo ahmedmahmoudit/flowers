@@ -1,6 +1,9 @@
 <?php
 
 Route::get('test',function() {
+
+    $product = \App\Product::first();
+
 //    $del= new \App\DeliveryTime();
 //    $del->create(['code'=>'2pm','name_en'=>'morning 9am-2pm','name_ar'=>'من ٩:٠٠ صباحاً إلى ٢:٠٠ مساءاً']);
 //    $del->create(['code'=>'6pm','name_en'=>'afternoon 2pm-6pm','name_ar'=>'من ٢:٠٠ مساءاً إلى ٦:٠٠ مساءاً']);
