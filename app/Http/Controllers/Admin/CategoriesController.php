@@ -51,7 +51,7 @@ class CategoriesController extends Controller
         $category = $this->category->create($attributes);
 
         //clear cache
-        Cache::flush();
+        Cache::forget('parentCategories');
 
         $this->updateSlug($category);
 
@@ -86,7 +86,7 @@ class CategoriesController extends Controller
             'description_ar' => $request->description_ar
         ]);
 
-        Cache::flush();
+        Cache::forget('parentCategories');
 
         $this->updateSlug($category);
 
@@ -116,6 +116,9 @@ class CategoriesController extends Controller
         }
 
         if ($this->category->getById($id)->delete()) {
+
+            Cache::forget('parentCategories');
+
             return url()->previous();
         }
 
