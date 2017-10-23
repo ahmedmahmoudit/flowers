@@ -452,12 +452,8 @@ class ProductsController extends Controller
         }
 
         $products = $products->select('products.*');
-//        foreach ($products as $product) {
-//            dd($product->toArray());
-//        }
 
         $products = $products->paginate(99);
-
 
         return view('products.search', compact('category', 'cartItems', 'parentCategories', 'searchTerm', 'selectedCategory', 'stores', 'selectedStore', 'priceRangeFrom', 'priceRangeTo', 'priceRangeMin', 'priceRangeMax', 'products', 'sort', 'store', 'onSale','sameDayDelivery'));
     }
