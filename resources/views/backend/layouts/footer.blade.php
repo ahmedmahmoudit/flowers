@@ -1,7 +1,3 @@
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0.1
-    </div>
-    <strong>Copyright &copy; 2017 IdeasOwners.</strong> All rights
-    reserved.
+    <strong>Vazzat.com {{ date('Y') }} &copy;</strong>
 </footer>
