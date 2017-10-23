@@ -28,9 +28,15 @@
                             <p>{{ $order->payment_method }}</p>
                         </li>
                         <li>
+                            <h3>{{ __('Order Date') }}</h3>
+                            <p>{{ $order->created_at->format('d-m-Y') }}</p>
+                        </li>
+                        <li>
                             <h3>{{ __('Order Status') }}</h3>
                             <p style="font-size:19px" class="c-theme-font"><b>{{ $order->order_status_value }}</b></p>
                         </li>
+
+
                     </ul>
                 </div>
                 <div class="c-bank-details c-margin-t-30 c-margin-b-30">
@@ -44,7 +50,7 @@
                             <div class="col-md-2">
                                 <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">{{ __('Product') }}</h3>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">{{ __('Description') }}</h3>
                             </div>
                             <div class="col-md-2">
@@ -53,7 +59,9 @@
                             <div class="col-md-2">
                                 <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">{{ __('Quantity') }}</h3>
                             </div>
-
+                            <div class="col-md-2">
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">{{ __('Delivery Date') }}</h3>
+                            </div>
                             <div class="col-md-2">
                                 <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">{{ __('Total') }}</h3>
                             </div>
@@ -78,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-8">
+                                <div class="col-md-2">
                                     <ul class="c-list list-unstyled">
                                         <li class="c-margin-b-25"><a
                                                     href="{{ route('product.show',[$orderDetail->product->id,$orderDetail->product->slug]) }}"
@@ -86,7 +94,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-md-2 col-sm-2">
+                                <div class="col-md-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Unit Price') }}</p>
                                     <p class="c-font-sbold c-font-uppercase c-font-18">{{$orderDetail->product->detail->getFinalPriceWithCurrency() }}
                                         @if($orderDetail->product->detail->is_sale)
@@ -95,9 +103,16 @@
                                         @endif
                                     </p>
                                 </div>
-                                <div class="col-md-2 col-sm-2">
+                                <div class="col-md-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Quantity') }}</p>
                                     <p class="c-font-sbold c-font-uppercase c-font-18">{{$orderDetail->quantity }}</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">{{ __('Delivery Date') }}</p>
+                                    <p class="c-font-sbold c-font-uppercase c-font-18">
+                                        {{$orderDetail->delivery_date }} {{ $orderDetail->deliveryTime ? $orderDetail->deliveryTime->name : '' }}
+
+                                    </p>
                                 </div>
                                 <div class="col-md-2 col-sm-2">
                                     <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Total</p>
@@ -142,20 +157,26 @@
                             <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">{{ __('Billing Address') }}</h3>
                             <ul class="list-unstyled">
                                 <li>{{ $order->recipient_firstname . ' ' . $order->recipient_lastname  }}</li>
+                                @if($order->address)
                                 <li>
                                     {{ __('Block') . ' ' . $order->block }},
                                     {{ __('Street') . ' ' . $order->street }}
                                     <br>
-                                    @if($order->area)
-                                        {{ $order->area->name }},
-                                        {{ $order->country->name }}
+                                    @if($order->address->area ? $order->address->area->name . ', ' : '')
+                                        {{ $order->country ? $order->country->name : '' }}
                                     @endif
+                                    <br>
+                                    {{ __('Block') . ' ' . $order->address->block }}
+                                    {{ __('Street') . ' ' . $order->address->street }}
+                                    {{ __('House') . ' ' . $order->address->house }}
+
                                     <br>
                                     {{ $order->mobile }}
                                     @if($order->phone)
                                         , {{ $order->phone }},
                                     @endif
                                 </li>
+                                    @endif
                             </ul>
                         </div>
                     </div>

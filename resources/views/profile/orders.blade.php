@@ -26,30 +26,70 @@
             </div>
 
             @foreach($user->orders as $order)
-                <div class="row c-margin-b-40">
-                    <div class="c-content-product-2 c-bg-white">
-                        {{--<div class="col-md-2">--}}
-                            {{--<div class="c-content-overlay">--}}
-                                {{--<a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">--}}
-                                    {{--<img src="{{ asset('uploads/products/'.$order->detailExcerpt->product->detail->main_image) }}" class="img img-responsive" style="height:200px" />--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        <div class="col-md-10">
-                            <div class="c-info-list">
-                                <h3 class="c-title c-font-bold c-font-22 c-font-dark">
-                                    <p class="c-font-14 c-font-thin">{{ __('Order') }} #: {{ $order->invoice_id }}</p>
-                                    <a class="c-theme-link" href="{{ route('profile.orders.show',[$order->invoice_id]) }}">
-                                        {{ $order->created_at->format('d M,Y') }}
-                                    </a>
-                                </h3>
-                                <span style="font-weight: bold">{{ __('status') }} :<span class="c-order-date c-font-14 c-font-thin c-theme-font"> {{$order->orderStatusCast($order->order_status)}}</span></span>
-                                <p class="c-price c-font-26 c-font-thin">{{ $order->net_amount }} {{ __('KD') }}</p>
-                                <p class="c-payment-type c-font-14 c-font-bold">via ({{ $order->payment_method }})</p>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="row c-order-summary">
+                    <ul class="c-list-inline list-inline">
+                        <li>
+                            <a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">
+                                <img src="{{ asset('uploads/products/'.$order->detailExcerpt->product->detail->main_image) }}"
+                                     class="img img-responsive" style="width:75px;height:75px;"
+                                     style="vertical-align: middle;"/>
+                            </a>
+                        </li>
+
+                        <li>
+                            <h3><a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">{{ __('Order Number') }}</a></h3>
+                            <p><a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">{{ $order->invoice_id }}</a></p>
+                        </li>
+                        <li>
+                            <h3>{{ __('Amount Paid') }}</h3>
+                            <p>{{ $order->sale_amount }} KD</p>
+                        </li>
+                        <li>
+                            <h3>{{ __('Payment Method') }}</h3>
+                            <p>{{ $order->payment_method }}</p>
+                        </li>
+                        <li>
+                            <h3>{{ __('Order Date') }}</h3>
+                            <p>{{ $order->created_at->format('d-m-Y') }}</p>
+                        </li>
+                        <li>
+                            <h3>{{ __('Order Status') }}</h3>
+                            <p style="font-size:19px" class="c-theme-font"><b>{{ $order->order_status_value }}</b></p>
+                        </li>
+
+
+                    </ul>
                 </div>
+
+                {{--<div class="row c-margin-b-40">--}}
+                {{--<div class="c-content-product-2 c-bg-white">--}}
+                {{--<div class="col-md-2">--}}
+                {{--<div class="c-content-overlay">--}}
+                {{--<a href="{{ route('profile.orders.show',[$order->invoice_id]) }}">--}}
+                {{--<img src="{{ asset('uploads/products/'.$order->detailExcerpt->product->detail->main_image) }}" class="img img-responsive" style="height:200px" />--}}
+                {{--</a>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+
+
+
+
+                {{--<div class="col-md-10">--}}
+                {{--<div class="c-info-list">--}}
+                {{--<h3 class="c-title c-font-bold c-font-22 c-font-dark">--}}
+                {{--<p class="c-font-14 c-font-thin">{{ __('Order') }} #: {{ $order->invoice_id }}</p>--}}
+                {{--<a class="c-theme-link" href="{{ route('profile.orders.show',[$order->invoice_id]) }}">--}}
+                {{--{{ $order->created_at->format('d M,Y') }}--}}
+                {{--</a>--}}
+                {{--</h3>--}}
+                {{--<span style="font-weight: bold">{{ __('status') }} :<span class="c-order-date c-font-14 c-font-thin c-theme-font"> {{$order->orderStatusCast($order->order_status)}}</span></span>--}}
+                {{--<p class="c-price c-font-26 c-font-thin">{{ $order->net_amount }} {{ __('KD') }}</p>--}}
+                {{--<p class="c-payment-type c-font-14 c-font-bold">via ({{ $order->payment_method }})</p>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
             @endforeach
 
         </div>
