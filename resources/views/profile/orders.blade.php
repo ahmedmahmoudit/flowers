@@ -25,7 +25,7 @@
                 <div class="c-line-left"></div>
             </div>
 
-            @foreach($user->orders as $order)
+            @foreach($orders as $order)
 
                 <div class="row c-order-summary">
                     <ul class="c-list-inline list-inline">
