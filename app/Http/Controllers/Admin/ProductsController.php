@@ -273,9 +273,11 @@ class ProductsController extends Controller
         $attributes['store_id'] = $store_id;
 
         //@todo: as per client request
-        $attributes['active'] = $request->active;
 
         $product = $this->product->getById($id);
+
+        $attributes['active'] = $request->has('active') ? $request->active : $product->active;
+
         $this->product->update($id, $attributes);
 
         $details = [
