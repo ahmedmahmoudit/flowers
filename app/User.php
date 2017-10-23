@@ -50,7 +50,7 @@ class User extends Authenticatable
      */
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->where('captured_status',1);
     }
 
     public function isManager()
