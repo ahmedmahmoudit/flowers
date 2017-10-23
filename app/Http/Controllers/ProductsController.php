@@ -358,7 +358,6 @@ class ProductsController extends Controller
             ->with(['detail', 'store', 'userLikes'])
             ->active()
             ->whereIn('store_id', $areaStores)
-            ->latest()
         ;
 
         if ($onSale) {
@@ -430,15 +429,32 @@ class ProductsController extends Controller
             });
         }
 
-        if ($request->sort) {
+        if ($sort = $request->sort) {
 
             $priceCol = $onSale ? 'product_details.sale_price' : 'product_details.price';
-            $sortOrder = $request->sort == 'price-l-h' ? 'ASC' : 'DESC';
 
-            $products->join('product_details', 'products.id', '=', 'product_details.product_id')
-                ->orderBy($priceCol, $sortOrder);
-
+            switch ($sort) {
+                case 'best-sellers':
+                    break;
+                case 'price-l-h':
+                    $products->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy($priceCol, 'ASC');
+                    break;
+                case 'price-h-l':
+                    $products->join('product_details', 'products.id', '=', 'product_details.product_id')
+                        ->orderBy($priceCol, 'DESC');
+                    break;
+                default :
+                    $products->latest();
+            }
+        } else {
+            $products = $products->latest();
         }
+
+        $products = $products->select('products.*');
+//        foreach ($products as $product) {
+//            dd($product->toArray());
+//        }
 
         $products = $products->paginate(99);
 

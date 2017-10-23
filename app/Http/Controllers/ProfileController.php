@@ -52,10 +52,7 @@ class ProfileController extends Controller
     public function getOrders()
     {
         $user = \Auth::user();
-
         $orders = $this->orderModel->captured()->has('detailExcerpt.product.detail')->with(['detailExcerpt.product.detail'])->where('user_id',$user->id)->get();
-
-//        $user->load('orders.detailExcerpt.product.detail');
         return view('profile.orders', compact('user','orders'));
     }
 
