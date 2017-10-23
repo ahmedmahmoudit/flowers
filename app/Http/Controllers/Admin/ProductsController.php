@@ -247,7 +247,7 @@ class ProductsController extends Controller
             'sale_price'      => 'required_with:is_sale',
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
-            'delivery_times'  => 'nullable|array'
+            'delivery_times'  => 'required|array'
         ];
 
 
