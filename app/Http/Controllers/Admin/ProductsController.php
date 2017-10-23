@@ -120,6 +120,7 @@ class ProductsController extends Controller
      * @return mixed
      */
     public function store(CreateProductRequest $request)
+//    public function store(\Illuminate\Http\Request $request)
     {
         if (Auth::user()->isManager()) {
             $store = $request->only(['store']);
@@ -132,7 +133,6 @@ class ProductsController extends Controller
         }
         $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active', 'natural']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
-        $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
         $images = $request->only(['images']);
@@ -171,10 +171,10 @@ class ProductsController extends Controller
 
         $product->detail()->save($details);
 
-        if (count($categories['categories']) > 0) {
-            $product->categories()->sync($categoryParent['parent_id']);
-            $product->categories()->syncWithoutDetaching($categories['categories']);
-        }
+//        if (count($categories['categories']) > 0) {
+//            $product->categories()->sync($categoryParent['parent_id']);
+            $product->categories()->sync($categories['categories']);
+//        }
 
         if ($request->images) {
             $savedImages = [];
@@ -247,9 +247,9 @@ class ProductsController extends Controller
             'sale_price'      => 'required_with:is_sale',
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
-            'delivery_times'  => 'required|array'
+            'delivery_times'  => 'required|array',
+            'categories' => 'required|array'
         ];
-
 
         if (Auth::user()->isManager()) {
             $validationRules['store'] = 'required';
@@ -266,7 +266,6 @@ class ProductsController extends Controller
 
         $attributes = $request->only(['name_en', 'name_ar', 'active', 'natural']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
-        $categoryParent = $request->only(['parent_id']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
         $images = $request->only(['images']);
@@ -310,8 +309,7 @@ class ProductsController extends Controller
 
         $product->detail()->update($details);
 
-        $product->categories()->sync($categoryParent['parent_id']);
-        $product->categories()->syncWithoutDetaching($categories['categories']);
+        $product->categories()->sync($categories['categories']);
 
         if ($request->images) {
             $savedImages = array();

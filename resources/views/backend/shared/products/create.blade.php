@@ -73,12 +73,12 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="inputHeight">{{__('adminPanel.height')}} ({{ __('adminPanel.cm') }})</label>
-                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{old('height')}}" required>
+                                <input type="text" name="height" class="form-control" id="inputHeight" placeholder="Enter Height" value="{{old('height')}}" >
                                 <p class="help-block"></p>
                             </div>
                             <div class="col-xs-6">
                                 <label for="inputWidth">{{__('adminPanel.width')}} ({{ __('adminPanel.cm') }})</label>
-                                <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{old('width')}}" required>
+                                <input type="text" name="width" class="form-control" id="inputWidth" placeholder="Enter Width" value="{{old('width')}}" >
                                 <p class="help-block"></p>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                                                 @if($category->parent_id == 0)
                                                     <li>
                                                         <label>
-                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}
+{{--                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}--}}
                                                             {{ $category->name }}
                                                         </label>
                                                         @if(count($category->children) > 0)

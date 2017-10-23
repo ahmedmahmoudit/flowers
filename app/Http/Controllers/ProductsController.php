@@ -213,10 +213,6 @@ class ProductsController extends Controller
         $cartItems = $this->cart->getItems();
         $selectedArea = session()->get('selectedArea');
 
-        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $this->selectedPriceFrom;
-        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $this->selectedPriceTo;
-//        $priceRangeMin = 1;
-
         $priceRangeMin = DB::table('product_details')
             ->select(DB::raw('Min(sale_price) as minprice'))
             ->get()
@@ -224,11 +220,22 @@ class ProductsController extends Controller
             ->minprice; // @todo: refactor query
 
 
+        if (!$priceRangeMin) {
+            $priceRangeMin = DB::table('product_details')
+                ->select(DB::raw('Min(price) as minprice'))
+                ->get()
+                ->first()
+                ->minprice; // @todo: refactor query
+        }
+
         $priceRangeMax = DB::table('product_details')
             ->select(DB::raw('MAX(price) as maxprice'))
             ->get()
             ->first()
-            ->maxprice;
+            ->maxprice; // @todo: refactor query
+
+        $priceRangeFrom = $request->has('pricefrom') ? $request->get('pricefrom') : $priceRangeMin;
+        $priceRangeTo = $request->has('priceto') ? $request->get('priceto') : $priceRangeMax;
 
         $sort = $request->sort;
 
@@ -451,7 +458,7 @@ class ProductsController extends Controller
             $products = $products->latest();
         }
 
-        $products = $products->select('products.*');
+        $products = $products->groupBy('products.id')->select('products.*');
 
         $products = $products->paginate(99);
 

@@ -279,7 +279,7 @@
                                                 @if($category->parent_id == 0)
                                                     <li>
                                                         <label>
-                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}
+{{--                                                            {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false,['required'] ) !!}--}}
                                                             {{ $category->name }}
                                                         </label>
                                                         @if(count($category->children) > 0)

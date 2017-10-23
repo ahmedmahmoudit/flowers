@@ -97,8 +97,8 @@
                         </div>
                     @else
                         <div class="c-shop-cart-page-1 c-center c-padding-10">
-                            <i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin "></i>
-                            <h2 class="c-font-thin c-center">{{ __('No Results') }}</h2>
+                            {{--<i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin "></i>--}}
+                            <h2 class="c-font-thin c-center">{{ __('Coming Soon') }}</h2>
                         </div>
                     @endif
                 </div>

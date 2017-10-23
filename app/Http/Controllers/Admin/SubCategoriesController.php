@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
@@ -54,7 +55,7 @@ class SubCategoriesController extends Controller
         $subCategory = $this->category->createSubCategory($attributes);
 
         //clear cache
-        Cache::flush();
+        Cache::forget('parentCategories');
         if ($subCategory) {
 
             return redirect()->route('manager.subcategories.index')->with('success', 'successfully created');
@@ -98,6 +99,9 @@ class SubCategoriesController extends Controller
             'description_ar' => $request->description_ar
         ]);
 
+
+        Cache::forget('parentCategories');
+
         if ($subcategory) {
 
             return redirect()->route('manager.subcategories.index')->with('success', 'subcategory updated!!');
@@ -114,6 +118,8 @@ class SubCategoriesController extends Controller
      */
     public function destroy($id)
     {
+
+        return ['error'=>Category::find($id)->products->count()];
         //check if category not assigned to any of products
         if ($this->category->getById($id)->products->count() > 0)
         {
@@ -124,6 +130,9 @@ class SubCategoriesController extends Controller
         {
             return url()->previous();
         }
+
+        Cache::forget('parentCategories');
+
         return ['error' => 'System Error!!'];
     }
 }
