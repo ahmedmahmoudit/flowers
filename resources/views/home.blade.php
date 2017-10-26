@@ -11,7 +11,7 @@
         hideNavDelayOnMobile: 1500,
         hideThumbsUnderResolution: 0,
         onHoverStop: "off",
-        touchenabled: "on"
+        touchenabled: "on",
       });
 
       $(document).ready(function(){
