@@ -177,17 +177,19 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                                <label>
-                                                                    {{  __('Store Delivery Times')  }}
-                                                                </label>
-                                                                <ul class="list-unstyled" >
-                                                                    @foreach($deliveryTimes as $time)
-                                                                        <li>
-                                                                                {!! Form::checkbox('delivery_times[]',$time->id) !!}
-                                                                                {{ $time->name_en }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
+                                                            <label>
+                                                                {{  __('Store Delivery Times')  }}
+                                                                <span class="required" style="color: red;"> * </span>
+
+                                                            </label>
+                                                            <ul class="list-unstyled">
+                                                                @foreach($deliveryTimes as $time)
+                                                                    <li>
+                                                                        {!! Form::checkbox('delivery_times[]',$time->id) !!}
+                                                                        {{ $time->name_en }}
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
                                                         </div>
 
                                                         <div class="form-group">
