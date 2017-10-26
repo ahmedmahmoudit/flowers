@@ -473,11 +473,7 @@ class ProductsController extends Controller
     {
         $product = $this->productModel->with('userLikes','delivery_times')->find($id);
         $cartItems = $this->cart->getItems();
-        $deliveryTimes = $product->delivery_times;
-
-        if(!$deliveryTimes->count()) {
-            $deliveryTimes = $this->deliveryTimeModel->get();
-        }
+        $deliveryTimes = $this->deliveryTimeModel->get();
 
         $selectedTime = null;
 
