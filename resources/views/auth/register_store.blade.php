@@ -178,7 +178,7 @@
 
                                                         <div class="form-group">
                                                                 <label>
-                                                                    Delivery Times
+                                                                    {{  __('Store Delivery Times')  }}
                                                                 </label>
                                                                 <ul class="list-unstyled" style="padding-top: 10px;">
                                                                     @foreach($deliveryTimes as $time)

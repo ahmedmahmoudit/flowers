@@ -223,7 +223,7 @@
 
                             <div class="col-xs-6">
                                 <label>
-                                    {{  __('Minimum Delivery Days')  }}
+                                    {{  __('Store Delivery Times')  }}
                                 </label>
                                 <ul class="list-unstyled" style="padding-top: 10px;">
                                     @foreach($deliveryTimes as $time)
