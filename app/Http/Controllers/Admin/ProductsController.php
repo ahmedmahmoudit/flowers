@@ -131,7 +131,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
             $storeVerification = Auth::user()->store->verified;
         }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active', 'natural']);
+        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active', 'natural','delivery_days']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -217,7 +217,7 @@ class ProductsController extends Controller
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
         $deliveryTimes = $this->deliveryTimeModel->get();
-        $productDeliveryTimes = $product->delivery_times->pluck('id')->toArray();
+//        $productDeliveryTimes = $product->delivery_times->pluck('id')->toArray();
 
         return view('backend.shared.products.edit', compact('product', 'stores', 'categories', 'categoriesList', 'deliveryTimes', 'productDeliveryTimes'));
     }
@@ -248,7 +248,8 @@ class ProductsController extends Controller
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
 //            'delivery_times'  => 'required|array',
-            'categories' => 'required|array'
+            'categories' => 'required|array',
+            'delivery_days' => 'required|numeric'
         ];
 
         if (Auth::user()->isManager()) {
@@ -264,7 +265,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
         }
 
-        $attributes = $request->only(['name_en', 'name_ar', 'active', 'natural']);
+        $attributes = $request->only(['name_en', 'name_ar', 'active', 'natural','delivery_days']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);

@@ -131,11 +131,11 @@ class CartController extends Controller
         if ($product) {
             $today = Carbon::now()->toDateString();
             $deliveryDate = Carbon::parse($request->delivery_date)->toDateString();
-            $storeMinimumDeliveryDate = $product->store->minimum_delivery_days;
-            $minimumDeliveryDate = Carbon::now()->addDays($storeMinimumDeliveryDate)->toDateString();
+            $productMinimumDeliveryDays = $product->delivery_days;
+            $minimumDeliveryDays = Carbon::now()->addDays($productMinimumDeliveryDays)->toDateString();
 
-            if($deliveryDate < $minimumDeliveryDate) {
-                return redirect()->back()->with('error',__('Cannot deliver before'). ' '.$minimumDeliveryDate)->withInput();
+            if($deliveryDate < $minimumDeliveryDays) {
+                return redirect()->back()->with('error',__('Cannot deliver before'). ' '.$minimumDeliveryDays)->withInput();
             }
 
             if($deliveryDate === $today) {

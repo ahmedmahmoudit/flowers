@@ -86,7 +86,6 @@ class RegisterController extends Controller
             'store_phone' => 'required_if:role,==,2',
             'start_week_day' => 'required_if:role,==,2',
             'end_week_day' => 'required_if:role,==,2',
-            'minimum_delivery_days' => 'required_if:role,==,2|numeric',
             'country_id' => 'required_if:role,==,2',
             'image' => 'image|required_if:role,==,2',
         ]);
@@ -110,7 +109,6 @@ class RegisterController extends Controller
 
         $user = $this->userModel->create($userData);
 
-
         if($data['role'] == 2) {
 
             $imageName = str_random(15).'.jpg';
@@ -122,7 +120,6 @@ class RegisterController extends Controller
                 'phone' => $data['store_phone'],
                 'start_week_day' => $data['start_week_day'],
                 'end_week_day' => $data['end_week_day'],
-                'minimum_delivery_days' => $data['minimum_delivery_days'],
                 'instagram_username' => $data['instagram_username'],
                 'country_id' => $data['country_id'],
                 'image' => $imageName

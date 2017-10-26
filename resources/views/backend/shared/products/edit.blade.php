@@ -225,18 +225,25 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label>
-                                    Delivery Times
+                                   {{  __('Minimum Delivery Days')  }}
                                 </label>
-                                <ul class="list-unstyled" style="padding-top: 10px;">
-                                    @foreach($deliveryTimes as $time)
-                                        <li>
-                                            <label>
-                                                {!! Form::checkbox('delivery_times[]',$time->id,in_array($time->id,$productDeliveryTimes)) !!}
-                                                {{ $time->name_en }}
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                {{--<ul class="list-unstyled" style="padding-top: 10px;">--}}
+                                    {{--@foreach($deliveryTimes as $time)--}}
+                                        {{--<li>--}}
+                                            {{--<label>--}}
+                                                {{--{!! Form::checkbox('delivery_times[]',$time->id,in_array($time->id,$productDeliveryTimes)) !!}--}}
+                                                {{--{{ $time->name_en }}--}}
+                                            {{--</label>--}}
+                                        {{--</li>--}}
+                                    {{--@endforeach--}}
+                                {{--</ul>--}}
+                                <div class="form-group">
+                                    {{--<div class="input-group-addon">--}}
+                                    {{--<i class="fa fa-calendar"></i>--}}
+                                    {{--</div>--}}
+                                    <input type="text" class="form-control pull-right for-sale" name="delivery_days" value="{{old('delivery_days') ? : $product->delivery_days}}" id="delivery_days" placeholder="{{ __('Minimum Delivery Days') }}">
+                                </div>
+                                <p class="help-block">Use 0 for Same Day Delivery</p>
                             </div>
                         </div>
 

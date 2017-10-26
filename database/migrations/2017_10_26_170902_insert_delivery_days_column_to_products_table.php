@@ -15,6 +15,7 @@ class InsertDeliveryDaysColumnToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
+            $table->integer('delivery_days')->default(1);
         });
     }
 
@@ -27,6 +28,7 @@ class InsertDeliveryDaysColumnToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
+            $table->dropColumn('delivery_days');
         });
     }
 }
