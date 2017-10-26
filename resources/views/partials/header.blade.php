@@ -102,7 +102,7 @@
                                         <ul class="dropdown-menu c-menu-type-inline c-mega-menu-offers-mobile">
                                             <li class="">
                                                 <h3>
-                                                    <a href="{{ route('category.index',$parentCategory->slug) }}"
+                                                    <a href="{{ route('category.index',[$parentCategory->id,$parentCategory->slug]) }}"
                                                        style="color: whitesmoke"
                                                     >
                                                         {{ $parentCategory->name }}
@@ -111,7 +111,7 @@
                                             </li>
                                             @foreach($parentCategory->children as $childCategory)
                                                 <li class="c-mega-menu-offers-mobile">
-                                                    <a href="{{ route('category.show',$childCategory->slug) }}"
+                                                    <a href="{{ route('category.show',[$childCategory->id,$childCategory->slug]) }}"
                                                        style=" {{ app()->getLocale() == 'ar' ? 'font-size:16px': '' }}"
                                                     >
                                                         {{ $childCategory->name }}

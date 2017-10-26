@@ -166,7 +166,8 @@ class ProductsController extends Controller
 
         $areaStores = $area ? $area->stores->pluck('id') : [];
 
-        $category = $this->categoryModel->with('children')->where('slug_en', $categorySlug)->orWhere('slug_ar', $categorySlug)->first();
+//        $category = $this->categoryModel->with('children')->where('slug_en', $categorySlug)->orWhere('slug_ar', $categorySlug)->first();
+        $category = $this->categoryModel->with('children')->find($categorySlug);
 
         $isParent = false;
 
@@ -263,8 +264,11 @@ class ProductsController extends Controller
 
         $category = $this->categoryModel
             ->with('children')
-            ->where('slug_en', $categorySlug)
-            ->orWhere('slug_ar', $categorySlug)->first();
+            ->find($categorySlug)
+//            ->where('slug_en', $categorySlug)
+//            ->orWhere('slug_ar', $categorySlug)
+//            ->first()
+        ;
 
         $childCategories = [$category->id];
 

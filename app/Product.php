@@ -109,4 +109,5 @@ class Product extends BaseModel
         return $this->belongsToMany(DeliveryTime::class,'product_delivery_times');
     }
 
+
 }

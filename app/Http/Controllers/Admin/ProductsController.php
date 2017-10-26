@@ -194,9 +194,9 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-        if ($request->delivery_times) {
-            $product->delivery_times()->sync($request->delivery_times);
-        }
+//        if ($request->delivery_times) {
+//            $product->delivery_times()->sync($request->delivery_times);
+//        }
 
         $this->updateSlug($product);
 
@@ -247,7 +247,7 @@ class ProductsController extends Controller
             'sale_price'      => 'required_with:is_sale',
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
-            'delivery_times'  => 'required|array',
+//            'delivery_times'  => 'required|array',
             'categories' => 'required|array'
         ];
 
@@ -334,7 +334,7 @@ class ProductsController extends Controller
 
 //        if ($request->delivery_times) {
 //            foreach ($request->delivery_times as $time) {
-            $product->delivery_times()->sync($request->delivery_times);
+//            $product->delivery_times()->sync($request->delivery_times);
 //            }
 //        }
 

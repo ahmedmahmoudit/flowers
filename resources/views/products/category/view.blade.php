@@ -20,10 +20,10 @@
         <li><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
         <li>/</li>
         @if($category->parent)
-            <li><a href="{{ route('category.index',$category->parent->slug) }}">{{ ucfirst($category->parent->name) }}</a></li>
+            <li><a href="{{ route('category.index',[$category->parent->id,$category->parent->slug]) }}">{{ ucfirst($category->parent->name) }}</a></li>
             <li>/</li>
         @endif
-        <li class="c-active"><a href="{{ route('category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
+        <li class="c-active"><a href="{{ route('category.index',[$category->id,$category->slug]) }}">{{ ucfirst($category->name) }}</a></li>
     @endcomponent
 
     <div class="container">
@@ -36,7 +36,7 @@
             <div class="c-shop-product-details-2 c-opt-1">
 
                 <div class="row">
-                    <form class="c-shop-advanced-search-1" method="get" action="{{ route('category.show',$category->slug) }}" name="sort-form" id="sort-form">
+                    <form class="c-shop-advanced-search-1" method="get" action="{{ route('category.show',[$category->id,$category->slug]) }}" name="sort-form" id="sort-form">
                         @include('products.sort_button')
                     </form>
                 </div>

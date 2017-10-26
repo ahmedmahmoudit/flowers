@@ -178,8 +178,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('products/top', 'ProductsController@bestSellers')->name('products.top');
         Route::get('product/{id}/{name}', 'ProductsController@show')->name('product.show');
         Route::post('product/{id}/favorite', 'ProductsController@favorite')->name('product.favorite');
-        Route::get('category/{category}', 'ProductsController@getProductsForCategory')->name('category.index');
-        Route::get('category/{category}/all', 'ProductsController@getAllProductsForCategory')->name('category.show');
+        Route::get('category/{category}/{slug}', 'ProductsController@getProductsForCategory')->name('category.index');
+        Route::get('category/{category}/{slug}/all', 'ProductsController@getAllProductsForCategory')->name('category.show');
         Route::get('products/search', 'ProductsController@searchProducts')->name('search');
         Route::get('stores', 'StoresController@index')->name('stores.index');
         Route::get('stores/{id}/{slug}', 'StoresController@show')->name('stores.show');

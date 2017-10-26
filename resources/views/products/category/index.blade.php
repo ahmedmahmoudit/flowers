@@ -5,7 +5,7 @@
     @component('partials.breadcrumb',['title' => $category->name, 'nav'=>true])
         <li><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
         <li>/</li>
-        <li class="c-active"><a href="{{ route('category.index',$category->slug) }}">{{ ucfirst($category->name) }}</a></li>
+        <li class="c-active"><a href="{{ route('category.index',[$category->id,$category->slug]) }}">{{ ucfirst($category->name) }}</a></li>
     @endcomponent
 
     <div class="c-content-box c-size-lg c-bg-white-1">
@@ -20,7 +20,7 @@
                 <div class="col-xs-6">
                     <div class="c-content-title-3 c-border-pink c-right">
                         <h3 class="c-right c-font-uppercase">
-                            <a href="{{ route('category.show',$category->slug) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                            <a href="{{ route('category.show',[$category->id,$category->slug]) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
                         </h3>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <div class="col-xs-6">
                                 <div class="c-content-title-2 c-right">
                                     <h3 class="c-right c-font-uppercase">
-                                        <a href="{{ route('category.show',$childCategory->slug) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                                        <a href="{{ route('category.show',[$category->id,$category->slug]) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
                                     </h3>
                                 </div>
                             </div>

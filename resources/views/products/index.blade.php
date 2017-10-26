@@ -20,7 +20,7 @@
                     <div class="col-xs-6">
                         <div class="c-content-title-3 c-border-pink c-right">
                             <h3 class="c-right c-font-uppercase">
-                                <a href="{{ route('category.show',$category->slug) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
+                                <a href="{{ route('category.show',[$category->id,$category->slug]) }}" class="c-font-uppercase btn btn-xs c-btn-green c-btn-circle c-btn-border-1x">{{ __('View All') }}</a>
                             </h3>
                         </div>
                     </div>
