@@ -5,8 +5,7 @@
     <script>
       $('.slider-banner-container .slider-banner-3').show().revolution({
         delay: 10000,
-        autoHeight: 'off',
-        gridheight: 500,
+        autoHeight: 'on',
         spinner: "spinner3",
         hideNavDelayOnMobile: 1500,
         hideThumbsUnderResolution: 0,

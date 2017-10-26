@@ -6,7 +6,7 @@
                     @foreach($sliderImages as $slider)
                         <li data-transition="fade" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on" >
 {{--                            <img src="{{ asset('uploads/slides/'.$slider->image) }}"  alt="slide1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">--}}
-                            <img src="{{ asset('uploads/slides/test.jpg') }}"  alt="slide1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="contain">
+                            <img src="{{ asset('uploads/slides/test.jpg') }}"  alt="slide1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="100% 100%">
                             @if($slider->description)
                                 <div class="tp-caption very_large_text sfl tp-resizeme"
                                      data-x="center"
