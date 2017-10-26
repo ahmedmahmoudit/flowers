@@ -180,13 +180,11 @@
                                                                 <label>
                                                                     {{  __('Store Delivery Times')  }}
                                                                 </label>
-                                                                <ul class="list-unstyled" style="padding-top: 10px;">
+                                                                <ul class="list-unstyled" >
                                                                     @foreach($deliveryTimes as $time)
                                                                         <li>
-                                                                            <label>
                                                                                 {!! Form::checkbox('delivery_times[]',$time->id) !!}
                                                                                 {{ $time->name_en }}
-                                                                            </label>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>

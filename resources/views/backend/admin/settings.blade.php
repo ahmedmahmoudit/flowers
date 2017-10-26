@@ -218,23 +218,24 @@
                             {{--</div>--}}
                         {{--</div>--}}
 
-                        <div class="form-group">
+                        <div class="col-md-6">
 
-
-                            <div class="col-xs-6">
-                                <label>
+                            <div class="col-md-3">
+                                <label class="control-label">
                                     {{  __('Store Delivery Times')  }}
                                 </label>
+                            </div>
+                            <div class="col-md-6">
                                 <ul class="list-unstyled" style="padding-top: 10px;">
                                     @foreach($deliveryTimes as $time)
-                                        <li>
-                                            <label>
-                                                {!! Form::checkbox('delivery_times[]',$time->id,in_array($time->id,$storeDeliveryTimes)) !!}
-                                                {{ $time->name_en }}
-                                            </label>
+                                        <li >
+                                            {!! Form::checkbox('delivery_times[]',$time->id,in_array($time->id,$storeDeliveryTimes)) !!}
+                                            {{ $time->name_en }}
                                         </li>
                                     @endforeach
                                 </ul>
+                            </div>
+
                             </div>
 
                             <div class="col-xs-6">
