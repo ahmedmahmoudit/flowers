@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Country;
+use App\DeliveryTime;
 use App\Store;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -44,6 +45,10 @@ class RegisterController extends Controller
      * @var User
      */
     private $userModel;
+    /**
+     * @var DeliveryTime
+     */
+    private $deliveryTimeModel;
 
     /**
      * Create a new controller instance.
@@ -51,13 +56,15 @@ class RegisterController extends Controller
      * @param Country $countryModel
      * @param Store $storeModel
      * @param User $userModel
+     * @param DeliveryTime $deliveryTimeModel
      */
-    public function __construct(Country $countryModel,Store $storeModel,User $userModel)
+    public function __construct(Country $countryModel,Store $storeModel,User $userModel,DeliveryTime $deliveryTimeModel)
     {
         $this->middleware('guest');
         $this->countryModel = $countryModel;
         $this->storeModel = $storeModel;
         $this->userModel = $userModel;
+        $this->deliveryTimeModel = $deliveryTimeModel;
     }
 
     public function showRegistrationForm()
@@ -79,7 +86,6 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'role' => ['required',Rule::in(['2','3'])],
-
             'store_name_en' => 'required_if:role,==,2',
             'store_name_ar' => 'required_if:role,==,2',
             'store_email' => 'required_if:role,==,2',
@@ -88,6 +94,7 @@ class RegisterController extends Controller
             'end_week_day' => 'required_if:role,==,2',
             'country_id' => 'required_if:role,==,2',
             'image' => 'image|required_if:role,==,2',
+            'delivery_times' => 'array|required_if:role,==,2',
         ]);
     }
 
@@ -129,7 +136,13 @@ class RegisterController extends Controller
             Image::make($data['image'])->fit(400,400)->encode('jpg')->save('uploads/stores/'.$imageName);
             $user->store_id = $store->id;
             $user->save();
+
+            $store = $user->store;
+            $store->deliveryTimes()->sync($data['delivery_times']);
+
         }
+
+
 
         return $user;
     }
@@ -137,6 +150,7 @@ class RegisterController extends Controller
     public function getStoreRegistrationForm()
     {
         $countries  = $this->countryModel->all();
-        return view('auth.register_store',compact('countries'));
+        $deliveryTimes = $this->deliveryTimeModel->get();
+        return view('auth.register_store',compact('countries','deliveryTimes'));
     }
 }

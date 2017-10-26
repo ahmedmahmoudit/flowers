@@ -103,5 +103,6 @@ class Product extends BaseModel
 //         $deliveryTimes = ['2pm' => __('morning 9am-2pm'), '6pm' => __('afternoon 2pm-6pm'), '10pm' => __('evening 6pm-10pm')];
 //         return $deliveryTimes;
 //    }
+//
 
 }

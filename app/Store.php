@@ -43,7 +43,7 @@ class Store extends BaseModel
 
     public function deliveryTimes()
     {
-        return $this->hasMany('App\StoreDeliveryTime');
+        return $this->belongsToMany(DeliveryTime::class,'store_delivery_times');
     }
 
     /**
@@ -81,4 +81,9 @@ class Store extends BaseModel
     {
         return $query->where('active',1);
     }
+//
+//    public function delivery_times()
+//    {
+//        return $this->belongsToMany(DeliveryTime::class,'store_delivery_times');
+//    }
 }

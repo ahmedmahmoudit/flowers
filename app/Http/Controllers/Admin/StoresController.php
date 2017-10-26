@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Area;
 use App\Country;
+use App\DeliveryTime;
 use App\Http\Requests\UpdateStoreAreaRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStoreRequest;
@@ -22,15 +23,21 @@ class StoresController extends Controller
      * @var $store
      */
     private $store;
+    /**
+     * @var DeliveryTime
+     */
+    private $deliveryTimeModel;
 
     /**
      * StoreController constructor.
      *
      * @param StoreRepositoryInterface $store
+     * @param DeliveryTime $deliveryTimeModel
      */
-    public function __construct(StoreRepositoryInterface $store)
+    public function __construct(StoreRepositoryInterface $store, DeliveryTime $deliveryTimeModel)
     {
         $this->store = $store;
+        $this->deliveryTimeModel = $deliveryTimeModel;
     }
 
     /**
@@ -66,15 +73,14 @@ class StoresController extends Controller
     {
         $imageUpload = $request->only(['image']);
         $areas = $request->only(['areas']);
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email', 'second_email']);
+        $attributes = $request->only(['country_id', 'name_en', 'name_ar', 'phone', 'email', 'second_email']);
 
         $imageName = null;
 
-        if($imageUpload['image'])
-        {
+        if ($imageUpload['image']) {
 
-            $imageName = str_random(15).'.jpg';
-            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/'.$imageName);
+            $imageName = str_random(15) . '.jpg';
+            Image::make($imageUpload['image'])->resize(320, 240)->encode('jpg')->save('uploads/stores/' . $imageName);
             $attributes['image'] = $imageName;
         }
 
@@ -85,8 +91,7 @@ class StoresController extends Controller
 //        $attributes['slug_ar'] = $attributes['name_ar'];
         $store = $this->store->create($attributes);
 
-        if(count($areas['areas']) > 0)
-        {
+        if (count($areas['areas']) > 0) {
             $store->areas()->syncWithoutDetaching($areas['areas']);
         }
 
@@ -97,7 +102,7 @@ class StoresController extends Controller
 
     /**
      * Show store
-    #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -111,7 +116,7 @@ class StoresController extends Controller
 
     /**
      * Create store
-     #
+     * #
      * @var integer $id
      *
      * @return mixed
@@ -121,7 +126,7 @@ class StoresController extends Controller
         $store = $this->store->getById($id);
         $countries = Country::all();
 
-        return view('backend.manager.store.edit', compact('store','countries'));
+        return view('backend.manager.store.edit', compact('store', 'countries'));
     }
 
     /**
@@ -134,14 +139,13 @@ class StoresController extends Controller
      */
     public function update($id, UpdateStoreRequest $request)
     {
-        $attributes = $request->only(['country_id','name_en','name_ar','phone','email','second_email','vendor_id']);
+        $attributes = $request->only(['country_id', 'name_en', 'name_ar', 'phone', 'email', 'second_email', 'vendor_id']);
 
         $store = $this->store->getById($id);
 
-        if($request->hasFile('image'))
-        {
-            $imageName = str_random(15).'.jpg';
-            Image::make($request->file('image'))->fit(400)->encode('jpg')->save('uploads/stores/'.$imageName);
+        if ($request->hasFile('image')) {
+            $imageName = str_random(15) . '.jpg';
+            Image::make($request->file('image'))->fit(400)->encode('jpg')->save('uploads/stores/' . $imageName);
             $attributes['image'] = $imageName;
         }
 
@@ -150,7 +154,7 @@ class StoresController extends Controller
 
         $this->updateSlug($store);
 
-        return redirect()->back()->with('status','Success');
+        return redirect()->back()->with('status', 'Success');
     }
 
     /**
@@ -194,8 +198,7 @@ class StoresController extends Controller
     {
         $store = $this->store->getById($id);
 
-        if($store->products->first())
-        {
+        if ($store->products->first()) {
             Session()->flash('success', 'Store has products, can\'t be deleted!');
             return route('manager.stores.index');
         }
@@ -259,9 +262,9 @@ class StoresController extends Controller
     public function settings()
     {
         $store = Auth::user()->store;
-        $deliveryList = $store->deliveryTimes->pluck('type')->toArray();
-
-        return view('backend.admin.settings', compact('store','deliveryList'));
+        $deliveryTimes = $this->deliveryTimeModel->get();
+        $storeDeliveryTimes = $store->deliveryTimes->pluck('id')->toArray();
+        return view('backend.admin.settings', compact('store', 'deliveryTimes', 'storeDeliveryTimes'));
     }
 
     public function settingsUpdate(UpdateStoreSettingsRequest $request)
@@ -286,62 +289,19 @@ class StoresController extends Controller
             'active'
         ]);
 
-        if($imageUpload['image'])
-        {
+        if ($imageUpload['image']) {
             $imageName = str_random(15);
-            Image::make($imageUpload['image'])->fit(400,400)->encode('jpg')->save('uploads/stores/'.$imageName.'.jpg');
-            $attributes['image'] = $imageName.'.jpg';
+            Image::make($imageUpload['image'])->fit(400, 400)->encode('jpg')->save('uploads/stores/' . $imageName . '.jpg');
+            $attributes['image'] = $imageName . '.jpg';
         }
 
         $this->store->update(Auth::user()->store->id, $attributes);
 
         $store = Auth::user()->store;
-        $deliveryList = $store->deliveryTimes->pluck('type')->toArray();
-        $result = array_diff(array_filter($delivery), $deliveryList);
-        $toRemoveResult = array_diff(array_filter($deliveryList), $delivery);
 
-        if(count($toRemoveResult) > 0)
-        {
-            foreach ($toRemoveResult as $deliveryTime)
-            {
-                StoreDeliveryTime::where([
-                    'store_id' => Auth::user()->store->id,
-                    'type' => $deliveryTime
-                ])->delete();
-            }
+        if ($request->delivery_times) {
+            $store->deliveryTimes()->sync($request->delivery_times);
         }
-
-        if(isset($result['delivery_time1']))
-        {
-            StoreDeliveryTime::create([
-                'store_id' => Auth::user()->store->id,
-                'from' => date("H:i:s", strtotime("09:00 AM")),
-                'to' => date("H:i:s", strtotime("02:00 PM")),
-                'type' => 1
-            ]);
-        }
-
-        if(isset($result['delivery_time2']))
-        {
-            StoreDeliveryTime::create([
-                'store_id' => Auth::user()->store->id,
-                'from' => date("H:i:s", strtotime("02:00 PM")),
-                'to' => date("H:i:s", strtotime("06:00 PM")),
-                'type' => 2
-            ]);
-        }
-
-        if(isset($result['delivery_time3']))
-        {
-            StoreDeliveryTime::create([
-                'store_id' => Auth::user()->store->id,
-                'from' => date("H:i:s", strtotime("06:00 PM")),
-                'to' => date("H:i:s", strtotime("10:00 PM")),
-                'type' => 3
-            ]);
-        }
-
-
 
         return redirect()->route('admin.settings');
     }
