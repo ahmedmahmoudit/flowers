@@ -66,7 +66,6 @@ class SlidersController extends Controller
      */
     public function store(CreateSliderRequest $request)
     {
-
         $attributes = $request->only(['image', 'store_id', 'order', 'description']);
         $this->slider->create($attributes);
 
