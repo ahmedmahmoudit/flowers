@@ -51,16 +51,7 @@
                                         <p class="help-block"></p>
                                     </div>
                                 </div>
-                            @else
-                                <div class="col-xs-6">
-                                    <label>{{__('adminPanel.product_status')}}</label>
-                                    <select class="form-control" name="active"
-                                            value="{{$product->active or old('active')}}">
-                                        <option value="1">Active</option>
-                                        <option value="0">Disabled</option>
-                                    </select>
-                                    <p class="help-block"></p>
-                                </div>
+
                             @endif
                         </div>
 
@@ -111,6 +102,15 @@
                                 </div>
                             </div>
                         @endif
+
+                        <div class="col-xs-6">
+                            <label>{{__('adminPanel.product_status')}}</label>
+                            <select class="form-control" name="active">
+                                <option value="1" {{ $product->active ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ !$product->active ? 'selected' : '' }}>Disabled</option>
+                            </select>
+                            <p class="help-block"></p>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>

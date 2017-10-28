@@ -120,7 +120,6 @@ class ProductsController extends Controller
      * @return mixed
      */
     public function store(CreateProductRequest $request)
-//    public function store(\Illuminate\Http\Request $request)
     {
         if (Auth::user()->isManager()) {
             $store = $request->only(['store']);
@@ -131,7 +130,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
             $storeVerification = Auth::user()->store->verified;
         }
-        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'active', 'natural','delivery_days']);
+        $attributes = $request->only(['sku', 'name_en', 'name_ar', 'natural', 'delivery_days']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -171,10 +170,7 @@ class ProductsController extends Controller
 
         $product->detail()->save($details);
 
-//        if (count($categories['categories']) > 0) {
-//            $product->categories()->sync($categoryParent['parent_id']);
-            $product->categories()->sync($categories['categories']);
-//        }
+        $product->categories()->sync($categories['categories']);
 
         if ($request->images) {
             $savedImages = [];
@@ -193,10 +189,6 @@ class ProductsController extends Controller
 
             $product->productImages()->saveMany($savedImages);
         }
-
-//        if ($request->delivery_times) {
-//            $product->delivery_times()->sync($request->delivery_times);
-//        }
 
         $this->updateSlug($product);
 
@@ -217,7 +209,6 @@ class ProductsController extends Controller
         $categories = $this->category->getParentCategoriesWithChildren();
         $categoriesList = $product->categories->pluck('id')->toArray();
         $deliveryTimes = $this->deliveryTimeModel->get();
-//        $productDeliveryTimes = $product->delivery_times->pluck('id')->toArray();
 
         return view('backend.shared.products.edit', compact('product', 'stores', 'categories', 'categoriesList', 'deliveryTimes', 'productDeliveryTimes'));
     }
@@ -247,9 +238,8 @@ class ProductsController extends Controller
             'sale_price'      => 'required_with:is_sale',
             'start_sale_date' => 'required_with:is_sale|before:end_sale_date',
             'end_sale_date'   => 'required_with:is_sale|before:start_sale_date',
-//            'delivery_times'  => 'required|array',
-            'categories' => 'required|array',
-            'delivery_days' => 'required|numeric'
+            'categories'      => 'required|array',
+            'delivery_days'   => 'required|numeric'
         ];
 
         if (Auth::user()->isManager()) {
@@ -265,7 +255,7 @@ class ProductsController extends Controller
             $store_id = Auth::user()->store->id;
         }
 
-        $attributes = $request->only(['name_en', 'name_ar', 'active', 'natural','delivery_days']);
+        $attributes = $request->only(['name_en', 'name_ar', 'natural', 'delivery_days']);
         $attributesDetails = $request->only(['price', 'height', 'width', 'is_sale', 'sale_price', 'start_sale_date', 'end_sale_date', 'qty', 'description_en', 'description_ar']);
         $categories = $request->only(['categories']);
         $mainImage = $request->only(['main_image']);
@@ -277,7 +267,13 @@ class ProductsController extends Controller
 
         $product = $this->product->getById($id);
 
-        $attributes['active'] = $request->has('active') ? $request->active : $product->active;
+        if (Auth::user()->isManager()) {
+            $attributes['active'] = $request->has('active') ? $request->active : $product->active;
+        } else {
+            if ($attributes['can_activate'] = '0') {
+                $attributes['active'] = $request->has('active') ? $request->active : $product->active;
+            }
+        }
 
         $this->product->update($id, $attributes);
 
@@ -333,12 +329,6 @@ class ProductsController extends Controller
             $product->productImages()->saveMany($savedImages);
         }
 
-//        if ($request->delivery_times) {
-//            foreach ($request->delivery_times as $time) {
-//            $product->delivery_times()->sync($request->delivery_times);
-//            }
-//        }
-
         $this->updateSlug($product);
 
         return redirect(Request::segment(1) . '/products');
@@ -383,6 +373,10 @@ class ProductsController extends Controller
     {
         $this->product->disable($id);
 
+        $product = $this->productModel->find($id);
+        $product->can_activate = '0';
+        $product->save();
+
         return url()->previous();
     }
 
@@ -396,7 +390,9 @@ class ProductsController extends Controller
     public function activate($id)
     {
         $this->product->activate($id);
-
+        $product = $this->productModel->find($id);
+        $product->can_activate = '1';
+        $product->save();
         return url()->previous();
     }
 
