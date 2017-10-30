@@ -46,6 +46,16 @@
                             <input type="file" name="image" id="exampleInputFile">
                             <p class="help-block">Image Size 1920x520</p>
                         </div>
+
+                        <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="1" name="mobile" value="{{old('mobile')}}">
+                                        &nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;{{__('adminPanel.mobile')}}</b>
+                                    </label>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.box-body -->
 

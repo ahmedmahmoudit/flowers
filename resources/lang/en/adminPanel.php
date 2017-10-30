@@ -187,6 +187,7 @@ return array(
     "country"                   => 'Country',
     "created"                   => 'Date Registered',
     "natural"                   => 'Natural',
-    "active"                    => 'Active'
-
+    "active"                    => 'Active',
+    "version"                   => 'Version',
+    "mobile"                    => 'Mobile Version ?'
 );

@@ -22,4 +22,14 @@ class Slider extends BaseModel
         return $this->belongsTo(Store::class);
     }
 
+
+    public function scopeDesktop($query)
+    {
+        return $query->where('mobile',0);
+    }
+
+    public function scopeMobile($query)
+    {
+        return $query->where('mobile',1);
+    }
 }

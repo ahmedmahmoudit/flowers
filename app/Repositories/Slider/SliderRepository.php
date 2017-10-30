@@ -56,14 +56,23 @@ class SliderRepository implements SliderRepositoryInterface
     {
         $this->checkOrderExist($attributes['order']);
         $imageName = str_random(15);
-        Image::make($attributes['image'])->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
+
+        if(isset($attributes['mobile'])) {
+            Image::make($attributes['image'])->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
+        } else {
+            Image::make($attributes['image'])->encode('jpg')->save('uploads/slides/'.$imageName.'.jpg');
+        }
 
         $data = [
             'order' => $attributes['order'],
             'store_id'  => isset($attributes['store_id']) ? $attributes['store_id'] : null ,
             'description'  => $attributes['description'],
-            'image' => $imageName.'.jpg'
+            'image' => $imageName.'.jpg',
         ];
+
+        if (isset($attributes['mobile'])) {
+            $data['mobile'] = '1';
+        }
 
         return $this->model->create($data);
     }

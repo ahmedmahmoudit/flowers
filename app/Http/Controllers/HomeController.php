@@ -51,7 +51,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $sliderImages = $this->sliderModel->orderBy('order', 'asc')->limit(5)->get();
+        $desktopSliderImages = $this->sliderModel->desktop()->orderBy('order', 'asc')->limit(5)->get();
+        $mobileSliderImages = $this->sliderModel->mobile()->orderBy('order', 'asc')->limit(5)->get();
+
         $ads = $this->adModel->latest()->limit(3)->get();
 
         $selectedArea = session()->get('selectedArea');
@@ -92,6 +94,6 @@ class HomeController extends Controller
             $showAreaPopup = 'false';
         }
 
-        return view('home', compact('bestSellers', 'cartItems', 'sliderImages', 'ads', 'products','showAreaPopup'));
+        return view('home', compact('bestSellers', 'cartItems', 'desktopSliderImages','mobileSliderImages', 'ads', 'products','showAreaPopup'));
     }
 }

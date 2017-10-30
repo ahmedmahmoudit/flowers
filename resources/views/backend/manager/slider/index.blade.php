@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th>{{__('adminPanel.image')}}</th>
+                                <th>{{__('adminPanel.version')}}</th>
                                 <th>{{__('adminPanel.store')}}</th>
                                 <th>{{__('adminPanel.link')}}</th>
                                 <th>{{__('adminPanel.description')}}</th>
@@ -35,7 +36,11 @@
                             <tbody>
                             @foreach($sliders as $slide)
                                 <tr>
-                                    <td><a href="{{asset('uploads/slides/'.$slide->image)}}" target="_blank">{{$slide->image}}</a></td>
+                                    <td><a href="{{asset('uploads/slides/'.$slide->image)}}" target="_blank">
+                                            <img src="{{asset('uploads/slides/'.$slide->image)}}" style="width: 155px;height:75px" />
+
+                                        </a></td>
+                                    <td>{{ $slide->mobile ? 'Mobile' : 'Desktop' }}</td>
                                     <td>{{ $slide->store ? $slide->store->name : '' }}</td>
                                     <td>{{$slide->link}}</td>
                                     <td>{{$slide->description}}</td>

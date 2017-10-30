@@ -187,9 +187,10 @@ return array(
     "country"                   => 'دولة',
     "created"                   => 'تاريخ التسجيل',
     "natural"                   => 'طبيعي',
-    "active"                    => 'فعال'
+    "active"                    => 'فعال',
 //    "delivery_time_morning" => "asdasd",
 //    "delivery_time_afternoon" => "asdasd",
 //    "delivery_time_evening" => "asdasd"
-
+    "version"                   => 'نوع',
+    "mobile" => '  ؟موبايل '
 );
