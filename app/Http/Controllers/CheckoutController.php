@@ -104,7 +104,11 @@ class CheckoutController extends Controller
             $extraFields = ['country_id' => $selectedCountry['id']];
 
             $addressFields = array_merge($requestFields, $extraFields);
-            $address = $user->addresses()->create($addressFields);
+            if($user) {
+                $address = $user->addresses()->create($addressFields);
+            } else {
+                $address = $this->addressModel->create($addressFields);
+            }
         } else {
             $address = $this->addressModel->find($request->address_id);
         }
