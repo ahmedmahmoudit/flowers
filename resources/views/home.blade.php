@@ -1,5 +1,12 @@
 @extends('layouts.master')
 
+@section('style')
+    @parent
+    <link href="/plugins/revo-slider/css/settings.css" rel="stylesheet" type="text/css"/>
+    <link href="/plugins/revo-slider/css/layers.css" rel="stylesheet" type="text/css"/>
+    <link href="/plugins/revo-slider/css/navigation.css" rel="stylesheet" type="text/css"/>
+@endsection
+
 @section('script')
     @parent
     <script src="/plugins/revo-slider/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
