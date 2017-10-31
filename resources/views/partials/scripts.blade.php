@@ -8,6 +8,9 @@
 <script src="/plugins/slider-for-bootstrap/js/bootstrap-slider.js" type="text/javascript"></script>
 <script src="/plugins/zoom-master/jquery.zoom.min.js" type="text/javascript"></script>
 
+<script src="/plugins/revo-slider/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+<script src="/plugins/revo-slider/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+
 <script src="/js/components.js" type="text/javascript"></script>
 <script src="/js/components-shop.js" type="text/javascript"></script>
 <script src="/js/app.js" type="text/javascript"></script>
