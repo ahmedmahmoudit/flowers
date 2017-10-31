@@ -40,8 +40,8 @@ mix.scripts([
   'public/plugins/fancybox/jquery.fancybox.pack.js',
   'public/plugins/slider-for-bootstrap/js/bootstrap-slider.js',
   'public/plugins/zoom-master/jquery.zoom.min.js',
-  '/plugins/revo-slider/js/jquery.themepunch.tools.min.js',
-  '/plugins/revo-slider/js/jquery.themepunch.revolution.min.js',
+  'public/plugins/revo-slider/js/jquery.themepunch.tools.min.js',
+  'public/plugins/revo-slider/js/jquery.themepunch.revolution.min.js',
   'public/js/components.js',
   'public/js/components-shop.js',
   'public/js/app.js'
@@ -49,10 +49,9 @@ mix.scripts([
 
 mix.copyDirectory('public/plugins/bootstrap/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/simple-line-icons/fonts', 'public/dist/fonts');
-mix.copyDirectory('public/plugins/rs-plugin/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/font-awesome/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/revo-slider/fonts', 'public/dist/fonts');
-mix.copyDirectory('public/plugins/revo-slider/js/extensions', 'public/dist/js');
+mix.copyDirectory('public/plugins/revo-slider/js/extensions', 'public/extensions');
 
 mix.copyDirectory('public/img', 'public/dist/img');
 mix.copyDirectory('public/plugins/rs-plugin/img', 'public/dist/img');
