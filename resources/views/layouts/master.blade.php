@@ -14,7 +14,7 @@
     <meta content="" name="author"/>
 
     @section('style')
-        @if(app()->environment() === 'local')
+        @if(app()->environment() === 'production')
             @if(app()->getLocale() == 'ar')
                 <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
             @else
