@@ -309,7 +309,7 @@
 
                         </div>
                         <div style="padding-top:20px">
-                            @if($product->store->minimum_delivery_days == '0')
+                            @if($product->delivery_days == '0')
                                 {{ __('Same Day Delivery') }}
                             @else
                                 {{ __('Minimum Delivery Days') }} {{ $product->delivery_days }}
