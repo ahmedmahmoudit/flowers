@@ -1,4 +1,4 @@
-<div class="row c-padding-20">
+<div class="row">
     <div class="col-md-offset-2">
         @foreach($ads as $ad)
             <div class="col-md-3 col-sm-4 col-xs-4">

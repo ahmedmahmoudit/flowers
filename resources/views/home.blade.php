@@ -14,7 +14,7 @@
         return {
           sliderType: "standard",
           sliderLayout: "fullwidth",
-          delay: 15000,
+          delay: 5000,
           autoHeight: 'off',
           gridheight: height,
           navigation: {
@@ -62,7 +62,7 @@
           hideNavDelayOnMobile: 1500,
           hideBulletsOnMobile: "on",
           hideArrowsOnMobile: "on",
-          hideThumbsUnderResolution: 0,
+          hideThumbsUnderResolution: 0
         }
 
       };
