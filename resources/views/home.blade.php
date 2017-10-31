@@ -24,9 +24,9 @@
             onHoverStop: "on",
             arrows: {
               style: "circle",
-              enable: true,
-              hide_onmobile: false,
-              hide_onleave: false,
+              enable: false,
+              hide_onmobile: true,
+              hide_onleave: true,
               tmp: '',
               left: {
                 h_align: "left",
@@ -56,12 +56,12 @@
           },
           shadow: 0,
           spinner: "spinner2",
-          disableProgressBar: "on",
+          disableProgressBar: "off",
           fullScreenOffsetContainer: '.tp-banner-container',
           hideThumbsOnMobile: "on",
           hideNavDelayOnMobile: 1500,
           hideBulletsOnMobile: "on",
-          hideArrowsOnMobile: "on",
+          hideArrowsOnMobile: "off",
           hideThumbsUnderResolution: 0
         }
 
