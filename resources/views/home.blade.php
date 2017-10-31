@@ -11,6 +11,7 @@
 
       var sliderMobile = $('.c-layout-revo-slider-mobile .tp-banner');
       var sliderDesktop = $('.c-layout-revo-slider-desktop .tp-banner');
+
       var sliderConf = function (height) {
         return {
           sliderType: "standard",

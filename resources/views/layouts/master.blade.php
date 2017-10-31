@@ -14,7 +14,7 @@
     <meta content="" name="author"/>
 
     @section('style')
-        @if(app()->environment() === 'production')
+        @if(app()->environment() === 'local')
             @if(app()->getLocale() == 'ar')
                 <link rel="stylesheet" href="{{ mix('/dist/css/style-rtl.css') }}">
             @else
@@ -47,7 +47,7 @@
 </div>
 
 @section('script')
-    @if(app()->environment() === 'production')
+    @if(app()->environment() === 'local')
         <script src="{{mix('/dist/js/script.js')}}" type="text/javascript" ></script>
     @else
         @include('partials.scripts')
