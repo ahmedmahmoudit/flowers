@@ -6,7 +6,10 @@ mix.styles([
   'public/plugins/simple-line-icons/css/simple-line-icons.min.css',
   'public/plugins/cubeportfolio/css/cubeportfolio.min.css',
   'public/plugins/slider-for-bootstrap/css/slider.css',
-  'public/plugins/rs-plugin/css/settings.css',
+  'public/plugins/revo-slider/css/settings.css',
+  'public/plugins/revo-slider/css/layers.css',
+  'public/plugins/revo-slider/css/navigation.css',
+  // 'public/plugins/rs-plugin/css/settings.css',
   'public/css/plugins.css',
   'public/css/components.css',
   'public/css/default.css',
@@ -19,7 +22,10 @@ mix.styles([
   'public/plugins/simple-line-icons/css/simple-line-icons.min.css',
   'public/plugins/cubeportfolio/css/cubeportfolio.min.css',
   'public/plugins/slider-for-bootstrap/css/slider.css',
-  'public/plugins/rs-plugin/css/settings.css',
+  'public/plugins/revo-slider/css/settings.css',
+  'public/plugins/revo-slider/css/layers.css',
+  'public/plugins/revo-slider/css/navigation.css',
+  // 'public/plugins/rs-plugin/css/settings.css',
   'public/plugins/bootstrap/css/bootstrap-rtl.min.css',
   'public/css/plugins-rtl.css',
   'public/css/components-rtl.css',
@@ -47,6 +53,8 @@ mix.copyDirectory('public/plugins/bootstrap/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/simple-line-icons/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/rs-plugin/fonts', 'public/dist/fonts');
 mix.copyDirectory('public/plugins/font-awesome/fonts', 'public/dist/fonts');
+mix.copyDirectory('public/plugins/revo-slider/fonts', 'public/dist/fonts');
+mix.copyDirectory('public/plugins/revo-slider/js/extensions', 'public/dist/js');
 
 mix.copyDirectory('public/img', 'public/dist/img');
 mix.copyDirectory('public/plugins/rs-plugin/img', 'public/dist/img');

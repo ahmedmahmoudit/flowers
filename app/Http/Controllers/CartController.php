@@ -138,7 +138,7 @@ class CartController extends Controller
                 return redirect()->back()->with('error',__('Cannot deliver before'). ' '.$minimumDeliveryDays)->withInput();
             }
 
-            if($deliveryDate === $today) {
+            if($deliveryDate == $today) {
 
                 $deliveryTime = $this->deliveryTimeModel->find($request->delivery_time);
 

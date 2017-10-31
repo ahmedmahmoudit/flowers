@@ -4,7 +4,9 @@
 <link href="/plugins/simple-line-icons/css/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 
 {{--<link href="/plugins/rs-plugin/css/settings.css" media="screen" rel="stylesheet">--}}
-
+<link href="/plugins/revo-slider/css/settings.css" rel="stylesheet" type="text/css"/>
+<link href="/plugins/revo-slider/css/layers.css" rel="stylesheet" type="text/css"/>
+<link href="/plugins/revo-slider/css/navigation.css" rel="stylesheet" type="text/css"/>
 
 <link href="/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css"/>
 <link href="/plugins/slider-for-bootstrap/css/slider.css" rel="stylesheet" type="text/css"/>
