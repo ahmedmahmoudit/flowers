@@ -17,38 +17,38 @@
           delay: 5000,
           autoHeight: 'off',
           gridheight: height,
-          navigation: {
-            keyboardNavigation: "off",
-            keyboard_direction: "horizontal",
-            mouseScrollNavigation: "off",
-            onHoverStop: "on",
-            arrows: {
-              style: "circle",
-              enable: false,
-              hide_onmobile: true,
-              hide_onleave: true,
-              tmp: '',
-              left: {
-                h_align: "left",
-                v_align: "center",
-                h_offset: 30,
-                v_offset: 0
-              },
-              right: {
-                h_align: "right",
-                v_align: "center",
-                h_offset: 30,
-                v_offset: 0
-              }
-            },
-            touch: {
-              touchenabled: "on",
-              swipe_threshold: 75,
-              swipe_min_touches: 1,
-              swipe_direction: "horizontal",
-              drag_block_vertical: false
-            },
-          },
+//          navigation: {
+//            keyboardNavigation: "off",
+//            keyboard_direction: "horizontal",
+//            mouseScrollNavigation: "off",
+//            onHoverStop: "on",
+//            arrows: {
+//              style: "circle",
+//              enable: false,
+//              hide_onmobile: true,
+//              hide_onleave: true,
+//              tmp: '',
+//              left: {
+//                h_align: "left",
+//                v_align: "center",
+//                h_offset: 30,
+//                v_offset: 0
+//              },
+//              right: {
+//                h_align: "right",
+//                v_align: "center",
+//                h_offset: 30,
+//                v_offset: 0
+//              }
+//            },
+//            touch: {
+//              touchenabled: "on",
+//              swipe_threshold: 75,
+//              swipe_min_touches: 1,
+//              swipe_direction: "horizontal",
+//              drag_block_vertical: false
+//            },
+//          },
           viewPort: {
             enable: true,
             outof: "pause",
